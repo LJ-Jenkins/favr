@@ -1,0 +1,18 @@
+Package: favr
+Title: Function Argument Validation in R
+Version: 0.0.0.9000
+Authors@R: 
+    person("Luke", "Jenkins", , "luke.joe.jenkins@gmail.com", role = c("aut", "cre"), comment = c(ORCID = "0000-0002-7206-7242"))
+Description: Tools for function argument validation that focus on clear error messaging and include options for safe, automatic type casting and size recycling.
+License: MIT + file LICENSE
+Encoding: UTF-8
+Roxygen: list(markdown = TRUE)
+RoxygenNote: 7.3.2
+Imports: 
+    cli,
+    rlang,
+    tidyselect,
+    vctrs
+Suggests: 
+    testthat (>= 3.0.0)
+Config/testthat/edition: 3
