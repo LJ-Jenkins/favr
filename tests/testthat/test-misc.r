@@ -1,0 +1,22 @@
+test_that("casting/recycling helpers error out of context", {
+  # some dup tests
+  x <- y <- 1L
+  li <- list(x = 1, y = 1)
+  expect_error(cast(x))
+  expect_error(lossy(x))
+  expect_error(recycle(x))
+  expect_error(coerce(x))
+  expect_error(abort_if_not(cast(x)))
+  expect_error(abort_if_not(lossy(x)))
+  expect_error(abort_if_not(recycle(x)))
+  expect_error(abort_if_not(coerce(x)))
+  expect_error(recycle_if_not(cast(x)))
+  expect_error(recycle_if_not(lossy(x)))
+  expect_error(recycle_if_not(recycle(x)))
+  expect_error(recycle_if_not(coerce(x)))
+  expect_error(cast_if_not(cast(x)))
+  expect_error(cast_if_not(recycle(x)))
+  expect_error(cast_if_not(coerce(x)))
+  expect_error(enforce(lossy(x)))
+  expect_error(schema(lossy(x)))
+})
