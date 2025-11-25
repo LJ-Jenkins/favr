@@ -459,6 +459,7 @@ add_to_schema.with_schema <- function(
     .darg = caller_arg(data)) {
   args <- enquos(...)
   eval_env <- caller_env()
+  caller_fn <- "add_to_schema"
   check_env(.error_call, call = eval_env, caller_fn = caller_fn)
   check_character(.darg, call = .error_call, caller_fn = caller_fn)
 
@@ -495,7 +496,7 @@ add_to_schema.with_schema <- function(
     attached_schema$mask_size,
     .error_call,
     .darg,
-    .caller_fn = "enforce_schema"
+    .caller_fn = caller_fn
   )
 }
 

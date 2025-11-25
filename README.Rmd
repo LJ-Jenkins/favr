@@ -40,7 +40,7 @@ pak::pak("LJ-Jenkins/favr")
 `abort_if_not` can be used for all validations:
 
 ```{r abort_if_not example, error=TRUE}
-library(favr, quietly = TRUE)
+library(favr, warn.conflicts = FALSE)
 
 f <- \(x, y) {
   abort_if_not(
@@ -158,7 +158,7 @@ li_with_schema <- li_with_schema |>
 
 ###  Notes
 
-favr functions that assign into environments (cast_if_not, recycle_if_not, and enforce) all do clean-up when errors occur:
+favr functions that assign into environments (`cast_if_not`, `recycle_if_not`, and `enforce`) all do clean-up when errors occur:
 
 ```{r clean-up example}
 x <- 1L

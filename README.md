@@ -36,12 +36,7 @@ pak::pak("LJ-Jenkins/favr")
 `abort_if_not` can be used for all validations:
 
 ``` r
-library(favr, quietly = TRUE)
-#> 
-#> Attaching package: 'favr'
-#> The following object is masked from 'package:methods':
-#> 
-#>     coerce
+library(favr, warn.conflicts = FALSE)
 
 f <- \(x, y) {
   abort_if_not(
@@ -95,7 +90,8 @@ x <- "hi"
 cast_if_not(x = integer())
 #> Error:
 #> Caused by error in `cast_if_not()`.
-#> Can't convert `x` <character> to <integer>.
+#> ℹ In argument: `x = integer()`.
+#> ! Can't convert `x` <character> to <integer>.
 ```
 
 `enforce` allows both validations, casting and recycling using the
@@ -135,7 +131,8 @@ df <- data.frame(x = 1L, y = "hi")
 enforce(df ~ cast(data.frame(x = integer(), y = double())))
 #> Error:
 #> Caused by error in `enforce()`.
-#> Can't convert `df$y` <character> to match type of `y` <double>.
+#> ℹ In argument: `df ~ cast(data.frame(x = integer(), y = double()))`.
+#> ! Can't convert `df$y` <character> to match type of `y` <double>.
 
 x <- 1
 y <- 1:5
@@ -143,7 +140,8 @@ y <- 1:5
 enforce(c(x, y) ~ list(~ .x > 0, recycle(10)))
 #> Error:
 #> Caused by error in `enforce()`.
-#> Can't recycle `y` (size 5) to size 10.
+#> ℹ In argument: `c(x, y) ~ list(... recycle(10) ...)`.
+#> ! Can't recycle `y` (size 5) to size 10.
 ```
 
 `schema` provide the same functionality for data-masked arguments from
@@ -209,7 +207,7 @@ li_with_schema <- li_with_schema |>
 li_with_schema <- li_with_schema |>
   add_to_schema(y ~ \(.x) nchar(.x) > 2)
 #> Error:
-#> Caused by error in `enforce_schema()`.
+#> Caused by error in `add_to_schema()`.
 #> ℹ For named element: `y`.
 #> ℹ In argument: `y ~ function(.x) nchar(.x) > 2`.
 #> ! Returned `FALSE`.
@@ -217,15 +215,16 @@ li_with_schema <- li_with_schema |>
 
 ### Notes
 
-favr functions that assign into environments (cast_if_not,
-recycle_if_not, and enforce) all do clean-up when errors occur:
+favr functions that assign into environments (`cast_if_not`,
+`recycle_if_not`, and `enforce`) all do clean-up when errors occur:
 
 ``` r
 x <- 1L
 y <- 1L
 cast_if_not(x = double(), y = character()) |> try()
 #> Error in (function (...)  : Caused by error in `cast_if_not()`.
-#> Can't convert `y` <integer> to <character>.
+#> ℹ In argument: `y = character()`.
+#> ! Can't convert `y` <integer> to <character>.
 cat("Code has errored but `x` has reverted back to:", class(x))
 #> Code has errored but `x` has reverted back to: integer
 ```
