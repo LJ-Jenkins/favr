@@ -38,7 +38,7 @@
 #' given to `...`. Alternatively, a named vector/list can be given, where
 #' the values for matching named elements are passed to the type predicate,
 #' but unmatched names are passed NULL.
-#' @seealso [are-bare-type-predicates] [are-scalar-type-predicates] [type-predicates]
+#' @seealso [are-bare-type-predicates] [are-scalar-type-predicates] [rlang::type-predicates]
 #' @name are-type-predicates
 #' @examples
 #' x <- 1
@@ -176,7 +176,7 @@ are_null <- function(..., .all = FALSE) {
 #' but unmatched names are passed NULL. List inputs can pass different
 #' character vectors for each dot argument. When a character vector is given for
 #' a single argument, `TRUE` is returned if at least one element is equal.
-#' @seealso [are-type-predicates], [are-bare-type-predicates] [scalar-type-predicates]
+#' @seealso [are-type-predicates], [are-bare-type-predicates] [rlang::scalar-type-predicates]
 #' @name are-scalar-type-predicates
 #' @examples
 #' x <- 1
@@ -315,7 +315,7 @@ are_scalar_bytes <- function(..., .all = FALSE) {
 #' given to `...`. Alternatively, a named vector/list can be given, where
 #' the values for matching named elements are passed to the type predicate,
 #' but unmatched names are passed NULL.
-#' @seealso [are-type-predicates], [are-scalar-type-predicates] [bare-type-predicates]
+#' @seealso [are-type-predicates], [are-scalar-type-predicates] [rlang::bare-type-predicates]
 #' @name are-bare-type-predicates
 #' @examples
 #' x <- 1
@@ -421,7 +421,7 @@ are_bare_numeric <- function(..., .n = NULL, .all = FALSE) {
 #' @param ... Objects to be tested.
 #' @param .all Whether to return if all arguments are TRUE.
 #' @inherit are-type-predicates return
-#' @seealso [is_empty]
+#' @seealso [rlang::is_empty]
 #' @examples
 #' x <- 1
 #' y <- NULL
@@ -497,7 +497,7 @@ are_false <- function(..., .all = FALSE) {
 #'
 #' @inheritParams are-type-predicates
 #' @inherit are-type-predicates return details
-#' @seealso [is_bare_numeric] and [are_bare_numeric] for testing
+#' @seealso [rlang::is_bare_numeric] and [are_bare_numeric] for testing
 #' whether an object is a base numeric type (a bare double or integer vector).
 #' @export
 #' @examples
