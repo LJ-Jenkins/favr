@@ -21,7 +21,7 @@ reference:
 - subtitle: Attributes
   contents:
   - are_named
-  - has_names
+  - have_names
 
 - subtitle: Type predicates
   contents:
