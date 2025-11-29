@@ -1,4 +1,4 @@
-#' Is object named?
+#' Are objects named?
 #'
 #' @description
 #'
@@ -42,7 +42,7 @@
 #' have_names(x, y, c(a = 1, 2, 3), .all = TRUE)
 #'
 #' # Empty and missing names are treated as invalid:
-#' invalid <- set_names(letters[1:5])
+#' invalid <- setNames(letters[1:5], letters[1:5])
 #' names(invalid)[1] <- ""
 #' names(invalid)[3] <- NA
 #'
