@@ -83,6 +83,6 @@ are_integerish(x, y, z, TRUE, .n = c(1, 2, 1, 1))
 are_integerish(x, y, z, TRUE, .n = c(y = 2, "TRUE" = 1))
 }
 \seealso{
-\link{is_bare_numeric} and \link{are_bare_numeric} for testing
+\link[rlang:bare-type-predicates]{rlang::is_bare_numeric} and \link{are_bare_numeric} for testing
 whether an object is a base numeric type (a bare double or integer vector).
 }

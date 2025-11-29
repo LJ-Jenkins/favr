@@ -4,7 +4,7 @@
 \alias{are_named}
 \alias{are_named2}
 \alias{have_names}
-\title{Is object named?}
+\title{Are objects named?}
 \usage{
 are_named(..., .all = FALSE)
 
@@ -57,7 +57,7 @@ have_names(x, y, c(a = 1, 2, 3))
 have_names(x, y, c(a = 1, 2, 3), .all = TRUE)
 
 # Empty and missing names are treated as invalid:
-invalid <- set_names(letters[1:5])
+invalid <- setNames(letters[1:5], letters[1:5])
 names(invalid)[1] <- ""
 names(invalid)[3] <- NA
 
@@ -73,5 +73,5 @@ are_named(mtcars, mat)
 have_names(mtcars, mat)
 }
 \seealso{
-\link{are-bare-type-predicates} \link{is_named}
+\link{are-bare-type-predicates} \link[rlang:is_named]{rlang::is_named}
 }

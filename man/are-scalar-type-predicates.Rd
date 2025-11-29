@@ -86,5 +86,5 @@ are_scalar_list(x, y, z, list(1))
 are_list(x, y, z, list(1), .all = TRUE)
 }
 \seealso{
-\link{are-type-predicates}, \link{are-bare-type-predicates} \link{scalar-type-predicates}
+\link{are-type-predicates}, \link{are-bare-type-predicates} \link[rlang:scalar-type-predicates]{rlang::scalar-type-predicates}
 }

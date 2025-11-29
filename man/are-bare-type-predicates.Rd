@@ -102,5 +102,5 @@ x <- list()
 are_bare_list(x, y, list(1, 2, 3), list(1), .n = c(x = 5, "list(1)" = 2))
 }
 \seealso{
-\link{are-type-predicates}, \link{are-scalar-type-predicates} \link{bare-type-predicates}
+\link{are-type-predicates}, \link{are-scalar-type-predicates} \link[rlang:bare-type-predicates]{rlang::bare-type-predicates}
 }

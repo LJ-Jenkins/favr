@@ -107,5 +107,5 @@ are_list(x, y, z, list(1), .n = c(1, 0, 1, 2))
 are_list(x, y, z, list(1), .n = c(y = 1, "list(1)" = 2))
 }
 \seealso{
-\link{are-bare-type-predicates} \link{are-scalar-type-predicates} \link{type-predicates}
+\link{are-bare-type-predicates} \link{are-scalar-type-predicates} \link[rlang:type-predicates]{rlang::type-predicates}
 }
