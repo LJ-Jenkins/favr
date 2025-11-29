@@ -1,7 +1,12 @@
 
 <!-- README.md is generated from README.Rmd. Please edit that file -->
 
-# favr
+# favr <img id="logo" src="man/figures/logo.png" align="right" width="17%" height="17%" />
+
+<!-- badges: start -->
+
+[![R-CMD-check](https://github.com/LJ-Jenkins/favr/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/LJ-Jenkins/favr/actions/workflows/R-CMD-check.yaml)
+<!-- badges: end -->
 
 Function Argument Validation tools for R (favr) provides tools for the
 validation and safe type coercion/recycling of function arguments. A
