@@ -2,3 +2,79 @@ url: https://lj-jenkins.github.io/favr/
 template:
   bootstrap: 5
 
+reference:
+
+- title: Function Argument Validation
+  desc: >
+    Tools for validation and safe casting and recycling.
+  contents:
+  - abort_if_not
+  - cast_if_not
+  - recycle_if_not
+  - enforce
+  - schema
+
+- title: rlang predicate wrappers
+  desc: >
+    Wrappers around rlang predicates that enable multiple inputs.
+
+- subtitle: Attributes
+  contents:
+  - are_named
+  - has_names
+
+- subtitle: Type predicates
+  contents:
+  - are_list
+  - are_atomic
+  - are_vector
+  - are_integer
+  - are_double
+  - are_complex
+  - are_character
+  - are_logical
+  - are_raw
+  - are_bytes
+  - are_null
+
+- subtitle: Scalar type predicates
+  contents:
+  - are_scalar_list
+  - are_scalar_atomic
+  - are_scalar_vector
+  - are_scalar_integer
+  - are_scalar_double
+  - are_scalar_complex
+  - are_scalar_character
+  - are_string
+  - are_scalar_logical
+  - are_bool
+  - are_scalar_raw
+  - are_scalar_bytes
+
+- subtitle: Bare type predicates
+  contents:
+  - are_bare_list
+  - are_bare_atomic
+  - are_bare_vector
+  - are_bare_integer
+  - are_bare_double
+  - are_bare_complex
+  - are_bare_character
+  - are_bare_string
+  - are_bare_logical
+  - are_bare_raw
+  - are_bare_bytes
+  - are_bare_numeric
+
+- subtitle: Integerish predicates
+  contents:
+  - are_integerish
+  - are_scalar_integerish
+  - are_bare_integerish
+
+- subtitle: Utility predicates
+  contents:
+  - are_empty
+  - are_true
+  - are_false
