@@ -24,7 +24,7 @@
 #' and returns a list of logical vectors whhere each is as long as the
 #' input object. When `.all` is `TRUE` for `have_names()`, all logical
 #' vectors are collapsed and a boolean is returned.
-#' @seealso [are-bare-type-predicates] [is_named]
+#' @seealso [are-bare-type-predicates] [rlang::is_named]
 #' @examples
 #' # are_named() is a scalar predicate about the whole vector of names:
 #' x <- c(a = 1, b = 2)
