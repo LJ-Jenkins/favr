@@ -21,6 +21,11 @@ focus is placed on clear error messaging.
 - `add_to_schema()` add arguments to an existing attached schema and
   re-evaluate.
 
+favr also provides simple wrappers for many
+[rlang](https://rlang.r-lib.org/index.html) predicates that enable them
+to accept multiple arguments. In nearly all cases, these are
+differentiated by replacing the `is_*` prefix with `are_*`.
+
 ## Installation
 
 You can install the development version of favr from
@@ -213,6 +218,39 @@ li_with_schema <- li_with_schema |>
 #> ! Returned `FALSE`.
 ```
 
+Many wrappers of [rlang](https://rlang.r-lib.org) predicates are given
+so that multiple inputs can be passed. Optional argument inputs can be
+flexibly applied to all or some inputs by using unnamed or named
+vectors/lists.
+
+``` r
+x <- list()
+y <- list(1, 2)
+
+are_list(x, y, list())
+#>      x      y list() 
+#>   TRUE   TRUE   TRUE
+
+are_list(x, y, list(), .all = TRUE)
+#> [1] TRUE
+
+# `.n` is passed to each input.
+are_list(x, y, list(), .n = 2)
+#>      x      y list() 
+#>  FALSE   TRUE  FALSE
+
+# `.n` is passed sequentially.
+are_list(x, y, list(), .n = c(0, 2, 0))
+#>      x      y list() 
+#>   TRUE   TRUE   TRUE
+
+# `.n` is only passed to `y`, other inputs are passed
+# the default (NULL).
+are_list(x, y, list(), .n = c(y = 5))
+#>      x      y list() 
+#>   TRUE  FALSE   TRUE
+```
+
 ### Notes
 
 favr functions that assign into environments (`cast_if_not`,
@@ -234,6 +272,10 @@ block](https://uk.mathworks.com/help/matlab/ref/arguments.html) and
 [schematic](https://whipson.github.io/schematic/). favr relies heavily
 on the imported packages [rlang](https://rlang.r-lib.org),
 [vctrs](https://vctrs.r-lib.org/), [cli](https://cli.r-lib.org/) and
-[tidyselect](https://tidyselect.r-lib.org/). For function argument
-validation that focus on performance, see
-[checkmate](https://mllg.github.io/checkmate/).
+[tidyselect](https://tidyselect.r-lib.org/). All predicate functions in
+favr are simple wrappers around [rlang](https://rlang.r-lib.org)
+predicates, for which all credit goes to those authors. For function
+argument validation that focus on performance, see
+[checkmate](https://mllg.github.io/checkmate/). An earlier, unreleased
+version of this package was called
+[restrictr](https://github.com/LJ-Jenkins/restrictr).

@@ -26,6 +26,8 @@ Function Argument Validation tools for R (favr) provides tools for the validatio
 * `enforce_schema()` to re-evaluate a prior schema call that was attached to the data.frame/list.
 * `add_to_schema()` add arguments to an existing attached schema and re-evaluate.
 
+favr also provides simple wrappers for many [rlang](https://rlang.r-lib.org/index.html) predicates that enable them to accept multiple arguments. In nearly all cases, these are differentiated by replacing the `is_*` prefix with `are_*`.
+
 ## Installation
 
 You can install the development version of favr from [GitHub](https://github.com/) with:
@@ -156,6 +158,27 @@ li_with_schema <- li_with_schema |>
   add_to_schema(y ~ \(.x) nchar(.x) > 2)
 ```
 
+Many wrappers of [rlang](https://rlang.r-lib.org) predicates are given so that multiple inputs can be passed. Optional argument inputs can be flexibly applied to all or some inputs by using unnamed or named vectors/lists.
+
+```{r rlang-predicates example}
+x <- list()
+y <- list(1, 2)
+
+are_list(x, y, list())
+
+are_list(x, y, list(), .all = TRUE)
+
+# `.n` is passed to each input.
+are_list(x, y, list(), .n = 2)
+
+# `.n` is passed sequentially.
+are_list(x, y, list(), .n = c(0, 2, 0))
+
+# `.n` is only passed to `y`, other inputs are passed
+# the default (NULL).
+are_list(x, y, list(), .n = c(y = 5))
+```
+
 ###  Notes
 
 favr functions that assign into environments (`cast_if_not`, `recycle_if_not`, and `enforce`) all do clean-up when errors occur:
@@ -166,4 +189,5 @@ y <- 1L
 cast_if_not(x = double(), y = character()) |> try()
 cat("Code has errored but `x` has reverted back to:", class(x))
 ```
-favr was inspired by MATLAB's [arguments block](https://uk.mathworks.com/help/matlab/ref/arguments.html) and [schematic](https://whipson.github.io/schematic/). favr relies heavily on the imported packages [rlang](https://rlang.r-lib.org), [vctrs](https://vctrs.r-lib.org/), [cli](https://cli.r-lib.org/) and [tidyselect](https://tidyselect.r-lib.org/). For function argument validation that focus on performance, see [checkmate](https://mllg.github.io/checkmate/).
+
+favr was inspired by MATLAB's [arguments block](https://uk.mathworks.com/help/matlab/ref/arguments.html) and [schematic](https://whipson.github.io/schematic/). favr relies heavily on the imported packages [rlang](https://rlang.r-lib.org), [vctrs](https://vctrs.r-lib.org/), [cli](https://cli.r-lib.org/) and [tidyselect](https://tidyselect.r-lib.org/). All predicate functions in favr are simple wrappers around [rlang](https://rlang.r-lib.org) predicates, for which all credit goes to those authors. For function argument validation that focus on performance, see [checkmate](https://mllg.github.io/checkmate/). An earlier, unreleased version of this package was called [restrictr](https://github.com/LJ-Jenkins/restrictr).
