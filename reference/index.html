@@ -29,9 +29,9 @@
     </div>
 
     <div class="section level2">
-      <h2 id="all-functions">All functions<a class="anchor" aria-label="anchor" href="#all-functions"></a></h2>
+      <h2 id="function-argument-validation">Function Argument Validation<a class="anchor" aria-label="anchor" href="#function-argument-validation"></a></h2>
 
-
+      <div class="section-desc"><p>Tools for validation and safe casting and recycling.</p></div>
 
       <dl></dl></div><div class="section level2">
 
@@ -47,66 +47,10 @@
 
         <dt>
 
-          <code><a href="are-bare-type-predicates.html">are_bare_list()</a></code> <code><a href="are-bare-type-predicates.html">are_bare_atomic()</a></code> <code><a href="are-bare-type-predicates.html">are_bare_vector()</a></code> <code><a href="are-bare-type-predicates.html">are_bare_integer()</a></code> <code><a href="are-bare-type-predicates.html">are_bare_double()</a></code> <code><a href="are-bare-type-predicates.html">are_bare_complex()</a></code> <code><a href="are-bare-type-predicates.html">are_bare_character()</a></code> <code><a href="are-bare-type-predicates.html">are_bare_string()</a></code> <code><a href="are-bare-type-predicates.html">are_bare_logical()</a></code> <code><a href="are-bare-type-predicates.html">are_bare_raw()</a></code> <code><a href="are-bare-type-predicates.html">are_bare_bytes()</a></code> <code><a href="are-bare-type-predicates.html">are_bare_numeric()</a></code>
-
-        </dt>
-        <dd>Bare type predicates</dd>
-
-        <dt>
-
-          <code><a href="are-scalar-type-predicates.html">are_scalar_list()</a></code> <code><a href="are-scalar-type-predicates.html">are_scalar_atomic()</a></code> <code><a href="are-scalar-type-predicates.html">are_scalar_vector()</a></code> <code><a href="are-scalar-type-predicates.html">are_scalar_integer()</a></code> <code><a href="are-scalar-type-predicates.html">are_scalar_double()</a></code> <code><a href="are-scalar-type-predicates.html">are_scalar_complex()</a></code> <code><a href="are-scalar-type-predicates.html">are_scalar_character()</a></code> <code><a href="are-scalar-type-predicates.html">are_string()</a></code> <code><a href="are-scalar-type-predicates.html">are_scalar_logical()</a></code> <code><a href="are-scalar-type-predicates.html">are_bool()</a></code> <code><a href="are-scalar-type-predicates.html">are_scalar_raw()</a></code> <code><a href="are-scalar-type-predicates.html">are_scalar_bytes()</a></code>
-
-        </dt>
-        <dd>Scalar type predicates</dd>
-
-        <dt>
-
-          <code><a href="are-type-predicates.html">are_list()</a></code> <code><a href="are-type-predicates.html">are_atomic()</a></code> <code><a href="are-type-predicates.html">are_vector()</a></code> <code><a href="are-type-predicates.html">are_integer()</a></code> <code><a href="are-type-predicates.html">are_double()</a></code> <code><a href="are-type-predicates.html">are_complex()</a></code> <code><a href="are-type-predicates.html">are_character()</a></code> <code><a href="are-type-predicates.html">are_logical()</a></code> <code><a href="are-type-predicates.html">are_raw()</a></code> <code><a href="are-type-predicates.html">are_bytes()</a></code> <code><a href="are-type-predicates.html">are_null()</a></code>
-
-        </dt>
-        <dd>Type predicates</dd>
-
-        <dt>
-
-          <code><a href="are_empty.html">are_empty()</a></code>
-
-        </dt>
-        <dd>Are objects empty vectors or NULL?</dd>
-
-        <dt>
-
-          <code><a href="are_integerish.html">are_integerish()</a></code> <code><a href="are_integerish.html">are_scalar_integerish()</a></code> <code><a href="are_integerish.html">are_bare_integerish()</a></code>
-
-        </dt>
-        <dd>Are vectors integer-like?</dd>
-
-        <dt>
-
-          <code><a href="are_named.html">are_named()</a></code> <code><a href="are_named.html">are_named2()</a></code> <code><a href="are_named.html">have_names()</a></code>
-
-        </dt>
-        <dd>Are objects named?</dd>
-
-        <dt>
-
-          <code><a href="are_true.html">are_true()</a></code> <code><a href="are_true.html">are_false()</a></code>
-
-        </dt>
-        <dd>Are objects TRUE or FALSE?</dd>
-
-        <dt>
-
           <code><a href="cast_if_not.html">cast_if_not()</a></code>
 
         </dt>
         <dd>Cast objects to a given type</dd>
-
-        <dt>
-
-          <code><a href="enforce.html">enforce()</a></code>
-
-        </dt>
-        <dd>Ensure the truth of R expressions and cast/recycle objects.</dd>
 
         <dt>
 
@@ -117,12 +61,128 @@
 
         <dt>
 
+          <code><a href="enforce.html">enforce()</a></code>
+
+        </dt>
+        <dd>Ensure the truth of R expressions and cast/recycle objects.</dd>
+
+        <dt>
+
           <code><a href="schema.html">schema()</a></code> <code><a href="schema.html">enforce_schema()</a></code> <code><a href="schema.html">add_to_schema()</a></code>
 
         </dt>
         <dd>Ensure the truth of data-masked R expressions and cast/recycle named elements.</dd>
+      </dl></div><div class="section level2">
+      <h2 id="rlang-predicate-wrappers">rlang predicate wrappers<a class="anchor" aria-label="anchor" href="#rlang-predicate-wrappers"></a></h2>
+
+      <div class="section-desc"><p>Wrappers around rlang predicates that enable multiple inputs.</p></div>
+
+      <dl></dl></div><div class="section level2">
+
+      <h3 id="attributes">Attributes<a class="anchor" aria-label="anchor" href="#attributes"></a></h3>
+
+
+      <dl></dl></div><div class="section level2">
+
+
+
+
+      <dl><dt>
+
+          <code><a href="are_named.html">are_named()</a></code> <code><a href="are_named.html">are_named2()</a></code> <code><a href="are_named.html">have_names()</a></code>
+
+        </dt>
+        <dd>Are objects named?</dd>
+      </dl></div><div class="section level2">
+
+      <h3 id="type-predicates">Type predicates<a class="anchor" aria-label="anchor" href="#type-predicates"></a></h3>
+
+
+      <dl></dl></div><div class="section level2">
+
+
+
+
+      <dl><dt>
+
+          <code><a href="are-type-predicates.html">are_list()</a></code> <code><a href="are-type-predicates.html">are_atomic()</a></code> <code><a href="are-type-predicates.html">are_vector()</a></code> <code><a href="are-type-predicates.html">are_integer()</a></code> <code><a href="are-type-predicates.html">are_double()</a></code> <code><a href="are-type-predicates.html">are_complex()</a></code> <code><a href="are-type-predicates.html">are_character()</a></code> <code><a href="are-type-predicates.html">are_logical()</a></code> <code><a href="are-type-predicates.html">are_raw()</a></code> <code><a href="are-type-predicates.html">are_bytes()</a></code> <code><a href="are-type-predicates.html">are_null()</a></code>
+
+        </dt>
+        <dd>Type predicates</dd>
+      </dl></div><div class="section level2">
+
+      <h3 id="scalar-type-predicates">Scalar type predicates<a class="anchor" aria-label="anchor" href="#scalar-type-predicates"></a></h3>
+
+
+      <dl></dl></div><div class="section level2">
+
+
+
+
+      <dl><dt>
+
+          <code><a href="are-scalar-type-predicates.html">are_scalar_list()</a></code> <code><a href="are-scalar-type-predicates.html">are_scalar_atomic()</a></code> <code><a href="are-scalar-type-predicates.html">are_scalar_vector()</a></code> <code><a href="are-scalar-type-predicates.html">are_scalar_integer()</a></code> <code><a href="are-scalar-type-predicates.html">are_scalar_double()</a></code> <code><a href="are-scalar-type-predicates.html">are_scalar_complex()</a></code> <code><a href="are-scalar-type-predicates.html">are_scalar_character()</a></code> <code><a href="are-scalar-type-predicates.html">are_string()</a></code> <code><a href="are-scalar-type-predicates.html">are_scalar_logical()</a></code> <code><a href="are-scalar-type-predicates.html">are_bool()</a></code> <code><a href="are-scalar-type-predicates.html">are_scalar_raw()</a></code> <code><a href="are-scalar-type-predicates.html">are_scalar_bytes()</a></code>
+
+        </dt>
+        <dd>Scalar type predicates</dd>
+      </dl></div><div class="section level2">
+
+      <h3 id="bare-type-predicates">Bare type predicates<a class="anchor" aria-label="anchor" href="#bare-type-predicates"></a></h3>
+
+
+      <dl></dl></div><div class="section level2">
+
+
+
+
+      <dl><dt>
+
+          <code><a href="are-bare-type-predicates.html">are_bare_list()</a></code> <code><a href="are-bare-type-predicates.html">are_bare_atomic()</a></code> <code><a href="are-bare-type-predicates.html">are_bare_vector()</a></code> <code><a href="are-bare-type-predicates.html">are_bare_integer()</a></code> <code><a href="are-bare-type-predicates.html">are_bare_double()</a></code> <code><a href="are-bare-type-predicates.html">are_bare_complex()</a></code> <code><a href="are-bare-type-predicates.html">are_bare_character()</a></code> <code><a href="are-bare-type-predicates.html">are_bare_string()</a></code> <code><a href="are-bare-type-predicates.html">are_bare_logical()</a></code> <code><a href="are-bare-type-predicates.html">are_bare_raw()</a></code> <code><a href="are-bare-type-predicates.html">are_bare_bytes()</a></code> <code><a href="are-bare-type-predicates.html">are_bare_numeric()</a></code>
+
+        </dt>
+        <dd>Bare type predicates</dd>
+      </dl></div><div class="section level2">
+
+      <h3 id="integerish-predicates">Integerish predicates<a class="anchor" aria-label="anchor" href="#integerish-predicates"></a></h3>
+
+
+      <dl></dl></div><div class="section level2">
+
+
+
+
+      <dl><dt>
+
+          <code><a href="are_integerish.html">are_integerish()</a></code> <code><a href="are_integerish.html">are_scalar_integerish()</a></code> <code><a href="are_integerish.html">are_bare_integerish()</a></code>
+
+        </dt>
+        <dd>Are vectors integer-like?</dd>
+      </dl></div><div class="section level2">
+
+      <h3 id="utility-predicates">Utility predicates<a class="anchor" aria-label="anchor" href="#utility-predicates"></a></h3>
+
+
+      <dl></dl></div><div class="section level2">
+
+
+
+
+      <dl><dt>
+
+          <code><a href="are_empty.html">are_empty()</a></code>
+
+        </dt>
+        <dd>Are objects empty vectors or NULL?</dd>
+
+        <dt>
+
+          <code><a href="are_true.html">are_true()</a></code> <code><a href="are_true.html">are_false()</a></code>
+
+        </dt>
+        <dd>Are objects TRUE or FALSE?</dd>
       </dl></div>
-  </main></div>
+  </main><aside class="col-md-3"><nav id="toc" aria-label="Table of contents"><h2>On this page</h2>
+    </nav></aside></div>
 
 
     <footer><div class="pkgdown-footer-left">
