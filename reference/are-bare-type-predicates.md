@@ -81,7 +81,7 @@ names are passed NULL.
 
 [are-type-predicates](https://lj-jenkins.github.io/favr/reference/are-type-predicates.md),
 [are-scalar-type-predicates](https://lj-jenkins.github.io/favr/reference/are-scalar-type-predicates.md)
-bare-type-predicates
+[rlang::bare-type-predicates](https://rlang.r-lib.org/reference/bare-type-predicates.html)
 
 ## Examples
 

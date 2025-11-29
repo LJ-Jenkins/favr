@@ -75,7 +75,7 @@ is equal.
 
 [are-type-predicates](https://lj-jenkins.github.io/favr/reference/are-type-predicates.md),
 [are-bare-type-predicates](https://lj-jenkins.github.io/favr/reference/are-bare-type-predicates.md)
-scalar-type-predicates
+[rlang::scalar-type-predicates](https://rlang.r-lib.org/reference/scalar-type-predicates.html)
 
 ## Examples
 

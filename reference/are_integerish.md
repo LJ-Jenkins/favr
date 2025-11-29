@@ -67,7 +67,8 @@ unmatched names are passed NULL.
 
 ## See also
 
-is_bare_numeric and
+[rlang::is_bare_numeric](https://rlang.r-lib.org/reference/bare-type-predicates.html)
+and
 [are_bare_numeric](https://lj-jenkins.github.io/favr/reference/are-bare-type-predicates.md)
 for testing whether an object is a base numeric type (a bare double or
 integer vector).

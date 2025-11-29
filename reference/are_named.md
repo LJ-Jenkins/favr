@@ -1,4 +1,4 @@
-# Is object named?
+# Are objects named?
 
 Wrappers around rlang predicates that allow multiple objects to be
 passed. The following documentation is adapted from the rlang
@@ -48,7 +48,7 @@ and a boolean is returned.
 ## See also
 
 [are-bare-type-predicates](https://lj-jenkins.github.io/favr/reference/are-bare-type-predicates.md)
-is_named
+[rlang::is_named](https://rlang.r-lib.org/reference/is_named.html)
 
 ## Examples
 
@@ -86,17 +86,17 @@ have_names(x, y, c(a = 1, 2, 3), .all = TRUE)
 #> [1] FALSE
 
 # Empty and missing names are treated as invalid:
-invalid <- set_names(letters[1:5])
-#> Error in set_names(letters[1:5]): could not find function "set_names"
+invalid <- setNames(letters[1:5], letters[1:5])
 names(invalid)[1] <- ""
-#> Error: object 'invalid' not found
 names(invalid)[3] <- NA
-#> Error: object 'invalid' not found
 
 are_named(invalid)
-#> Error: object 'invalid' not found
+#> invalid 
+#>   FALSE 
 have_names(invalid)
-#> Error: object 'invalid' not found
+#> $invalid
+#> [1] FALSE  TRUE FALSE  TRUE  TRUE
+#> 
 
 # A data frame normally has valid, unique names
 # but a matrix usually doesn't because the names

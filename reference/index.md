@@ -52,7 +52,7 @@
 - [`are_named()`](https://lj-jenkins.github.io/favr/reference/are_named.md)
   [`are_named2()`](https://lj-jenkins.github.io/favr/reference/are_named.md)
   [`have_names()`](https://lj-jenkins.github.io/favr/reference/are_named.md)
-  : Is object named?
+  : Are objects named?
 - [`are_true()`](https://lj-jenkins.github.io/favr/reference/are_true.md)
   [`are_false()`](https://lj-jenkins.github.io/favr/reference/are_true.md)
   : Are objects TRUE or FALSE?

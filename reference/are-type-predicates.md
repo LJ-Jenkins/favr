@@ -87,7 +87,7 @@ unmatched names are passed NULL.
 
 [are-bare-type-predicates](https://lj-jenkins.github.io/favr/reference/are-bare-type-predicates.md)
 [are-scalar-type-predicates](https://lj-jenkins.github.io/favr/reference/are-scalar-type-predicates.md)
-type-predicates
+[rlang::type-predicates](https://rlang.r-lib.org/reference/type-predicates.html)
 
 ## Examples
 
