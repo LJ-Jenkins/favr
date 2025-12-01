@@ -2,7 +2,7 @@
 
 Wrappers around rlang type predicates that allow multiple objects to be
 passed. The following documentation is adapted from the rlang
-documentation:
+[documentation](https://rlang.r-lib.org/reference/type-predicates.html):
 
 These type predicates aim to make type testing in R more consistent.
 They are wrappers around
@@ -87,7 +87,6 @@ unmatched names are passed NULL.
 
 [are-bare-type-predicates](https://lj-jenkins.github.io/favr/reference/are-bare-type-predicates.md)
 [are-scalar-type-predicates](https://lj-jenkins.github.io/favr/reference/are-scalar-type-predicates.md)
-[rlang::type-predicates](https://rlang.r-lib.org/reference/type-predicates.html)
 
 ## Examples
 

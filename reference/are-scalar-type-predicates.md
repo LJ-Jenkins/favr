@@ -2,7 +2,7 @@
 
 Wrappers around rlang scalar type predicates that allow multiple objects
 to be passed. The following documentation is adapted from the rlang
-documentation:
+[documentation](https://rlang.r-lib.org/reference/scalar-type-predicates.html):
 
 These predicates check for a given type and whether the vector is
 "scalar", that is, of length 1.
@@ -75,7 +75,6 @@ is equal.
 
 [are-type-predicates](https://lj-jenkins.github.io/favr/reference/are-type-predicates.md),
 [are-bare-type-predicates](https://lj-jenkins.github.io/favr/reference/are-bare-type-predicates.md)
-[rlang::scalar-type-predicates](https://rlang.r-lib.org/reference/scalar-type-predicates.html)
 
 ## Examples
 

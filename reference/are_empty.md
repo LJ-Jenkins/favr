@@ -24,7 +24,7 @@ Named logical, or unnamed boolean if `.all` is `TRUE`.
 
 ## See also
 
-[rlang::is_empty](https://rlang.r-lib.org/reference/is_empty.html)
+is_empty
 
 ## Examples
 

@@ -2,7 +2,7 @@
 
 Wrappers around rlang type predicates that allow multiple objects to be
 passed. The following documentation is adapted from the rlang
-documentation:
+[documentation](https://rlang.r-lib.org/reference/is_integerish.html):
 
 These predicates check whether R considers a number vector to be
 integer-like, according to its own tolerance check (which is in fact
@@ -67,8 +67,6 @@ unmatched names are passed NULL.
 
 ## See also
 
-[rlang::is_bare_numeric](https://rlang.r-lib.org/reference/bare-type-predicates.html)
-and
 [are_bare_numeric](https://lj-jenkins.github.io/favr/reference/are-bare-type-predicates.md)
 for testing whether an object is a base numeric type (a bare double or
 integer vector).

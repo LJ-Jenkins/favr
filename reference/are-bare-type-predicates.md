@@ -2,10 +2,10 @@
 
 Wrappers around rlang type predicates that allow multiple objects to be
 passed. The following documentation is adapted from the rlang
-documentation:
+[documentation](https://rlang.r-lib.org/reference/bare-type-predicates.html):
 
-These predicats check for a given type but only return `TRUE` for bare R
-objects. Bare objects have no class attributes. For example, a data
+These predicates check for a given type but only return `TRUE` for bare
+R objects. Bare objects have no class attributes. For example, a data
 frame is a list, but not a bare list.
 
 - The predicates for vectors include the `.n` argument for
@@ -81,7 +81,6 @@ names are passed NULL.
 
 [are-type-predicates](https://lj-jenkins.github.io/favr/reference/are-type-predicates.md),
 [are-scalar-type-predicates](https://lj-jenkins.github.io/favr/reference/are-scalar-type-predicates.md)
-[rlang::bare-type-predicates](https://rlang.r-lib.org/reference/bare-type-predicates.html)
 
 ## Examples
 

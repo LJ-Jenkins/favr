@@ -274,8 +274,7 @@ cat("Code has errored but `x` has reverted back to:", class(x))
 #> Code has errored but `x` has reverted back to: integer
 ```
 
-favr was inspired by MATLAB’s [arguments
-block](https://uk.mathworks.com/help/matlab/ref/arguments.html) and
+favr was inspired by MATLAB’s arguments block and
 [schematic](https://whipson.github.io/schematic/). favr relies heavily
 on the imported packages [rlang](https://rlang.r-lib.org),
 [vctrs](https://vctrs.r-lib.org/), [cli](https://cli.r-lib.org/) and
