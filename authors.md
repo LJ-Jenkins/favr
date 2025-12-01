@@ -2,16 +2,16 @@
 
 ## Authors
 
-- **Luke Jenkins**. Author, maintainer.
+- **Luke Jenkins**. Author, maintainer, copyright holder.
   [](https://orcid.org/0000-0002-7206-7242)
 
 ## Citation
 
-Jenkins L (2025). *favr: Function Argument Validation in R*. R package
+Jenkins L (2025). *favr: Function Argument Validation*. R package
 version 0.0.0.9000, <https://lj-jenkins.github.io/favr/>.
 
     @Manual{,
-      title = {favr: Function Argument Validation in R},
+      title = {favr: Function Argument Validation},
       author = {Luke Jenkins},
       year = {2025},
       note = {R package version 0.0.0.9000},
