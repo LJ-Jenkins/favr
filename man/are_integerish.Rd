@@ -29,9 +29,9 @@ vector needs to be traversed and checked.}
 Named logical, or unnamed boolean if \code{.all} is \code{TRUE}.
 }
 \description{
-Wrappers around \link{rlang} type predicates that allow multiple
-objects to be passed. The following documentation is adapted
-from the \link{rlang} documentation:
+Wrappers around \link[=rlang-package]{rlang} type predicates that allow
+multiple objects to be passed. The following documentation is adapted
+from the rlang \link[rlang:is_integerish]{documentation}:
 
 These predicates check whether R considers a number vector to be
 integer-like, according to its own tolerance check (which is in
@@ -83,6 +83,6 @@ are_integerish(x, y, z, TRUE, .n = c(1, 2, 1, 1))
 are_integerish(x, y, z, TRUE, .n = c(y = 2, "TRUE" = 1))
 }
 \seealso{
-\link[rlang:bare-type-predicates]{rlang::is_bare_numeric} and \link{are_bare_numeric} for testing
-whether an object is a base numeric type (a bare double or integer vector).
+\link{are_bare_numeric} for testing whether an object is a
+base numeric type (a bare double or integer vector).
 }

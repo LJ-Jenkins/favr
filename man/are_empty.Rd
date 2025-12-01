@@ -29,5 +29,5 @@ are_empty(x, y, z, NULL, .all = TRUE)
 are_empty(list(NULL))
 }
 \seealso{
-\link[rlang:is_empty]{rlang::is_empty}
+\link{is_empty}
 }

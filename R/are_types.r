@@ -2,9 +2,9 @@
 #'
 #' @description
 #'
-#' Wrappers around [rlang] type predicates that allow multiple
+#' Wrappers around [rlang][rlang-package] type predicates that allow multiple
 #' objects to be passed. The following documentation is adapted
-#' from the [rlang] documentation:
+#' from the rlang [documentation][rlang::type-predicates]:
 #'
 #' These type predicates aim to make type testing in R more
 #' consistent. They are wrappers around [base::typeof()], so operate
@@ -38,7 +38,7 @@
 #' given to `...`. Alternatively, a named vector/list can be given, where
 #' the values for matching named elements are passed to the type predicate,
 #' but unmatched names are passed NULL.
-#' @seealso [are-bare-type-predicates] [are-scalar-type-predicates] [rlang::type-predicates]
+#' @seealso [are-bare-type-predicates] [are-scalar-type-predicates]
 #' @name are-type-predicates
 #' @examples
 #' x <- 1
@@ -151,9 +151,9 @@ are_null <- function(..., .all = FALSE) {
 #'
 #' @description
 #'
-#' Wrappers around [rlang] scalar type predicates that allow multiple
-#' objects to be passed. The following documentation is adapted
-#' from the [rlang] documentation:
+#' Wrappers around [rlang][rlang-package] scalar type predicates that allow
+#' multiple objects to be passed. The following documentation is adapted
+#' from the rlang [documentation][rlang::scalar-type-predicates]:
 #'
 #' These predicates check for a given type and whether the vector is
 #' "scalar", that is, of length 1.
@@ -176,7 +176,7 @@ are_null <- function(..., .all = FALSE) {
 #' but unmatched names are passed NULL. List inputs can pass different
 #' character vectors for each dot argument. When a character vector is given for
 #' a single argument, `TRUE` is returned if at least one element is equal.
-#' @seealso [are-type-predicates], [are-bare-type-predicates] [rlang::scalar-type-predicates]
+#' @seealso [are-type-predicates], [are-bare-type-predicates]
 #' @name are-scalar-type-predicates
 #' @examples
 #' x <- 1
@@ -286,18 +286,18 @@ are_scalar_bytes <- function(..., .all = FALSE) {
 #'
 #' @description
 #'
-#' Wrappers around [rlang] type predicates that allow multiple
+#' Wrappers around [rlang][rlang-package] type predicates that allow multiple
 #' objects to be passed. The following documentation is adapted
-#' from the [rlang] documentation:
+#' from the rlang [documentation][rlang::bare-type-predicates]:
 #'
-#' These predicats check for a given type but only return `TRUE` for
+#' These predicates check for a given type but only return `TRUE` for
 #' bare R objects. Bare objects have no class attributes. For example,
 #' a data frame is a list, but not a bare list.
 #'
 #' * The predicates for vectors include the `.n` argument for
 #'   pattern-matching on the vector length.
 #'
-#' * Like [are_atomic()] and unlike base R `is.atomic()` for R < 4.4.0,
+#' * Like `are_atomic()` and unlike base R `is.atomic()` for R < 4.4.0,
 #'   `are_bare_atomic()` does not return `TRUE` for `NULL`. Starting in
 #'   R 4.4.0, `is.atomic(NULL)` returns FALSE.
 #'
@@ -315,7 +315,7 @@ are_scalar_bytes <- function(..., .all = FALSE) {
 #' given to `...`. Alternatively, a named vector/list can be given, where
 #' the values for matching named elements are passed to the type predicate,
 #' but unmatched names are passed NULL.
-#' @seealso [are-type-predicates], [are-scalar-type-predicates] [rlang::bare-type-predicates]
+#' @seealso [are-type-predicates], [are-scalar-type-predicates]
 #' @name are-bare-type-predicates
 #' @examples
 #' x <- 1
@@ -421,7 +421,7 @@ are_bare_numeric <- function(..., .n = NULL, .all = FALSE) {
 #' @param ... Objects to be tested.
 #' @param .all Whether to return if all arguments are TRUE.
 #' @inherit are-type-predicates return
-#' @seealso [rlang::is_empty]
+#' @seealso [is_empty]
 #' @examples
 #' x <- 1
 #' y <- NULL
@@ -475,9 +475,9 @@ are_false <- function(..., .all = FALSE) {
 #'
 #' @description
 #'
-#' Wrappers around [rlang] type predicates that allow multiple
-#' objects to be passed. The following documentation is adapted
-#' from the [rlang] documentation:
+#' Wrappers around [rlang][rlang-package] type predicates that allow
+#' multiple objects to be passed. The following documentation is adapted
+#' from the rlang [documentation][rlang::is_integerish]:
 #'
 #' These predicates check whether R considers a number vector to be
 #' integer-like, according to its own tolerance check (which is in
@@ -497,8 +497,8 @@ are_false <- function(..., .all = FALSE) {
 #'
 #' @inheritParams are-type-predicates
 #' @inherit are-type-predicates return details
-#' @seealso [rlang::is_bare_numeric] and [are_bare_numeric] for testing
-#' whether an object is a base numeric type (a bare double or integer vector).
+#' @seealso [are_bare_numeric] for testing whether an object is a
+#' base numeric type (a bare double or integer vector).
 #' @export
 #' @examples
 #' x <- 10L

@@ -51,17 +51,17 @@ are_bare_numeric(..., .n = NULL, .all = FALSE)
 Named logical, or unnamed boolean if \code{.all} is \code{TRUE}.
 }
 \description{
-Wrappers around \link{rlang} type predicates that allow multiple
+Wrappers around \link[=rlang-package]{rlang} type predicates that allow multiple
 objects to be passed. The following documentation is adapted
-from the \link{rlang} documentation:
+from the rlang \link[rlang:bare-type-predicates]{documentation}:
 
-These predicats check for a given type but only return \code{TRUE} for
+These predicates check for a given type but only return \code{TRUE} for
 bare R objects. Bare objects have no class attributes. For example,
 a data frame is a list, but not a bare list.
 \itemize{
 \item The predicates for vectors include the \code{.n} argument for
 pattern-matching on the vector length.
-\item Like \code{\link[=are_atomic]{are_atomic()}} and unlike base R \code{is.atomic()} for R < 4.4.0,
+\item Like \code{are_atomic()} and unlike base R \code{is.atomic()} for R < 4.4.0,
 \code{are_bare_atomic()} does not return \code{TRUE} for \code{NULL}. Starting in
 R 4.4.0, \code{is.atomic(NULL)} returns FALSE.
 \item Unlike base R \code{is.numeric()}, \code{are_bare_double()} only returns
@@ -102,5 +102,5 @@ x <- list()
 are_bare_list(x, y, list(1, 2, 3), list(1), .n = c(x = 5, "list(1)" = 2))
 }
 \seealso{
-\link{are-type-predicates}, \link{are-scalar-type-predicates} \link[rlang:bare-type-predicates]{rlang::bare-type-predicates}
+\link{are-type-predicates}, \link{are-scalar-type-predicates}
 }
