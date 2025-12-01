@@ -102,7 +102,7 @@ for non data-masked and data-masked validations, recycling and casting.</p>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="va">x</span> <span class="op">&lt;-</span> <span class="fl">1L</span></span></span>
 <span class="r-in"><span><span class="fu">cast_if_not</span><span class="op">(</span>x <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/double.html" class="external-link">double</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span></span></span>
-<span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/base/class.html" class="external-link">class</a></span><span class="op">(</span><span class="va">x</span><span class="op">)</span> <span class="co"># "numeric"</span></span></span>
+<span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/base/class.html" class="external-link">class</a></span><span class="op">(</span><span class="va">x</span><span class="op">)</span> <span class="co"># numeric</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] "numeric"</span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co"># By default, lossy casting is not allowed:</span></span></span>
@@ -113,32 +113,24 @@ for non data-masked and data-masked validations, recycling and casting.</p>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #00BBBB;">ℹ</span> In argument: `x = integer()`.</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BBBB00;">!</span> Can't convert from `x` &lt;double&gt; to &lt;integer&gt; due to loss of precision.</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #00BBBB;">•</span> Locations: 2</span>
-<span class="r-in"><span><span class="co"># Error:</span></span></span>
-<span class="r-in"><span><span class="co"># Caused by error in `cast_if_not()`:</span></span></span>
-<span class="r-in"><span><span class="co"># ℹ In argument: `x = integer()`.</span></span></span>
-<span class="r-in"><span><span class="co"># ! Can't convert from `x` &lt;double&gt; to &lt;integer&gt; due to loss of precision.</span></span></span>
-<span class="r-in"><span><span class="co"># ✖ • Locations: 2</span></span></span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co"># lossy casting can be enabled using `lossy()` call:</span></span></span>
 <span class="r-in"><span><span class="fu">cast_if_not</span><span class="op">(</span>x <span class="op">=</span> <span class="fu"><a href="favr_casting_recycling_helpers.html">lossy</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/integer.html" class="external-link">integer</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></span></span>
-<span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/base/class.html" class="external-link">class</a></span><span class="op">(</span><span class="va">x</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/base/class.html" class="external-link">class</a></span><span class="op">(</span><span class="va">x</span><span class="op">)</span> <span class="co"># integer</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] "integer"</span>
-<span class="r-in"><span><span class="co"># "integer"</span></span></span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co"># Other objects can be used as the type to cast to, e.g.:</span></span></span>
 <span class="r-in"><span><span class="va">x</span> <span class="op">&lt;-</span> <span class="fl">1L</span></span></span>
 <span class="r-in"><span><span class="va">y</span> <span class="op">&lt;-</span> <span class="fl">2.3</span></span></span>
 <span class="r-in"><span><span class="fu">cast_if_not</span><span class="op">(</span>x <span class="op">=</span> <span class="va">y</span><span class="op">)</span></span></span>
-<span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/base/class.html" class="external-link">class</a></span><span class="op">(</span><span class="va">x</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/base/class.html" class="external-link">class</a></span><span class="op">(</span><span class="va">x</span><span class="op">)</span> <span class="co"># numeric</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] "numeric"</span>
-<span class="r-in"><span><span class="co"># "numeric"</span></span></span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co"># Changed objects are available immediately:</span></span></span>
 <span class="r-in"><span><span class="va">x</span> <span class="op">&lt;-</span> <span class="va">y</span> <span class="op">&lt;-</span> <span class="fl">1L</span></span></span>
 <span class="r-in"><span><span class="fu">cast_if_not</span><span class="op">(</span>x <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/double.html" class="external-link">double</a></span><span class="op">(</span><span class="op">)</span>, y <span class="op">=</span> <span class="va">x</span><span class="op">)</span></span></span>
-<span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/base/cat.html" class="external-link">cat</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/class.html" class="external-link">class</a></span><span class="op">(</span><span class="va">x</span><span class="op">)</span>, <span class="fu"><a href="https://rdrr.io/r/base/class.html" class="external-link">class</a></span><span class="op">(</span><span class="va">y</span><span class="op">)</span>, sep <span class="op">=</span> <span class="st">", "</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/base/cat.html" class="external-link">cat</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/class.html" class="external-link">class</a></span><span class="op">(</span><span class="va">x</span><span class="op">)</span>, <span class="fu"><a href="https://rdrr.io/r/base/class.html" class="external-link">class</a></span><span class="op">(</span><span class="va">y</span><span class="op">)</span>, sep <span class="op">=</span> <span class="st">", "</span><span class="op">)</span> <span class="co"># numeric, numeric</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> numeric, numeric</span>
-<span class="r-in"><span><span class="co"># numeric, numeric</span></span></span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="va">myfunc</span> <span class="op">&lt;-</span> \<span class="op">(</span><span class="va">x</span><span class="op">)</span> <span class="op">{</span></span></span>
 <span class="r-in"><span>  <span class="fu">cast_if_not</span><span class="op">(</span>x <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/double.html" class="external-link">double</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span></span></span>
@@ -159,9 +151,8 @@ for non data-masked and data-masked validations, recycling and casting.</p>
 <span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/base/cat.html" class="external-link">cat</a></span><span class="op">(</span></span></span>
 <span class="r-in"><span>  <span class="st">"environment 'e'"</span>, <span class="fu"><a href="https://rdrr.io/r/base/class.html" class="external-link">class</a></span><span class="op">(</span><span class="va">e</span><span class="op">$</span><span class="va">x</span><span class="op">)</span>, <span class="st">"local environment"</span>, <span class="fu"><a href="https://rdrr.io/r/base/class.html" class="external-link">class</a></span><span class="op">(</span><span class="va">x</span><span class="op">)</span>,</span></span>
 <span class="r-in"><span>  sep <span class="op">=</span> <span class="st">", "</span></span></span>
-<span class="r-in"><span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="op">)</span> <span class="co"># environment 'e', numeric, local environment, integer</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> environment 'e', numeric, local environment, integer</span>
-<span class="r-in"><span><span class="co"># environment 'e', numeric, local environment, integer</span></span></span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co"># Named objects (lhs) are checked to be in the `.env` environment,</span></span></span>
 <span class="r-in"><span><span class="co"># throwing an error if not found:</span></span></span>
@@ -171,9 +162,6 @@ for non data-masked and data-masked validations, recycling and casting.</p>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Error in eval(expr, envir) : </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   <span style="font-weight: bold;">Caused by error in `cast_if_not()`</span>.</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BBBB00;">!</span> Object `x` is not found in the `.env` environment specified.</span>
-<span class="r-in"><span><span class="co"># Error:</span></span></span>
-<span class="r-in"><span><span class="co"># Caused by error in `cast_if_not()`.</span></span></span>
-<span class="r-in"><span><span class="co"># ! Object `x` is not found in the `.env` environment specified.</span></span></span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co"># For expressions (rhs), the `.env` argument is preferentially</span></span></span>
 <span class="r-in"><span><span class="co"># chosen, but if not found then the normal R scoping rules</span></span></span>
@@ -182,9 +170,8 @@ for non data-masked and data-masked validations, recycling and casting.</p>
 <span class="r-in"><span><span class="va">e</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/environment.html" class="external-link">new.env</a></span><span class="op">(</span><span class="op">)</span></span></span>
 <span class="r-in"><span><span class="va">e</span><span class="op">$</span><span class="va">z</span> <span class="op">&lt;-</span> <span class="fl">1L</span></span></span>
 <span class="r-in"><span><span class="fu">cast_if_not</span><span class="op">(</span>z <span class="op">=</span> <span class="va">x</span>, .env <span class="op">=</span> <span class="va">e</span><span class="op">)</span></span></span>
-<span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/base/class.html" class="external-link">class</a></span><span class="op">(</span><span class="va">e</span><span class="op">$</span><span class="va">z</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/base/class.html" class="external-link">class</a></span><span class="op">(</span><span class="va">e</span><span class="op">$</span><span class="va">z</span><span class="op">)</span> <span class="co"># numeric</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] "numeric"</span>
-<span class="r-in"><span><span class="co"># "numeric"</span></span></span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co"># The `.error_call` argument can be used to specify where the</span></span></span>
 <span class="r-in"><span><span class="co"># error occurs, by default this is the caller environment:</span></span></span>
@@ -194,29 +181,24 @@ for non data-masked and data-masked validations, recycling and casting.</p>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   <span style="font-weight: bold;">Caused by error in `cast_if_not()`</span>.</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #00BBBB;">ℹ</span> In argument: `x = character()`.</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BBBB00;">!</span> Can't convert `x` &lt;logical&gt; to &lt;character&gt;.</span>
-<span class="r-in"><span><span class="co"># Error in `myfunc()`:</span></span></span>
-<span class="r-in"><span><span class="co"># Caused by error in `cast_if_not()`:</span></span></span>
-<span class="r-in"><span><span class="co"># ℹ In argument: `x = character()`.</span></span></span>
-<span class="r-in"><span><span class="co"># ! Can't convert `x` &lt;logical&gt; to &lt;character&gt;.</span></span></span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co"># Injection can be used:</span></span></span>
 <span class="r-in"><span><span class="va">y</span> <span class="op">&lt;-</span> <span class="fl">1L</span></span></span>
 <span class="r-in"><span><span class="va">x</span> <span class="op">&lt;-</span> <span class="st">"y"</span></span></span>
 <span class="r-in"><span><span class="fu">cast_if_not</span><span class="op">(</span><span class="op">!</span><span class="op">!</span><span class="va">x</span> <span class="op">:=</span> <span class="fu"><a href="https://rdrr.io/r/base/double.html" class="external-link">double</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span> <span class="op">|&gt;</span> <span class="kw"><a href="https://rdrr.io/r/base/try.html" class="external-link">try</a></span><span class="op">(</span><span class="op">)</span></span></span>
-<span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/base/class.html" class="external-link">class</a></span><span class="op">(</span><span class="va">y</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/base/class.html" class="external-link">class</a></span><span class="op">(</span><span class="va">y</span><span class="op">)</span> <span class="co"># numeric</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] "numeric"</span>
-<span class="r-in"><span><span class="co"># "numeric"</span></span></span>
+<span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="va">y</span> <span class="op">&lt;-</span> <span class="fl">1L</span></span></span>
 <span class="r-in"><span><span class="va">x</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>y <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/double.html" class="external-link">double</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span></span></span>
 <span class="r-in"><span><span class="fu">cast_if_not</span><span class="op">(</span><span class="op">!</span><span class="op">!</span><span class="op">!</span><span class="va">x</span><span class="op">)</span></span></span>
-<span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/base/class.html" class="external-link">class</a></span><span class="op">(</span><span class="va">y</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/base/class.html" class="external-link">class</a></span><span class="op">(</span><span class="va">y</span><span class="op">)</span> <span class="co"># numeric</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] "numeric"</span>
-<span class="r-in"><span><span class="co"># "numeric"</span></span></span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co"># Objects are reverted to their original values if an error</span></span></span>
 <span class="r-in"><span><span class="co"># occur:</span></span></span>
 <span class="r-in"><span><span class="va">x</span> <span class="op">&lt;-</span> <span class="va">y</span> <span class="op">&lt;-</span> <span class="fl">1L</span></span></span>
-<span class="r-in"><span><span class="fu">cast_if_not</span><span class="op">(</span>x <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/double.html" class="external-link">double</a></span><span class="op">(</span><span class="op">)</span>, y <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/character.html" class="external-link">character</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span> <span class="op">|&gt;</span> <span class="kw"><a href="https://rdrr.io/r/base/try.html" class="external-link">try</a></span><span class="op">(</span><span class="op">)</span> <span class="co"># errors</span></span></span>
+<span class="r-in"><span><span class="fu">cast_if_not</span><span class="op">(</span>x <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/double.html" class="external-link">double</a></span><span class="op">(</span><span class="op">)</span>, y <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/character.html" class="external-link">character</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span> <span class="op">|&gt;</span> <span class="kw"><a href="https://rdrr.io/r/base/try.html" class="external-link">try</a></span><span class="op">(</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Error in eval(expr, envir) : </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   <span style="font-weight: bold;">Caused by error in `cast_if_not()`</span>.</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #00BBBB;">ℹ</span> In argument: `y = character()`.</span>

@@ -122,10 +122,6 @@ the <code>.env</code> environment specified.</p>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   <span style="font-weight: bold;">Caused by error in `enforce()`</span>.</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #00BBBB;">ℹ</span> In argument: `x == 2`.</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BBBB00;">!</span> Returned `FALSE`.</span>
-<span class="r-in"><span><span class="co"># Error:</span></span></span>
-<span class="r-in"><span><span class="co"># Caused by error in `enforce()`:</span></span></span>
-<span class="r-in"><span><span class="co"># ℹ In argument: `x == 2`.</span></span></span>
-<span class="r-in"><span><span class="co"># ! Returned `FALSE`.</span></span></span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co"># A custom error message can be given for each expression by</span></span></span>
 <span class="r-in"><span><span class="co"># naming it:</span></span></span>
@@ -136,10 +132,6 @@ the <code>.env</code> environment specified.</p>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   <span style="font-weight: bold;">Caused by error in `enforce()`</span>.</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #00BBBB;">ℹ</span> In argument: `is.numeric(y)`.</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BBBB00;">!</span> `y` must be <span style="color: #0000BB;">&lt;numeric&gt;</span>, check input</span>
-<span class="r-in"><span><span class="co"># Error:</span></span></span>
-<span class="r-in"><span><span class="co"># Caused by error in `enforce()`:</span></span></span>
-<span class="r-in"><span><span class="co"># ℹ In argument: `is.numeric(y)`.</span></span></span>
-<span class="r-in"><span><span class="co"># ! `y` must be &lt;numeric&gt;, check input</span></span></span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co"># Formulas can be used to take pass multiple objects</span></span></span>
 <span class="r-in"><span><span class="co"># on the lhs, with functions/additional formulas required on</span></span></span>
@@ -152,11 +144,6 @@ the <code>.env</code> environment specified.</p>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #00BBBB;">ℹ</span> For named element: `y`.</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #00BBBB;">ℹ</span> In argument: `c(x, y) ~ is.integer`.</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BBBB00;">!</span> multiple objects using: `c()`</span>
-<span class="r-in"><span><span class="co"># Error:</span></span></span>
-<span class="r-in"><span><span class="co"># Caused by error in `enforce()`:</span></span></span>
-<span class="r-in"><span><span class="co"># ℹ For named element: `y`.</span></span></span>
-<span class="r-in"><span><span class="co"># ℹ In argument: `c(x, y) ~ is.integer`.</span></span></span>
-<span class="r-in"><span><span class="co"># ! multiple objects using: `c()`</span></span></span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co"># Formulas can also be used with `cast()`, `recycle()`, and</span></span></span>
 <span class="r-in"><span><span class="co"># `coerce()` on the rhs to safely cast or recycle objects:</span></span></span>
@@ -187,16 +174,11 @@ the <code>.env</code> environment specified.</p>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #00BBBB;">ℹ</span> For named element: `z`.</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #00BBBB;">ℹ</span> In argument: `c(x, y, z) ~ list(... Negate(is.function) ...)`.</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BBBB00;">!</span> `specific` message</span>
-<span class="r-in"><span><span class="co"># Error:</span></span></span>
-<span class="r-in"><span><span class="co"># Caused by error in `enforce()`:</span></span></span>
-<span class="r-in"><span><span class="co"># ℹ For named element: `z`.</span></span></span>
-<span class="r-in"><span><span class="co"># ℹ In argument: `c(x, y, z) ~ list(... Negate(is.function) ...)`.</span></span></span>
-<span class="r-in"><span><span class="co"># ! `specific` message</span></span></span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co"># Changed elements are available immediately:</span></span></span>
 <span class="r-in"><span><span class="va">x</span> <span class="op">&lt;-</span> <span class="va">y</span> <span class="op">&lt;-</span> <span class="fl">1L</span></span></span>
 <span class="r-in"><span><span class="fu">enforce</span><span class="op">(</span><span class="va">x</span> <span class="op">~</span> <span class="fu"><a href="favr_casting_recycling_helpers.html">cast</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/double.html" class="external-link">double</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span>, <span class="va">y</span> <span class="op">~</span> <span class="fu"><a href="favr_casting_recycling_helpers.html">cast</a></span><span class="op">(</span><span class="va">x</span><span class="op">)</span><span class="op">)</span></span></span>
-<span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/base/cat.html" class="external-link">cat</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/class.html" class="external-link">class</a></span><span class="op">(</span><span class="va">x</span><span class="op">)</span>, <span class="fu"><a href="https://rdrr.io/r/base/class.html" class="external-link">class</a></span><span class="op">(</span><span class="va">y</span><span class="op">)</span><span class="op">)</span> <span class="co"># both now "numeric"</span></span></span>
+<span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/base/cat.html" class="external-link">cat</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/class.html" class="external-link">class</a></span><span class="op">(</span><span class="va">x</span><span class="op">)</span>, <span class="fu"><a href="https://rdrr.io/r/base/class.html" class="external-link">class</a></span><span class="op">(</span><span class="va">y</span><span class="op">)</span><span class="op">)</span> <span class="co"># both now numeric</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> numeric numeric</span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co"># The `.error_call` argument can be used to specify where the</span></span></span>
@@ -206,10 +188,6 @@ the <code>.env</code> environment specified.</p>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Error in myfunc(x &gt; 4) : <span style="font-weight: bold;">Caused by error in `enforce()`</span>.</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #00BBBB;">ℹ</span> In argument: `x &gt; 4`.</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BBBB00;">!</span> Returned `FALSE`.</span>
-<span class="r-in"><span><span class="co"># Error in `myfunc()`:</span></span></span>
-<span class="r-in"><span><span class="co"># Caused by error in `enforce()`.</span></span></span>
-<span class="r-in"><span><span class="co"># ℹ In argument: `x &gt; 4`.</span></span></span>
-<span class="r-in"><span><span class="co"># ! Returned `FALSE`.</span></span></span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co"># rlang injection can be used:</span></span></span>
 <span class="r-in"><span><span class="va">msg</span> <span class="op">&lt;-</span> <span class="st">"{.var injection} msg"</span></span></span>
@@ -220,11 +198,6 @@ the <code>.env</code> environment specified.</p>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #00BBBB;">ℹ</span> For named element: `x`.</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #00BBBB;">ℹ</span> In argument: `c(x, y) ~ is.integer`.</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BBBB00;">!</span> `injection` msg</span>
-<span class="r-in"><span><span class="co"># Error:</span></span></span>
-<span class="r-in"><span><span class="co"># Caused by error in `enforce()`:</span></span></span>
-<span class="r-in"><span><span class="co"># ℹ For named element: `x`.</span></span></span>
-<span class="r-in"><span><span class="co"># ℹ In argument: `c(x, y) ~ is.integer`.</span></span></span>
-<span class="r-in"><span><span class="co"># ! `injection` msg</span></span></span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co"># Objects are reverted to their original values if an error</span></span></span>
 <span class="r-in"><span><span class="co"># occur:</span></span></span>

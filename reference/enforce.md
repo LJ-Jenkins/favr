@@ -84,10 +84,6 @@ enforce(x == 2) |> try()
 #>   Caused by error in `enforce()`.
 #> ℹ In argument: `x == 2`.
 #> ! Returned `FALSE`.
-# Error:
-# Caused by error in `enforce()`:
-# ℹ In argument: `x == 2`.
-# ! Returned `FALSE`.
 
 # A custom error message can be given for each expression by
 # naming it:
@@ -98,10 +94,6 @@ enforce(
 #>   Caused by error in `enforce()`.
 #> ℹ In argument: `is.numeric(y)`.
 #> ! `y` must be <numeric>, check input
-# Error:
-# Caused by error in `enforce()`:
-# ℹ In argument: `is.numeric(y)`.
-# ! `y` must be <numeric>, check input
 
 # Formulas can be used to take pass multiple objects
 # on the lhs, with functions/additional formulas required on
@@ -114,11 +106,6 @@ enforce(
 #> ℹ For named element: `y`.
 #> ℹ In argument: `c(x, y) ~ is.integer`.
 #> ! multiple objects using: `c()`
-# Error:
-# Caused by error in `enforce()`:
-# ℹ For named element: `y`.
-# ℹ In argument: `c(x, y) ~ is.integer`.
-# ! multiple objects using: `c()`
 
 # Formulas can also be used with `cast()`, `recycle()`, and
 # `coerce()` on the rhs to safely cast or recycle objects:
@@ -149,16 +136,11 @@ enforce(
 #> ℹ For named element: `z`.
 #> ℹ In argument: `c(x, y, z) ~ list(... Negate(is.function) ...)`.
 #> ! `specific` message
-# Error:
-# Caused by error in `enforce()`:
-# ℹ For named element: `z`.
-# ℹ In argument: `c(x, y, z) ~ list(... Negate(is.function) ...)`.
-# ! `specific` message
 
 # Changed elements are available immediately:
 x <- y <- 1L
 enforce(x ~ cast(double()), y ~ cast(x))
-cat(class(x), class(y)) # both now "numeric"
+cat(class(x), class(y)) # both now numeric
 #> numeric numeric
 
 # The `.error_call` argument can be used to specify where the
@@ -168,10 +150,6 @@ myfunc(x > 4) |> try()
 #> Error in myfunc(x > 4) : Caused by error in `enforce()`.
 #> ℹ In argument: `x > 4`.
 #> ! Returned `FALSE`.
-# Error in `myfunc()`:
-# Caused by error in `enforce()`.
-# ℹ In argument: `x > 4`.
-# ! Returned `FALSE`.
 
 # rlang injection can be used:
 msg <- "{.var injection} msg"
@@ -182,11 +160,6 @@ enforce(!!msg := !!cols ~ is.integer) |> try()
 #> ℹ For named element: `x`.
 #> ℹ In argument: `c(x, y) ~ is.integer`.
 #> ! `injection` msg
-# Error:
-# Caused by error in `enforce()`:
-# ℹ For named element: `x`.
-# ℹ In argument: `c(x, y) ~ is.integer`.
-# ! `injection` msg
 
 # Objects are reverted to their original values if an error
 # occur:

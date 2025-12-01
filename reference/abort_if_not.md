@@ -67,10 +67,6 @@ abort_if_not(1) |> try()
 #>   Caused by error in `abort_if_not()`.
 #> ℹ In argument: `1`.
 #> ! Argument must be <logical>, not <numeric>.
-# Error:
-# Caused by error in `abort_if_not()`:
-# ℹ In argument: `1`.
-# ! Argument must be <logical>, not <numeric>.
 
 # A custom error message can be given for each expression:
 m[1, 2] <- 12
@@ -80,10 +76,6 @@ abort_if_not("{.var m} must be {.cls symmetric}" = m == t(m)) |>
 #>   Caused by error in `abort_if_not()`.
 #> ℹ In argument: `m == t(m)`.
 #> ! `m` must be <symmetric>
-# Error:
-# Caused by error in `abort_if_not()`:
-# ℹ In argument: `m == t(m)`.
-# ! `m` must be <symmetric>
 
 # Alternatively, one error message can be used for all
 # expressions:
@@ -96,10 +88,6 @@ abort_if_not(
 #>   Caused by error in `abort_if_not()`.
 #> ℹ In argument: `diag(m) == rep(2, 2)`.
 #> ! `m` has a diagonal of: 1 and 1
-# Error:
-# Caused by error in `abort_if_not()`:
-# ℹ In argument: `diag(m) == rep(2, 2)`.
-# ! `m` must have a diagonal of: 1 and 1
 
 # The `.error_call` argument can be used to specify where the
 # error occurs, by default this is the caller environment:
@@ -109,10 +97,6 @@ myfunc(FALSE) |> try()
 #>   Caused by error in `abort_if_not()`.
 #> ℹ In argument: `x`.
 #> ! Returned `FALSE`.
-# Error in `myfunc()`:
-# Caused by error in `abort_if_not()`:
-# ℹ In argument: `x`.
-# ! Returned `FALSE`.
 
 # abort_if() errors if any argument does not evaluate to
 # (all) FALSE:
@@ -121,10 +105,6 @@ abort_if(1 == 1) |> try()
 #>   Caused by error in `abort_if()`.
 #> ℹ In argument: `1 == 1`.
 #> ! Returned `TRUE`.
-# Error:
-# Caused by error in `abort_if()`:
-# ℹ In argument: `1 == 1`.
-# ! Returned `TRUE`.
 
 # Injection can be used:
 x <- "my error"
@@ -143,18 +123,11 @@ abort_if_not(FALSE, .message = "{x}") |> try()
 #>   Caused by error in `abort_if_not()`.
 #> ℹ In argument: `FALSE`.
 #> ! my error
-# Error:
-# Caused by error in `abort_if_not()`:
-# ℹ In argument: `FALSE`.
-# ! my error
+
 x <- list("my {.var bang-bang-bang} error" = FALSE)
 abort_if_not(!!!x) |> try()
 #> Error in eval(expr, envir) : 
 #>   Caused by error in `abort_if_not()`.
 #> ℹ In argument: `FALSE`.
 #> ! my `bang-bang-bang` error
-# Error:
-# Caused by error in `abort_if_not()`:
-# ℹ In argument: `FALSE`.
-# ! my `bang-bang-bang` error
 ```

@@ -142,10 +142,6 @@ enforce_schema(li2) |> try()
 #>   Caused by error in `enforce_schema()`.
 #> ℹ In argument: `x == 1`.
 #> ! Returned `FALSE`.
-# Error:
-# Caused by error in `enforce_schema()`:
-# ℹ In argument: `x == 1`.
-# ! Returned `FALSE`.
 
 # Calling `schema()` again overwrites any existing schema.
 # Alternatively use `add_to_schema()` to add arguments to
@@ -161,10 +157,6 @@ schema(li,
 #> Error in eval(expr, envir) : Caused by error in `schema()`.
 #> ℹ In argument: `is.numeric(y)`.
 #> ! `y` must be <numeric>, check input
-# Error:
-# Caused by error in `schema()`:
-# ℹ In argument: `is.numeric(y)`.
-# ! `y` must be <numeric>, check input
 
 # Formulas can be used to take advantage of tidyselect features
 # on the lhs, with functions/additional formulas required on
@@ -176,11 +168,6 @@ schema(li,
 #> ℹ For named element: `y`.
 #> ℹ In argument: `c(x, y) ~ is.integer`.
 #> ! multiple columns: tidyselect
-# Error:
-# Caused by error in `schema()`:
-# ℹ For named element: `y`.
-# ℹ In argument: `c(x, y) ~ is.integer`.
-# ! multiple columns: tidyselect
 
 # Formulas can also be used with `cast()`, `recycle()`, and
 # `coerce()` on the rhs to safely cast or recycle named
@@ -212,11 +199,6 @@ schema(
 #> ℹ For named element: `z`.
 #> ℹ In argument: `c(x, y, z) ~ list(... Negate(is.function) ...)`.
 #> ! `specific` message
-# Error:
-# Caused by error in `schema()`:
-# ℹ For named element: `z`.
-# ℹ In argument: `c(x, y, z) ~ list(... Negate(is.function) ...)`.
-# ! `specific` message
 
 # Changed elements are available immediately:
 df <- data.frame(x = 1L, y = 1L)
@@ -227,23 +209,16 @@ lapply(schema(df, x ~ cast(double()), y ~ cast(x)), class)
 #> $y
 #> [1] "numeric"
 #> 
-# both now "numeric"
+# both now numeric
 
 # `.names` and `.size` arguments can be used to check that given
 # names are present and that the data has the desired size:
 schema(li, .names = c("a", "x", "y", "b")) |> try()
 #> Error in eval(expr, envir) : Caused by error in `schema()`.
 #> ! Named elements `a` and `b` not found in data mask `li`.
-# Error:
-# Caused by error in `schema()`.
-# ! Named elements `a` and `b` not found in data mask `li`.
-
 schema(li, .size = 5) |> try()
 #> Error in eval(expr, envir) : Caused by error in `schema()`.
 #> ! Object `li` is of vctrs size `3`, not `5`.
-# Error:
-# Caused by error in `schema()`.
-# ! Object `li` is of vctrs size `3`, not `5`.
 
 # The `.error_call` argument can be used to specify where the
 # error occurs, by default this is the caller environment:
@@ -252,10 +227,6 @@ myfunc(li, x > 4) |> try()
 #> Error in myfunc(li, x > 4) : Caused by error in `schema()`.
 #> ℹ In argument: `x > 4`.
 #> ! Returned `FALSE`.
-# Error in `myfunc()`:
-# Caused by error in `schema()`:
-# ℹ In argument: `x > 4`.
-# ! Returned `FALSE`.
 
 # rlang pronouns and injection can be used, but care must be
 # taken when using `.env` and `enforce_schema()` as the
@@ -267,14 +238,10 @@ schema(li, !!msg := !!cols ~ is.integer) |> try()
 #> ℹ For named element: `y`.
 #> ℹ In argument: `c(x, y) ~ is.integer`.
 #> ! `injection` msg
-# Error:
-# Caused by error in `schema()`:
-# ℹ For named element: `y`.
-# ℹ In argument: `c(x, y) ~ is.integer`.
-# ! `injection` msg
 
 x <- 1L
 li <- schema(li, x == .env$x) # no error
+
 x <- 2
 enforce_schema(li) |>
   try() # error as the environmental variable has changed
@@ -282,8 +249,4 @@ enforce_schema(li) |>
 #>   Caused by error in `enforce_schema()`.
 #> ℹ In argument: `x == .env$x`.
 #> ! Returned `FALSE`.
-# Error:
-# Caused by error in `enforce_schema()`:
-# ℹ In argument: `x == .env$x`.
-# ! Returned `FALSE`.
 ```
