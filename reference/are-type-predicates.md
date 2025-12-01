@@ -1,7 +1,9 @@
 # Type predicates
 
-Wrappers around rlang type predicates that allow multiple objects to be
-passed. The following documentation is adapted from the rlang
+Wrappers around
+[rlang](https://rlang.r-lib.org/reference/rlang-package.html) type
+predicates that allow multiple objects to be passed. The following
+documentation is adapted from the rlang
 [documentation](https://rlang.r-lib.org/reference/type-predicates.html):
 
 These type predicates aim to make type testing in R more consistent.

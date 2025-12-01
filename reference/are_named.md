@@ -1,8 +1,10 @@
 # Are objects named?
 
-Wrappers around rlang predicates that allow multiple objects to be
-passed. The following documentation is adapted from the rlang
-documentation:
+Wrappers around
+[rlang](https://rlang.r-lib.org/reference/rlang-package.html) predicates
+that allow multiple objects to be passed. The following documentation is
+adapted from the rlang
+[documentation](https://rlang.r-lib.org/reference/is_named.html):
 
 - `are_named()` is a scalar predicate that checks that objects in `...`
   have a `names` attribute and that none of the names are missing or

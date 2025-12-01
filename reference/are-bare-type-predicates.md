@@ -1,7 +1,9 @@
 # Bare type predicates
 
-Wrappers around rlang type predicates that allow multiple objects to be
-passed. The following documentation is adapted from the rlang
+Wrappers around
+[rlang](https://rlang.r-lib.org/reference/rlang-package.html) type
+predicates that allow multiple objects to be passed. The following
+documentation is adapted from the rlang
 [documentation](https://rlang.r-lib.org/reference/bare-type-predicates.html):
 
 These predicates check for a given type but only return `TRUE` for bare

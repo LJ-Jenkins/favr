@@ -30,7 +30,7 @@ recycle_if_not(..., .env = caller_env(), .error_call = caller_env())
 - .error_call:
 
   the call environment to use for error messages (passed to
-  [rlang::abort](https://rlang.r-lib.org/reference/abort.html)).
+  [abort](https://rlang.r-lib.org/reference/abort.html)).
 
 ## Value
 

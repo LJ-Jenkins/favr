@@ -1,13 +1,13 @@
 # Ensure the truth of R expressions
 
 If any of the expressions in `...` are not all `TRUE`,
-[rlang::abort](https://rlang.r-lib.org/reference/abort.html) is called
-for the first expression which was not
-([all](https://rdrr.io/r/base/all.html)) `TRUE`. The names of
-expressions can be used as the error message or a single default error
-message can be given using `.message`. Both are passed to
-[cli::format_inline](https://cli.r-lib.org/reference/format_inline.html)
-for formatting.
+[abort](https://rlang.r-lib.org/reference/abort.html) is called for the
+first expression which was not ([all](https://rdrr.io/r/base/all.html))
+`TRUE`. The names of expressions can be used as the error message or a
+single default error message can be given using `.message`. Both are
+passed to
+[format_inline](https://cli.r-lib.org/reference/format_inline.html) for
+formatting.
 
 ## Usage
 
@@ -34,7 +34,7 @@ abort_if(..., .message = NULL, .error_call = caller_env())
 - .error_call:
 
   the call environment to use for error messages (passed to
-  [rlang::abort](https://rlang.r-lib.org/reference/abort.html)).
+  [abort](https://rlang.r-lib.org/reference/abort.html)).
 
 ## Value
 

@@ -1,7 +1,9 @@
 # Are vectors integer-like?
 
-Wrappers around rlang type predicates that allow multiple objects to be
-passed. The following documentation is adapted from the rlang
+Wrappers around
+[rlang](https://rlang.r-lib.org/reference/rlang-package.html) type
+predicates that allow multiple objects to be passed. The following
+documentation is adapted from the rlang
 [documentation](https://rlang.r-lib.org/reference/is_integerish.html):
 
 These predicates check whether R considers a number vector to be

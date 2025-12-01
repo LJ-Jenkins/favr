@@ -1,7 +1,9 @@
 # Scalar type predicates
 
-Wrappers around rlang scalar type predicates that allow multiple objects
-to be passed. The following documentation is adapted from the rlang
+Wrappers around
+[rlang](https://rlang.r-lib.org/reference/rlang-package.html) scalar
+type predicates that allow multiple objects to be passed. The following
+documentation is adapted from the rlang
 [documentation](https://rlang.r-lib.org/reference/scalar-type-predicates.html):
 
 These predicates check for a given type and whether the vector is

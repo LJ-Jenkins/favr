@@ -1,14 +1,13 @@
 # Ensure the truth of data-masked R expressions and cast/recycle named elements.
 
 If any of the expressions in `...`, evaluated within the data mask
-`data` (see
-[rlang::args_data_masking](https://rlang.r-lib.org/reference/args_data_masking.html)),
-are not all `TRUE`,
-[rlang::abort](https://rlang.r-lib.org/reference/abort.html) is called
-for the first which was not ([all](https://rdrr.io/r/base/all.html))
-`TRUE`. Alternatively,
-[rlang::formulas](https://rlang.r-lib.org/reference/new_formula.html)
-can be used to take advantage of
+`'data'` (see [data
+masking](https://rlang.r-lib.org/reference/args_data_masking.html)), are
+not all `TRUE`, [abort](https://rlang.r-lib.org/reference/abort.html) is
+called for the first which was not
+([all](https://rdrr.io/r/base/all.html)) `TRUE`. Alternatively, [rlang
+formulas](https://rlang.r-lib.org/reference/new_formula.html) can be
+used to take advantage of
 [tidyselect](https://tidyselect.r-lib.org/index.html) features and pass
 multiple named elements in `data` to validation formulas/functions,
 and/or attempt safe type casting and size recycling using the
@@ -87,7 +86,7 @@ add_to_schema(
   [list](https://rdrr.io/r/base/list.html) of multiple
   functions/formulas/calls. If an expression is named, or if the list
   element on the rhs of a formula is named, the name is passed to
-  [cli::format_inline](https://cli.r-lib.org/reference/format_inline.html)
+  [format_inline](https://cli.r-lib.org/reference/format_inline.html)
   and is used in the error message.
 
 - .names:
@@ -103,7 +102,7 @@ add_to_schema(
 - .error_call:
 
   the call environment to use for error messages (passed to
-  [rlang::abort](https://rlang.r-lib.org/reference/abort.html)).
+  [abort](https://rlang.r-lib.org/reference/abort.html)).
 
 - .darg:
 
