@@ -31,19 +31,11 @@
 #' abort_if_not(m == t(m), diag(m) == rep(1, 2)) # all TRUE
 #'
 #' abort_if_not(1) |> try()
-#' # Error:
-#' # Caused by error in `abort_if_not()`:
-#' # ℹ In argument: `1`.
-#' # ! Argument must be <logical>, not <numeric>.
 #'
 #' # A custom error message can be given for each expression:
 #' m[1, 2] <- 12
 #' abort_if_not("{.var m} must be {.cls symmetric}" = m == t(m)) |>
 #'   try()
-#' # Error:
-#' # Caused by error in `abort_if_not()`:
-#' # ℹ In argument: `m == t(m)`.
-#' # ! `m` must be <symmetric>
 #'
 #' # Alternatively, one error message can be used for all
 #' # expressions:
@@ -52,43 +44,24 @@
 #'   diag(m) == rep(2, 2),
 #'   .message = "{.var m} has a diagonal of: {diag(m)}"
 #' ) |> try()
-#' # Error:
-#' # Caused by error in `abort_if_not()`:
-#' # ℹ In argument: `diag(m) == rep(2, 2)`.
-#' # ! `m` must have a diagonal of: 1 and 1
 #'
 #' # The `.error_call` argument can be used to specify where the
 #' # error occurs, by default this is the caller environment:
 #' myfunc <- function(x) abort_if_not(x)
 #' myfunc(FALSE) |> try()
-#' # Error in `myfunc()`:
-#' # Caused by error in `abort_if_not()`:
-#' # ℹ In argument: `x`.
-#' # ! Returned `FALSE`.
 #'
 #' # abort_if() errors if any argument does not evaluate to
 #' # (all) FALSE:
 #' abort_if(1 == 1) |> try()
-#' # Error:
-#' # Caused by error in `abort_if()`:
-#' # ℹ In argument: `1 == 1`.
-#' # ! Returned `TRUE`.
 #'
 #' # Injection can be used:
 #' x <- "my error"
 #' abort_if_not({{ x }} := FALSE) |> try()
 #' abort_if_not(!!x := FALSE) |> try()
 #' abort_if_not(FALSE, .message = "{x}") |> try()
-#' # Error:
-#' # Caused by error in `abort_if_not()`:
-#' # ℹ In argument: `FALSE`.
-#' # ! my error
+#'
 #' x <- list("my {.var bang-bang-bang} error" = FALSE)
 #' abort_if_not(!!!x) |> try()
-#' # Error:
-#' # Caused by error in `abort_if_not()`:
-#' # ℹ In argument: `FALSE`.
-#' # ! my `bang-bang-bang` error
 #' @export
 abort_if_not <- function(
     ...,

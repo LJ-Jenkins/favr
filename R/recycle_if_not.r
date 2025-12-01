@@ -31,32 +31,22 @@
 #' # recycle_if_not() follows `vctrs` recycling rules:
 #' x <- c(1, 1)
 #' recycle_if_not(x = 6) |> try()
-#' # Error:
-#' # Caused by error in `recycle_if_not()`:
-#' # ℹ In argument: `x = 6`.
-#' # ! Can't recycle `x` (size 2) to size 6.
 #'
 #' # Beware when using other objects as the size argument, e.g.:
 #' x <- 1L
 #' y <- c(1, 1, 1)
 #' recycle_if_not(x = y) |> try()
-#' # Error:
-#' # Caused by error in `recycle_if_not()`:
-#' # ℹ In argument: `x = y`.
-#' # ! Size argument must be positive scalar integerish, not length `3`.
 #'
 #' # When using other objects, call vctrs::vec_size() on them first:
 #' recycle_if_not(x = vctrs::vec_size(y))
-#' length(x)
-#' # 3
+#' length(x) # 3
 #'
 #' # Changed objects are available immediately:
 #' x <- y <- 1
 #' recycle_if_not(x = 3, y = vctrs::vec_size(x))
-#' cat(length(x), length(y), sep = ", ")
-#' # 3, 3
+#' cat(length(x), length(y), sep = ", ") # 3, 3
 #'
-#' myfunc <- \(x) {
+#' myfunc <- function(x) {
 #'   recycle_if_not(x = 3)
 #'   length(x)
 #' }
@@ -73,17 +63,13 @@
 #' cat(
 #'   "environment 'e'", length(e$x), "local environment", length(x),
 #'   sep = ", "
-#' )
-#' # environment 'e', 3, local environment, 1
+#' ) # environment 'e', 3, local environment, 1
 #'
 #' # Named objects (lhs) are checked to be in the `.env` environment,
 #' # throwing an error if not found:
 #' x <- 1
 #' e <- new.env()
 #' recycle_if_not(x = 3, .env = e) |> try()
-#' # Error:
-#' # Caused by error in `recycle_if_not()`.
-#' # ! Object `x` is not found in the `.env` environment specified.
 #'
 #' # For expressions (rhs), the `.env` argument is preferentially
 #' # chosen, but if not found then the normal R scoping rules
@@ -92,34 +78,28 @@
 #' e <- new.env()
 #' e$z <- 1
 #' recycle_if_not(z = x, .env = e)
-#' length(e$z)
-#' # 3
+#' length(e$z) # 3
 #'
 #' # The `.error_call` argument can be used to specify where the
 #' # error occurs, by default this is the caller environment:
 #' myfunc <- function(x) recycle_if_not(x = -5)
 #' myfunc(1) |> try()
-#' # Error in `myfunc()`:
-#' # Caused by error in `recycle_if_not()`:
-#' # ℹ In argument: `x = -5`.
-#' # ! Size argument must be positive scalar integerish, not `-5`.
 #'
 #' #' # Injection can be used:
 #' y <- 1L
 #' x <- "y"
 #' recycle_if_not(!!x := 5) |> try()
-#' length(y)
-#' # 5
+#' length(y) # 5
+#'
 #' y <- 1L
 #' x <- list(y = 5)
 #' recycle_if_not(!!!x)
-#' length(y)
-#' # 5
+#' length(y) # 5
 #'
 #' # Objects are reverted to their original values if an error
 #' # occur:
 #' x <- y <- 1L
-#' recycle_if_not(x = 5, y = -5) |> try() # errors
+#' recycle_if_not(x = 5, y = -5) |> try()
 #' length(x) # 1
 #' @export
 recycle_if_not <- function(

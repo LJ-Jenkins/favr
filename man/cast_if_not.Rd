@@ -42,34 +42,26 @@ for non data-masked and data-masked validations, recycling and casting.
 
 x <- 1L
 cast_if_not(x = double())
-class(x) # "numeric"
+class(x) # numeric
 
 # By default, lossy casting is not allowed:
 x <- c(1, 1.5)
 cast_if_not(x = integer()) |> try()
-# Error:
-# Caused by error in `cast_if_not()`:
-# ℹ In argument: `x = integer()`.
-# ! Can't convert from `x` <double> to <integer> due to loss of precision.
-# ✖ • Locations: 2
 
 # lossy casting can be enabled using `lossy()` call:
 cast_if_not(x = lossy(integer()))
-class(x)
-# "integer"
+class(x) # integer
 
 # Other objects can be used as the type to cast to, e.g.:
 x <- 1L
 y <- 2.3
 cast_if_not(x = y)
-class(x)
-# "numeric"
+class(x) # numeric
 
 # Changed objects are available immediately:
 x <- y <- 1L
 cast_if_not(x = double(), y = x)
-cat(class(x), class(y), sep = ", ")
-# numeric, numeric
+cat(class(x), class(y), sep = ", ") # numeric, numeric
 
 myfunc <- \(x) {
   cast_if_not(x = double())
@@ -88,17 +80,13 @@ cast_if_not(x = 1.5, .env = e)
 cat(
   "environment 'e'", class(e$x), "local environment", class(x),
   sep = ", "
-)
-# environment 'e', numeric, local environment, integer
+) # environment 'e', numeric, local environment, integer
 
 # Named objects (lhs) are checked to be in the `.env` environment,
 # throwing an error if not found:
 x <- 1L
 e <- new.env()
 cast_if_not(x = 1.5, .env = e) |> try()
-# Error:
-# Caused by error in `cast_if_not()`.
-# ! Object `x` is not found in the `.env` environment specified.
 
 # For expressions (rhs), the `.env` argument is preferentially
 # chosen, but if not found then the normal R scoping rules
@@ -107,33 +95,27 @@ x <- 1.5
 e <- new.env()
 e$z <- 1L
 cast_if_not(z = x, .env = e)
-class(e$z)
-# "numeric"
+class(e$z) # numeric
 
 # The `.error_call` argument can be used to specify where the
 # error occurs, by default this is the caller environment:
 myfunc <- function(x) cast_if_not(x = character())
 myfunc(FALSE) |> try()
-# Error in `myfunc()`:
-# Caused by error in `cast_if_not()`:
-# ℹ In argument: `x = character()`.
-# ! Can't convert `x` <logical> to <character>.
 
 # Injection can be used:
 y <- 1L
 x <- "y"
 cast_if_not(!!x := double()) |> try()
-class(y)
-# "numeric"
+class(y) # numeric
+
 y <- 1L
 x <- list(y = double())
 cast_if_not(!!!x)
-class(y)
-# "numeric"
+class(y) # numeric
 
 # Objects are reverted to their original values if an error
 # occur:
 x <- y <- 1L
-cast_if_not(x = double(), y = character()) |> try() # errors
+cast_if_not(x = double(), y = character()) |> try()
 class(x) # integer
 }

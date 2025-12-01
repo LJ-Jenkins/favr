@@ -54,20 +54,12 @@ z <- \(x) x > 1
 enforce(x == 1, is.character(y), is.function(z)) # all TRUE
 
 enforce(x == 2) |> try()
-# Error:
-# Caused by error in `enforce()`:
-# ℹ In argument: `x == 2`.
-# ! Returned `FALSE`.
 
 # A custom error message can be given for each expression by
 # naming it:
 enforce(
   "{.var y} must be {.cls numeric}, check input" = is.numeric(y)
 ) |> try()
-# Error:
-# Caused by error in `enforce()`:
-# ℹ In argument: `is.numeric(y)`.
-# ! `y` must be <numeric>, check input
 
 # Formulas can be used to take pass multiple objects
 # on the lhs, with functions/additional formulas required on
@@ -75,11 +67,6 @@ enforce(
 enforce(
   "multiple objects using: {.fn c}" = c(x, y) ~ is.integer
 ) |> try()
-# Error:
-# Caused by error in `enforce()`:
-# ℹ For named element: `y`.
-# ℹ In argument: `c(x, y) ~ is.integer`.
-# ! multiple objects using: `c()`
 
 # Formulas can also be used with `cast()`, `recycle()`, and
 # `coerce()` on the rhs to safely cast or recycle objects:
@@ -101,35 +88,21 @@ enforce(
     "{.var specific} message" = Negate(is.function)
   )
 ) |> try()
-# Error:
-# Caused by error in `enforce()`:
-# ℹ For named element: `z`.
-# ℹ In argument: `c(x, y, z) ~ list(... Negate(is.function) ...)`.
-# ! `specific` message
 
 # Changed elements are available immediately:
 x <- y <- 1L
 enforce(x ~ cast(double()), y ~ cast(x))
-cat(class(x), class(y)) # both now "numeric"
+cat(class(x), class(y)) # both now numeric
 
 # The `.error_call` argument can be used to specify where the
 # error occurs, by default this is the caller environment:
 myfunc <- function(...) enforce(...)
 myfunc(x > 4) |> try()
-# Error in `myfunc()`:
-# Caused by error in `enforce()`.
-# ℹ In argument: `x > 4`.
-# ! Returned `FALSE`.
 
 # rlang injection can be used:
 msg <- "{.var injection} msg"
 cols <- quote(c(x, y))
 enforce(!!msg := !!cols ~ is.integer) |> try()
-# Error:
-# Caused by error in `enforce()`:
-# ℹ For named element: `x`.
-# ℹ In argument: `c(x, y) ~ is.integer`.
-# ! `injection` msg
 
 # Objects are reverted to their original values if an error
 # occur:

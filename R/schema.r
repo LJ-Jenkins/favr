@@ -51,10 +51,6 @@
 #' li2 <- li
 #' li2$x <- 2L
 #' enforce_schema(li2) |> try()
-#' # Error:
-#' # Caused by error in `enforce_schema()`:
-#' # ℹ In argument: `x == 1`.
-#' # ! Returned `FALSE`.
 #'
 #' # Calling `schema()` again overwrites any existing schema.
 #' # Alternatively use `add_to_schema()` to add arguments to
@@ -67,10 +63,6 @@
 #' schema(li,
 #'   "{.var y} must be {.cls numeric}, check input" = is.numeric(y)
 #' ) |> try()
-#' # Error:
-#' # Caused by error in `schema()`:
-#' # ℹ In argument: `is.numeric(y)`.
-#' # ! `y` must be <numeric>, check input
 #'
 #' # Formulas can be used to take advantage of tidyselect features
 #' # on the lhs, with functions/additional formulas required on
@@ -78,11 +70,6 @@
 #' schema(li,
 #'   "multiple columns: {.pkg tidyselect}" = c(x, y) ~ is.integer
 #' ) |> try()
-#' # Error:
-#' # Caused by error in `schema()`:
-#' # ℹ For named element: `y`.
-#' # ℹ In argument: `c(x, y) ~ is.integer`.
-#' # ! multiple columns: tidyselect
 #'
 #' # Formulas can also be used with `cast()`, `recycle()`, and
 #' # `coerce()` on the rhs to safely cast or recycle named
@@ -106,37 +93,21 @@
 #'     "{.var specific} message" = Negate(is.function)
 #'   )
 #' ) |> try()
-#' # Error:
-#' # Caused by error in `schema()`:
-#' # ℹ For named element: `z`.
-#' # ℹ In argument: `c(x, y, z) ~ list(... Negate(is.function) ...)`.
-#' # ! `specific` message
 #'
 #' # Changed elements are available immediately:
 #' df <- data.frame(x = 1L, y = 1L)
 #' lapply(schema(df, x ~ cast(double()), y ~ cast(x)), class)
-#' # both now "numeric"
+#' # both now numeric
 #'
 #' # `.names` and `.size` arguments can be used to check that given
 #' # names are present and that the data has the desired size:
 #' schema(li, .names = c("a", "x", "y", "b")) |> try()
-#' # Error:
-#' # Caused by error in `schema()`.
-#' # ! Named elements `a` and `b` not found in data mask `li`.
-#'
 #' schema(li, .size = 5) |> try()
-#' # Error:
-#' # Caused by error in `schema()`.
-#' # ! Object `li` is of vctrs size `3`, not `5`.
 #'
 #' # The `.error_call` argument can be used to specify where the
 #' # error occurs, by default this is the caller environment:
 #' myfunc <- function(x, ...) schema(x, ...)
 #' myfunc(li, x > 4) |> try()
-#' # Error in `myfunc()`:
-#' # Caused by error in `schema()`:
-#' # ℹ In argument: `x > 4`.
-#' # ! Returned `FALSE`.
 #'
 #' # rlang pronouns and injection can be used, but care must be
 #' # taken when using `.env` and `enforce_schema()` as the
@@ -144,21 +115,13 @@
 #' msg <- "{.var injection} msg"
 #' cols <- quote(c(x, y))
 #' schema(li, !!msg := !!cols ~ is.integer) |> try()
-#' # Error:
-#' # Caused by error in `schema()`:
-#' # ℹ For named element: `y`.
-#' # ℹ In argument: `c(x, y) ~ is.integer`.
-#' # ! `injection` msg
 #'
 #' x <- 1L
 #' li <- schema(li, x == .env$x) # no error
+#'
 #' x <- 2
 #' enforce_schema(li) |>
 #'   try() # error as the environmental variable has changed
-#' # Error:
-#' # Caused by error in `enforce_schema()`:
-#' # ℹ In argument: `x == .env$x`.
-#' # ! Returned `FALSE`.
 #' @export
 schema <- function(data, ...) {
   UseMethod("schema", data)
