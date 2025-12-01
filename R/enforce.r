@@ -1,8 +1,8 @@
 #' Ensure the truth of R expressions and cast/recycle objects.
 #'
-#' If any of the expressions in `...` are not all `TRUE`, [rlang::abort]
+#' If any of the expressions in `...` are not all `TRUE`, [abort][rlang::abort]
 #' is called for the first which was not ([all]) `TRUE`. Alternatively,
-#' [rlang::formulas](https://rlang.r-lib.org/reference/new_formula.html) can
+#' [rlang formulas](https://rlang.r-lib.org/reference/new_formula.html) can
 #' be used to pass multiple objects to validation formulas/functions,
 #' and/or attempt safe type casting and size recycling  using the
 #' [favr::cast], [favr::recycle] and [favr::coerce] functions. The rhs of
@@ -19,11 +19,11 @@
 #' [favr::coerce] on the rhs. The rhs of a formula can also be a [list]
 #' of multiple functions/formulas/calls. If an expression is named, or
 #' if the list element on the rhs of a formula is named, the name is passed to
-#' [cli::format_inline] and is used in the error message.
+#' [format_inline][cli::format_inline] and is used in the error message.
 #' @param .env the environment to use for the evaluation of the
 #' expressions and the assignment of the objects.
 #' @param .error_call the call environment to use for error messages
-#' (passed to [rlang::abort]).
+#' (passed to [abort][rlang::abort]).
 #' @return NULL, but objects casted/recycled in `...` will be changed in
 #' the `.env` environment specified.
 #' @details See [favr::abort_if_not] for only validations and

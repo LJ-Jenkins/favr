@@ -1,10 +1,10 @@
 #' Ensure the truth of R expressions
 #'
-#' If any of the expressions in `...` are not all `TRUE`, [rlang::abort] is
+#' If any of the expressions in `...` are not all `TRUE`, [abort][rlang::abort] is
 #' called for the first expression which was not ([all]) `TRUE`. The names
 #' of expressions can be used as the error message or a single default error
 #' message can be given using `.message`. Both are passed to
-#' [cli::format_inline] for formatting.
+#' [format_inline][cli::format_inline] for formatting.
 #'
 #' @param ... any number of R expressions, which should each evaluate to
 #' (a logical vector of [all]) `TRUE` for no error to occur. Positive numbers
@@ -13,7 +13,7 @@
 #' will be used in the error message.
 #' @param .message single default error message for non-named expressions.
 #' @param .error_call the call environment to use for error messages
-#' (passed to [rlang::abort]).
+#' (passed to [abort][rlang::abort]).
 #' @return NULL, called for side effects only.
 #' @details [favr::abort_if] is the opposite of [favr::abort_if_not],
 #' i.e. expressions should evaluate to ([all]) `FALSE` for no error to

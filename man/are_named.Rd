@@ -25,9 +25,9 @@ input object. When \code{.all} is \code{TRUE} for \code{have_names()}, all logic
 vectors are collapsed and a boolean is returned.
 }
 \description{
-Wrappers around \link{rlang} predicates that allow multiple
+Wrappers around \link[rlang:rlang-package]{rlang} predicates that allow multiple
 objects to be passed. The following documentation is adapted
-from the \link{rlang} documentation:
+from the rlang \link[rlang:is_named]{documentation}:
 \itemize{
 \item \code{are_named()} is a scalar predicate that checks that objects in \code{...}
 have a \code{names} attribute and that none of the names are missing or empty
@@ -35,7 +35,7 @@ have a \code{names} attribute and that none of the names are missing or empty
 \item \code{are_named2()} is like \code{are_named()} but always returns \code{TRUE} for
 empty vectors, even those that don't have a \code{names} attribute.
 In other words, it tests for the property that each element of a
-vector is named. \code{are_named2()} composes well with \code{\link[=names2]{names2()}}
+vector is named. \code{are_named2()} composes well with \code{names2()}
 whereas \code{are_named()} composes with \code{names()}.
 \item \code{have_names()} is a vectorised variant.
 }

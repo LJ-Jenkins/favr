@@ -50,13 +50,13 @@ add_to_schema(data, ...)
 \item{data}{a data.frame or list to use as the data mask.}
 
 \item{...}{any number of R expressions or formulas to be evaluated using
-\code{data} as a data mask. Formulas can use \link{tidyselect} syntax
+\code{data} as a data mask. Formulas can use tidyselect syntax
 on the lhs and either functions or formulas that evaluate to logical, or one
 of the type/size functions: \link{cast}, \link{recycle} and \link{coerce}
 on the rhs. The rhs of a formula can also be a \link{list} of multiple
 functions/formulas/calls. If an expression is named, or if the list
 element on the rhs of a formula is named, the name is passed to
-\link[cli:format_inline]{cli::format_inline} and is used in the error message.}
+\link[cli:format_inline]{format_inline} and is used in the error message.}
 
 \item{.names}{character vector of names which must be present in the \code{data}
 data.frame/list.}
@@ -65,7 +65,7 @@ data.frame/list.}
 data.frame/list must be.}
 
 \item{.error_call}{the call environment to use for error messages
-(passed to \link[rlang:abort]{rlang::abort}).}
+(passed to \link[rlang:abort]{abort}).}
 
 \item{.darg}{the argument name of \code{data} to use in error messages.}
 }
@@ -75,9 +75,9 @@ attribute \code{schema} containing the schema call to be enforced later.
 }
 \description{
 If any of the expressions in \code{...}, evaluated within the data mask
-\code{data} (see \link[rlang:args_data_masking]{rlang::args_data_masking}), are not all \code{TRUE}, \link[rlang:abort]{rlang::abort}
+\code{'data'} (see \link[rlang:args_data_masking]{data masking}), are not all \code{TRUE}, \link[rlang:abort]{abort}
 is called for the first which was not (\link{all}) \code{TRUE}. Alternatively,
-\href{https://rlang.r-lib.org/reference/new_formula.html}{rlang::formulas} can
+\href{https://rlang.r-lib.org/reference/new_formula.html}{rlang formulas} can
 be used to take advantage of \href{https://tidyselect.r-lib.org/index.html}{tidyselect}
 features and pass multiple named elements in \code{data} to validation
 formulas/functions, and/or attempt safe type casting and size recycling

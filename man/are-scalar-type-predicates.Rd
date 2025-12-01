@@ -51,8 +51,8 @@ are_scalar_bytes(..., .all = FALSE)
 Named logical, or unnamed boolean if \code{.all} is \code{TRUE}.
 }
 \description{
-Wrappers around \link[=rlang-package]{rlang} scalar type predicates that allow
-multiple objects to be passed. The following documentation is adapted
+Wrappers around \link[rlang:rlang-package]{rlang} scalar type predicates that
+allow multiple objects to be passed. The following documentation is adapted
 from the rlang \link[rlang:scalar-type-predicates]{documentation}:
 
 These predicates check for a given type and whether the vector is

@@ -54,8 +54,8 @@ vector needs to be traversed and checked.}
 Named logical, or unnamed boolean if \code{.all} is \code{TRUE}.
 }
 \description{
-Wrappers around \link[=rlang-package]{rlang} type predicates that allow multiple
-objects to be passed. The following documentation is adapted
+Wrappers around \link[rlang:rlang-package]{rlang} type predicates that
+allow multiple objects to be passed. The following documentation is adapted
 from the rlang \link[rlang:type-predicates]{documentation}:
 
 These type predicates aim to make type testing in R more

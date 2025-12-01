@@ -13,7 +13,7 @@ cast_if_not(..., .env = caller_env(), .error_call = caller_env())
 expressions and the assignment of the casted objects.}
 
 \item{.error_call}{the call environment to use for error messages
-(passed to \link[rlang:abort]{rlang::abort}).}
+(passed to \link[rlang:abort]{abort}).}
 }
 \value{
 NULL, but objects named in \code{...} will be changed in the

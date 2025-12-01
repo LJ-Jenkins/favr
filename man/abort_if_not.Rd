@@ -19,17 +19,17 @@ will be used in the error message.}
 \item{.message}{single default error message for non-named expressions.}
 
 \item{.error_call}{the call environment to use for error messages
-(passed to \link[rlang:abort]{rlang::abort}).}
+(passed to \link[rlang:abort]{abort}).}
 }
 \value{
 NULL, called for side effects only.
 }
 \description{
-If any of the expressions in \code{...} are not all \code{TRUE}, \link[rlang:abort]{rlang::abort} is
+If any of the expressions in \code{...} are not all \code{TRUE}, \link[rlang:abort]{abort} is
 called for the first expression which was not (\link{all}) \code{TRUE}. The names
 of expressions can be used as the error message or a single default error
 message can be given using \code{.message}. Both are passed to
-\link[cli:format_inline]{cli::format_inline} for formatting.
+\link[cli:format_inline]{format_inline} for formatting.
 }
 \details{
 \link{abort_if} is the opposite of \link{abort_if_not},

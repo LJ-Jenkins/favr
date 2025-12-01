@@ -2,8 +2,8 @@
 #'
 #' @description
 #'
-#' Wrappers around [rlang][rlang-package] type predicates that allow multiple
-#' objects to be passed. The following documentation is adapted
+#' Wrappers around [rlang][rlang::rlang-package] type predicates that
+#' allow multiple objects to be passed. The following documentation is adapted
 #' from the rlang [documentation][rlang::type-predicates]:
 #'
 #' These type predicates aim to make type testing in R more
@@ -151,8 +151,8 @@ are_null <- function(..., .all = FALSE) {
 #'
 #' @description
 #'
-#' Wrappers around [rlang][rlang-package] scalar type predicates that allow
-#' multiple objects to be passed. The following documentation is adapted
+#' Wrappers around [rlang][rlang::rlang-package] scalar type predicates that
+#' allow multiple objects to be passed. The following documentation is adapted
 #' from the rlang [documentation][rlang::scalar-type-predicates]:
 #'
 #' These predicates check for a given type and whether the vector is
@@ -286,8 +286,8 @@ are_scalar_bytes <- function(..., .all = FALSE) {
 #'
 #' @description
 #'
-#' Wrappers around [rlang][rlang-package] type predicates that allow multiple
-#' objects to be passed. The following documentation is adapted
+#' Wrappers around [rlang][rlang::rlang-package] type predicates that
+#' allow multiple objects to be passed. The following documentation is adapted
 #' from the rlang [documentation][rlang::bare-type-predicates]:
 #'
 #' These predicates check for a given type but only return `TRUE` for
@@ -421,7 +421,7 @@ are_bare_numeric <- function(..., .n = NULL, .all = FALSE) {
 #' @param ... Objects to be tested.
 #' @param .all Whether to return if all arguments are TRUE.
 #' @inherit are-type-predicates return
-#' @seealso [is_empty]
+#' @seealso [is_empty][rlang::is_empty]
 #' @examples
 #' x <- 1
 #' y <- NULL
@@ -475,7 +475,7 @@ are_false <- function(..., .all = FALSE) {
 #'
 #' @description
 #'
-#' Wrappers around [rlang][rlang-package] type predicates that allow
+#' Wrappers around [rlang][rlang::rlang-package] type predicates that allow
 #' multiple objects to be passed. The following documentation is adapted
 #' from the rlang [documentation][rlang::is_integerish]:
 #'

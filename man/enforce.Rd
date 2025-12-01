@@ -14,22 +14,22 @@ or one of the type/size functions: \link{cast}, \link{recycle} or
 \link{coerce} on the rhs. The rhs of a formula can also be a \link{list}
 of multiple functions/formulas/calls. If an expression is named, or
 if the list element on the rhs of a formula is named, the name is passed to
-\link[cli:format_inline]{cli::format_inline} and is used in the error message.}
+\link[cli:format_inline]{format_inline} and is used in the error message.}
 
 \item{.env}{the environment to use for the evaluation of the
 expressions and the assignment of the objects.}
 
 \item{.error_call}{the call environment to use for error messages
-(passed to \link[rlang:abort]{rlang::abort}).}
+(passed to \link[rlang:abort]{abort}).}
 }
 \value{
 NULL, but objects casted/recycled in \code{...} will be changed in
 the \code{.env} environment specified.
 }
 \description{
-If any of the expressions in \code{...} are not all \code{TRUE}, \link[rlang:abort]{rlang::abort}
+If any of the expressions in \code{...} are not all \code{TRUE}, \link[rlang:abort]{abort}
 is called for the first which was not (\link{all}) \code{TRUE}. Alternatively,
-\href{https://rlang.r-lib.org/reference/new_formula.html}{rlang::formulas} can
+\href{https://rlang.r-lib.org/reference/new_formula.html}{rlang formulas} can
 be used to pass multiple objects to validation formulas/functions,
 and/or attempt safe type casting and size recycling  using the
 \link{cast}, \link{recycle} and \link{coerce} functions. The rhs of

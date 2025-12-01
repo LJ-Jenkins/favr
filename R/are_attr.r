@@ -2,9 +2,9 @@
 #'
 #' @description
 #'
-#' Wrappers around [rlang] predicates that allow multiple
+#' Wrappers around [rlang][rlang::rlang-package] predicates that allow multiple
 #' objects to be passed. The following documentation is adapted
-#' from the [rlang] documentation:
+#' from the rlang [documentation][rlang::is_named]:
 #'
 #' * `are_named()` is a scalar predicate that checks that objects in `...`
 #'    have a `names` attribute and that none of the names are missing or empty
@@ -13,7 +13,7 @@
 #' * `are_named2()` is like `are_named()` but always returns `TRUE` for
 #'   empty vectors, even those that don't have a `names` attribute.
 #'   In other words, it tests for the property that each element of a
-#'   vector is named. `are_named2()` composes well with [names2()]
+#'   vector is named. `are_named2()` composes well with `names2()`
 #'   whereas `are_named()` composes with `names()`.
 #'
 #' * `have_names()` is a vectorised variant.

@@ -29,7 +29,7 @@ vector needs to be traversed and checked.}
 Named logical, or unnamed boolean if \code{.all} is \code{TRUE}.
 }
 \description{
-Wrappers around \link[=rlang-package]{rlang} type predicates that allow
+Wrappers around \link[rlang:rlang-package]{rlang} type predicates that allow
 multiple objects to be passed. The following documentation is adapted
 from the rlang \link[rlang:is_integerish]{documentation}:
 

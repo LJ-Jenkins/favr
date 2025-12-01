@@ -13,7 +13,7 @@
 #' @param .env the environment to use for the evaluation of the recycling
 #' expressions and the assignment of the recycled objects.
 #' @param .error_call the call environment to use for error messages
-#' (passed to [rlang::abort]).
+#' (passed to [abort][rlang::abort]).
 #' @return NULL, but objects named in `...` will be changed in the
 #' `.env` environment specified.
 #' @details See [favr::abort_if_not] for general validation,
