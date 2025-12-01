@@ -1,8 +1,8 @@
 Package: favr
-Title: Function Argument Validation in R
+Title: Function Argument Validation
 Version: 0.0.0.9000
 Authors@R: 
-    person("Luke", "Jenkins", , "luke-jenkins-dev@outlook.com", role = c("aut", "cre"), comment = c(ORCID = "0000-0002-7206-7242"))
+    person("Luke", "Jenkins", , "luke-jenkins-dev@outlook.com", role = c("aut", "cre", "cph"), comment = c(ORCID = "0000-0002-7206-7242"))
 Description: Tools for function argument validation that focus on clear error messaging and include options for safe, automatic type casting and size recycling.
 License: MIT + file LICENSE
 Encoding: UTF-8
