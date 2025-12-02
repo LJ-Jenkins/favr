@@ -3,7 +3,7 @@ Title: Function Argument Validation
 Version: 0.0.0.9000
 Authors@R: 
     person("Luke", "Jenkins", , "luke-jenkins-dev@outlook.com", role = c("aut", "cre", "cph"), comment = c(ORCID = "0000-0002-7206-7242"))
-Description: Tools for function argument validation that focus on clear error messaging and include options for safe, automatic type casting and size recycling.
+Description: Validate function arguments with informative error messages and optional automatic type casting and size recycling. Enable schema-based assertions by attaching reusable rules to data.frame and list objects for use throughout workflows.
 License: MIT + file LICENSE
 Encoding: UTF-8
 Roxygen: list(markdown = TRUE)
@@ -16,6 +16,7 @@ Imports:
 Suggests: 
     testthat (>= 3.0.0)
 Config/testthat/edition: 3
-URL: https://lj-jenkins.github.io/favr/
+URL: https://lj-jenkins.github.io/favr/, https://github.com/LJ-Jenkins/favr
 Depends: 
     R (>= 4.1.0)
+BugReports: https://github.com/LJ-Jenkins/favr/issues
