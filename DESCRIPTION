@@ -3,7 +3,7 @@ Title: Function Argument Validation
 Version: 0.0.0.9000
 Authors@R: 
     person("Luke", "Jenkins", , "luke-jenkins-dev@outlook.com", role = c("aut", "cre", "cph"), comment = c(ORCID = "0000-0002-7206-7242"))
-Description: Validate function arguments with informative error messages and optional automatic type casting and size recycling. Enable schema-based assertions by attaching reusable rules to data.frame and list objects for use throughout workflows.
+Description: Validate function arguments succinctly with informative error messages and optional automatic type casting and size recycling. Enable schema-based assertions by attaching reusable rules to data.frame and list objects for use throughout workflows.
 License: MIT + file LICENSE
 Encoding: UTF-8
 Roxygen: list(markdown = TRUE)

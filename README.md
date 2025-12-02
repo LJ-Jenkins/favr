@@ -8,9 +8,9 @@
 [![R-CMD-check](https://github.com/LJ-Jenkins/favr/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/LJ-Jenkins/favr/actions/workflows/R-CMD-check.yaml)
 <!-- badges: end -->
 
-Function Argument Validation tools for R (favr) provides tools for the
-validation and safe type coercion/recycling of function arguments. A
-focus is placed on clear error messaging.
+Function Argument Validation for R (favr) provides tools for the
+succinct validation and safe type coercion/recycling of function
+arguments. A focus is placed on clear error messaging.
 
 ## Overview
 
@@ -31,23 +31,48 @@ favr also provides simple wrappers for many
 to accept multiple arguments. In nearly all cases, these are
 differentiated by replacing the `is_*` prefix with `are_*`.
 
-## Installation
-
-You can install the development version of favr from
-[GitHub](https://github.com/) with:
-
-``` r
-# install.packages("pak")
-pak::pak("LJ-Jenkins/favr")
-```
-
-## Examples
-
-`abort_if_not` can be used for all validations:
+Any predicate function/expression that returns a `logical`, or raises an
+error, will work with favr validations:
 
 ``` r
 library(favr, warn.conflicts = FALSE)
 
+x <- c(1L, 2L)
+y <- data.frame(x = "hi")
+
+abort_if_not(
+  "{.var x} is not scalar integerish" = rlang::is_scalar_integerish(x)
+)
+#> Error:
+#> Caused by error in `abort_if_not()`.
+#> ℹ In argument: `rlang::is_scalar_integerish(x)`.
+#> ! `x` is not scalar integerish
+
+schema(y, x + 1 > 2)
+#> Error:
+#> Caused by error in `schema()`.
+#> ℹ In argument: `x + 1 > 2`.
+#> ! Non-numeric argument to binary operator.
+```
+
+## Installation
+
+``` r
+# Install the latest version of favr from CRAN.
+
+install.packages("favr")
+
+# Or install the development version of favr from GitHub.
+
+# install.packages("pak")
+pak::pak("LJ-Jenkins/favr")
+```
+
+## Usage
+
+`abort_if_not` can be used for all validations:
+
+``` r
 f <- \(x, y) {
   abort_if_not(
     is.character(x),
@@ -70,10 +95,10 @@ f("hi", list(x = 1))
 ```
 
 `cast_if_not` and `recycle_if_not` provide safe casting and recycling
-from [vctrs](https://vctrs.r-lib.org/). Variables are provided on the
-left hand side and the expected type/size is provided on the right.
-Assignment is automatically done back into the environment specified
-(default is the
+from [vctrs](https://vctrs.r-lib.org/). Variables are given on the left
+hand side (name of the argument) and the expected type/size is given on
+the right (input). Assignment is automatically done back into the
+environment specified (default is the
 [caller_env()](https://rlang.r-lib.org/reference/stack.html)):
 
 ``` r
@@ -105,11 +130,12 @@ cast_if_not(x = integer())
 ```
 
 `enforce` allows both validations, casting and recycling using the
-keyword functions of `cast`, `recycle` and `coerce`. Formulas needs to
-be used for non-validations. For formulas, `c()` can be used to pass
-multiple objects to a specific validation/call and multiple arguments
-can be given on the rhs when wrapped in `list()`. Assignment occurs back
-into the environment specified (default is the
+keyword functions of `cast`, `recycle` and `coerce`. [rlang
+formulas](https://rlang.r-lib.org/reference/is_formula.html) need to be
+used for casting/recycling, and `c()` can be used in formulas to pass
+multiple objects to validations/calls. Multiple validations/calls can be
+given on the rhs of a formula when wrapped in `list()`. Assignment
+occurs back into the environment specified (default is the
 [caller_env()](https://rlang.r-lib.org/reference/stack.html)).
 
 ``` r
@@ -160,7 +186,9 @@ names are present can also be checked using the `.names` and `.size`
 arguments. The altered data-mask object is returned with an attached
 class `with_schema` which is used by `add_to_schema()` and
 `enforce_schema()` to edit and/or re-evaluate the original schema call.
-Tidyselect syntax can be used on the lhs of formulas.
+[Tidyselect
+syntax](https://tidyselect.r-lib.org/reference/language.html) can be
+used on the lhs of formulas.
 
 ``` r
 data.frame(x = 2) |>
@@ -279,7 +307,13 @@ on the imported packages [rlang](https://rlang.r-lib.org),
 [tidyselect](https://tidyselect.r-lib.org/). All predicate functions in
 favr are simple wrappers around [rlang](https://rlang.r-lib.org)
 predicates, for which all credit goes to those authors. For function
-argument validation that focus on performance, see
+argument validation that focuses on performance, see
 [checkmate](https://mllg.github.io/checkmate/). An earlier, unreleased
 version of this package was called
 [restrictr](https://github.com/LJ-Jenkins/restrictr).
+
+## Code of Conduct
+
+Please note that the favr project is released with a [Contributor Code
+of Conduct](https://lj-jenkins.github.io/favr/CODE_OF_CONDUCT.html). By
+contributing to this project, you agree to abide by its terms.
