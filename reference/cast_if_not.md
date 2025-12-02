@@ -90,7 +90,7 @@ cast_if_not(x = double(), y = x)
 cat(class(x), class(y), sep = ", ") # numeric, numeric
 #> numeric, numeric
 
-myfunc <- \(x) {
+myfunc <- function(x) {
   cast_if_not(x = double())
   class(x)
 }

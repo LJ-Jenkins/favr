@@ -86,7 +86,7 @@ recycle_if_not(x = 3, y = vctrs::vec_size(x))
 cat(length(x), length(y), sep = ", ") # 3, 3
 #> 3, 3
 
-myfunc <- \(x) {
+myfunc <- function(x) {
   recycle_if_not(x = 3)
   length(x)
 }
