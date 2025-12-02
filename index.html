@@ -78,26 +78,34 @@
 <code><a href="reference/schema.html">add_to_schema()</a></code> add arguments to an existing attached schema and re-evaluate.</li>
 </ul>
 <p>favr also provides simple wrappers for many <a href="https://rlang.r-lib.org/index.html" class="external-link">rlang</a> predicates that enable them to accept multiple arguments. In nearly all cases, these are differentiated by replacing the <code>is_*</code> prefix with <code>are_*</code>.</p>
-<p>Any predicate function/expression that returns a <code>logical</code>, or raises an error, will work with favr validations:</p>
+<p>Any predicate function/expression that returns a <code>logical</code>, or raises an error, will work with favr validations. Named logicals will show which named element/s gave <code>FALSE</code> or <code>NA</code>:</p>
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://lj-jenkins.github.io/favr/">favr</a></span>, warn.conflicts <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span>
 <span></span>
 <span><span class="va">x</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">1L</span>, <span class="fl">2L</span><span class="op">)</span></span>
 <span><span class="va">y</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html" class="external-link">data.frame</a></span><span class="op">(</span>x <span class="op">=</span> <span class="st">"hi"</span><span class="op">)</span></span>
+<span><span class="va">z</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span><span class="fl">1</span><span class="op">)</span></span>
 <span></span>
 <span><span class="fu"><a href="reference/abort_if_not.html">abort_if_not</a></span><span class="op">(</span></span>
-<span>  <span class="st">"{.var x} is not scalar integerish"</span> <span class="op">=</span> <span class="fu">rlang</span><span class="fu">::</span><span class="fu"><a href="https://rlang.r-lib.org/reference/is_integerish.html" class="external-link">is_scalar_integerish</a></span><span class="op">(</span><span class="va">x</span><span class="op">)</span></span>
+<span>  <span class="st">"{.var x} is not scalar integerish, given: {x}."</span> <span class="op">=</span> <span class="fu">rlang</span><span class="fu">::</span><span class="fu"><a href="https://rlang.r-lib.org/reference/is_integerish.html" class="external-link">is_scalar_integerish</a></span><span class="op">(</span><span class="va">x</span><span class="op">)</span></span>
 <span><span class="op">)</span></span>
 <span><span class="co">#&gt; Error:</span></span>
 <span><span class="co">#&gt; Caused by error in `abort_if_not()`.</span></span>
 <span><span class="co">#&gt; ℹ In argument: `rlang::is_scalar_integerish(x)`.</span></span>
-<span><span class="co">#&gt; ! `x` is not scalar integerish</span></span>
+<span><span class="co">#&gt; ! `x` is not scalar integerish, given: 1 and 2.</span></span>
 <span></span>
 <span><span class="fu"><a href="reference/schema.html">schema</a></span><span class="op">(</span><span class="va">y</span>, <span class="va">x</span> <span class="op">+</span> <span class="fl">1</span> <span class="op">&gt;</span> <span class="fl">2</span><span class="op">)</span></span>
 <span><span class="co">#&gt; Error:</span></span>
 <span><span class="co">#&gt; Caused by error in `schema()`.</span></span>
 <span><span class="co">#&gt; ℹ In argument: `x + 1 &gt; 2`.</span></span>
-<span><span class="co">#&gt; ! Non-numeric argument to binary operator.</span></span></code></pre></div>
+<span><span class="co">#&gt; ! Non-numeric argument to binary operator.</span></span>
+<span></span>
+<span><span class="fu"><a href="reference/abort_if_not.html">abort_if_not</a></span><span class="op">(</span><span class="fu"><a href="reference/are-type-predicates.html">are_list</a></span><span class="op">(</span><span class="va">z</span>, <span class="va">x</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="co">#&gt; Error:</span></span>
+<span><span class="co">#&gt; Caused by error in `abort_if_not()`.</span></span>
+<span><span class="co">#&gt; ℹ In argument: `are_list(z, x)`.</span></span>
+<span><span class="co">#&gt; ! Returned `FALSE`.</span></span>
+<span><span class="co">#&gt; ✖ `x` is `FALSE`.</span></span></code></pre></div>
 </div>
 <div class="section level2">
 <h2 id="installation">Installation<a class="anchor" aria-label="anchor" href="#installation"></a>

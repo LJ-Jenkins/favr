@@ -29,27 +29,36 @@ to accept multiple arguments. In nearly all cases, these are
 differentiated by replacing the `is_*` prefix with `are_*`.
 
 Any predicate function/expression that returns a `logical`, or raises an
-error, will work with favr validations:
+error, will work with favr validations. Named logicals will show which
+named element/s gave `FALSE` or `NA`:
 
 ``` r
 library(favr, warn.conflicts = FALSE)
 
 x <- c(1L, 2L)
 y <- data.frame(x = "hi")
+z <- list(1)
 
 abort_if_not(
-  "{.var x} is not scalar integerish" = rlang::is_scalar_integerish(x)
+  "{.var x} is not scalar integerish, given: {x}." = rlang::is_scalar_integerish(x)
 )
 #> Error:
 #> Caused by error in `abort_if_not()`.
 #> ℹ In argument: `rlang::is_scalar_integerish(x)`.
-#> ! `x` is not scalar integerish
+#> ! `x` is not scalar integerish, given: 1 and 2.
 
 schema(y, x + 1 > 2)
 #> Error:
 #> Caused by error in `schema()`.
 #> ℹ In argument: `x + 1 > 2`.
 #> ! Non-numeric argument to binary operator.
+
+abort_if_not(are_list(z, x))
+#> Error:
+#> Caused by error in `abort_if_not()`.
+#> ℹ In argument: `are_list(z, x)`.
+#> ! Returned `FALSE`.
+#> ✖ `x` is `FALSE`.
 ```
 
 ## Installation
