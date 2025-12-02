@@ -6,7 +6,10 @@ check_logi_true <- function(logi) {
   x <- all(logi)
 
   if (is.na(x) || !x) {
-    abort_logi_returned(returned = x)
+    abort_logi_returned(
+      returned = x,
+      named_ele = names(logi) %!||% logi[is.na(logi) | !logi]
+    )
   }
 }
 
@@ -18,7 +21,10 @@ check_logi_false <- function(logi) {
   x <- any(logi)
 
   if (is.na(x) || x) {
-    abort_logi_returned(returned = x)
+    abort_logi_returned(
+      returned = x,
+      named_ele = names(logi) %!||% logi[is.na(logi) | logi]
+    )
   }
 }
 

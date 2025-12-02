@@ -127,6 +127,24 @@ cnd_body.favr_error_logi_returned <- function(cnd, ...) {
   format_inline("Returned {.var {cnd$returned}}.")
 }
 
+#' @export
+cnd_footer.favr_error_logi_returned <- function(cnd, ...) {
+  if (!is.null(cnd$named_ele)) {
+    falses <- names(cnd$named_ele[which(cnd$named_ele == FALSE)])
+    nas <- names(cnd$named_ele[which(is.na(cnd$named_ele))])
+    paste(
+      if (length(falses) != 0) {
+        format_inline("{.var {falses}} {?is/are} `FALSE`.")
+      },
+      if (length(nas) != 0) {
+        format_inline("{.var {nas}} {?is/are} `NA`.")
+      }
+    )
+  } else {
+    NULL
+  }
+}
+
 #--
 
 abort_empty_vector <- function(
