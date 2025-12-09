@@ -16,8 +16,23 @@ recycle(x)
 
 coerce(type = NULL, size = NULL, lossy = FALSE)
 }
+\arguments{
+\item{x}{input to be lossily casted for \code{lossy()}, object of type to
+cast to for \code{cast()}, or scalar integerish value to recycle to for
+\code{recycle()}.}
+
+\item{lossy}{logical, \code{TRUE} or \code{FALSE}.}
+
+\item{type}{object of type to cast to for \code{coerce()}.}
+
+\item{size}{scalar integerish value to recycle to.}
+}
+\value{
+No return value, called for side effects only. Will error
+if called outside of a favr calling context (see Description and Examples).
+}
 \description{
-These function signal to favr functions to undergo casting,
+These functions signal to favr functions to undergo casting,
 lossy casting, and/or recycling. Each can only be used wihtin calls
 to specific favr functions and will error if used outside them.
 Specifically:
@@ -30,7 +45,13 @@ recycling.
 casting and recycling.
 }
 }
+\details{
+These functions add attributes and/or a class to their inputs that
+signal transformations to occur within the favr caller.
+}
 \examples{
+try(cast(10)) # errors outside of favr calling context
+
 x <- 1.5
 cast_if_not(x = lossy(integer()))
 class(x) # integer
@@ -44,4 +65,3 @@ enforce(x ~ coerce(type = integer(), size = 5, lossy = TRUE))
 class(x) # integer
 length(x) # 5
 }
-\keyword{internal}

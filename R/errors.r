@@ -360,7 +360,7 @@ cnd_body.favr_error_fn_called_not_in_cast_if_not <- function(cnd, ...) {
 
 #' @export
 cnd_body.favr_error_fn_called_not_in_enforce_schema <- function(cnd, ...) {
-  format_inline("{.fn {cnd$fn}} must be used within {.fn enforce} or {.fn schema} calls.")
+  format_inline("{.fn {cnd$caller_fn}} must be used within {.fn enforce} or {.fn schema} calls.")
 }
 
 #--

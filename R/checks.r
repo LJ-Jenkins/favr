@@ -30,14 +30,15 @@ check_logi_false <- function(logi) {
 
 #--
 
-check_call_is <- function(x, fn = NULL) {
+check_call_is <- function(x, fn) {
   if (!favr_env$caller_fn %in% x) {
     abort_favr(
       class = paste0(
         "favr_error_fn_called_not_in_",
         paste0(x, collapse = "_")
       ),
-      fn = fn
+      caller_fn = fn,
+      call = caller_env(2)
     )
   }
 }

@@ -1,7 +1,7 @@
 #' favr casting and recycling helpers
 #'
 #' @description
-#' These function signal to favr functions to undergo casting,
+#' These functions signal to favr functions to undergo casting,
 #' lossy casting, and/or recycling. Each can only be used wihtin calls
 #' to specific favr functions and will error if used outside them.
 #' Specifically:
@@ -12,9 +12,20 @@
 #' *   `coerce()`: used within [favr::enforce()] and [favr::schema()] for
 #'                 casting and recycling.
 #'
-#' @keywords internal
+#' @param x input to be lossily casted for `lossy()`, object of type to
+#' cast to for `cast()`, or scalar integerish value to recycle to for
+#' `recycle()`.
+#' @param lossy logical, `TRUE` or `FALSE`.
+#' @param type object of type to cast to for `coerce()`.
+#' @param size scalar integerish value to recycle to.
+#' @return No return value, called for side effects only. Will error
+#' if called outside of a favr calling context (see Description and Examples).
+#' @details These functions add attributes and/or a class to their inputs that
+#' signal transformations to occur within the favr caller.
 #' @name favr_casting_recycling_helpers
 #' @examples
+#' try(cast(10)) # errors outside of favr calling context
+#'
 #' x <- 1.5
 #' cast_if_not(x = lossy(integer()))
 #' class(x) # integer
@@ -27,11 +38,12 @@
 #' enforce(x ~ coerce(type = integer(), size = 5, lossy = TRUE))
 #' class(x) # integer
 #' length(x) # 5
+NULL
 
 #' @rdname favr_casting_recycling_helpers
 #' @export
 lossy <- function(x) {
-  check_call_is("cast_if_not")
+  check_call_is("cast_if_not", "lossy")
 
   attr(x, "favr:::lossy") <- TRUE
   x
