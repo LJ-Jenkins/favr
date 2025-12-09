@@ -65,3 +65,4 @@ enforce(x ~ coerce(type = integer(), size = 5, lossy = TRUE))
 class(x) # integer
 length(x) # 5
 }
+\keyword{internal}

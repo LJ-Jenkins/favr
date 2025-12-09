@@ -22,6 +22,7 @@
 #' if called outside of a favr calling context (see Description and Examples).
 #' @details These functions add attributes and/or a class to their inputs that
 #' signal transformations to occur within the favr caller.
+#' @keywords internal
 #' @name favr_casting_recycling_helpers
 #' @examples
 #' try(cast(10)) # errors outside of favr calling context
