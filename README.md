@@ -5,6 +5,8 @@
 
 <!-- badges: start -->
 
+[![CRAN
+status](https://www.r-pkg.org/badges/version/favr)](https://CRAN.R-project.org/package=favr)
 [![R-CMD-check](https://github.com/LJ-Jenkins/favr/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/LJ-Jenkins/favr/actions/workflows/R-CMD-check.yaml)
 <!-- badges: end -->
 
