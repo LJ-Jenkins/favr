@@ -8,7 +8,7 @@
 ## Citation
 
 Source:
-[`DESCRIPTION`](https://github.com/LJ-Jenkins/favr/blob/v1.0.0/DESCRIPTION)
+[`DESCRIPTION`](https://github.com/LJ-Jenkins/favr/blob/main/DESCRIPTION)
 
 Jenkins L (2025). *favr: Function Argument Validation*. R package
 version 1.0.0, <https://lj-jenkins.github.io/favr/>.
