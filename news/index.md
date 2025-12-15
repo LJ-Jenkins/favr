@@ -1,5 +1,7 @@
 # Changelog
 
+## favr (development version)
+
 ## favr 1.0.0
 
 CRAN release: 2025-12-15
