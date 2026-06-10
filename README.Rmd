@@ -218,6 +218,10 @@ cat("Code has errored but `x` has reverted back to:", class(x))
 
 favr was inspired by MATLAB's arguments block and [schematic](https://whipson.github.io/schematic/). favr relies heavily on the imported packages [rlang](https://rlang.r-lib.org), [vctrs](https://vctrs.r-lib.org/), [cli](https://cli.r-lib.org/) and [tidyselect](https://tidyselect.r-lib.org/). All predicate functions in favr are simple wrappers around [rlang](https://rlang.r-lib.org) predicates, for which all credit goes to those authors. For function argument validation that focuses on performance, see [checkmate](https://mllg.github.io/checkmate/). An earlier, unreleased version of this package was called [restrictr](https://github.com/LJ-Jenkins/restrictr).
 
+## Getting help
+
+If you encounter a clear bug, please file an issue with a minimal reproducible example on [GitHub](https://github.com/LJ-Jenkins/favr/issues).
+
 ## Code of Conduct
 
 Please note that the favr project is released with a [Contributor Code of Conduct](https://lj-jenkins.github.io/favr/CODE_OF_CONDUCT.html). By contributing to this project, you agree to abide by its terms.

@@ -323,6 +323,12 @@ argument validation that focuses on performance, see
 version of this package was called
 [restrictr](https://github.com/LJ-Jenkins/restrictr).
 
+## Getting help
+
+If you encounter a clear bug, please file an issue with a minimal
+reproducible example on
+[GitHub](https://github.com/LJ-Jenkins/favr/issues).
+
 ## Code of Conduct
 
 Please note that the favr project is released with a [Contributor Code
