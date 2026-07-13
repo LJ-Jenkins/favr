@@ -31,15 +31,15 @@ Validate class and inheritance:
 
 Validate specific types:
 
-- `check_numeric()`, `check_character()`, `check_null()`, etc.
-- `check_scalar_numeric()`, `check_scalar_character()`,
+- `check_integer()`, `check_character()`, `check_null()`, etc.
+- `check_scalar_integer()`, `check_scalar_character()`,
   `check_scalar_logical()`, etc.
 
-Modify type checking behaviour:
+Modify the behaviour of type-checking functions:
 
-- `bare()` to check for bare objects (i.e. objects with no class
+- `bare()` to also check for bare objects (i.e. objects with no class
   attribute).
-- `at_least()`, `at_most()`, and `in_range()` to check for length
+- `at_least()`, `at_most()`, and `in_range()` to also check for length
   ranges.
 
 Validate specific scalar values:
