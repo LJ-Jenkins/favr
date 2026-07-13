@@ -35,16 +35,16 @@ Validate specific types:
 - `check_scalar_numeric()`, `check_scalar_character()`,
   `check_scalar_logical()`, etc.
 
-Validate specific scalar values:
-
-- `check_true()`, `check_false()`, `check_bool()`, `check_string()`.
-
-Modify check behaviour:
+Modify type checking behaviour:
 
 - `bare()` to check for bare objects (i.e. objects with no class
   attribute).
 - `at_least()`, `at_most()`, and `in_range()` to check for length
   ranges.
+
+Validate specific scalar values:
+
+- `check_true()`, `check_false()`, `check_bool()`, `check_string()`.
 
 Miscellaneous checks:
 
@@ -121,20 +121,18 @@ check(is.numeric(x), !!!inject_args)
 Data-masked validation:
 
 ``` r
-df <- data.frame(a = 1:3, b = c("a", "b", "c"))
+data <- data.frame(a = 1:3, b = c("a", "b", "c"))
 
-df |>
-  check_with(
-    "{.var a} must be length {.val 5}, but is length {.val {length(a)}}." = length(a) == 5,
-    "{.var b} must all have 2 nchars." = nchar(b) == 2
-  )
+check_with(data,
+  "{.var a} must be length {.val 5}, but is length {.val {length(a)}}." = length(a) == 5,
+  "{.var b} must all have 2 nchars." = nchar(b) == 2
+)
 #> Error:
 #> ! `a` must be length "5", but is length 3.
 
 a <- c("a", "b", "c")
 
-df |>
-  check_with(is.numeric(.data$a), is.numeric(.env$a))
+check_with(data, is.numeric(.data$a), is.numeric(.env$a))
 #> Error:
 #> ! `is.numeric(.env$a)` is not TRUE.
 ```
@@ -151,12 +149,13 @@ walk_check(x, is.numeric)
 Specific type validation:
 
 ``` r
+x <- c(1, 2, 3)
 check_integer(x)
 #> Error:
-#> ! `x` must be an <integer> vector, not a <list>.
-check_scalar_double(y)
+#> ! `x` must be an <integer> vector, not a <double> vector.
+check_scalar_double(x)
 #> Error:
-#> ! `y` must be a scalar <double>, not a <character> vector.
+#> ! `x` must be a scalar <double>, but it is of length 3.
 
 # the `bare()` modifier can be used to ensure bare objects.
 check_integer(factor(1))
@@ -167,16 +166,19 @@ check_integer(bare(factor(1)))
 # length modifiers can be used on `n` to specify length ranges.
 check_double(x, n = 2)
 #> Error:
-#> ! `x` must be a <double> vector, not a <list>.
+#> ! `x` must be a <double> vector of length 2, not 3.
 check_double(x, n = at_least(4))
 #> Error:
-#> ! `x` must be a <double> vector, not a <list>.
+#> ! `x` must be a <double> vector of at least length 4, but it is of
+#>   length 3.
 check_double(x, n = at_most(2))
 #> Error:
-#> ! `x` must be a <double> vector, not a <list>.
+#> ! `x` must be a <double> vector of at most length 2, but it is of length
+#>   3.
 check_double(x, n = in_range(1, 2))
 #> Error:
-#> ! `x` must be a <double> vector, not a <list>.
+#> ! `x` must be a <double> vector of a length between 1 and 2, but it is
+#>   of length 3.
 ```
 
 Miscellaneous validation:

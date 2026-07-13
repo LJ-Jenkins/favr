@@ -40,14 +40,14 @@ Validate specific types:
 * `check_numeric()`, `check_character()`, `check_null()`, etc.
 * `check_scalar_numeric()`, `check_scalar_character()`, `check_scalar_logical()`, etc.
 
-Validate specific scalar values:
-
-* `check_true()`, `check_false()`, `check_bool()`, `check_string()`.
-
-Modify check behaviour:
+Modify type checking behaviour:
 
 * `bare()` to check for bare objects (i.e. objects with no class attribute).
 * `at_least()`, `at_most()`, and `in_range()` to check for length ranges.
+
+Validate specific scalar values:
+
+* `check_true()`, `check_false()`, `check_bool()`, `check_string()`.
 
 Miscellaneous checks:
 
@@ -107,18 +107,16 @@ check(is.numeric(x), !!!inject_args)
 
 Data-masked validation:
 ```{r, error = TRUE}
-df <- data.frame(a = 1:3, b = c("a", "b", "c"))
+data <- data.frame(a = 1:3, b = c("a", "b", "c"))
 
-df |>
-  check_with(
-    "{.var a} must be length {.val 5}, but is length {.val {length(a)}}." = length(a) == 5,
-    "{.var b} must all have 2 nchars." = nchar(b) == 2
-  )
+check_with(data,
+  "{.var a} must be length {.val 5}, but is length {.val {length(a)}}." = length(a) == 5,
+  "{.var b} must all have 2 nchars." = nchar(b) == 2
+)
 
 a <- c("a", "b", "c")
 
-df |>
-  check_with(is.numeric(.data$a), is.numeric(.env$a))
+check_with(data, is.numeric(.data$a), is.numeric(.env$a))
 ```
 
 Walking a check over a vector:
@@ -129,8 +127,9 @@ walk_check(x, is.numeric)
 
 Specific type validation:
 ```{r, error = TRUE}
+x <- c(1, 2, 3)
 check_integer(x)
-check_scalar_double(y)
+check_scalar_double(x)
 
 # the `bare()` modifier can be used to ensure bare objects.
 check_integer(factor(1))
