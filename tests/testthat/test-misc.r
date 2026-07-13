@@ -1,4 +1,6 @@
 test_that("casting/recycling helpers error out of context", {
+  local_lifecycle_silence()
+
   # some dup tests
   x <- y <- 1L
   li <- list(x = 1, y = 1)
