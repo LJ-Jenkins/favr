@@ -45,6 +45,9 @@ Use \code{bare()} to check if a given object is a bare R object
 (no class attribute), throwing an error if it is not and passing the
 object on to the check if it is.
 
+For S3 type checks, \code{bare()} checks that the object has the expected S3
+type as the \strong{first} element of the class vector.
+
 To modify the behaviour of the length checking \code{n} argument:
 \itemize{
 \item \code{at_least(n)} means the object must be at least length (\code{>=}) \code{n}.
@@ -69,6 +72,10 @@ check_integer(bare(factor(1))) |> try()
 check_integer(1:5, n = at_least(10)) |> try()
 check_integer(1:5, n = at_most(3)) |> try()
 check_integer(1:5, n = in_range(2, 4)) |> try()
+
+x <- as.Date("2000-01-01")
+class(x) <- c("my_date", class(x))
+check_date(bare(x)) |> try()
 }
 \seealso{
 \link{type-checks} and \link{scalar-type-checks} for the functions that

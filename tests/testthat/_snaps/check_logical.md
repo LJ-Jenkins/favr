@@ -105,7 +105,7 @@
       Error in `fs()`:
       ! `1` must be a scalar <logical>, not the number 1.
 
-# dots evaluated and passed to cli_abort/abort
+# dots passed to cli_abort/abort
 
     Code
       check_logical(1, footer = "Custom footer")
@@ -120,7 +120,7 @@
       ! `1` must be a scalar <logical>, not the number 1.
       Custom footer
 
-# .envir is silently overriden
+# .envir doesn't interfere
 
     Code
       e <- environment()

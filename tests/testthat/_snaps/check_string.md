@@ -65,7 +65,7 @@
       Error in `f()`:
       ! `1L` must be a single string, not the number 1.
 
-# dots evaluated and passed to cli_abort/abort
+# dots passed to cli_abort/abort
 
     Code
       check_string(1L, footer = "Custom footer")
@@ -74,7 +74,7 @@
       ! `1L` must be a single string, not the number 1.
       Custom footer
 
-# .envir is silently overriden
+# .envir doesn't interfere
 
     Code
       e <- environment()

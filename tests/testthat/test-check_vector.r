@@ -101,14 +101,14 @@ test_that("call is shown in error", {
   })
 })
 
-test_that("dots evaluated and passed to cli_abort/abort", {
+test_that("dots passed to cli_abort/abort", {
   expect_snapshot(error = TRUE, {
     check_vector(mean, footer = "Custom footer")
     check_scalar_vector(mean, footer = "Custom footer")
   })
 })
 
-test_that(".envir is silently overriden", {
+test_that(".envir doesn't interfere", {
   expect_snapshot(error = TRUE, {
     e <- environment()
     e$arg <- "my_arg"

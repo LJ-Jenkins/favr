@@ -66,47 +66,8 @@ wrong_scalar_length_msg <- function(
   )
 }
 
-at_least_msg <- function(
-  arg,
-  expected_type,
-  expected_length,
-  given
-) {
-  format_inline(
-    "{.arg {arg}} must be {expected_type}",
-    " of at least length {.val {expected_length}}",
-    ", but it is of length {.val {length(given)}}."
-  )
-}
-
-at_most_msg <- function(
-  arg,
-  expected_type,
-  expected_length,
-  given
-) {
-  format_inline(
-    "{.arg {arg}} must be {expected_type}",
-    " of at most length {.val {expected_length}}",
-    ", but it is of length {.val {length(given)}}."
-  )
-}
-
-in_range_msg <- function(
-  arg,
-  expected_type,
-  expected_length,
-  given
-) {
-  format_inline(
-    "{.arg {arg}} must be {expected_type} of a length between ",
-    "{.val {expected_length}}, but it is of length ",
-    "{.val {length(given)}}."
-  )
-}
-
-na_msg <- function(arg, n) {
-  if (is_one(n)) {
+na_msg <- function(arg, n, x = NULL) {
+  if (is_one(n) || (!is.null(x) && length(x) == 1L)) {
     format_inline("{.arg {arg}} must not be {.val {NA}}.")
   } else {
     format_inline("{.arg {arg}} must not contain {.val {NA}} values.")
@@ -114,9 +75,24 @@ na_msg <- function(arg, n) {
 }
 
 non_finite_msg <- function(arg, n, x) {
-  if (is_one(n)) {
+  # if n was NULL
+  if (is_one(n) || length(x) == 1L) {
     format_inline("{.arg {arg}} must be a finite value, not {.val {x}}.")
   } else {
     format_inline("{.arg {arg}} must not contain non-finite values.")
+  }
+}
+
+do_bare_check <- function(x, arg, type, ..., call = NULL) {
+  if (!x[["bare"]]) {
+    type <- extract_braces(type)
+    cli_abort(
+      message = format_inline(
+        "{.arg {arg}} must be a bare {type}, ",
+        "but it is of class {.cls {class(x[['obj']])}}."
+      ),
+      ...,
+      call = call
+    )
   }
 }

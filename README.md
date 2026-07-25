@@ -16,10 +16,10 @@ succinct validation of function arguments with clear error messaging.
 ## Overview
 
 - `abortifnot()` and `abortif()` for general validation.
-- `check()` for general validation using tidy eval.
+- `check()` for general validation using tidy evaluation.
 - `check_with()` for
   [data-masked](https://rlang.r-lib.org/reference/topic-data-mask.html)
-  validation using tidy eval.
+  validation using tidy evaluation.
 - `walk_check()` for applying a check to each element of a vector.
 
 Numerous other `check_*()` functions are provided for specific types of
@@ -34,22 +34,34 @@ Validate specific types:
 - `check_integer()`, `check_character()`, `check_null()`, etc.
 - `check_scalar_integer()`, `check_scalar_character()`,
   `check_scalar_logical()`, etc.
+- `check_array()` and `check_matrix()` for the ‘implicit’ types of array
+  and matrix, respectively.
+
+Validate specific S3 types:
+
+- `check_factor()`, `check_date()`, `check_posixct()`, etc.
+- `check_data.frame()`, `check_tibble()`, `check_data.table()`, etc.
+- `check_vctr()` and `check_list_of()` for their respective
+  [vctrs](https://vctrs.r-lib.org) classes.
+- `check_s3_vec()` and `check_s3_df()` for developers to create their
+  own S3 type checks.
 
 Modify the behaviour of type-checking functions:
 
 - `bare()` to also check for bare objects (i.e. objects with no class
-  attribute).
-- `at_least()`, `at_most()`, and `in_range()` to also check for length
-  ranges.
+  attribute) in the type check functions, or bare S3 objects (where the
+  expected S3 class is first in the class attribute vector) in the S3
+  type check functions.
+- `at_least()`, `at_most()`, and `in_range()` to also check for ranges
+  in length/number of rows/number of columns.
 
 Validate specific scalar values:
 
 - `check_true()`, `check_false()`, `check_bool()`, `check_string()`.
 
-Miscellaneous checks:
+Validate file and directory existence:
 
-- `check_dir()` and `check_file()` to check for directory and file
-  existence.
+- `check_dir()` and `check_file()`.
 
 ## Installation
 
@@ -123,6 +135,7 @@ Data-masked validation:
 ``` r
 data <- data.frame(a = 1:3, b = c("a", "b", "c"))
 
+# `check_with()` user-supplied messages are eval'd in the data mask context.
 check_with(data,
   "{.var a} must be length {.val 5}, but is length {.val {length(a)}}." = length(a) == 5,
   "{.var b} must all have 2 nchars." = nchar(b) == 2
@@ -157,11 +170,22 @@ check_scalar_double(x)
 #> Error:
 #> ! `x` must be a scalar <double>, but it is of length 3.
 
+df <- data.frame(x = 1:3, y = 1:3)
+check_tibble(df)
+#> Error:
+#> ! `df` must inherit from <tbl_df>, but is class <data.frame>.
+
 # the `bare()` modifier can be used to ensure bare objects.
 check_integer(factor(1))
 check_integer(bare(factor(1)))
 #> Error:
 #> ! `factor(1)` must be a bare <integer>, but it is of class <factor>.
+
+class(df) <- c("my_class", "tbl_df", "tbl", class(df))
+check_tibble(df)
+check_tibble(bare(df))
+#> Error:
+#> ! `df` must be a bare <tbl_df>, but it is of class <my_class>.
 
 # length modifiers can be used on `n` to specify length ranges.
 check_double(x, n = 2)
@@ -179,9 +203,14 @@ check_double(x, n = in_range(1, 2))
 #> Error:
 #> ! `x` must be a <double> vector of a length between 1 and 2, but it is
 #>   of length 3.
+
+check_tibble(df, n_row = 2)
+check_tibble(df, n_col = at_least(3))
+check_tibble(df, n_row = at_most(2))
+check_tibble(df, n_col = in_range(3, 5))
 ```
 
-Miscellaneous validation:
+File/dir existence validation:
 
 ``` r
 check_dir("non_existing_dir")
@@ -192,6 +221,53 @@ check_file("non_existing_file")
 #> Error:
 #> ! `x` must be an existing file, but it doesn't exist.
 #> ℹ Path provided: 'non_existing_file'.
+```
+
+Build your own S3 type checks:
+
+``` r
+check_my_class <- function(
+  x,
+  n = NULL,
+  ...,
+  allow_null = FALSE,
+  arg = rlang::caller_arg(x),
+  call = rlang::caller_env()
+) {
+  check_s3_vec(
+    x,
+    n,
+    type = "my_class",
+    type_msg = "a {.cls my_class} vector",
+    ...,
+    allow_null = allow_null,
+    arg = arg,
+    call = call
+  )
+}
+
+check_my_class(1L)
+#> Error:
+#> ! `1L` must inherit from <my_class>, but is class <integer>.
+
+x <- structure(1:3, class = "my_class")
+check_my_class(x)
+
+check_my_class(NULL, allow_null = TRUE)
+
+class(x) <- c("another_class", class(x))
+check_my_class(bare(x))
+#> Error:
+#> ! `x` must be a bare <my_class>, but it is of class <another_class>.
+
+check_my_class(x, n = at_most(2))
+#> Error:
+#> ! `x` must be a <my_class> vector of at most length 2, but it is of
+#>   length 3.
+check_my_class(x, n = in_range(1, 2))
+#> Error:
+#> ! `x` must be a <my_class> vector of a length between 1 and 2, but it is
+#>   of length 3.
 ```
 
 ### Notes

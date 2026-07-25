@@ -98,7 +98,7 @@
       Error in `fs()`:
       ! `mean` must be a scalar <vector>, not a <function>.
 
-# dots evaluated and passed to cli_abort/abort
+# dots passed to cli_abort/abort
 
     Code
       check_vector(mean, footer = "Custom footer")
@@ -113,7 +113,7 @@
       ! `mean` must be a scalar <vector>, not a <function>.
       Custom footer
 
-# .envir is silently overriden
+# .envir doesn't interfere
 
     Code
       e <- environment()

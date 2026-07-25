@@ -45,7 +45,10 @@ check_dir(x) |> try()
 }
 \seealso{
 Other checks:
+\code{\link{array-type-checks}},
 \code{\link{inheritance-checks}},
+\code{\link{s3-check-builders}},
+\code{\link{s3-type-checks}},
 \code{\link{scalar-type-checks}},
 \code{\link{scalar-value-checks}},
 \code{\link{type-checks}},

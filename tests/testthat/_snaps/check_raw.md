@@ -95,7 +95,7 @@
       Error in `fs()`:
       ! `1.1` must be a scalar <raw>, not the number 1.1.
 
-# dots evaluated and passed to cli_abort/abort
+# dots passed to cli_abort/abort
 
     Code
       check_raw(1.1, footer = "Custom footer")
@@ -110,7 +110,7 @@
       ! `1.1` must be a scalar <raw>, not the number 1.1.
       Custom footer
 
-# .envir is silently overriden
+# .envir doesn't interfere
 
     Code
       e <- environment()

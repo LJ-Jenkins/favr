@@ -60,7 +60,7 @@
       in_range(2, 1)
     Condition
       Error in `in_range()`:
-      ! `c(2, 1)` must be a valid range in the form of `c(min, max)`, but `n[1]` 2 is greater than `n[2]` 1.
+      ! `c(2, 1)` must be a valid range in the form of `c(n_min, n_max)`, but `n[1]` 2 is greater than `n[2]` 1.
 
 # bare modifier correctly errors for non-bare objects
 
@@ -70,7 +70,23 @@
       Error:
       ! `factor(1)` must be a bare <integer>, but it is of class <factor>.
 
-# length modifiers correctly control length checks
+---
+
+    Code
+      check_date(bare(x))
+    Condition
+      Error:
+      ! `x` must be a bare <Date>, but it is of class <my_date>.
+
+---
+
+    Code
+      check_data_frame(bare(x))
+    Condition
+      Error:
+      ! `x` must be a bare <data.frame>, but it is of class <my_df>.
+
+# length modifiers correctly control n length checks
 
     Code
       check_atomic(1:5, n = at_least(10))

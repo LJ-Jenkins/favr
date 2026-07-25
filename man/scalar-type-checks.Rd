@@ -12,6 +12,7 @@
 \alias{check_scalar_logical}
 \alias{check_scalar_raw}
 \alias{check_scalar_bytes}
+\alias{check_scalar_numeric}
 \title{Scalar type checks}
 \usage{
 check_scalar_list(
@@ -99,6 +100,15 @@ check_scalar_bytes(
   arg = caller_arg(x),
   call = caller_env()
 )
+
+check_scalar_numeric(
+  x,
+  ...,
+  finite = FALSE,
+  allow_null = FALSE,
+  arg = caller_arg(x),
+  call = caller_env()
+)
 }
 \arguments{
 \item{x}{An object to check.}
@@ -139,7 +149,8 @@ To handle empty strings (\code{""}) use \code{\link[=check_string]{check_string(
 \code{check_scalar_character()}.
 
 These check functions are wrappers of their corresponding
-\link[rlang:scalar-type-predicates]{rlang} functions.
+\link[rlang:scalar-type-predicates]{rlang} functions. The exception
+is \code{check_scalar_numeric()}, which uses \code{\link[=is.numeric]{is.numeric()}}.
 }
 \examples{
 x <- 1L
@@ -156,8 +167,11 @@ check_scalar_logical(NULL, allow_null = TRUE)
 }
 \seealso{
 Other checks:
+\code{\link{array-type-checks}},
 \code{\link{inheritance-checks}},
 \code{\link{path-checks}},
+\code{\link{s3-check-builders}},
+\code{\link{s3-type-checks}},
 \code{\link{scalar-value-checks}},
 \code{\link{type-checks}},
 \code{\link{walk-check}}

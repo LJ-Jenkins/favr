@@ -21,7 +21,8 @@
 #' `check_scalar_character()`.
 #'
 #' These check functions are wrappers of their corresponding
-#' [rlang][rlang::scalar-type-predicates] functions.
+#' [rlang][rlang::scalar-type-predicates] functions. The exception
+#' is `check_scalar_numeric()`, which uses [is.numeric()].
 #' @name scalar-type-checks
 #' @family checks
 #' @examples
@@ -52,7 +53,7 @@ check_scalar_list <- function(
     "a scalar {.cls list}",
     x,
     n = 1L,
-    dots = list(...),
+    ...,
     allow_na = TRUE,
     allow_null = allow_null,
     arg = arg,
@@ -76,7 +77,7 @@ check_scalar_atomic <- function(
     "a scalar {.cls atomic}",
     x,
     n = 1L,
-    dots = list(...),
+    ...,
     allow_na = allow_na,
     allow_null = allow_null,
     arg = arg,
@@ -99,7 +100,7 @@ check_scalar_vector <- function(
     "a scalar {.cls vector}",
     x,
     n = 1L,
-    dots = list(...),
+    ...,
     allow_na = TRUE,
     allow_null = allow_null,
     arg = arg,
@@ -123,7 +124,7 @@ check_scalar_integer <- function(
     "a scalar {.cls integer}",
     x,
     n = 1L,
-    dots = list(...),
+    ...,
     allow_na = allow_na,
     allow_null = allow_null,
     arg = arg,
@@ -142,14 +143,12 @@ check_scalar_double <- function(
   arg = caller_arg(x),
   call = caller_env()
 ) {
-  dots <- list(...)
-
   check_types_impl(
     is_double,
     "a scalar {.cls double}",
     x,
     n = 1L,
-    dots = dots,
+    ...,
     allow_na = TRUE,
     allow_null = allow_null,
     arg = arg,
@@ -158,12 +157,14 @@ check_scalar_double <- function(
   )
 
   if (finite && !is.finite(x)) {
-    do_abort(
+    cli_abort(
       message = non_finite_msg(arg, 1L, x),
-      dots = dots,
+      ...,
       call = call
     )
   }
+
+  invisible(NULL)
 }
 
 #' @rdname scalar-type-checks
@@ -176,14 +177,12 @@ check_scalar_complex <- function(
   arg = caller_arg(x),
   call = caller_env()
 ) {
-  dots <- list(...)
-
   check_types_impl(
     is_complex,
     "a scalar {.cls complex}",
     x,
     n = 1L,
-    dots = dots,
+    ...,
     allow_na = TRUE,
     allow_null = allow_null,
     arg = arg,
@@ -192,12 +191,14 @@ check_scalar_complex <- function(
   )
 
   if (finite && !is.finite(x)) {
-    do_abort(
+    cli_abort(
       message = non_finite_msg(arg, 1L, x),
-      dots = dots,
+      ...,
       call = call
     )
   }
+
+  invisible(NULL)
 }
 
 #' @rdname scalar-type-checks
@@ -210,22 +211,18 @@ check_scalar_character <- function(
   arg = caller_arg(x),
   call = caller_env()
 ) {
-  dots <- list(...)
-
   check_types_impl(
     is_character,
     "a scalar {.cls character}",
     x,
     n = 1L,
-    dots = dots,
+    ...,
     allow_na = allow_na,
     allow_null = allow_null,
     arg = arg,
     call = call,
     scalar = TRUE
   )
-
-  invisible(NULL)
 }
 
 #' @rdname scalar-type-checks
@@ -243,7 +240,7 @@ check_scalar_logical <- function(
     "a scalar {.cls logical}",
     x,
     n = 1L,
-    dots = list(...),
+    ...,
     allow_na = allow_na,
     allow_null = allow_null,
     arg = arg,
@@ -266,7 +263,7 @@ check_scalar_raw <- function(
     "a scalar {.cls raw}",
     x,
     n = 1L,
-    dots = list(...),
+    ...,
     allow_na = TRUE,
     allow_null = allow_null,
     arg = arg,
@@ -289,11 +286,60 @@ check_scalar_bytes <- function(
     "a scalar {.cls bytes}",
     x,
     n = 1L,
-    dots = list(...),
+    ...,
     allow_na = TRUE,
     allow_null = allow_null,
     arg = arg,
     call = call,
     scalar = TRUE
   )
+}
+
+#' @rdname scalar-type-checks
+#' @export
+check_scalar_numeric <- function(
+  x,
+  ...,
+  finite = FALSE,
+  allow_null = FALSE,
+  arg = caller_arg(x),
+  call = caller_env()
+) {
+  type <- "a scalar {.cls numeric}"
+
+  if (inherits(x, "favr_modifier")) {
+    arg <- x[["arg"]]
+    do_bare_check(x, arg, type, ..., call = call)
+    x <- x[["obj"]]
+  }
+
+  if (allow_null && is.null(x)) {
+    return(invisible(NULL))
+  }
+
+  if (!is.numeric(x)) {
+    cli_abort(
+      message = wrong_type_msg(arg, type, x),
+      ...,
+      call = call
+    )
+  }
+
+  if (length(x) != 1L) {
+    cli_abort(
+      message = wrong_scalar_length_msg(arg, type, x),
+      ...,
+      call = call
+    )
+  }
+
+  if (finite && any(!is.finite(x))) {
+    cli_abort(
+      message = non_finite_msg(arg, 1L, x),
+      ...,
+      call = call
+    )
+  }
+
+  invisible(NULL)
 }

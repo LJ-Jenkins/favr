@@ -45,14 +45,14 @@ check_true <- function(
   }
 
   if (!isTRUE(x)) {
-    do_abort(
+    cli_abort(
       message = wrong_type_msg(
         arg,
         "a single {.val {TRUE}}",
         x,
         length = if (is.logical(x)) TRUE else FALSE
       ),
-      dots = list(...),
+      ...,
       call = call
     )
   }
@@ -74,14 +74,14 @@ check_false <- function(
   }
 
   if (!isFALSE(x)) {
-    do_abort(
+    cli_abort(
       message = wrong_type_msg(
         arg,
         "a single {.val {FALSE}}",
         x,
         length = if (is.logical(x)) TRUE else FALSE
       ),
-      dots = list(...),
+      ...,
       call = call
     )
   }
@@ -103,14 +103,14 @@ check_bool <- function(
   }
 
   if (!is_bool(x)) {
-    do_abort(
+    cli_abort(
       message = wrong_type_msg(
         arg,
         "a single {.val {TRUE}} or {.val {FALSE}}",
         x,
         length = if (is.logical(x)) TRUE else FALSE
       ),
-      dots = list(...),
+      ...,
       call = call
     )
   }
@@ -133,46 +133,44 @@ check_string <- function(
     return(invisible(NULL))
   }
 
-  dots <- list(...)
-
   if ((i <- !is.null(string)) && !is.character(string)) {
-    do_abort(
+    cli_abort(
       message = wrong_type_msg(
         "string",
         "a {.cls character} vector",
         string
       ),
-      dots = dots,
+      ...,
       call = call
     )
   }
 
   if (!is.character(x) || length(x) != 1L || is.na(x)) {
-    do_abort(
+    cli_abort(
       message = wrong_type_msg(
         arg,
         "a single string",
         x,
         length = if (is.character(x)) TRUE else FALSE
       ),
-      dots = dots,
+      ...,
       call = call
     )
   }
 
   if (!allow_empty && !nzchar(x)) {
     # eagerly eval message in case odd `.envir` given
-    do_abort(
+    cli_abort(
       message = format_inline("{.arg {arg}} must not be an empty string."),
-      dots = dots,
+      ...,
       call = call
     )
   }
 
   if (i && !x %in% string) {
-    do_abort(
+    cli_abort(
       message = format_inline("{.arg {arg}} must be one of {.or {.val {string}}}."),
-      dots = dots,
+      ...,
       call = call
     )
   }

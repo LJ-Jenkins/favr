@@ -79,14 +79,35 @@ test_that("bare modifier correctly errors for non-bare objects", {
   expect_snapshot(error = TRUE, {
     check_integer(bare(factor(1)))
   })
+
+  x <- as.Date("2000-01-01")
+  expect_null(check_date(x))
+  class(x) <- c("my_date", class(x))
+  expect_error(check_date(bare(x)))
+
+  expect_snapshot(error = TRUE, {
+    check_date(bare(x))
+  })
+
+  x <- data.frame(x = 1:3, y = 1:3)
+  expect_null(check_data_frame(x))
+  class(x) <- c("my_df", "data.frame")
+  expect_error(check_data_frame(bare(x)))
+
+  expect_snapshot(error = TRUE, {
+    check_data_frame(bare(x))
+  })
 })
 
 test_that("bare modifier does not intefere with allow_null", {
   expect_null(check_list(bare(NULL), allow_null = TRUE))
   expect_null(check_scalar_list(bare(NULL), allow_null = TRUE))
+
+  expect_null(check_date(bare(NULL), allow_null = TRUE))
+  expect_null(check_data_frame(bare(NULL), allow_null = TRUE))
 })
 
-test_that("length modifiers correctly control length checks", {
+test_that("length modifiers correctly control n length checks", {
   expect_null(check_atomic(1:5, n = at_least(3)))
   expect_error(check_atomic(1:5, n = at_least(10)))
 
@@ -103,4 +124,27 @@ test_that("length modifiers correctly control length checks", {
     check_atomic(1:5, n = in_range(6, 10))
     check_atomic(1:5, n = in_range(2, 4))
   })
+})
+
+test_that("length modifiers correctly control nrow and ncol checks", {
+  x <- data.frame(x = 1:5, y = 1:5)
+
+  expect_null(check_data_frame(x, nrow = at_least(3)))
+  expect_error(check_data_frame(x, nrow = at_least(10)))
+
+  expect_null(check_data_frame(x, nrow = at_most(10)))
+  expect_error(check_data_frame(x, nrow = at_most(3)))
+
+  expect_null(check_data_frame(x, nrow = in_range(2, 10)))
+  expect_error(check_data_frame(x, nrow = in_range(6, 10)))
+  expect_error(check_data_frame(x, nrow = in_range(2, 4)))
+
+  expect_null(check_data_frame(x, ncol = at_least(1)))
+  expect_error(check_data_frame(x, ncol = at_least(3)))
+
+  expect_null(check_data_frame(x, ncol = at_most(3)))
+  expect_error(check_data_frame(x, ncol = at_most(1)))
+
+  expect_null(check_data_frame(x, ncol = in_range(1, 3)))
+  expect_error(check_data_frame(x, ncol = in_range(3, 5)))
 })

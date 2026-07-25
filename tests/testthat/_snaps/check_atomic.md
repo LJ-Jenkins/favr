@@ -105,7 +105,7 @@
       Error in `fs()`:
       ! `list(1)` must be a scalar <atomic>, not a <list>.
 
-# dots evaluated and passed to cli_abort/abort
+# dots passed to cli_abort/abort
 
     Code
       check_atomic(list(1), footer = "Custom footer")
@@ -120,7 +120,7 @@
       ! `list(1)` must be a scalar <atomic>, not a <list>.
       Custom footer
 
-# .envir is silently overriden
+# .envir doesn't interfere
 
     Code
       e <- environment()

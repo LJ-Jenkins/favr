@@ -17,6 +17,9 @@
 #' (no class attribute), throwing an error if it is not and passing the
 #' object on to the check if it is.
 #'
+#' For S3 type checks, `bare()` checks that the object has the expected S3
+#' type as the **first** element of the class vector.
+#'
 #' To modify the behaviour of the length checking `n` argument:
 #'
 #' * `at_least(n)` means the object must be at least length (`>=`) `n`.
@@ -40,6 +43,10 @@
 #' check_integer(1:5, n = at_least(10)) |> try()
 #' check_integer(1:5, n = at_most(3)) |> try()
 #' check_integer(1:5, n = in_range(2, 4)) |> try()
+#'
+#' x <- as.Date("2000-01-01")
+#' class(x) <- c("my_date", class(x))
+#' check_date(bare(x)) |> try()
 NULL
 
 # to do:
@@ -49,7 +56,7 @@ NULL
 #' @export
 bare <- function(x, arg = caller_arg(x)) {
   setClass(
-    list(obj = x, bare = is.object(x), arg = arg),
+    list(obj = x, bare = !is.object(x), arg = arg),
     c("favr_bare", "favr_modifier")
   )
 }
@@ -92,7 +99,7 @@ in_range <- function(
   )
 
   if (n[[1]] > n[[2]]) {
-    cli_abort("{.arg {arg}} must be a valid range in the form of {.arg c(min, max)}, but {.var n[1]} {.val {n[[1]]}} is greater than {.var n[2]} {.val {n[[2]]}}.")
+    cli_abort("{.arg {arg}} must be a valid range in the form of {.arg c(n_min, n_max)}, but {.var n[1]} {.val {n[[1]]}} is greater than {.var n[2]} {.val {n[[2]]}}.")
   }
 
   setClass(

@@ -54,6 +54,7 @@ test_that("check_file() informative error if given dirpath", {
       d <- withr::local_tempdir()
       check_file(d)
     },
-    transform = function(lines) gsub(d, "<dir>", lines, fixed = TRUE)
+    # longer tmp paths can sometimes split lines so replace with a multi line
+    transform = function(lines) gsub(d, strrep("<dir>", 50), lines, fixed = TRUE)
   )
 })

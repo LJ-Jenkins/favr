@@ -1,12 +1,12 @@
 # FIX ALL
 
 test_that("check_inherits() exact matching", {
-  expect_null(check_inherits(1L, "integer", mode = "exact"))
-  expect_error(check_inherits(1L, "double", mode = "exact"))
-  expect_error(check_inherits(1L, c("integer", "double"), mode = "exact"))
+  expect_null(check_inherits(1L, "integer", match = "exact"))
+  expect_error(check_inherits(1L, "double", match = "exact"))
+  expect_error(check_inherits(1L, c("integer", "double"), match = "exact"))
   expect_snapshot(error = TRUE, {
     a <- structure(1, class = c("a", "b"))
-    check_inherits(a, c("a", "c"), mode = "exact")
+    check_inherits(a, c("a", "c"), match = "exact")
   })
 })
 
@@ -22,25 +22,25 @@ test_that("check_class() exact matching", {
 
 test_that("check_inherits() any matching", {
   x <- structure(1, class = c("a", "b", "c"))
-  expect_null(check_inherits(x, c("a", "x", "z"), mode = "any"))
-  expect_error(check_inherits(x, c("x", "y", "z"), mode = "any"))
+  expect_null(check_inherits(x, c("a", "x", "z"), match = "any"))
+  expect_error(check_inherits(x, c("x", "y", "z"), match = "any"))
   expect_snapshot(error = TRUE, {
     a <- structure(1, class = c("a", "b", "c"))
-    check_inherits(a, c("d", "e", "f"), mode = "any")
+    check_inherits(a, c("d", "e", "f"), match = "any")
   })
 })
 
 test_that("check_inherits() all matching", {
   x <- structure(1, class = c("a", "b", "c", "d"))
-  expect_null(check_inherits(x, c("b", "c"), mode = "all"))
-  expect_error(check_inherits(x, c("b", "z"), mode = "all"))
+  expect_null(check_inherits(x, c("b", "c"), match = "all"))
+  expect_error(check_inherits(x, c("b", "z"), match = "all"))
   expect_snapshot(error = TRUE, {
-    check_inherits(x, c("b", "z"), mode = "all")
+    check_inherits(x, c("b", "z"), match = "all")
   })
 })
 
-test_that("check_inherits() errors on invalid mode", {
-  expect_error(check_inherits(1, "a", mode = "bad"))
+test_that("check_inherits() errors on invalid match", {
+  expect_error(check_inherits(1, "a", match = "bad"))
 })
 
 test_that("check_inherits() errors when class is not character", {

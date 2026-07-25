@@ -2,7 +2,7 @@
 
     Code
       a <- structure(1, class = c("a", "b"))
-      check_inherits(a, c("a", "c"), mode = "exact")
+      check_inherits(a, c("a", "c"), match = "exact")
     Condition
       Error:
       ! `a` must be class <a/c>, but is class <a/b>.
@@ -20,15 +20,15 @@
 
     Code
       a <- structure(1, class = c("a", "b", "c"))
-      check_inherits(a, c("d", "e", "f"), mode = "any")
+      check_inherits(a, c("d", "e", "f"), match = "any")
     Condition
       Error:
-      ! `a` must inherit from any of class <d/e/f>, but is class <a/b/c>.
+      ! `a` must inherit from any of <d/e/f>, but is class <a/b/c>.
 
 # check_inherits() all matching
 
     Code
-      check_inherits(x, c("b", "z"), mode = "all")
+      check_inherits(x, c("b", "z"), match = "all")
     Condition
       Error:
       ! `x` must inherit from all of class <b/z> in order, but is class <a/b/c/d>.
@@ -64,7 +64,7 @@
       check_inherits(1L, "double", .envir = e)
     Condition
       Error:
-      ! `1L` must inherit from any of class <double>, but is class <integer>.
+      ! `1L` must inherit from <double>, but is class <integer>.
 
 ---
 

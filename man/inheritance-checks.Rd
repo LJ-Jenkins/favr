@@ -9,7 +9,7 @@
 check_inherits(
   x,
   class,
-  mode = c("any", "exact", "all"),
+  match = c("any", "exact", "all"),
   ...,
   arg = caller_arg(x),
   call = caller_env()
@@ -22,7 +22,7 @@ check_class(x, class, ..., arg = caller_arg(x), call = caller_env())
 
 \item{class}{Character vector of class names to check against.}
 
-\item{mode}{The behaviour to use for inheritance checking. See Details.}
+\item{match}{The behaviour to use for inheritance checking. See Details.}
 
 \item{...}{Additional arguments passed to \link[cli:cli_abort]{cli_abort()}
 which forwards unmatched arguments to \link[rlang:abort]{abort()}.}
@@ -44,7 +44,7 @@ Check that an object inherits from a specific class (or classes)
 and throw an error if not.
 }
 \details{
-The \code{mode} argument specifies how to check the inheritance:
+The \code{match} argument specifies how to check the inheritance:
 \itemize{
 \item \code{"any"}: the class vector of \code{x} must have at least one element
 in common with \code{class}.
@@ -54,7 +54,7 @@ in common with \code{class}.
 }
 
 \code{check_class()} is a utility wrapper around \code{check_inherits()}
-with \code{mode = "exact"}.
+with \code{match = "exact"}.
 }
 \note{
 These check functions are wrappers of their corresponding
@@ -66,24 +66,27 @@ x <- structure(1, class = c("a", "b", "c"))
 check_inherits(x, c("x", "b", "y"))
 check_inherits(x, c("x", "y")) |> try()
 
-# `mode = "exact"` checks for exact match of the class vector.
+# `match = "exact"` checks for exact match of the class vector.
 x <- structure(1, class = c("a", "b", "c"))
-check_inherits(x, c("a", "b", "c"), mode = "exact")
+check_inherits(x, c("a", "b", "c"), match = "exact")
 check_inherits(x, c("a", "b")) |> try()
 
-# check_class() is a utility wrapper with mode = "exact".
+# check_class() is a utility wrapper with match = "exact".
 check_class(x, c("a", "b", "c"))
 check_class(x, c("a", "b")) |> try()
 
-# `mode = "all"` checks that inheritance is from all
+# `match = "all"` checks that inheritance is from all
 # of the classes in the supplied order.
 x <- structure(1, class = c("a", "b", "c", "d", "e"))
-check_inherits(x, c("b", "d"), mode = "all")
-check_inherits(x, c("d", "b"), mode = "all") |> try()
+check_inherits(x, c("b", "d"), match = "all")
+check_inherits(x, c("d", "b"), match = "all") |> try()
 }
 \seealso{
 Other checks:
+\code{\link{array-type-checks}},
 \code{\link{path-checks}},
+\code{\link{s3-check-builders}},
+\code{\link{s3-type-checks}},
 \code{\link{scalar-type-checks}},
 \code{\link{scalar-value-checks}},
 \code{\link{type-checks}},

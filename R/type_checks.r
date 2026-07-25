@@ -18,10 +18,12 @@
 #' [at_least()], [at_most()], and [in_range()] to modify the behaviour of the
 #' length checking `n` argument.
 #' @note
-#' These check functions are wrappers of their corresponding
-#' [rlang][rlang::type-predicates] functions.
-#' @note `check_null()` cannot use `bare()` since `NULL` cannot have a class
+#' `check_null()` cannot use `bare()` since `NULL` cannot have a class
 #' attribute.
+#'
+#' These check functions are wrappers of their corresponding
+#' [rlang][rlang::type-predicates] functions. The exception is
+#' `check_numeric()`, which uses [is.numeric()].
 #' @name type-checks
 #' @family checks
 #' @examples
@@ -60,7 +62,7 @@ check_list <- function(
     "a {.cls list}",
     x,
     n = n,
-    dots = list(...),
+    ...,
     allow_na = TRUE,
     allow_null = allow_null,
     arg = arg,
@@ -84,7 +86,7 @@ check_atomic <- function(
     "an {.cls atomic} vector",
     x,
     n = n,
-    dots = list(...),
+    ...,
     allow_na = allow_na,
     allow_null = allow_null,
     arg = arg,
@@ -107,7 +109,7 @@ check_vector <- function(
     "a {.cls vector}",
     x,
     n = n,
-    dots = list(...),
+    ...,
     allow_na = TRUE,
     allow_null = allow_null,
     arg = arg,
@@ -131,7 +133,7 @@ check_integer <- function(
     "an {.cls integer} vector",
     x,
     n = n,
-    dots = list(...),
+    ...,
     allow_na = allow_na,
     allow_null = allow_null,
     arg = arg,
@@ -150,14 +152,12 @@ check_double <- function(
   arg = caller_arg(x),
   call = caller_env()
 ) {
-  dots <- list(...)
-
   check_types_impl(
     is_double,
     "a {.cls double} vector",
     x,
     n = n,
-    dots = dots,
+    ...,
     allow_na = TRUE,
     allow_null = allow_null,
     arg = arg,
@@ -165,12 +165,14 @@ check_double <- function(
   )
 
   if (finite && any(!is.finite(x))) {
-    do_abort(
+    cli_abort(
       message = non_finite_msg(arg, n, x),
-      dots = dots,
+      ...,
       call = call
     )
   }
+
+  invisible(NULL)
 }
 
 #' @rdname type-checks
@@ -184,14 +186,12 @@ check_complex <- function(
   arg = caller_arg(x),
   call = caller_env()
 ) {
-  dots <- list(...)
-
   check_types_impl(
     is_complex,
     "a {.cls complex} vector",
     x,
     n = n,
-    dots = dots,
+    ...,
     allow_na = TRUE,
     allow_null = allow_null,
     arg = arg,
@@ -199,12 +199,14 @@ check_complex <- function(
   )
 
   if (finite && any(!is.finite(x))) {
-    do_abort(
+    cli_abort(
       message = non_finite_msg(arg, n, x),
-      dots = dots,
+      ...,
       call = call
     )
   }
+
+  invisible(NULL)
 }
 
 #' @rdname type-checks
@@ -223,7 +225,7 @@ check_character <- function(
     "a {.cls character} vector",
     x,
     n = n,
-    dots = list(...),
+    ...,
     allow_na = allow_na,
     allow_null = allow_null,
     arg = arg,
@@ -247,7 +249,7 @@ check_logical <- function(
     "a {.cls logical} vector",
     x,
     n = n,
-    dots = list(...),
+    ...,
     allow_na = allow_na,
     allow_null = allow_null,
     arg = arg,
@@ -270,7 +272,7 @@ check_raw <- function(
     "a {.cls raw} vector",
     x,
     n = n,
-    dots = list(...),
+    ...,
     allow_na = TRUE,
     allow_null = allow_null,
     arg = arg,
@@ -293,7 +295,7 @@ check_bytes <- function(
     "a {.cls bytes} vector",
     x,
     n = n,
-    dots = list(...),
+    ...,
     allow_na = TRUE,
     allow_null = allow_null,
     arg = arg,
@@ -310,9 +312,56 @@ check_null <- function(
   call = caller_env()
 ) {
   if (!is.null(x)) {
-    do_abort(
+    cli_abort(
       message = wrong_type_msg(arg, "{.cls NULL}", x),
-      dots = list(...),
+      ...,
+      call = call
+    )
+  }
+
+  invisible(NULL)
+}
+
+#' @rdname type-checks
+#' @export
+check_numeric <- function(
+  x,
+  n = NULL,
+  ...,
+  finite = FALSE,
+  allow_null = FALSE,
+  arg = caller_arg(x),
+  call = caller_env()
+) {
+  # special case as not rlang fucntion with builtin 'n'
+  type <- "a {.cls numeric} vector"
+
+  if (inherits(x, "favr_modifier")) {
+    arg <- x[["arg"]]
+    do_bare_check(x, arg, type, ..., call = call)
+    x <- x[["obj"]]
+  }
+
+  if (allow_null && is.null(x)) {
+    return(invisible(NULL))
+  }
+
+  if (!is.numeric(x)) {
+    cli_abort(
+      message = wrong_type_msg(arg, type, x),
+      ...,
+      call = call
+    )
+  }
+
+  if (!is.null(n)) {
+    do_n_check(x, n, type, ..., arg = arg, call = call)
+  }
+
+  if (finite && any(!is.finite(x))) {
+    cli_abort(
+      message = non_finite_msg(arg, n, x),
+      ...,
       call = call
     )
   }
@@ -325,7 +374,7 @@ check_types_impl <- function(
   type,
   x,
   n,
-  dots,
+  ...,
   allow_na = TRUE,
   allow_null = FALSE,
   arg = caller_arg(x),
@@ -334,19 +383,7 @@ check_types_impl <- function(
 ) {
   if (inherits(x, "favr_modifier")) {
     arg <- x[["arg"]]
-
-    if (x[["bare"]]) {
-      type <- extract_braces(type)
-      do_abort(
-        message = format_inline(
-          "{.arg {arg}} must be a bare {type}, ",
-          "but it is of class {.cls {class(x[['obj']])}}."
-        ),
-        dots = dots,
-        call = call
-      )
-    }
-
+    do_bare_check(x, arg, type, ..., call = call)
     x <- x[["obj"]]
   }
 
@@ -355,7 +392,7 @@ check_types_impl <- function(
   }
 
   if (inherits(n, "favr_modifier")) {
-    do_length_modifier_check(.fn, type, x, n, dots, arg, call)
+    do_length_modifier_check(.fn, type, x, n, ..., arg = arg, call = call)
   } else {
     if (!.fn(x, n = n)) {
       type_issue <- if (is.null(n)) {
@@ -374,18 +411,18 @@ check_types_impl <- function(
         }
       }
 
-      do_abort(
+      cli_abort(
         message = msg,
-        dots = dots,
+        ...,
         call = call
       )
     }
   }
 
   if (!allow_na && anyNA(x)) {
-    do_abort(
-      message = na_msg(arg, n),
-      dots = dots,
+    cli_abort(
+      message = na_msg(arg, n, x),
+      ...,
       call = call
     )
   }
@@ -393,46 +430,22 @@ check_types_impl <- function(
   invisible(NULL)
 }
 
-do_length_modifier_check <- function(.fn, type, x, n, dots, arg, call) {
+do_length_modifier_check <- function(
+  .fn,
+  type,
+  x,
+  n,
+  ...,
+  arg = NULL,
+  call = NULL
+) {
   if (!.fn(x, n = NULL)) {
-    do_abort(
+    cli_abort(
       message = wrong_type_msg(arg, type, x),
-      dots = dots,
+      ...,
       call = call
     )
   }
 
-  le <- length(x)
-
-  if (inherits(n, "favr_at_least")) {
-    if (le < n$at_least) {
-      do_abort(
-        message = at_least_msg(arg, type, n$at_least, x),
-        dots = dots,
-        call = call
-      )
-    }
-  } else if (inherits(n, "favr_at_most")) {
-    if (le > n$at_most) {
-      do_abort(
-        message = at_most_msg(arg, type, n$at_most, x),
-        dots = dots,
-        call = call
-      )
-    }
-  } else if (inherits(n, "favr_in_range")) {
-    if (le < n$at_least || le > n$at_most) {
-      do_abort(
-        message = in_range_msg(arg, type, n, x),
-        dots = dots,
-        call = call
-      )
-    }
-  } else {
-    cli_abort(
-      c("Internal error", "i" = "Unknown modifier class {.cls {class(n)}}.")
-    )
-  }
-
-  invisible(NULL)
+  do_n_check(x, n, type, ..., arg = arg, call = call)
 }
