@@ -96,11 +96,11 @@ abortifnot(x < 4, nchar(y) > 1)
 #> ! `nchar(y) > 1` is not TRUE.
 
 abortifnot(
-  "{.var x} must be length {.val 5}, but is length {.val {length(x)}}." = length(x) == 5,
+  "{.var x} must be length {.val {5}}, but is length {.val {length(x)}}." = length(x) == 5,
   is.character(y)
 )
 #> Error:
-#> ! `x` must be length "5", but is length 3.
+#> ! `x` must be length 5, but is length 3.
 
 abortifnot(
   is.numeric(x),
@@ -204,10 +204,18 @@ check_double(x, n = in_range(1, 2))
 #> ! `x` must be a <double> vector of a length between 1 and 2, but it is
 #>   of length 3.
 
-check_tibble(df, n_row = 2)
-check_tibble(df, n_col = at_least(3))
-check_tibble(df, n_row = at_most(2))
-check_tibble(df, n_col = in_range(3, 5))
+check_tibble(df, nrow = 2)
+#> Error:
+#> ! `df` must be a <tbl_df> with 2 rows, not 3.
+check_tibble(df, ncol = at_least(3))
+#> Error:
+#> ! `df` must be a <tbl_df> with at least 3 columns, but it has 2.
+check_tibble(df, nrow = at_most(2))
+#> Error:
+#> ! `df` must be a <tbl_df> with at most 2 rows, but it has 3.
+check_tibble(df, ncol = in_range(3, 5))
+#> Error:
+#> ! `df` must be a <tbl_df> with 3 to 5 columns, but it has 2.
 ```
 
 File/dir existence validation:

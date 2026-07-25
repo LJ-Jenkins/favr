@@ -90,7 +90,7 @@ y <- c("a", "b", "c")
 abortifnot(x < 4, nchar(y) > 1)
 
 abortifnot(
-  "{.var x} must be length {.val 5}, but is length {.val {length(x)}}." = length(x) == 5,
+  "{.var x} must be length {.val {5}}, but is length {.val {length(x)}}." = length(x) == 5,
   is.character(y)
 )
 
@@ -157,10 +157,10 @@ check_double(x, n = at_least(4))
 check_double(x, n = at_most(2))
 check_double(x, n = in_range(1, 2))
 
-check_tibble(df, n_row = 2)
-check_tibble(df, n_col = at_least(3))
-check_tibble(df, n_row = at_most(2))
-check_tibble(df, n_col = in_range(3, 5))
+check_tibble(df, nrow = 2)
+check_tibble(df, ncol = at_least(3))
+check_tibble(df, nrow = at_most(2))
+check_tibble(df, ncol = in_range(3, 5))
 ```
 
 File/dir existence validation:
