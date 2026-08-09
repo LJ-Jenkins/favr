@@ -4,10 +4,14 @@
 #' Check if inputs are existing directories or files and throw
 #' an error if not.
 #' @param x A path to check.
+#' @param ext A character vector of file extensions to check for.
+#' @param case A logical value indicating if the extension check should
+#' be case-sensitive. If `FALSE`, the check will be case-insensitive.
 #' @param ... Additional arguments passed to [cli_abort()][cli::cli_abort]
 #' which forwards unmatched arguments to [abort()][rlang::abort].
 #' @inheritParams rlang::args_error_context
 #' @return `NULL` invisibly if the check passes, otherwise an error is thrown.
+#' @note The checking of extensions is done simply using [endsWith()].
 #' @name path-checks
 #' @family checks
 #' @examples
@@ -20,6 +24,7 @@
 #'
 #' check_file(x)
 #' check_dir(x) |> try()
+#' check_file(x, ext = c(".csv", ".xlsx")) |> try()
 NULL
 
 #' @rdname path-checks
@@ -40,14 +45,10 @@ check_dir <- function(x, ..., arg = caller_arg(x), call = caller_env()) {
       arg <- "x"
     }
 
-    cli_abort(
-      message = cli_fmt( # in case of odd `.envir`
-        cli_bullets(
-          c(
-            "{.arg {arg}} must be an existing directory, but it {msg}.",
-            "i" = "Path provided: {.path {x}}."
-          )
-        )
+    cli_abort( # using `c_bull()` in case of odd `.envir`
+      message = c_bull(
+        "{.arg {arg}} must be an existing directory, but it {msg}.",
+        "i" = "Path provided: {.path {x}}."
       ),
       ...,
       call = call
@@ -57,10 +58,30 @@ check_dir <- function(x, ..., arg = caller_arg(x), call = caller_env()) {
 
 #' @rdname path-checks
 #' @export
-check_file <- function(x, ..., arg = caller_arg(x), call = caller_env()) {
+check_file <- function(
+  x,
+  ...,
+  ext = NULL,
+  case = TRUE,
+  x_arg = caller_arg(x),
+  ext_arg = caller_arg(ext),
+  call = caller_env()
+) {
   is_typed_path <- is.character(enexpr(x))
 
-  check_string(x = x, ..., allow_empty = FALSE, arg = arg, call = call)
+  check_string(x = x, ..., allow_empty = FALSE, arg = x_arg, call = call)
+
+  if (!is.null(ext)) {
+    .check_ext(
+      x = x,
+      ext = ext,
+      ...,
+      case = case,
+      x_arg = x_arg,
+      ext_arg = ext_arg,
+      call = call
+    )
+  }
 
   isdir <- file.info(x, extra_cols = FALSE)[["isdir"]]
 
@@ -72,17 +93,13 @@ check_file <- function(x, ..., arg = caller_arg(x), call = caller_env()) {
     }
 
     if (is_typed_path) {
-      arg <- "x"
+      x_arg <- "x"
     }
 
     cli_abort(
-      message = cli_fmt(
-        cli_bullets(
-          c(
-            "{.arg {arg}} must be an existing file, but it {msg}.",
-            "i" = "Path provided: {.path {x}}."
-          )
-        )
+      message = c_bull(
+        "{.arg {x_arg}} must be an existing file, but it {msg}.",
+        "i" = "Path provided: {.path {x}}."
       ),
       ...,
       call = call
@@ -90,4 +107,70 @@ check_file <- function(x, ..., arg = caller_arg(x), call = caller_env()) {
   }
 
   invisible(NULL)
+}
+
+#' @rdname path-checks
+#' @export
+check_ext <- function(
+  x,
+  ext,
+  ...,
+  case = TRUE,
+  x_arg = caller_arg(x),
+  ext_arg = caller_arg(ext),
+  call = caller_env()
+) {
+  check_string(x, ..., allow_empty = FALSE, arg = x_arg, call = call)
+
+  .check_ext(
+    x = x,
+    ext = ext,
+    ...,
+    case = case,
+    x_arg = x_arg,
+    ext_arg = ext_arg,
+    call = call
+  )
+}
+
+.check_ext <- function(
+  x,
+  ext,
+  ...,
+  case = NULL,
+  x_arg = NULL,
+  ext_arg = NULL,
+  call = NULL
+) {
+  check_character(
+    ext,
+    at_least(1),
+    ...,
+    allow_na = TRUE,
+    arg = ext_arg,
+    call = call
+  )
+
+  if (any(!nzchar(ext))) {
+    cli_abort(
+      message = "{.arg {ext_arg}} must not contain empty strings.",
+      ...,
+      call = call
+    )
+  }
+
+  if (isFALSE(case)) {
+    x <- tolower(x)
+    ext <- tolower(ext)
+  }
+
+  if (any(endsWith(x, ext))) {
+    return(invisible(NULL))
+  }
+
+  cli_abort(
+    message = "{.arg {x_arg}} must have extension {.or {.val {ext}}}.",
+    ...,
+    call = call
+  )
 }

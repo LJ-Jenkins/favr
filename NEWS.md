@@ -46,6 +46,7 @@ Refactor of the package to focus on function argument validation through "check"
 ### File and Directory Validation
 
 * `check_dir()` and `check_file()` functions to check if a directory or file exists and error if it does not.
+* `check_ext()` function to check the file extension of a file and error if it does not match the specified extensions.
 
 ## Questioning
 

@@ -4,11 +4,30 @@
 \alias{path-checks}
 \alias{check_dir}
 \alias{check_file}
+\alias{check_ext}
 \title{File and directory existence checks}
 \usage{
 check_dir(x, ..., arg = caller_arg(x), call = caller_env())
 
-check_file(x, ..., arg = caller_arg(x), call = caller_env())
+check_file(
+  x,
+  ...,
+  ext = NULL,
+  case = TRUE,
+  x_arg = caller_arg(x),
+  ext_arg = caller_arg(ext),
+  call = caller_env()
+)
+
+check_ext(
+  x,
+  ext,
+  ...,
+  case = TRUE,
+  x_arg = caller_arg(x),
+  ext_arg = caller_arg(ext),
+  call = caller_env()
+)
 }
 \arguments{
 \item{x}{A path to check.}
@@ -24,6 +43,11 @@ origin of a problem.}
 running function, e.g. \code{caller_env()}. The function will be
 mentioned in error messages as the source of the error. See the
 \code{call} argument of \code{\link[rlang:abort]{abort()}} for more information.}
+
+\item{ext}{A character vector of file extensions to check for.}
+
+\item{case}{A logical value indicating if the extension check should
+be case-sensitive. If \code{FALSE}, the check will be case-insensitive.}
 }
 \value{
 \code{NULL} invisibly if the check passes, otherwise an error is thrown.
@@ -31,6 +55,9 @@ mentioned in error messages as the source of the error. See the
 \description{
 Check if inputs are existing directories or files and throw
 an error if not.
+}
+\note{
+The checking of extensions is done simply using \code{\link[=endsWith]{endsWith()}}.
 }
 \examples{
 x <- file.path(R.home(), "library", "stats")
@@ -42,6 +69,7 @@ x <- file.path(x, "DESCRIPTION")
 
 check_file(x)
 check_dir(x) |> try()
+check_file(x, ext = c(".csv", ".xlsx")) |> try()
 }
 \seealso{
 Other checks:

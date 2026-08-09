@@ -61,7 +61,7 @@ Validate specific scalar values:
 
 Validate file and directory existence:
 
-- `check_dir()` and `check_file()`.
+- `check_dir()`, `check_file()` and `check_ext()`.
 
 ## Installation
 
@@ -229,6 +229,12 @@ check_file("non_existing_file")
 #> Error:
 #> ! `x` must be an existing file, but it doesn't exist.
 #> ℹ Path provided: 'non_existing_file'.
+check_ext("file.txt", ext = c(".csv", ".xlsx"))
+#> Error:
+#> ! `"file.txt"` must have extension ".csv" or ".xlsx".
+check_file("file.txt", ext = c(".csv", ".xlsx"))
+#> Error:
+#> ! `"file.txt"` must have extension ".csv" or ".xlsx".
 ```
 
 Build your own S3 type checks:

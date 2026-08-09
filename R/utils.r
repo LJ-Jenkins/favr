@@ -29,6 +29,8 @@ extract_braces <- function(x) {
 # `.envir` silently ignored (even if it wouldn't be useful for a
 # user to pass it in).
 
+c_bull <- function(...) cli_fmt(cli_bullets(c(...), .envir = caller_env()))
+
 wrong_type_msg <- function(
   arg,
   expected_type,
