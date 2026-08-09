@@ -203,40 +203,6 @@ check_list_of <- function(
 
 #' @rdname s3-type-checks
 #' @export
-check_table <- function(
-  x,
-  n = NULL,
-  nrow = NULL,
-  ncol = NULL,
-  ...,
-  allow_null = FALSE,
-  finite = FALSE,
-  arg = caller_arg(x),
-  call = caller_env()
-) {
-  s3_vec_check(
-    x,
-    n,
-    "table",
-    "a {.cls table}",
-    ...,
-    allow_null = allow_null,
-    arg = arg,
-    call = call
-  )
-
-  # special case
-  if (!is.null(nrow)) {
-    do_nrow_check(x, nrow, "a {.cls table}", ..., arg = arg, call = call)
-  }
-
-  if (!is.null(ncol)) {
-    do_ncol_check(x, ncol, "a {.cls table}", ..., arg = arg, call = call)
-  }
-}
-
-#' @rdname s3-type-checks
-#' @export
 check_data_frame <- function(
   x,
   nrow = NULL,

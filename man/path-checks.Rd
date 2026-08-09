@@ -35,14 +35,13 @@ check_ext(
 \item{...}{Additional arguments passed to \link[cli:cli_abort]{cli_abort()}
 which forwards unmatched arguments to \link[rlang:abort]{abort()}.}
 
-\item{arg}{An argument name as a string. This argument
-will be mentioned in error messages as the input that is at the
-origin of a problem.}
+\item{arg, x_arg, ext_arg}{An argument name as a string. This argument will be mentioned in
+error messages as the input that is at the origin of a problem.}
 
-\item{call}{The execution environment of a currently
-running function, e.g. \code{caller_env()}. The function will be
-mentioned in error messages as the source of the error. See the
-\code{call} argument of \code{\link[rlang:abort]{abort()}} for more information.}
+\item{call}{The execution environment of a currently running function, e.g.
+\code{caller_env()}. The function will be mentioned in error messages as
+the source of the error. See the \code{call} argument of \code{\link[rlang:abort]{abort()}} for
+more information.}
 
 \item{ext}{A character vector of file extensions to check for.}
 

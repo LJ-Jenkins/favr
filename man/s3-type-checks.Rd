@@ -9,7 +9,6 @@
 \alias{check_ordered}
 \alias{check_vctr}
 \alias{check_list_of}
-\alias{check_table}
 \alias{check_data_frame}
 \alias{check_tibble}
 \alias{check_data_table}
@@ -75,18 +74,6 @@ check_list_of(
   n = NULL,
   ...,
   allow_null = FALSE,
-  arg = caller_arg(x),
-  call = caller_env()
-)
-
-check_table(
-  x,
-  n = NULL,
-  nrow = NULL,
-  ncol = NULL,
-  ...,
-  allow_null = FALSE,
-  finite = FALSE,
   arg = caller_arg(x),
   call = caller_env()
 )
