@@ -43,7 +43,7 @@ Validate specific S3 types:
 - `check_data.frame()`, `check_tibble()`, `check_data.table()`, etc.
 - `check_vctr()` and `check_list_of()` for their respective
   [vctrs](https://vctrs.r-lib.org) classes.
-- `check_s3_vec()` and `check_s3_df()` for developers to create their
+- `s3_vec_check()` and `s3_df_check()` for developers to create their
   own S3 type checks.
 
 Modify the behaviour of type-checking functions:
@@ -248,7 +248,7 @@ check_my_class <- function(
   arg = rlang::caller_arg(x),
   call = rlang::caller_env()
 ) {
-  check_s3_vec(
+  s3_vec_check(
     x,
     n,
     type = "my_class",

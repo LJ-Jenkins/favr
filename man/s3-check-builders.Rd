@@ -2,11 +2,11 @@
 % Please edit documentation in R/s3_check_builders.r
 \name{s3-check-builders}
 \alias{s3-check-builders}
-\alias{check_s3_vec}
-\alias{check_s3_df}
+\alias{s3_vec_check}
+\alias{s3_df_check}
 \title{S3 check builders}
 \usage{
-check_s3_vec(
+s3_vec_check(
   x,
   n,
   type,
@@ -17,7 +17,7 @@ check_s3_vec(
   call = caller_env()
 )
 
-check_s3_df(
+s3_df_check(
   x,
   nrow,
   ncol,
@@ -97,7 +97,7 @@ check_my_class <- function(
   arg = caller_arg(x),
   call = caller_env()
 ) {
-  check_s3_vec(
+  s3_vec_check(
     x,
     n,
     type = "my_class",

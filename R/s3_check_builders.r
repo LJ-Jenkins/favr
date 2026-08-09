@@ -50,7 +50,7 @@
 #'   arg = caller_arg(x),
 #'   call = caller_env()
 #' ) {
-#'   check_s3_vec(
+#'   s3_vec_check(
 #'     x,
 #'     n,
 #'     type = "my_class",
@@ -81,7 +81,7 @@ NULL
 
 #' @rdname s3-check-builders
 #' @export
-check_s3_vec <- function(
+s3_vec_check <- function(
   x,
   n,
   type,
@@ -121,7 +121,7 @@ check_s3_vec <- function(
 
 #' @rdname s3-check-builders
 #' @export
-check_s3_df <- function(
+s3_df_check <- function(
   x,
   nrow,
   ncol,

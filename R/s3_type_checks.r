@@ -57,7 +57,7 @@ check_date <- function(
   arg = caller_arg(x),
   call = caller_env()
 ) {
-  check_s3_vec(
+  s3_vec_check(
     x,
     n,
     "Date",
@@ -79,7 +79,7 @@ check_posixct <- function(
   arg = caller_arg(x),
   call = caller_env()
 ) {
-  check_s3_vec(
+  s3_vec_check(
     x,
     n,
     "POSIXct",
@@ -101,7 +101,7 @@ check_posixlt <- function(
   arg = caller_arg(x),
   call = caller_env()
 ) {
-  check_s3_vec(
+  s3_vec_check(
     x,
     n,
     "POSIXlt",
@@ -123,7 +123,7 @@ check_factor <- function(
   arg = caller_arg(x),
   call = caller_env()
 ) {
-  check_s3_vec(
+  s3_vec_check(
     x,
     n,
     "factor",
@@ -145,7 +145,7 @@ check_ordered <- function(
   arg = caller_arg(x),
   call = caller_env()
 ) {
-  check_s3_vec(
+  s3_vec_check(
     x,
     n,
     "ordered",
@@ -167,7 +167,7 @@ check_vctr <- function(
   arg = caller_arg(x),
   call = caller_env()
 ) {
-  check_s3_vec(
+  s3_vec_check(
     x,
     n,
     "vctrs_vctr",
@@ -189,7 +189,7 @@ check_list_of <- function(
   arg = caller_arg(x),
   call = caller_env()
 ) {
-  check_s3_vec(
+  s3_vec_check(
     x,
     n,
     "vctrs_list_of",
@@ -214,7 +214,7 @@ check_table <- function(
   arg = caller_arg(x),
   call = caller_env()
 ) {
-  check_s3_vec(
+  s3_vec_check(
     x,
     n,
     "table",
@@ -246,7 +246,7 @@ check_data_frame <- function(
   arg = caller_arg(x),
   call = caller_env()
 ) {
-  check_s3_df(
+  s3_df_check(
     x,
     nrow,
     ncol,
@@ -270,7 +270,7 @@ check_tibble <- function(
   arg = caller_arg(x),
   call = caller_env()
 ) {
-  check_s3_df(
+  s3_df_check(
     x,
     nrow,
     ncol,
@@ -294,7 +294,7 @@ check_data_table <- function(
   arg = caller_arg(x),
   call = caller_env()
 ) {
-  check_s3_df(
+  s3_df_check(
     x,
     nrow,
     ncol,
@@ -318,7 +318,7 @@ check_tidytable <- function(
   arg = caller_arg(x),
   call = caller_env()
 ) {
-  check_s3_df(
+  s3_df_check(
     x,
     nrow,
     ncol,

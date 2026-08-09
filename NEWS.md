@@ -31,7 +31,7 @@ Refactor of the package to focus on function argument validation through "check"
 
 * `check_vctr()` and `check_list_of()` functions to check if an object is of the specified `vctrs` S3  type and error if it is not.
 
-* `check_s3_vec()` and `check_s3_df()` functions for developers to create their own S3 type checks for vector and data frame types, respectively.
+* `s3_vec_check()` and `s3_df_check()` functions for developers to create their own S3 type checks for vector and data frame types, respectively.
 
 ### Type Checking Modifiers
 
