@@ -39,7 +39,7 @@
 #' indicate the expected behaviour of the check - for types that would
 #' use the length or dimension checking arguments.
 #' @name s3-check-builders
-#' @family checks
+#' @family check-builders
 #' @examples
 #' # Create a custom type check for a hypothetical "my_class" S3 class
 #' check_my_class <- function(

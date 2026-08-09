@@ -104,7 +104,6 @@ check_matrix(m, nrow = in_range(1, 10))
 Other checks:
 \code{\link{inheritance-checks}},
 \code{\link{path-checks}},
-\code{\link{s3-check-builders}},
 \code{\link{s3-type-checks}},
 \code{\link{scalar-type-checks}},
 \code{\link{scalar-value-checks}},

@@ -125,15 +125,4 @@ check_my_class(x, n = in_range(1, 2)) |> try()
 class(x) <- c("another_class", class(x))
 check_my_class(bare(x)) |> try()
 }
-\seealso{
-Other checks:
-\code{\link{array-type-checks}},
-\code{\link{inheritance-checks}},
-\code{\link{path-checks}},
-\code{\link{s3-type-checks}},
-\code{\link{scalar-type-checks}},
-\code{\link{scalar-value-checks}},
-\code{\link{type-checks}},
-\code{\link{walk-check}}
-}
-\concept{checks}
+\concept{check-builders}
