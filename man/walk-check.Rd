@@ -52,6 +52,7 @@ walk_check(x, is.numeric) |> try()
 \seealso{
 Other checks:
 \code{\link{array-type-checks}},
+\code{\link{forbidden-value-checks}},
 \code{\link{inheritance-checks}},
 \code{\link{path-checks}},
 \code{\link{s3-type-checks}},

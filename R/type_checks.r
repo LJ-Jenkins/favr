@@ -164,15 +164,7 @@ check_double <- function(
     call = call
   )
 
-  if (finite && any(!is.finite(x))) {
-    cli_abort(
-      message = non_finite_msg(arg, n, x),
-      ...,
-      call = call
-    )
-  }
-
-  invisible(NULL)
+  finite_check(finite, x, n, arg, ..., call = call)
 }
 
 #' @rdname type-checks
@@ -198,15 +190,7 @@ check_complex <- function(
     call = call
   )
 
-  if (finite && any(!is.finite(x))) {
-    cli_abort(
-      message = non_finite_msg(arg, n, x),
-      ...,
-      call = call
-    )
-  }
-
-  invisible(NULL)
+  finite_check(finite, x, n, arg, ..., call = call)
 }
 
 #' @rdname type-checks
@@ -354,19 +338,9 @@ check_numeric <- function(
     )
   }
 
-  if (!is.null(n)) {
-    do_n_check(x, n, type, ..., arg = arg, call = call)
-  }
+  n_check(x, n, type, ..., arg = arg, call = call)
 
-  if (finite && any(!is.finite(x))) {
-    cli_abort(
-      message = non_finite_msg(arg, n, x),
-      ...,
-      call = call
-    )
-  }
-
-  invisible(NULL)
+  finite_check(finite, x, n, arg, ..., call = call)
 }
 
 check_types_impl <- function(
@@ -419,15 +393,7 @@ check_types_impl <- function(
     }
   }
 
-  if (!allow_na && anyNA(x)) {
-    cli_abort(
-      message = na_msg(arg, n, x),
-      ...,
-      call = call
-    )
-  }
-
-  invisible(NULL)
+  na_check(allow_na, x, n, arg, ..., call = call)
 }
 
 do_length_modifier_check <- function(
@@ -447,5 +413,6 @@ do_length_modifier_check <- function(
     )
   }
 
+  # already validated `n` not null
   do_n_check(x, n, type, ..., arg = arg, call = call)
 }

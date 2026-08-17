@@ -147,7 +147,7 @@ vec_friendly <- function(x, length = FALSE) {
 as_friendly_type <- function(type) {
   switch(type,
     list = "a {.cls list}",
-    NULL = "{.cls NULL}", # .cls, .arg or .val?
+    NULL = "{.cls NULL}",
     environment = "an {.cls environment}",
     externalptr = "a {.cls pointer}",
     weakref = "a {.cls weak reference}",

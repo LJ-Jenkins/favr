@@ -19,6 +19,7 @@ check_date(
   x,
   n = NULL,
   ...,
+  allow_na = TRUE,
   allow_null = FALSE,
   arg = caller_arg(x),
   call = caller_env()
@@ -28,6 +29,7 @@ check_posixct(
   x,
   n = NULL,
   ...,
+  allow_na = TRUE,
   allow_null = FALSE,
   arg = caller_arg(x),
   call = caller_env()
@@ -37,6 +39,7 @@ check_posixlt(
   x,
   n = NULL,
   ...,
+  allow_na = TRUE,
   allow_null = FALSE,
   arg = caller_arg(x),
   call = caller_env()
@@ -46,6 +49,7 @@ check_factor(
   x,
   n = NULL,
   ...,
+  finite = FALSE,
   allow_null = FALSE,
   arg = caller_arg(x),
   call = caller_env()
@@ -55,6 +59,7 @@ check_ordered(
   x,
   n = NULL,
   ...,
+  finite = FALSE,
   allow_null = FALSE,
   arg = caller_arg(x),
   call = caller_env()
@@ -127,6 +132,8 @@ rows of \code{x}.}
 \item{...}{Additional arguments passed to \link[cli:cli_abort]{cli_abort()}
 which forwards unmatched arguments to \link[rlang:abort]{abort()}.}
 
+\item{allow_na}{Whether \code{x} is allowed to contain \code{NA} values.}
+
 \item{allow_null}{Whether \code{x} is allowed to be \code{NULL}.}
 
 \item{arg}{An argument name as a string. This argument
@@ -137,6 +144,9 @@ origin of a problem.}
 running function, e.g. \code{caller_env()}. The function will be
 mentioned in error messages as the source of the error. See the
 \code{call} argument of \code{\link[rlang:abort]{abort()}} for more information.}
+
+\item{finite}{Whether \code{x} is required to contain only finite values
+(i.e. no \code{NA}, \code{Inf}, \code{-Inf}, or \code{NaN}).}
 }
 \value{
 \code{NULL} invisibly if the check passes, otherwise an error is thrown.
@@ -182,6 +192,7 @@ check_tibble(x, ncol = in_range(3, 5)) |> try()
 \seealso{
 Other checks:
 \code{\link{array-type-checks}},
+\code{\link{forbidden-value-checks}},
 \code{\link{inheritance-checks}},
 \code{\link{path-checks}},
 \code{\link{scalar-type-checks}},

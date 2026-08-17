@@ -14,8 +14,8 @@
 #' modifiers.
 #' @details
 #' Use `bare()` to check if a given object is a bare R object
-#' (no class attribute), throwing an error if it is not and passing the
-#' object on to the check if it is.
+#' (no class attribute, see [is.object()]), throwing an error if it is not
+#' and passing the object on to the check if it is.
 #'
 #' For S3 type checks, `bare()` checks that the object has the expected S3
 #' type as the **first** element of the class vector.
@@ -26,11 +26,11 @@
 #' * `at_most(n)` means the object must be at most length (`<=`) `n`.
 #' * `in_range(n_min, n_max)` means the object length must be within the range
 #' of (`>=`) `n_min` and (`<=`) `n_max`.
-#' @note `bare()` is a wrapper of [is.object] and cannot be used with the
-#' [scalar-value-checks].
+#' @note These modifiers cannot be used with the
+#' [scalar-value-checks] or the [forbidden-value-checks].
 #' @name modifiers
-#' @seealso [type-checks] and [scalar-type-checks] for the functions that
-#' these modifiers can be used with.
+#' @seealso [type-checks], [scalar-type-checks] and [s3-type-checks] for some
+#' of the functions that these modifiers can be used with.
 #' @examples
 #' bare(1)
 #' at_least(1)
@@ -55,7 +55,7 @@ NULL
 #' @rdname modifiers
 #' @export
 bare <- function(x, arg = caller_arg(x)) {
-  setClass(
+  set_class(
     list(obj = x, bare = !is.object(x), arg = arg),
     c("favr_bare", "favr_modifier")
   )
@@ -68,7 +68,7 @@ at_least <- function(n, arg = caller_arg(n)) {
     at_least = modifier_cast_integer(n, arg, "at_least 'n'")
   )
 
-  setClass(n, c("favr_at_least", "favr_modifier"))
+  set_class(n, c("favr_at_least", "favr_modifier"))
 }
 
 #' @rdname modifiers
@@ -78,7 +78,7 @@ at_most <- function(n, arg = caller_arg(n)) {
     at_most = modifier_cast_integer(n, arg, "at_most 'n'")
   )
 
-  setClass(n, c("favr_at_most", "favr_modifier"))
+  set_class(n, c("favr_at_most", "favr_modifier"))
 }
 
 #' @rdname modifiers
@@ -102,13 +102,13 @@ in_range <- function(
     cli_abort("{.arg {arg}} must be a valid range in the form of {.arg c(n_min, n_max)}, but {.var n[1]} {.val {n[[1]]}} is greater than {.var n[2]} {.val {n[[2]]}}.")
   }
 
-  setClass(
+  set_class(
     list(at_least = n[[1]], at_most = n[[2]]),
     c("favr_in_range", "favr_modifier")
   )
 }
 
-setClass <- function(x, class) {
+set_class <- function(x, class) {
   class(x) <- class
   x
 }

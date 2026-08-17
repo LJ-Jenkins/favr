@@ -1,4 +1,4 @@
-# favr 2.0.0 (in development)
+# favr 2.0.0
 
 Refactor of the package to focus on function argument validation through "check" functions that throw an error if validation fails and return `NULL` (or occasionally the input) invisibly if validation succeeds.
 
@@ -21,11 +21,11 @@ Refactor of the package to focus on function argument validation through "check"
 
 * `check_scalar_list()`, `check_scalar_atomic()`, `check_scalar_vector()`, `check_scalar_integer()`, `check_scalar_double()`, `check_scalar_numeric()`, `check_scalar_character()`, `check_scalar_logical()`, `check_scalar_complex()`, `check_scalar_raw()` and `check_scalar_bytes()` functions to check if an object is a scalar of the specified type and error if it is not.
 
-* `check_array()` and `check_matrix()` functions to check if an object is an array or matrix, respectively, and error if it is not.
+* `check_array()`, `check_matrix()` and `check_table()` functions to check if an object is an array, matrix, or table, respectively, and error if it is not.
 
 ### S3 Type Validation
 
-* `check_table()`, `check_factor()`, `check_ordered()`, `check_date()`, `check_posixct()` and `check_posixlt()` functions to check if an object is of the specified S3 vector type and error if it is not.
+* `check_factor()`, `check_ordered()`, `check_date()`, `check_posixct()` and `check_posixlt()` functions to check if an object is of the specified S3 vector type and error if it is not.
 
 * `check_data_frame()`, `check_tibble()`, `check_data_table()` and `check_tidytable()` functions to check if an object is of the specified S3 data frame type and error if it is not.
 
@@ -43,10 +43,14 @@ Refactor of the package to focus on function argument validation through "check"
 
 * `check_true()`, `check_false()`, `check_bool()` and `check_string()` functions to check if an object is a scalar of the specified type and value and error if it is not.
 
+### Forbidden Values Validation
+
+* `check_no_na()`, `check_finite()` and `check_nzchar()` functions to check for the presence of forbidden values and error if found.
+
 ### File and Directory Validation
 
 * `check_dir()` and `check_file()` functions to check if a directory or file exists and error if it does not.
-* `check_ext()` function to check the file extension of a file and error if it does not match the specified extensions.
+* `check_ext()` function to check the file extension of a file/path and error if it does not match the specified extensions.
 
 ## Questioning
 

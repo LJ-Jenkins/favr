@@ -71,7 +71,7 @@ test_that("error shows type problem preferentially", {
     s3_df_check(list(1), nrow = 2, ncol = NULL, type = "data.frame")
     s3_df_check(
       bare(structure(1.1, class = c("c1", "c2"))),
-      nrow = 2, ncol = NULL, type = "c1"
+      nrow = 2, ncol = NULL, type = "c2"
     )
     s3_df_check(c("a", "b"), nrow = 1, ncol = NULL, type = "data.frame")
   })

@@ -21,10 +21,10 @@
       ! `list(1)` must inherit from <data.frame>, but is class <list>.
     Code
       s3_df_check(bare(structure(1.1, class = c("c1", "c2"))), nrow = 2, ncol = NULL,
-      type = "c1")
+      type = "c2")
     Condition
       Error:
-      ! `structure(1.1, class = c("c1", "c2"))` must be a <c1> with 2 rows, not 1.
+      ! `structure(1.1, class = c("c1", "c2"))` must be a bare <c2>, but it is of class <c1>.
     Code
       s3_df_check(c("a", "b"), nrow = 1, ncol = NULL, type = "data.frame")
     Condition

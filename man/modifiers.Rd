@@ -42,8 +42,8 @@ type checking functions.
 }
 \details{
 Use \code{bare()} to check if a given object is a bare R object
-(no class attribute), throwing an error if it is not and passing the
-object on to the check if it is.
+(no class attribute, see \code{\link[=is.object]{is.object()}}), throwing an error if it is not
+and passing the object on to the check if it is.
 
 For S3 type checks, \code{bare()} checks that the object has the expected S3
 type as the \strong{first} element of the class vector.
@@ -57,8 +57,8 @@ of (\code{>=}) \code{n_min} and (\code{<=}) \code{n_max}.
 }
 }
 \note{
-\code{bare()} is a wrapper of \link{is.object} and cannot be used with the
-\link{scalar-value-checks}.
+These modifiers cannot be used with the
+\link{scalar-value-checks} or the \link{forbidden-value-checks}.
 }
 \examples{
 bare(1)
@@ -78,6 +78,6 @@ class(x) <- c("my_date", class(x))
 check_date(bare(x)) |> try()
 }
 \seealso{
-\link{type-checks} and \link{scalar-type-checks} for the functions that
-these modifiers can be used with.
+\link{type-checks}, \link{scalar-type-checks} and \link{s3-type-checks} for some
+of the functions that these modifiers can be used with.
 }

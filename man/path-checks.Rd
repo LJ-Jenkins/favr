@@ -73,6 +73,7 @@ check_file(x, ext = c(".csv", ".xlsx")) |> try()
 \seealso{
 Other checks:
 \code{\link{array-type-checks}},
+\code{\link{forbidden-value-checks}},
 \code{\link{inheritance-checks}},
 \code{\link{s3-type-checks}},
 \code{\link{scalar-type-checks}},

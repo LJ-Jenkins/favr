@@ -172,25 +172,11 @@ check_array_types_impl <- function(
     )
   }
 
-  if (!is.null(n)) {
-    do_n_check(x, n, type_msg, ..., arg = arg, call = call)
-  }
+  n_check(x, n, type_msg, ..., arg = arg, call = call)
 
-  if (!is.null(nrow)) {
-    do_nrow_check(x, nrow, type_msg, ..., arg = arg, call = call)
-  }
+  nrow_check(x, nrow, type_msg, ..., arg = arg, call = call)
 
-  if (!is.null(ncol)) {
-    do_ncol_check(x, ncol, type_msg, ..., arg = arg, call = call)
-  }
+  ncol_check(x, ncol, type_msg, ..., arg = arg, call = call)
 
-  if (finite && any(!is.finite(x))) {
-    cli_abort(
-      message = non_finite_msg(arg, n, x),
-      ...,
-      call = call
-    )
-  }
-
-  invisible(NULL)
+  finite_check(finite, x, n, arg, ..., call = call)
 }

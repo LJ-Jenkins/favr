@@ -14,6 +14,8 @@
 #' @param allow_empty Whether `x` is allowed to be an empty string
 #' (i.e. when `FALSE` `""` is not allowed).
 #' @return `NULL` invisibly if the check passes, otherwise an error is thrown.
+#' @note
+#' The [favr modifiers][modifiers] cannot be used with these functions.
 #' @name scalar-value-checks
 #' @family checks
 #' @examples
@@ -158,18 +160,13 @@ check_string <- function(
     )
   }
 
-  if (!allow_empty && !nzchar(x)) {
-    # eagerly eval message in case odd `.envir` given
-    cli_abort(
-      message = format_inline("{.arg {arg}} must not be an empty string."),
-      ...,
-      call = call
-    )
-  }
+  empty_string_check(allow_empty, x, arg, ..., call = call)
 
   if (i && !x %in% string) {
     cli_abort(
-      message = format_inline("{.arg {arg}} must be one of {.or {.val {string}}}."),
+      message = format_inline(
+        "{.arg {arg}} must be one of {.or {.val {string}}}."
+      ),
       ...,
       call = call
     )

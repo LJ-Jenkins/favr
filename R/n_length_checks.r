@@ -1,5 +1,13 @@
 #-- n
 
+n_check <- function(x, n, expected_type, ..., arg, call) {
+  if (!is.null(n)) {
+    do_n_check(x, n, expected_type, ..., arg = arg, call = call)
+  }
+
+  invisible(NULL)
+}
+
 do_n_check <- function(x, n, ...) {
   UseMethod("do_n_check", n)
 }
@@ -91,7 +99,15 @@ in_range_msg <- function(
   )
 }
 
-#-- nrow / ncol
+#-- nrow
+
+nrow_check <- function(x, nrow, expected_type, ..., arg, call) {
+  if (!is.null(nrow)) {
+    do_nrow_check(x, nrow, expected_type, ..., arg = arg, call = call)
+  }
+
+  invisible(NULL)
+}
 
 do_nrow_check <- function(x, nrow, ...) {
   UseMethod("do_nrow_check", nrow)
@@ -102,8 +118,8 @@ do_nrow_check.default <- function(x, nrow, expected_type, ..., arg, call) {
   nrow <- vec_cast(nrow, integer(), x_arg = "nrow", call = caller_env())
   check_n(nrow, n_arg = "nrow", call = caller_env())
 
-  x_nrow <- NROW(x)
-  if (is.null(nrow)) {
+  x_nrow <- nrow(x)
+  if (is.null(x_nrow)) {
     cli_abort(
       "{.arg {arg}} has no row dimension to check.",
       ...,
@@ -129,8 +145,8 @@ do_nrow_check.favr_at_least <- function(
   arg,
   call
 ) {
-  x_nrow <- NROW(x)
-  if (is.null(nrow)) {
+  x_nrow <- nrow(x)
+  if (is.null(x_nrow)) {
     cli_abort(
       "{.arg {arg}} has no row dimension to check.",
       ...,
@@ -162,8 +178,8 @@ do_nrow_check.favr_at_most <- function(
   arg,
   call
 ) {
-  x_nrow <- NROW(x)
-  if (is.null(nrow)) {
+  x_nrow <- nrow(x)
+  if (is.null(x_nrow)) {
     cli_abort(
       "{.arg {arg}} has no row dimension to check.",
       ...,
@@ -195,8 +211,8 @@ do_nrow_check.favr_in_range <- function(
   arg,
   call
 ) {
-  x_nrow <- NROW(x)
-  if (is.null(nrow)) {
+  x_nrow <- nrow(x)
+  if (is.null(x_nrow)) {
     cli_abort(
       "{.arg {arg}} has no row dimension to check.",
       ...,
@@ -219,6 +235,16 @@ do_nrow_check.favr_in_range <- function(
   }
 }
 
+#-- ncol
+
+ncol_check <- function(x, ncol, expected_type, ..., arg, call) {
+  if (!is.null(ncol)) {
+    do_ncol_check(x, ncol, expected_type, ..., arg = arg, call = call)
+  }
+
+  invisible(NULL)
+}
+
 do_ncol_check <- function(x, ncol, ...) {
   UseMethod("do_ncol_check", ncol)
 }
@@ -228,8 +254,8 @@ do_ncol_check.default <- function(x, ncol, expected_type, ..., arg, call) {
   ncol <- vec_cast(ncol, integer(), x_arg = "ncol", call = caller_env())
   check_n(ncol, n_arg = "ncol", call = caller_env())
 
-  x_ncol <- NCOL(x)
-  if (is.null(ncol)) {
+  x_ncol <- ncol(x)
+  if (is.null(x_ncol)) {
     cli_abort(
       "{.arg {arg}} has no column dimension to check.",
       ...,
@@ -255,8 +281,8 @@ do_ncol_check.favr_at_least <- function(
   arg,
   call
 ) {
-  x_ncol <- NCOL(x)
-  if (is.null(ncol)) {
+  x_ncol <- ncol(x)
+  if (is.null(x_ncol)) {
     cli_abort(
       "{.arg {arg}} has no column dimension to check.",
       ...,
@@ -289,8 +315,8 @@ do_ncol_check.favr_at_most <- function(
   arg,
   call
 ) {
-  x_ncol <- NCOL(x)
-  if (is.null(ncol)) {
+  x_ncol <- ncol(x)
+  if (is.null(x_ncol)) {
     cli_abort(
       "{.arg {arg}} has no column dimension to check.",
       ...,
@@ -323,8 +349,8 @@ do_ncol_check.favr_in_range <- function(
   arg,
   call
 ) {
-  x_ncol <- NCOL(x)
-  if (is.null(ncol)) {
+  x_ncol <- ncol(x)
+  if (is.null(x_ncol)) {
     cli_abort(
       "{.arg {arg}} has no column dimension to check.",
       ...,

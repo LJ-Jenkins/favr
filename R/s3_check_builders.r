@@ -112,11 +112,7 @@ s3_vec_check <- function(
     call = call
   )
 
-  if (!is.null(n)) {
-    do_n_check(x, n, type_msg, ..., arg = arg, call = call)
-  }
-
-  invisible(NULL)
+  n_check(x, n, type_msg, ..., arg = arg, call = call)
 }
 
 #' @rdname s3-check-builders
@@ -153,13 +149,9 @@ s3_df_check <- function(
     call = call
   )
 
-  if (!is.null(nrow)) {
-    do_nrow_check(x, nrow, type_msg, ..., arg = arg, call = call)
-  }
+  nrow_check(x, nrow, type_msg, ..., arg = arg, call = call)
 
-  if (!is.null(ncol)) {
-    do_ncol_check(x, ncol, type_msg, ..., arg = arg, call = call)
-  }
+  ncol_check(x, ncol, type_msg, ..., arg = arg, call = call)
 }
 
 do_s3_check <- function(

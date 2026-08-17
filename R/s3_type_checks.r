@@ -8,6 +8,7 @@
 #' @param ... Additional arguments passed to [cli_abort()][cli::cli_abort]
 #' which forwards unmatched arguments to [abort()][rlang::abort].
 #' @param allow_null Whether `x` is allowed to be `NULL`.
+#' @inheritParams type-checks allow_na allow_null finite
 #' @inheritParams rlang::args_error_context
 #' @return `NULL` invisibly if the check passes, otherwise an error is thrown.
 #' @details
@@ -53,6 +54,7 @@ check_date <- function(
   x,
   n = NULL,
   ...,
+  allow_na = TRUE,
   allow_null = FALSE,
   arg = caller_arg(x),
   call = caller_env()
@@ -67,6 +69,8 @@ check_date <- function(
     arg = arg,
     call = call
   )
+
+  na_check(allow_na, x, n, arg, ..., call = call)
 }
 
 #' @rdname s3-type-checks
@@ -75,6 +79,7 @@ check_posixct <- function(
   x,
   n = NULL,
   ...,
+  allow_na = TRUE,
   allow_null = FALSE,
   arg = caller_arg(x),
   call = caller_env()
@@ -89,6 +94,8 @@ check_posixct <- function(
     arg = arg,
     call = call
   )
+
+  na_check(allow_na, x, n, arg, ..., call = call)
 }
 
 #' @rdname s3-type-checks
@@ -97,6 +104,7 @@ check_posixlt <- function(
   x,
   n = NULL,
   ...,
+  allow_na = TRUE,
   allow_null = FALSE,
   arg = caller_arg(x),
   call = caller_env()
@@ -111,6 +119,8 @@ check_posixlt <- function(
     arg = arg,
     call = call
   )
+
+  na_check(allow_na, x, n, arg, ..., call = call)
 }
 
 #' @rdname s3-type-checks
@@ -119,6 +129,7 @@ check_factor <- function(
   x,
   n = NULL,
   ...,
+  finite = FALSE,
   allow_null = FALSE,
   arg = caller_arg(x),
   call = caller_env()
@@ -133,6 +144,8 @@ check_factor <- function(
     arg = arg,
     call = call
   )
+
+  finite_check(finite, x, n, arg, ..., call = call)
 }
 
 #' @rdname s3-type-checks
@@ -141,6 +154,7 @@ check_ordered <- function(
   x,
   n = NULL,
   ...,
+  finite = FALSE,
   allow_null = FALSE,
   arg = caller_arg(x),
   call = caller_env()
@@ -155,6 +169,8 @@ check_ordered <- function(
     arg = arg,
     call = call
   )
+
+  finite_check(finite, x, n, arg, ..., call = call)
 }
 
 #' @rdname s3-type-checks

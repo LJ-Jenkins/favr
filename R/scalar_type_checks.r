@@ -156,15 +156,7 @@ check_scalar_double <- function(
     scalar = TRUE
   )
 
-  if (finite && !is.finite(x)) {
-    cli_abort(
-      message = non_finite_msg(arg, 1L, x),
-      ...,
-      call = call
-    )
-  }
-
-  invisible(NULL)
+  finite_check(finite, x, 1L, arg, ..., call = call)
 }
 
 #' @rdname scalar-type-checks
@@ -190,15 +182,7 @@ check_scalar_complex <- function(
     scalar = TRUE
   )
 
-  if (finite && !is.finite(x)) {
-    cli_abort(
-      message = non_finite_msg(arg, 1L, x),
-      ...,
-      call = call
-    )
-  }
-
-  invisible(NULL)
+  finite_check(finite, x, 1L, arg, ..., call = call)
 }
 
 #' @rdname scalar-type-checks
@@ -333,13 +317,5 @@ check_scalar_numeric <- function(
     )
   }
 
-  if (finite && any(!is.finite(x))) {
-    cli_abort(
-      message = non_finite_msg(arg, 1L, x),
-      ...,
-      call = call
-    )
-  }
-
-  invisible(NULL)
+  finite_check(finite, x, 1L, arg, ..., call = call)
 }

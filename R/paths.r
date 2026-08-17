@@ -9,7 +9,6 @@
 #' be case-sensitive. If `FALSE`, the check will be case-insensitive.
 #' @param ... Additional arguments passed to [cli_abort()][cli::cli_abort]
 #' which forwards unmatched arguments to [abort()][rlang::abort].
-#' @inheritParams rlang::args_error_context
 #' @param arg,x_arg,ext_arg
 #' An argument name as a string. This argument will be mentioned in
 #' error messages as the input that is at the origin of a problem.

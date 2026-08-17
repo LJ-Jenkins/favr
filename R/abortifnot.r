@@ -238,6 +238,8 @@ do_internal_msg <- function(arg, val, problem, not = TRUE) {
   switch(problem,
     type = wrong_type_msg(arg, "a {.cls logical} vector", val),
     na = na_msg(arg, length(val)),
-    failed = format_inline("{.arg {arg}} is {if (not) 'not ' else ''}{.val {TRUE}}.")
+    failed = format_inline(
+      "{.arg {arg}} is {if (not) 'not ' else ''}{.val {TRUE}}."
+    )
   )
 }

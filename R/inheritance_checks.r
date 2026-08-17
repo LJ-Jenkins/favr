@@ -63,7 +63,7 @@ check_inherits <- function(
     error_call = call
   )
 
-  check_character(class)
+  check_character(class, n = at_least(1), ..., call = call)
 
   res <- switch(match,
     any = inherits(x, class),
@@ -91,7 +91,7 @@ check_class <- function(
   arg = caller_arg(x),
   call = caller_env()
 ) {
-  check_character(class)
+  check_character(class, n = at_least(1), ..., call = call)
 
   if (!identical(class(x), class)) {
     cli_abort(

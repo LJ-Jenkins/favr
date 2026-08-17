@@ -36,23 +36,24 @@
 # check_inherits() uses arg in error messages
 
     Code
-      check_inherits(x, 1)
+      check_inherits(x, "myclass")
     Condition
-      Error in `check_inherits()`:
-      ! `class` must be a <character> vector, not the number 1.
+      Error:
+      ! `x` must inherit from <myclass>, but is class <integer>.
     Code
-      check_inherits(x, 1, arg = "my_x")
+      check_inherits(x, "myclass", arg = "my_x")
     Condition
-      Error in `check_inherits()`:
-      ! `class` must be a <character> vector, not the number 1.
+      Error:
+      ! `my_x` must inherit from <myclass>, but is class <integer>.
 
 # check_inherits() forwards args to cli_abort correctly
 
     Code
-      check_inherits(1L, 1, footer = "Custom footer")
+      check_inherits(1L, "myclass", footer = "Custom footer")
     Condition
-      Error in `check_inherits()`:
-      ! `class` must be a <character> vector, not the number 1.
+      Error:
+      ! `1L` must inherit from <myclass>, but is class <integer>.
+      Custom footer
 
 # .envir doesn't interfere with error messages
 

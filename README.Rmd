@@ -55,7 +55,11 @@ Modify the behaviour of type-checking functions:
 
 Validate specific scalar values:
 
-* `check_true()`, `check_false()`, `check_bool()`, `check_string()`.
+* `check_true()`, `check_false()`, `check_bool()` and `check_string()`.
+
+Validate the lack of forbidden values:
+
+* `check_no_na()`, `check_finite()`, and `check_nzchar()`.
 
 Validate file and directory existence:
 
@@ -161,6 +165,18 @@ check_tibble(df, nrow = 2)
 check_tibble(df, ncol = at_least(3))
 check_tibble(df, nrow = at_most(2))
 check_tibble(df, ncol = in_range(3, 5))
+```
+
+Ensure no forbidden values:
+```{r, error = TRUE}
+x <- c(1, 2, NA)
+check_no_na(x)
+check_finite(x)
+
+x <- c("a", "b", "")
+check_nzchar(x)
+x <- c("a", "b", " ")
+check_nzchar(x, allow_all_ws = FALSE)
 ```
 
 File/dir existence validation:

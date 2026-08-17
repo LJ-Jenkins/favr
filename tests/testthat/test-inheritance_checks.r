@@ -57,14 +57,14 @@ test_that("check_inherits() errors when class is not character", {
 test_that("check_inherits() uses arg in error messages", {
   x <- 1L
   expect_snapshot(error = TRUE, {
-    check_inherits(x, 1)
-    check_inherits(x, 1, arg = "my_x")
+    check_inherits(x, "myclass")
+    check_inherits(x, "myclass", arg = "my_x")
   })
 })
 
 test_that("check_inherits() forwards args to cli_abort correctly", {
   expect_snapshot(error = TRUE, {
-    check_inherits(1L, 1, footer = "Custom footer")
+    check_inherits(1L, "myclass", footer = "Custom footer")
   })
 })
 
