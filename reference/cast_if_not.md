@@ -1,5 +1,10 @@
 # Cast objects to a given type
 
+**\[deprecated\]**
+
+This function was deprecated as there is rarely a need to use it over
+[`vctrs::vec_cast()`](https://vctrs.r-lib.org/reference/vec_cast.html).
+
 The names of the `...` expressions, which should be variables within the
 `.env` envrionment, are attempted to be casted to the type specified in
 the expression: e.g.,
@@ -60,6 +65,8 @@ data-masked and data-masked validations, recycling and casting.
 
 x <- 1L
 cast_if_not(x = double())
+#> Warning: `cast_if_not()` was deprecated in favr 1.1.0.
+#> ℹ Please use `vctrs::vec_cast()` instead.
 class(x) # numeric
 #> [1] "numeric"
 

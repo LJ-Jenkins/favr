@@ -1,5 +1,13 @@
 # Ensure the truth of R expressions
 
+**\[deprecated\]**
+
+These functions were deprecated in favour of
+[`check()`](https://lj-jenkins.github.io/favr/reference/check.md),
+[`abortifnot()`](https://lj-jenkins.github.io/favr/reference/abortifnot.md)
+and
+[`abortif()`](https://lj-jenkins.github.io/favr/reference/abortifnot.md).
+
 If any of the expressions in `...` are not all `TRUE`,
 [abort](https://rlang.r-lib.org/reference/abort.html) is called for the
 first expression which was not ([all](https://rdrr.io/r/base/all.html))
@@ -58,6 +66,8 @@ size recycling and type casting.
 #     piped into a call to try().
 
 abort_if_not(1 == 1, all.equal(pi, 3.14159265), 1 < 2) # all TRUE
+#> Warning: `abort_if_not()` was deprecated in favr 1.1.0.
+#> ℹ Please use `check()` or `abortifnot()` instead.
 
 m <- matrix(c(1, 3, 3, 1), 2, 2)
 abort_if_not(m == t(m), diag(m) == rep(1, 2)) # all TRUE
@@ -101,6 +111,8 @@ myfunc(FALSE) |> try()
 # abort_if() errors if any argument does not evaluate to
 # (all) FALSE:
 abort_if(1 == 1) |> try()
+#> Warning: `abort_if()` was deprecated in favr 1.1.0.
+#> ℹ Please use `check()` or `abortif()` instead.
 #> Error in eval(expr, envir) : 
 #>   Caused by error in `abort_if()`.
 #> ℹ In argument: `1 == 1`.

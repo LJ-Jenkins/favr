@@ -1,5 +1,10 @@
 # Are vectors integer-like?
 
+**\[deprecated\]**
+
+These functions were deprecated as they offer little benefit over
+[`lapply()`](https://rdrr.io/r/base/lapply.html).
+
 Wrappers around
 [rlang](https://rlang.r-lib.org/reference/rlang-package.html) type
 predicates that allow multiple objects to be passed. The following
@@ -27,7 +32,7 @@ Things to consider when checking for integer-like doubles:
 ``` r
 are_integerish(..., .n = NULL, .finite = NULL, .all = FALSE)
 
-are_scalar_integerish(..., .n = NULL, .finite = NULL, .all = FALSE)
+are_scalar_integerish(..., .finite = NULL, .all = FALSE)
 
 are_bare_integerish(..., .n = NULL, .finite = NULL, .all = FALSE)
 ```
@@ -81,6 +86,8 @@ y <- 10.0
 z <- 10.000001
 
 are_integerish(x, y, z, TRUE)
+#> Warning: `are_integerish()` was deprecated in favr 1.1.0.
+#> ℹ Please use `lapply()` with an anonmous function instead.
 #>     x     y     z  TRUE 
 #>  TRUE  TRUE FALSE FALSE 
 

@@ -1,5 +1,10 @@
 # Scalar type predicates
 
+**\[deprecated\]**
+
+These functions were deprecated as they offer little benefit over
+[`lapply()`](https://rdrr.io/r/base/lapply.html).
+
 Wrappers around
 [rlang](https://rlang.r-lib.org/reference/rlang-package.html) scalar
 type predicates that allow multiple objects to be passed. The following
@@ -86,11 +91,15 @@ y <- list()
 z <- mean
 
 are_scalar_list(x, y, z, list(1))
+#> Warning: `are_scalar_list()` was deprecated in favr 1.1.0.
+#> ℹ Please use `lapply()` with an anonmous function instead.
 #>       x       y       z list(1) 
 #>   FALSE   FALSE   FALSE    TRUE 
 
 # `.all` can be given to test if all inputs
 # evaluate to TRUE
 are_list(x, y, z, list(1), .all = TRUE)
+#> Warning: `are_list()` was deprecated in favr 1.1.0.
+#> ℹ Please use `lapply()` with an anonmous function instead.
 #> [1] FALSE
 ```

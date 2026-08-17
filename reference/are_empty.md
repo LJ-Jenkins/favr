@@ -1,6 +1,9 @@
 # Are objects empty vectors or NULL?
 
-Are objects empty vectors or NULL?
+**\[deprecated\]**
+
+These functions were deprecated as they offer little benefit over
+[`lapply()`](https://rdrr.io/r/base/lapply.html).
 
 ## Usage
 
@@ -34,6 +37,8 @@ y <- NULL
 z <- list()
 
 are_empty(x, y, z, NULL)
+#> Warning: `are_empty()` was deprecated in favr 1.1.0.
+#> ℹ Please use `lapply()` with an anonmous function instead.
 #>     x     y     z  NULL 
 #> FALSE  TRUE  TRUE  TRUE 
 

@@ -1,5 +1,10 @@
 # Are objects named?
 
+**\[deprecated\]**
+
+These functions were deprecated as they offer little benefit over
+[`lapply()`](https://rdrr.io/r/base/lapply.html).
+
 Wrappers around
 [rlang](https://rlang.r-lib.org/reference/rlang-package.html) predicates
 that allow multiple objects to be passed. The following documentation is
@@ -58,6 +63,8 @@ and a boolean is returned.
 # are_named() is a scalar predicate about the whole vector of names:
 x <- c(a = 1, b = 2)
 are_named(x, c(a = 1, 2))
+#> Warning: `are_named()` was deprecated in favr 1.1.0.
+#> ℹ Please use `lapply()` with an anonmous function instead.
 #>           x c(a = 1, 2) 
 #>        TRUE       FALSE 
 are_named(x, c(a = 1, 2), .all = TRUE)
@@ -69,12 +76,16 @@ are_named(list(), vector())
 #>   list() vector() 
 #>    FALSE    FALSE 
 are_named2(list(), vector())
+#> Warning: `are_named2()` was deprecated in favr 1.1.0.
+#> ℹ Please use `lapply()` with an anonmous function instead.
 #>   list() vector() 
 #>     TRUE     TRUE 
 
 # have_names() is vectorised
 y <- c(a = 1, 2)
 have_names(x, y, c(a = 1, 2, 3))
+#> Warning: `have_names()` was deprecated in favr 1.1.0.
+#> ℹ Please use `lapply()` with an anonmous function instead.
 #> $x
 #> [1] TRUE TRUE
 #> 

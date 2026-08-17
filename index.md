@@ -1,74 +1,115 @@
 # favr
 
 Function Argument Validation for R (favr) provides tools for the
-succinct validation and safe type coercion/recycling of function
-arguments. A focus is placed on clear error messaging.
+succinct validation of function arguments with clear error messaging.
 
 ## Overview
 
-- [`abort_if_not()`](https://lj-jenkins.github.io/favr/reference/abort_if_not.md)
-  for general validation.
-- [`cast_if_not()`](https://lj-jenkins.github.io/favr/reference/cast_if_not.md)
+- [`abortifnot()`](https://lj-jenkins.github.io/favr/reference/abortifnot.md)
   and
-  [`recycle_if_not()`](https://lj-jenkins.github.io/favr/reference/recycle_if_not.md)
-  for safe type casting and recycling of variables.
-- [`enforce()`](https://lj-jenkins.github.io/favr/reference/enforce.md)
-  for validation and safe type casting and recycling of variables.
-- [`schema()`](https://lj-jenkins.github.io/favr/reference/schema.md)
-  for the validation and safe type casting and recycling of named
-  elements of data.frames/lists.
-- [`enforce_schema()`](https://lj-jenkins.github.io/favr/reference/schema.md)
-  to re-evaluate a prior schema call that was attached to the
-  data.frame/list.
-- [`add_to_schema()`](https://lj-jenkins.github.io/favr/reference/schema.md)
-  add arguments to an existing attached schema and re-evaluate.
+  [`abortif()`](https://lj-jenkins.github.io/favr/reference/abortifnot.md)
+  for general validation.
+- [`check()`](https://lj-jenkins.github.io/favr/reference/check.md) for
+  general validation using tidy evaluation.
+- [`check_with()`](https://lj-jenkins.github.io/favr/reference/check.md)
+  for
+  [data-masked](https://rlang.r-lib.org/reference/topic-data-mask.html)
+  validation using tidy evaluation.
+- [`walk_check()`](https://lj-jenkins.github.io/favr/reference/walk-check.md)
+  for applying a check to each element of a vector.
 
-favr also provides simple wrappers for many
-[rlang](https://rlang.r-lib.org/index.html) predicates that enable them
-to accept multiple arguments. In nearly all cases, these are
-differentiated by replacing the `is_*` prefix with `are_*`.
+Numerous other `check_*()` functions are provided for specific types of
+validation, including:
 
-Any predicate function/expression that returns a `logical`, or raises an
-error, will work with favr validations. Named logicals will show which
-named element/s gave `FALSE` or `NA`:
+Validate class and inheritance:
 
-``` r
-library(favr, warn.conflicts = FALSE)
+- [`check_class()`](https://lj-jenkins.github.io/favr/reference/inheritance-checks.md)
+  and
+  [`check_inherits()`](https://lj-jenkins.github.io/favr/reference/inheritance-checks.md).
 
-x <- c(1L, 2L)
-y <- data.frame(x = "hi")
-z <- list(1)
+Validate specific types:
 
-abort_if_not(
-  "{.var x} is not scalar integerish, given: {x}." = rlang::is_scalar_integerish(x)
-)
-#> Error:
-#> Caused by error in `abort_if_not()`.
-#> ℹ In argument: `rlang::is_scalar_integerish(x)`.
-#> ! `x` is not scalar integerish, given: 1 and 2.
+- [`check_integer()`](https://lj-jenkins.github.io/favr/reference/type-checks.md),
+  [`check_character()`](https://lj-jenkins.github.io/favr/reference/type-checks.md),
+  [`check_null()`](https://lj-jenkins.github.io/favr/reference/type-checks.md),
+  etc.
+- [`check_scalar_integer()`](https://lj-jenkins.github.io/favr/reference/scalar-type-checks.md),
+  [`check_scalar_character()`](https://lj-jenkins.github.io/favr/reference/scalar-type-checks.md),
+  [`check_scalar_logical()`](https://lj-jenkins.github.io/favr/reference/scalar-type-checks.md),
+  etc.
+- [`check_array()`](https://lj-jenkins.github.io/favr/reference/array-type-checks.md)
+  and
+  [`check_matrix()`](https://lj-jenkins.github.io/favr/reference/array-type-checks.md)
+  for the ‘implicit’ types of array and matrix, respectively.
 
-schema(y, x + 1 > 2)
-#> Error:
-#> Caused by error in `schema()`.
-#> ℹ In argument: `x + 1 > 2`.
-#> ! Non-numeric argument to binary operator.
+Validate specific S3 types:
 
-abort_if_not(are_list(z, x))
-#> Error:
-#> Caused by error in `abort_if_not()`.
-#> ℹ In argument: `are_list(z, x)`.
-#> ! Returned `FALSE`.
-#> ✖ `x` is `FALSE`.
-```
+- [`check_factor()`](https://lj-jenkins.github.io/favr/reference/s3-type-checks.md),
+  [`check_date()`](https://lj-jenkins.github.io/favr/reference/s3-type-checks.md),
+  [`check_posixct()`](https://lj-jenkins.github.io/favr/reference/s3-type-checks.md),
+  etc.
+- `check_data.frame()`,
+  [`check_tibble()`](https://lj-jenkins.github.io/favr/reference/s3-type-checks.md),
+  `check_data.table()`, etc.
+- [`check_vctr()`](https://lj-jenkins.github.io/favr/reference/s3-type-checks.md)
+  and
+  [`check_list_of()`](https://lj-jenkins.github.io/favr/reference/s3-type-checks.md)
+  for their respective [vctrs](https://vctrs.r-lib.org) classes.
+- [`s3_vec_check()`](https://lj-jenkins.github.io/favr/reference/s3-check-builders.md)
+  and
+  [`s3_df_check()`](https://lj-jenkins.github.io/favr/reference/s3-check-builders.md)
+  for developers to create their own S3 type checks.
+
+Modify the behaviour of type-checking functions:
+
+- [`bare()`](https://lj-jenkins.github.io/favr/reference/modifiers.md)
+  to also check for bare objects (i.e. objects with no class attribute)
+  in the type check functions, or bare S3 objects (where the expected S3
+  class is first in the class attribute vector) in the S3 type check
+  functions.
+- [`at_least()`](https://lj-jenkins.github.io/favr/reference/modifiers.md),
+  [`at_most()`](https://lj-jenkins.github.io/favr/reference/modifiers.md),
+  and
+  [`in_range()`](https://lj-jenkins.github.io/favr/reference/modifiers.md)
+  to also check for ranges in length/number of rows/number of columns.
+
+Validate specific scalar values:
+
+- [`check_true()`](https://lj-jenkins.github.io/favr/reference/scalar-value-checks.md),
+  [`check_false()`](https://lj-jenkins.github.io/favr/reference/scalar-value-checks.md),
+  [`check_bool()`](https://lj-jenkins.github.io/favr/reference/scalar-value-checks.md)
+  and
+  [`check_string()`](https://lj-jenkins.github.io/favr/reference/scalar-value-checks.md).
+
+Validate the lack of forbidden values:
+
+- [`check_no_na()`](https://lj-jenkins.github.io/favr/reference/forbidden-value-checks.md),
+  [`check_finite()`](https://lj-jenkins.github.io/favr/reference/forbidden-value-checks.md),
+  and
+  [`check_nzchar()`](https://lj-jenkins.github.io/favr/reference/forbidden-value-checks.md).
+
+Validate file and directory existence:
+
+- [`check_dir()`](https://lj-jenkins.github.io/favr/reference/path-checks.md),
+  [`check_file()`](https://lj-jenkins.github.io/favr/reference/path-checks.md)
+  and
+  [`check_ext()`](https://lj-jenkins.github.io/favr/reference/path-checks.md).
 
 ## Installation
 
+Install the latest version of favr from CRAN.
+
 ``` r
-# Install the latest version of favr from CRAN.
 
 install.packages("favr")
+```
 
-# Or install the development version of favr from GitHub.
+### Development Version
+
+To get a bug fix or to use a feature from the development version, you
+can install the development version of favr from GitHub.
+
+``` r
 
 # install.packages("pak")
 pak::pak("LJ-Jenkins/favr")
@@ -76,250 +117,248 @@ pak::pak("LJ-Jenkins/favr")
 
 ## Usage
 
-`abort_if_not` can be used for all validations:
+General validation:
 
 ``` r
-f <- \(x, y) {
-  abort_if_not(
-    is.character(x),
-    "`{x}` is too short!" = nchar(x) > 5,
-    y$x == 1
+
+library(favr, warn.conflicts = FALSE)
+
+x <- c(1, 2, 3)
+y <- c("a", "b", "c")
+
+abortifnot(x < 4, nchar(y) > 1)
+#> Error:
+#> ! `nchar(y) > 1` is not TRUE.
+
+abortifnot(
+  "{.var x} must be length {.val {5}}, but is length {.val {length(x)}}." = length(x) == 5,
+  is.character(y)
+)
+#> Error:
+#> ! `x` must be length 5, but is length 3.
+
+abortifnot(
+  is.numeric(x),
+  is.numeric(y),
+  message = "{.var x} and {.var y} must be {.cls character}."
+)
+#> Error:
+#> ! `x` and `y` must be <character>.
+```
+
+General validation with tidy evaluation:
+
+``` r
+
+inject_msg <- "{.var x} must contain negative values."
+
+check(is.character(y), {{ inject_msg }} := x < 0)
+#> Error:
+#> ! `x` must contain negative values.
+check(is.character(y), !!inject_msg := x < 0)
+#> Error:
+#> ! `x` must contain negative values.
+
+inject_args <- list("{.var y} must all have 2 nchars." = nchar(y) == 2)
+
+check(is.numeric(x), !!!inject_args)
+#> Error:
+#> ! `y` must all have 2 nchars.
+```
+
+Data-masked validation:
+
+``` r
+
+data <- data.frame(a = 1:3, b = c("a", "b", "c"))
+
+# `check_with()` user-supplied messages are eval'd in the data mask context.
+check_with(data,
+  "{.var a} must be length {.val 5}, but is length {.val {length(a)}}." = length(a) == 5,
+  "{.var b} must all have 2 nchars." = nchar(b) == 2
+)
+#> Error:
+#> ! `a` must be length "5", but is length 3.
+
+a <- c("a", "b", "c")
+
+check_with(data, is.numeric(.data$a), is.numeric(.env$a))
+#> Error:
+#> ! `is.numeric(.env$a)` is not TRUE.
+```
+
+Walking a check over a vector:
+
+``` r
+
+x <- list(1, 2, my_el = "3", 4)
+walk_check(x, is.numeric)
+#> Error:
+#> ! Check result for `.x[['my_el']]` (index: 3) is not TRUE.
+```
+
+Specific type validation:
+
+``` r
+
+x <- c(1, 2, 3)
+check_integer(x)
+#> Error:
+#> ! `x` must be an <integer> vector, not a <double> vector.
+check_scalar_double(x)
+#> Error:
+#> ! `x` must be a scalar <double>, but it is of length 3.
+
+df <- data.frame(x = 1:3, y = 1:3)
+check_tibble(df)
+#> Error:
+#> ! `df` must inherit from <tbl_df>, but is class <data.frame>.
+
+# the `bare()` modifier can be used to ensure bare objects.
+check_integer(factor(1))
+check_integer(bare(factor(1)))
+#> Error:
+#> ! `factor(1)` must be a bare <integer>, but it is of class <factor>.
+
+class(df) <- c("my_class", "tbl_df", "tbl", class(df))
+check_tibble(df)
+check_tibble(bare(df))
+#> Error:
+#> ! `df` must be a bare <tbl_df>, but it is of class <my_class>.
+
+# length modifiers can be used on `n` to specify length ranges.
+check_double(x, n = 2)
+#> Error:
+#> ! `x` must be a <double> vector of length 2, not 3.
+check_double(x, n = at_least(4))
+#> Error:
+#> ! `x` must be a <double> vector of at least length 4, but it is of
+#>   length 3.
+check_double(x, n = at_most(2))
+#> Error:
+#> ! `x` must be a <double> vector of at most length 2, but it is of length
+#>   3.
+check_double(x, n = in_range(1, 2))
+#> Error:
+#> ! `x` must be a <double> vector of a length between 1 and 2, but it is
+#>   of length 3.
+
+check_tibble(df, nrow = 2)
+#> Error:
+#> ! `df` must be a <tbl_df> with 2 rows, not 3.
+check_tibble(df, ncol = at_least(3))
+#> Error:
+#> ! `df` must be a <tbl_df> with at least 3 columns, but it has 2.
+check_tibble(df, nrow = at_most(2))
+#> Error:
+#> ! `df` must be a <tbl_df> with at most 2 rows, but it has 3.
+check_tibble(df, ncol = in_range(3, 5))
+#> Error:
+#> ! `df` must be a <tbl_df> with 3 to 5 columns, but it has 2.
+```
+
+Ensure no forbidden values:
+
+``` r
+
+x <- c(1, 2, NA)
+check_no_na(x)
+#> Error:
+#> ! `x` must not contain NA values.
+check_finite(x)
+#> Error:
+#> ! `x` must not contain non-finite values.
+
+x <- c("a", "b", "")
+check_nzchar(x)
+#> Error:
+#> ! `x` must not contain empty strings.
+x <- c("a", "b", " ")
+check_nzchar(x, allow_all_ws = FALSE)
+#> Error:
+#> ! `x` must not contain all whitespace elements.
+```
+
+File/dir existence validation:
+
+``` r
+
+check_dir("non_existing_dir")
+#> Error:
+#> ! `x` must be an existing directory, but it doesn't exist.
+#> ℹ Path provided: 'non_existing_dir'.
+check_file("non_existing_file")
+#> Error:
+#> ! `x` must be an existing file, but it doesn't exist.
+#> ℹ Path provided: 'non_existing_file'.
+check_ext("file.txt", ext = c(".csv", ".xlsx"))
+#> Error:
+#> ! `"file.txt"` must have extension ".csv" or ".xlsx".
+check_file("file.txt", ext = c(".csv", ".xlsx"))
+#> Error:
+#> ! `"file.txt"` must have extension ".csv" or ".xlsx".
+```
+
+Build your own S3 type checks:
+
+``` r
+
+check_my_class <- function(
+  x,
+  n = NULL,
+  ...,
+  allow_null = FALSE,
+  arg = rlang::caller_arg(x),
+  call = rlang::caller_env()
+) {
+  s3_vec_check(
+    x,
+    n,
+    type = "my_class",
+    type_msg = "a {.cls my_class} vector",
+    ...,
+    allow_null = allow_null,
+    arg = arg,
+    call = call
   )
 }
 
-f(1L, list(x = 1))
-#> Error in `f()`:
-#> Caused by error in `abort_if_not()`.
-#> ℹ In argument: `is.character(x)`.
-#> ! Returned `FALSE`.
-
-f("hi", list(x = 1))
-#> Error in `f()`:
-#> Caused by error in `abort_if_not()`.
-#> ℹ In argument: `nchar(x) > 5`.
-#> ! `hi` is too short!
-```
-
-`cast_if_not` and `recycle_if_not` provide safe casting and recycling
-from [vctrs](https://vctrs.r-lib.org/). Variables are given on the left
-hand side (name of the argument) and the expected type/size is given on
-the right (input). Assignment is automatically done back into the
-environment specified (default is the
-[caller_env()](https://rlang.r-lib.org/reference/stack.html)):
-
-``` r
-x <- 5L
-y <- 1
-
-cast_if_not(x = double())
-recycle_if_not(y = x)
-
-class(x)
-#> [1] "numeric"
-length(y)
-#> [1] 5
-
-x <- 1.5
-
-cast_if_not(x = lossy(integer()))
-
-class(x)
-#> [1] "integer"
-
-x <- "hi"
-
-cast_if_not(x = integer())
+check_my_class(1L)
 #> Error:
-#> Caused by error in `cast_if_not()`.
-#> ℹ In argument: `x = integer()`.
-#> ! Can't convert `x` <character> to <integer>.
-```
+#> ! `1L` must inherit from <my_class>, but is class <integer>.
 
-`enforce` allows both validations, casting and recycling using the
-keyword functions of `cast`, `recycle` and `coerce`. [rlang
-formulas](https://rlang.r-lib.org/reference/is_formula.html) need to be
-used for casting/recycling, and [`c()`](https://rdrr.io/r/base/c.html)
-can be used in formulas to pass multiple objects to validations/calls.
-Multiple validations/calls can be given on the rhs of a formula when
-wrapped in [`list()`](https://rdrr.io/r/base/list.html). Assignment
-occurs back into the environment specified (default is the
-[caller_env()](https://rlang.r-lib.org/reference/stack.html)).
+x <- structure(1:3, class = "my_class")
+check_my_class(x)
 
-``` r
-li <- list(x = 1.5)
-y <- 1.5
+check_my_class(NULL, allow_null = TRUE)
 
-enforce(
-  "{.var li} problem" = li ~ list(
-    \(.x) names(.x) == "x",
-    coerce(type = list(x = integer()), size = 3, lossy = TRUE),
-    "list element not 1?" = ~ length(.x$x) == 1,
-    "list itself now length 3" = ~ length(.x) == 3
-  ),
-  "{.var y} below zero" = y > 0,
-  y ~ recycle(10)
-)
-
-class(li$x)
-#> [1] "numeric"
-length(li)
-#> [1] 3
-length(y)
-#> [1] 10
-
-#-- vctrs type/size rules are for all `cast`, `recycle` and `coerce` calls within favr functions
-
-df <- data.frame(x = 1L, y = "hi")
-
-enforce(df ~ cast(data.frame(x = integer(), y = double())))
+class(x) <- c("another_class", class(x))
+check_my_class(bare(x))
 #> Error:
-#> Caused by error in `enforce()`.
-#> ℹ In argument: `df ~ cast(data.frame(x = integer(), y = double()))`.
-#> ! Can't convert `df$y` <character> to match type of `y` <double>.
+#> ! `x` must be a bare <my_class>, but it is of class <another_class>.
 
-x <- 1
-y <- 1:5
-
-enforce(c(x, y) ~ list(~ .x > 0, recycle(10)))
+check_my_class(x, n = at_most(2))
 #> Error:
-#> Caused by error in `enforce()`.
-#> ℹ In argument: `c(x, y) ~ list(... recycle(10) ...)`.
-#> ! Can't recycle `y` (size 5) to size 10.
-```
-
-`schema` provide the same functionality for data-masked arguments from
-data.frames/lists. The size of the data.frame/list and whether certain
-names are present can also be checked using the `.names` and `.size`
-arguments. The altered data-mask object is returned with an attached
-class `with_schema` which is used by
-[`add_to_schema()`](https://lj-jenkins.github.io/favr/reference/schema.md)
-and
-[`enforce_schema()`](https://lj-jenkins.github.io/favr/reference/schema.md)
-to edit and/or re-evaluate the original schema call. [Tidyselect
-syntax](https://tidyselect.r-lib.org/reference/language.html) can be
-used on the lhs of formulas.
-
-``` r
-data.frame(x = 2) |>
-  schema(x == 1)
+#> ! `x` must be a <my_class> vector of at most length 2, but it is of
+#>   length 3.
+check_my_class(x, n = in_range(1, 2))
 #> Error:
-#> Caused by error in `schema()`.
-#> ℹ In argument: `x == 1`.
-#> ! Returned `FALSE`.
-
-data.frame(x = 1L) |>
-  schema(x ~ cast(double())) |>
-  (\(.) class(.$x))()
-#> [1] "numeric"
-
-# recycling is only implemented for lists.
-list(x = 1, y = 1, z = 1) |>
-  schema(
-    x ~ recycle(3),
-    y ~ recycle(5),
-    z ~ recycle(vctrs::vec_size(x))
-  ) |>
-  lengths()
-#> x y z 
-#> 3 5 3
-
-# enforce_schema reapplies the original call.
-li <- list(x = 1, y = "hi")
-li_with_schema <- schema(li, x == 1, is.character(y))
-li_with_schema$y <- 1
-
-enforce_schema(li_with_schema)
-#> Error:
-#> Caused by error in `enforce_schema()`.
-#> ℹ In argument: `is.character(y)`.
-#> ! Returned `FALSE`.
-
-df <- data.frame(x = 1:2, xx = 3:4)
-df_with_schema <- schema(df, starts_with("x") ~ cast(integer(), lossy = TRUE))
-df_with_schema$x <- c(1.5, 2.5)
-
-enforce_schema(df_with_schema)$x
-#> [1] 1 2
-
-li_with_schema <- schema(li, c(x, y) ~ recycle(3))
-li_with_schema$y <- "hi"
-
-enforce_schema(li_with_schema)$y
-#> [1] "hi" "hi" "hi"
-
-# add_to_schema adds to an existing schema and then re-evaluates.
-li_with_schema <- li_with_schema |>
-  add_to_schema(.names = c("x", "y"), .size = 2)
-
-li_with_schema <- li_with_schema |>
-  add_to_schema(y ~ \(.x) nchar(.x) > 2)
-#> Error:
-#> Caused by error in `add_to_schema()`.
-#> ℹ For named element: `y`.
-#> ℹ In argument: `y ~ function(.x) nchar(.x) > 2`.
-#> ! Returned `FALSE`.
-```
-
-Many wrappers of [rlang](https://rlang.r-lib.org) predicates are given
-so that multiple inputs can be passed. Optional argument inputs can be
-flexibly applied to all or some inputs by using unnamed or named
-vectors/lists.
-
-``` r
-x <- list()
-y <- list(1, 2)
-
-are_list(x, y, list())
-#>      x      y list() 
-#>   TRUE   TRUE   TRUE
-
-are_list(x, y, list(), .all = TRUE)
-#> [1] TRUE
-
-# `.n` is passed to each input.
-are_list(x, y, list(), .n = 2)
-#>      x      y list() 
-#>  FALSE   TRUE  FALSE
-
-# `.n` is passed sequentially.
-are_list(x, y, list(), .n = c(0, 2, 0))
-#>      x      y list() 
-#>   TRUE   TRUE   TRUE
-
-# `.n` is only passed to `y`, other inputs are passed
-# the default (NULL).
-are_list(x, y, list(), .n = c(y = 5))
-#>      x      y list() 
-#>   TRUE  FALSE   TRUE
+#> ! `x` must be a <my_class> vector of a length between 1 and 2, but it is
+#>   of length 3.
 ```
 
 ### Notes
 
-favr functions that assign into environments (`cast_if_not`,
-`recycle_if_not`, and `enforce`) all do clean-up when errors occur:
+favr relies heavily on the imported packages
+[rlang](https://rlang.r-lib.org) and [cli](https://cli.r-lib.org/). For
+data validation using user-defined schemas, see
+[fluffy](https://lj-jenkins.github.io/fluffy/).
 
-``` r
-x <- 1L
-y <- 1L
-cast_if_not(x = double(), y = character()) |> try()
-#> Error in (function (...)  : Caused by error in `cast_if_not()`.
-#> ℹ In argument: `y = character()`.
-#> ! Can't convert `y` <integer> to <character>.
-cat("Code has errored but `x` has reverted back to:", class(x))
-#> Code has errored but `x` has reverted back to: integer
-```
+## Getting help
 
-favr was inspired by MATLAB’s arguments block and
-[schematic](https://whipson.github.io/schematic/). favr relies heavily
-on the imported packages [rlang](https://rlang.r-lib.org),
-[vctrs](https://vctrs.r-lib.org/), [cli](https://cli.r-lib.org/) and
-[tidyselect](https://tidyselect.r-lib.org/). All predicate functions in
-favr are simple wrappers around [rlang](https://rlang.r-lib.org)
-predicates, for which all credit goes to those authors. For function
-argument validation that focuses on performance, see
-[checkmate](https://mllg.github.io/checkmate/). An earlier, unreleased
-version of this package was called
-[restrictr](https://github.com/LJ-Jenkins/restrictr).
+If you encounter a clear bug, please file an issue with a minimal
+reproducible example on
+[GitHub](https://github.com/LJ-Jenkins/favr/issues).
 
 ## Code of Conduct
 

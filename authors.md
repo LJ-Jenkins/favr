@@ -10,13 +10,13 @@
 Source:
 [`DESCRIPTION`](https://github.com/LJ-Jenkins/favr/blob/main/DESCRIPTION)
 
-Jenkins L (2025). *favr: Function Argument Validation*. R package
-version 1.0.0.9000, <https://lj-jenkins.github.io/favr/>.
+Jenkins L (2026). *favr: Function Argument Validation*. R package
+version 2.0.0, <https://lj-jenkins.github.io/favr/>.
 
     @Manual{,
       title = {favr: Function Argument Validation},
       author = {Luke Jenkins},
-      year = {2025},
-      note = {R package version 1.0.0.9000},
+      year = {2026},
+      note = {R package version 2.0.0},
       url = {https://lj-jenkins.github.io/favr/},
     }

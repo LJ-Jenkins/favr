@@ -7,6 +7,7 @@
 <url><loc>https://lj-jenkins.github.io/favr/index.html</loc></url>
 <url><loc>https://lj-jenkins.github.io/favr/news/index.html</loc></url>
 <url><loc>https://lj-jenkins.github.io/favr/reference/abort_if_not.html</loc></url>
+<url><loc>https://lj-jenkins.github.io/favr/reference/abortifnot.html</loc></url>
 <url><loc>https://lj-jenkins.github.io/favr/reference/are-bare-type-predicates.html</loc></url>
 <url><loc>https://lj-jenkins.github.io/favr/reference/are-scalar-type-predicates.html</loc></url>
 <url><loc>https://lj-jenkins.github.io/favr/reference/are-type-predicates.html</loc></url>
@@ -14,11 +15,24 @@
 <url><loc>https://lj-jenkins.github.io/favr/reference/are_integerish.html</loc></url>
 <url><loc>https://lj-jenkins.github.io/favr/reference/are_named.html</loc></url>
 <url><loc>https://lj-jenkins.github.io/favr/reference/are_true.html</loc></url>
+<url><loc>https://lj-jenkins.github.io/favr/reference/array-type-checks.html</loc></url>
 <url><loc>https://lj-jenkins.github.io/favr/reference/cast_if_not.html</loc></url>
+<url><loc>https://lj-jenkins.github.io/favr/reference/check.html</loc></url>
 <url><loc>https://lj-jenkins.github.io/favr/reference/enforce.html</loc></url>
+<url><loc>https://lj-jenkins.github.io/favr/reference/favr-package.html</loc></url>
 <url><loc>https://lj-jenkins.github.io/favr/reference/favr_casting_recycling_helpers.html</loc></url>
+<url><loc>https://lj-jenkins.github.io/favr/reference/forbidden-value-checks.html</loc></url>
 <url><loc>https://lj-jenkins.github.io/favr/reference/index.html</loc></url>
+<url><loc>https://lj-jenkins.github.io/favr/reference/inheritance-checks.html</loc></url>
+<url><loc>https://lj-jenkins.github.io/favr/reference/modifiers.html</loc></url>
+<url><loc>https://lj-jenkins.github.io/favr/reference/path-checks.html</loc></url>
 <url><loc>https://lj-jenkins.github.io/favr/reference/recycle_if_not.html</loc></url>
+<url><loc>https://lj-jenkins.github.io/favr/reference/s3-check-builders.html</loc></url>
+<url><loc>https://lj-jenkins.github.io/favr/reference/s3-type-checks.html</loc></url>
+<url><loc>https://lj-jenkins.github.io/favr/reference/scalar-type-checks.html</loc></url>
+<url><loc>https://lj-jenkins.github.io/favr/reference/scalar-value-checks.html</loc></url>
 <url><loc>https://lj-jenkins.github.io/favr/reference/schema.html</loc></url>
+<url><loc>https://lj-jenkins.github.io/favr/reference/type-checks.html</loc></url>
+<url><loc>https://lj-jenkins.github.io/favr/reference/walk-check.html</loc></url>
 </urlset>
 

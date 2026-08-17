@@ -1,5 +1,10 @@
 # Type predicates
 
+**\[deprecated\]**
+
+These functions were deprecated as they offer little benefit over
+[`lapply()`](https://rdrr.io/r/base/lapply.html).
+
 Wrappers around
 [rlang](https://rlang.r-lib.org/reference/rlang-package.html) type
 predicates that allow multiple objects to be passed. The following

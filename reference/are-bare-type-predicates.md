@@ -1,5 +1,10 @@
 # Bare type predicates
 
+**\[deprecated\]**
+
+These functions were deprecated as they offer little benefit over
+[`lapply()`](https://rdrr.io/r/base/lapply.html).
+
 Wrappers around
 [rlang](https://rlang.r-lib.org/reference/rlang-package.html) type
 predicates that allow multiple objects to be passed. The following
@@ -93,6 +98,8 @@ class(y) <- c("my_class", class(y))
 z <- mean
 
 are_bare_list(x, y, z, list(1))
+#> Warning: `are_bare_list()` was deprecated in favr 1.1.0.
+#> ℹ Please use `lapply()` with an anonmous function instead.
 #>       x       y       z list(1) 
 #>   FALSE   FALSE   FALSE    TRUE 
 

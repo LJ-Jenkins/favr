@@ -1,93 +1,100 @@
 # Package index
 
-## Function Argument Validation
+## General validation
 
-Tools for validation and safe casting and recycling.
+Tools for general validation depending on input.
 
-- [`abort_if_not()`](https://lj-jenkins.github.io/favr/reference/abort_if_not.md)
-  [`abort_if()`](https://lj-jenkins.github.io/favr/reference/abort_if_not.md)
+- [`abortifnot()`](https://lj-jenkins.github.io/favr/reference/abortifnot.md)
+  [`abortif()`](https://lj-jenkins.github.io/favr/reference/abortifnot.md)
   : Ensure the truth of R expressions
-- [`cast_if_not()`](https://lj-jenkins.github.io/favr/reference/cast_if_not.md)
-  : Cast objects to a given type
-- [`recycle_if_not()`](https://lj-jenkins.github.io/favr/reference/recycle_if_not.md)
-  : Recycle objects to a given size
-- [`enforce()`](https://lj-jenkins.github.io/favr/reference/enforce.md)
-  : Ensure the truth of R expressions and cast/recycle objects.
-- [`schema()`](https://lj-jenkins.github.io/favr/reference/schema.md)
-  [`enforce_schema()`](https://lj-jenkins.github.io/favr/reference/schema.md)
-  [`add_to_schema()`](https://lj-jenkins.github.io/favr/reference/schema.md)
-  : Ensure the truth of data-masked R expressions and cast/recycle named
-  elements.
+- [`check()`](https://lj-jenkins.github.io/favr/reference/check.md)
+  [`check_with()`](https://lj-jenkins.github.io/favr/reference/check.md)
+  : Check the truth of tidy evaluated expressions
+- [`walk_check()`](https://lj-jenkins.github.io/favr/reference/walk-check.md)
+  : Apply a predicate check to each element of a vector
+- [`check_inherits()`](https://lj-jenkins.github.io/favr/reference/inheritance-checks.md)
+  [`check_class()`](https://lj-jenkins.github.io/favr/reference/inheritance-checks.md)
+  : Check class inheritance of an object
 
-## rlang predicate wrappers
+## Specific validation
 
-Wrappers around rlang predicates that enable multiple inputs.
+Strongly typed validation.
 
-### Attributes
+### Types
 
-- [`are_named()`](https://lj-jenkins.github.io/favr/reference/are_named.md)
-  [`are_named2()`](https://lj-jenkins.github.io/favr/reference/are_named.md)
-  [`have_names()`](https://lj-jenkins.github.io/favr/reference/are_named.md)
-  : Are objects named?
+- [`check_list()`](https://lj-jenkins.github.io/favr/reference/type-checks.md)
+  [`check_atomic()`](https://lj-jenkins.github.io/favr/reference/type-checks.md)
+  [`check_vector()`](https://lj-jenkins.github.io/favr/reference/type-checks.md)
+  [`check_integer()`](https://lj-jenkins.github.io/favr/reference/type-checks.md)
+  [`check_double()`](https://lj-jenkins.github.io/favr/reference/type-checks.md)
+  [`check_complex()`](https://lj-jenkins.github.io/favr/reference/type-checks.md)
+  [`check_character()`](https://lj-jenkins.github.io/favr/reference/type-checks.md)
+  [`check_logical()`](https://lj-jenkins.github.io/favr/reference/type-checks.md)
+  [`check_raw()`](https://lj-jenkins.github.io/favr/reference/type-checks.md)
+  [`check_bytes()`](https://lj-jenkins.github.io/favr/reference/type-checks.md)
+  [`check_null()`](https://lj-jenkins.github.io/favr/reference/type-checks.md)
+  [`check_numeric()`](https://lj-jenkins.github.io/favr/reference/type-checks.md)
+  : Type checks
+- [`check_array()`](https://lj-jenkins.github.io/favr/reference/array-type-checks.md)
+  [`check_matrix()`](https://lj-jenkins.github.io/favr/reference/array-type-checks.md)
+  [`check_table()`](https://lj-jenkins.github.io/favr/reference/array-type-checks.md)
+  : Array type checks
+- [`check_date()`](https://lj-jenkins.github.io/favr/reference/s3-type-checks.md)
+  [`check_posixct()`](https://lj-jenkins.github.io/favr/reference/s3-type-checks.md)
+  [`check_posixlt()`](https://lj-jenkins.github.io/favr/reference/s3-type-checks.md)
+  [`check_factor()`](https://lj-jenkins.github.io/favr/reference/s3-type-checks.md)
+  [`check_ordered()`](https://lj-jenkins.github.io/favr/reference/s3-type-checks.md)
+  [`check_vctr()`](https://lj-jenkins.github.io/favr/reference/s3-type-checks.md)
+  [`check_list_of()`](https://lj-jenkins.github.io/favr/reference/s3-type-checks.md)
+  [`check_data_frame()`](https://lj-jenkins.github.io/favr/reference/s3-type-checks.md)
+  [`check_tibble()`](https://lj-jenkins.github.io/favr/reference/s3-type-checks.md)
+  [`check_data_table()`](https://lj-jenkins.github.io/favr/reference/s3-type-checks.md)
+  [`check_tidytable()`](https://lj-jenkins.github.io/favr/reference/s3-type-checks.md)
+  : S3 type checks
+- [`check_scalar_list()`](https://lj-jenkins.github.io/favr/reference/scalar-type-checks.md)
+  [`check_scalar_atomic()`](https://lj-jenkins.github.io/favr/reference/scalar-type-checks.md)
+  [`check_scalar_vector()`](https://lj-jenkins.github.io/favr/reference/scalar-type-checks.md)
+  [`check_scalar_integer()`](https://lj-jenkins.github.io/favr/reference/scalar-type-checks.md)
+  [`check_scalar_double()`](https://lj-jenkins.github.io/favr/reference/scalar-type-checks.md)
+  [`check_scalar_complex()`](https://lj-jenkins.github.io/favr/reference/scalar-type-checks.md)
+  [`check_scalar_character()`](https://lj-jenkins.github.io/favr/reference/scalar-type-checks.md)
+  [`check_scalar_logical()`](https://lj-jenkins.github.io/favr/reference/scalar-type-checks.md)
+  [`check_scalar_raw()`](https://lj-jenkins.github.io/favr/reference/scalar-type-checks.md)
+  [`check_scalar_bytes()`](https://lj-jenkins.github.io/favr/reference/scalar-type-checks.md)
+  [`check_scalar_numeric()`](https://lj-jenkins.github.io/favr/reference/scalar-type-checks.md)
+  : Scalar type checks
 
-### Type predicates
+### Values
 
-- [`are_list()`](https://lj-jenkins.github.io/favr/reference/are-type-predicates.md)
-  [`are_atomic()`](https://lj-jenkins.github.io/favr/reference/are-type-predicates.md)
-  [`are_vector()`](https://lj-jenkins.github.io/favr/reference/are-type-predicates.md)
-  [`are_integer()`](https://lj-jenkins.github.io/favr/reference/are-type-predicates.md)
-  [`are_double()`](https://lj-jenkins.github.io/favr/reference/are-type-predicates.md)
-  [`are_complex()`](https://lj-jenkins.github.io/favr/reference/are-type-predicates.md)
-  [`are_character()`](https://lj-jenkins.github.io/favr/reference/are-type-predicates.md)
-  [`are_logical()`](https://lj-jenkins.github.io/favr/reference/are-type-predicates.md)
-  [`are_raw()`](https://lj-jenkins.github.io/favr/reference/are-type-predicates.md)
-  [`are_bytes()`](https://lj-jenkins.github.io/favr/reference/are-type-predicates.md)
-  [`are_null()`](https://lj-jenkins.github.io/favr/reference/are-type-predicates.md)
-  : Type predicates
+- [`check_true()`](https://lj-jenkins.github.io/favr/reference/scalar-value-checks.md)
+  [`check_false()`](https://lj-jenkins.github.io/favr/reference/scalar-value-checks.md)
+  [`check_bool()`](https://lj-jenkins.github.io/favr/reference/scalar-value-checks.md)
+  [`check_string()`](https://lj-jenkins.github.io/favr/reference/scalar-value-checks.md)
+  : Scalar value checks
+- [`check_no_na()`](https://lj-jenkins.github.io/favr/reference/forbidden-value-checks.md)
+  [`check_finite()`](https://lj-jenkins.github.io/favr/reference/forbidden-value-checks.md)
+  [`check_nzchar()`](https://lj-jenkins.github.io/favr/reference/forbidden-value-checks.md)
+  : Forbidden value checks
 
-### Scalar type predicates
+### Modifiers
 
-- [`are_scalar_list()`](https://lj-jenkins.github.io/favr/reference/are-scalar-type-predicates.md)
-  [`are_scalar_atomic()`](https://lj-jenkins.github.io/favr/reference/are-scalar-type-predicates.md)
-  [`are_scalar_vector()`](https://lj-jenkins.github.io/favr/reference/are-scalar-type-predicates.md)
-  [`are_scalar_integer()`](https://lj-jenkins.github.io/favr/reference/are-scalar-type-predicates.md)
-  [`are_scalar_double()`](https://lj-jenkins.github.io/favr/reference/are-scalar-type-predicates.md)
-  [`are_scalar_complex()`](https://lj-jenkins.github.io/favr/reference/are-scalar-type-predicates.md)
-  [`are_scalar_character()`](https://lj-jenkins.github.io/favr/reference/are-scalar-type-predicates.md)
-  [`are_string()`](https://lj-jenkins.github.io/favr/reference/are-scalar-type-predicates.md)
-  [`are_scalar_logical()`](https://lj-jenkins.github.io/favr/reference/are-scalar-type-predicates.md)
-  [`are_bool()`](https://lj-jenkins.github.io/favr/reference/are-scalar-type-predicates.md)
-  [`are_scalar_raw()`](https://lj-jenkins.github.io/favr/reference/are-scalar-type-predicates.md)
-  [`are_scalar_bytes()`](https://lj-jenkins.github.io/favr/reference/are-scalar-type-predicates.md)
-  : Scalar type predicates
+- [`bare()`](https://lj-jenkins.github.io/favr/reference/modifiers.md)
+  [`at_least()`](https://lj-jenkins.github.io/favr/reference/modifiers.md)
+  [`at_most()`](https://lj-jenkins.github.io/favr/reference/modifiers.md)
+  [`in_range()`](https://lj-jenkins.github.io/favr/reference/modifiers.md)
+  : Modify the behaviour of type checking functions
 
-### Bare type predicates
+### File system
 
-- [`are_bare_list()`](https://lj-jenkins.github.io/favr/reference/are-bare-type-predicates.md)
-  [`are_bare_atomic()`](https://lj-jenkins.github.io/favr/reference/are-bare-type-predicates.md)
-  [`are_bare_vector()`](https://lj-jenkins.github.io/favr/reference/are-bare-type-predicates.md)
-  [`are_bare_integer()`](https://lj-jenkins.github.io/favr/reference/are-bare-type-predicates.md)
-  [`are_bare_double()`](https://lj-jenkins.github.io/favr/reference/are-bare-type-predicates.md)
-  [`are_bare_complex()`](https://lj-jenkins.github.io/favr/reference/are-bare-type-predicates.md)
-  [`are_bare_character()`](https://lj-jenkins.github.io/favr/reference/are-bare-type-predicates.md)
-  [`are_bare_string()`](https://lj-jenkins.github.io/favr/reference/are-bare-type-predicates.md)
-  [`are_bare_logical()`](https://lj-jenkins.github.io/favr/reference/are-bare-type-predicates.md)
-  [`are_bare_raw()`](https://lj-jenkins.github.io/favr/reference/are-bare-type-predicates.md)
-  [`are_bare_bytes()`](https://lj-jenkins.github.io/favr/reference/are-bare-type-predicates.md)
-  [`are_bare_numeric()`](https://lj-jenkins.github.io/favr/reference/are-bare-type-predicates.md)
-  : Bare type predicates
+- [`check_dir()`](https://lj-jenkins.github.io/favr/reference/path-checks.md)
+  [`check_file()`](https://lj-jenkins.github.io/favr/reference/path-checks.md)
+  [`check_ext()`](https://lj-jenkins.github.io/favr/reference/path-checks.md)
+  : File and directory existence checks
 
-### Integerish predicates
+## Check builders
 
-- [`are_integerish()`](https://lj-jenkins.github.io/favr/reference/are_integerish.md)
-  [`are_scalar_integerish()`](https://lj-jenkins.github.io/favr/reference/are_integerish.md)
-  [`are_bare_integerish()`](https://lj-jenkins.github.io/favr/reference/are_integerish.md)
-  : Are vectors integer-like?
+Tools to build checks in the style of favr.
 
-### Utility predicates
-
-- [`are_empty()`](https://lj-jenkins.github.io/favr/reference/are_empty.md)
-  : Are objects empty vectors or NULL?
-- [`are_true()`](https://lj-jenkins.github.io/favr/reference/are_true.md)
-  [`are_false()`](https://lj-jenkins.github.io/favr/reference/are_true.md)
-  : Are objects TRUE or FALSE?
+- [`s3_vec_check()`](https://lj-jenkins.github.io/favr/reference/s3-check-builders.md)
+  [`s3_df_check()`](https://lj-jenkins.github.io/favr/reference/s3-check-builders.md)
+  : S3 check builders

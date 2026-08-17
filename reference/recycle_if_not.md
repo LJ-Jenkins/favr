@@ -1,5 +1,10 @@
 # Recycle objects to a given size
 
+**\[deprecated\]**
+
+This function was deprecated as there is rarely a need to use it over
+[`vctrs::vec_recycle()`](https://vctrs.r-lib.org/reference/vec_recycle.html).
+
 The names of the `...` expressions, which should be variables within the
 `.env` envrionment, are attempted to be recycled to the size specified
 in the expression: e.g.,
@@ -55,6 +60,8 @@ data-masked and data-masked validations, recycling and casting.
 
 x <- 1
 recycle_if_not(x = 5)
+#> Warning: `recycle_if_not()` was deprecated in favr 1.1.0.
+#> ℹ Please use `vctrs::vec_recycle()` instead.
 length(x) # 5
 #> [1] 5
 
