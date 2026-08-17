@@ -1,7 +1,7 @@
 
 <!-- README.md is generated from README.Rmd. Please edit that file -->
 
-# favr <img id="logo" src="man/figures/logo.png" align="right" height="250" />
+# favr <img id="logo" src="man/figures/logo.png" align="right" height="250" style="float:right; height:250px" />
 
 <!-- badges: start -->
 

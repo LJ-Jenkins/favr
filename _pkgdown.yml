@@ -4,77 +4,88 @@ template:
 
 reference:
 
-- title: Function Argument Validation
+- title: General validation
   desc: >
-    Tools for validation and safe casting and recycling.
+    Tools for general validation depending on input.
   contents:
-  - abort_if_not
-  - cast_if_not
-  - recycle_if_not
-  - enforce
-  - schema
+  - abortifnot
+  - abortif
+  - check
+  - check_with
+  - walk_check
+  - check_inherits
+  - check_class
 
-- title: rlang predicate wrappers
+- title: Specific validation
   desc: >
-    Wrappers around rlang predicates that enable multiple inputs.
+    Strongly typed validation.
 
-- subtitle: Attributes
+- subtitle: Types
   contents:
-  - are_named
-  - have_names
+  - check_list
+  - check_atomic
+  - check_vector
+  - check_integer
+  - check_double
+  - check_numeric
+  - check_character
+  - check_logical
+  - check_complex
+  - check_raw
+  - check_bytes
+  - check_null
+  - check_array
+  - check_matrix
+  - check_table
+  - check_factor
+  - check_ordered
+  - check_date
+  - check_posixct
+  - check_posixlt
+  - check_data_frame
+  - check_tibble
+  - check_data_table
+  - check_tidytable
+  - check_vctr
+  - check_list_of
+  - check_scalar_list
+  - check_scalar_atomic
+  - check_scalar_vector
+  - check_scalar_integer
+  - check_scalar_double
+  - check_scalar_numeric
+  - check_scalar_character
+  - check_scalar_logical
+  - check_scalar_complex
+  - check_scalar_raw
+  - check_scalar_bytes
 
-- subtitle: Type predicates
+- subtitle: Values
   contents:
-  - are_list
-  - are_atomic
-  - are_vector
-  - are_integer
-  - are_double
-  - are_complex
-  - are_character
-  - are_logical
-  - are_raw
-  - are_bytes
-  - are_null
+  - check_true
+  - check_false
+  - check_bool
+  - check_string
+  - check_no_na
+  - check_finite
+  - check_nzchar
 
-- subtitle: Scalar type predicates
+- subtitle: Modifiers
   contents:
-  - are_scalar_list
-  - are_scalar_atomic
-  - are_scalar_vector
-  - are_scalar_integer
-  - are_scalar_double
-  - are_scalar_complex
-  - are_scalar_character
-  - are_string
-  - are_scalar_logical
-  - are_bool
-  - are_scalar_raw
-  - are_scalar_bytes
+  - bare
+  - at_least
+  - at_most
+  - in_range
 
-- subtitle: Bare type predicates
+- subtitle: File system
   contents:
-  - are_bare_list
-  - are_bare_atomic
-  - are_bare_vector
-  - are_bare_integer
-  - are_bare_double
-  - are_bare_complex
-  - are_bare_character
-  - are_bare_string
-  - are_bare_logical
-  - are_bare_raw
-  - are_bare_bytes
-  - are_bare_numeric
+  - check_dir
+  - check_file
+  - check_ext
 
-- subtitle: Integerish predicates
+- title: Check builders
+  desc: >
+    Tools to build checks in the style of favr.
   contents:
-  - are_integerish
-  - are_scalar_integerish
-  - are_bare_integerish
-
-- subtitle: Utility predicates
-  contents:
-  - are_empty
-  - are_true
-  - are_false
+  - s3_vec_check
+  - s3_df_check

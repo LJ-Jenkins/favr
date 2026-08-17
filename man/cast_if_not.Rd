@@ -124,3 +124,4 @@ x <- y <- 1L
 cast_if_not(x = double(), y = character()) |> try()
 class(x) # integer
 }
+\keyword{internal}

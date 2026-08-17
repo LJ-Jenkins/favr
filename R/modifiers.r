@@ -1,4 +1,4 @@
-#' Modify behaviour of check functions
+#' Modify the behaviour of type checking functions
 #'
 #' @description
 #' Modify the type-checking, or length-checking behaviour of [favr]

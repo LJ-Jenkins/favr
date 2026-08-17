@@ -261,6 +261,7 @@ abort_dispatch <- function(..., .fn, .message, .error_call, .caller_fn) {
 #' x <- y <- 1L
 #' cast_if_not(x = double(), y = character()) |> try()
 #' class(x) # integer
+#' @keywords internal
 #' @export
 cast_if_not <- function(
   ...,
@@ -436,6 +437,7 @@ cast_if_not <- function(
 #' x <- y <- 1L
 #' recycle_if_not(x = 5, y = -5) |> try()
 #' length(x) # 1
+#' @keywords internal
 #' @export
 recycle_if_not <- function(
   ...,

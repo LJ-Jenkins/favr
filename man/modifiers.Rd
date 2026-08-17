@@ -6,7 +6,7 @@
 \alias{at_least}
 \alias{at_most}
 \alias{in_range}
-\title{Modify behaviour of check functions}
+\title{Modify the behaviour of type checking functions}
 \usage{
 bare(x, arg = caller_arg(x))
 

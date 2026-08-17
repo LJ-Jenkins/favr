@@ -3,6 +3,7 @@
 #' @import vctrs
 #' @import tidyselect
 #' @import lifecycle
+#' @keywords internal
 "_PACKAGE"
 
 on_load(
