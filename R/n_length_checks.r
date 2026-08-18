@@ -66,8 +66,10 @@ at_least_msg <- function(
   expected_length,
   given
 ) {
+  if (!is.null(expected_type)) expected_type <- paste0(" ", expected_type)
+
   format_inline(
-    "{.arg {arg}} must be {expected_type}",
+    "{.arg {arg}} must be{expected_type}",
     " of at least length {.val {expected_length}}",
     ", but it is of length {.val {length(given)}}."
   )
@@ -79,8 +81,10 @@ at_most_msg <- function(
   expected_length,
   given
 ) {
+  if (!is.null(expected_type)) expected_type <- paste0(" ", expected_type)
+
   format_inline(
-    "{.arg {arg}} must be {expected_type}",
+    "{.arg {arg}} must be{expected_type}",
     " of at most length {.val {expected_length}}",
     ", but it is of length {.val {length(given)}}."
   )
@@ -92,8 +96,10 @@ in_range_msg <- function(
   expected_length,
   given
 ) {
+  if (!is.null(expected_type)) expected_type <- paste0(" ", expected_type)
+
   format_inline(
-    "{.arg {arg}} must be {expected_type} of a length between ",
+    "{.arg {arg}} must be{expected_type} of a length between ",
     "{.val {expected_length}}, but it is of length ",
     "{.val {length(given)}}."
   )
@@ -384,27 +390,33 @@ wrong_nrow_ncol_msg <- function(
 ) {
   cases <- paste0(case, "s")
 
+  if (!is.null(expected_type)) {
+    msg <- format_inline("be {expected_type} with")
+  } else {
+    msg <- "have"
+  }
+
   switch(modifier,
     at_least = format_inline(
-      "{.arg {arg}} must be {expected_type}",
-      " with at least {.val {expected_n}} ",
+      "{.arg {arg}} must {msg}",
+      " at least {.val {expected_n}} ",
       "{if (expected_n == 1) case else cases}",
       ", but it has {.val {given}}."
     ),
     at_most = format_inline(
-      "{.arg {arg}} must be {expected_type}",
-      " with at most {.val {expected_n}} ",
+      "{.arg {arg}} must {msg}",
+      " at most {.val {expected_n}} ",
       "{if (expected_n == 1) case else cases}",
       ", but it has {.val {given}}."
     ),
     in_range = format_inline(
-      "{.arg {arg}} must be {expected_type}",
-      " with {.val {expected_n[1]}} to {.val {expected_n[2]}} {cases}",
+      "{.arg {arg}} must {msg}",
+      " {.val {expected_n[1]}} to {.val {expected_n[2]}} {cases}",
       ", but it has {.val {given}}."
     ),
     format_inline(
-      "{.arg {arg}} must be {expected_type}",
-      " with {.val {expected_n}} ",
+      "{.arg {arg}} must {msg}",
+      " {.val {expected_n}} ",
       "{if (expected_n == 1) case else cases}",
       ", not {.val {given}}."
     )

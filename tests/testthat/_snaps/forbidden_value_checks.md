@@ -15,6 +15,11 @@
     Condition
       Error in `empty_string_check()`:
       ! cannot coerce type 'closure' to vector of type 'character'
+    Code
+      check_unique(mean)
+    Condition
+      Error in `anyDuplicated.default()`:
+      ! anyDuplicated() applies only to vectors
 
 # arg is shown in error
 
@@ -61,6 +66,17 @@
     Condition
       Error:
       ! `my_arg` must not be all whitespace.
+    Code
+      x <- c(1, 2, 3, 1)
+      check_unique(x)
+    Condition
+      Error:
+      ! `x` must have unique elements. Duplicates: 1.
+    Code
+      check_unique(x, arg = "my_arg")
+    Condition
+      Error:
+      ! `my_arg` must have unique elements. Duplicates: 1.
 
 # call is shown in error
 
@@ -96,6 +112,14 @@
     Condition
       Error in `f()`:
       ! `" "` must not be all whitespace.
+    Code
+      f <- (function() {
+        check_unique(c(1, 2, 3, 1))
+      })
+      f()
+    Condition
+      Error in `f()`:
+      ! `c(1, 2, 3, 1)` must have unique elements. Duplicates: 1.
 
 # dots passed to cli_abort/abort
 
@@ -123,6 +147,12 @@
       Error:
       ! `" "` must not be all whitespace.
       Custom footer
+    Code
+      check_unique(c(1, 2, 3, 1), footer = "Custom footer")
+    Condition
+      Error:
+      ! `c(1, 2, 3, 1)` must have unique elements. Duplicates: 1.
+      Custom footer
 
 # .envir doesn't interfere
 
@@ -148,4 +178,9 @@
     Condition
       Error:
       ! `" "` must not be all whitespace.
+    Code
+      check_unique(c(1, 2, 3, 1), .envir = e)
+    Condition
+      Error:
+      ! `c(1, 2, 3, 1)` must have unique elements. Duplicates: 1.
 

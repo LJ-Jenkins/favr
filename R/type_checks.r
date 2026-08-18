@@ -30,6 +30,7 @@
 #' x <- c(1, 2, 3)
 #'
 #' check_integer(x) |> try()
+#' check_integerish(x)
 #' check_scalar_double(x) |> try()
 #' check_double(x, n = 2) |> try()
 #' check_double(x, n = at_least(4)) |> try()
@@ -139,6 +140,32 @@ check_integer <- function(
     arg = arg,
     call = call
   )
+}
+
+#' @rdname type-checks
+#' @export
+check_integerish <- function(
+  x,
+  n = NULL,
+  ...,
+  finite = FALSE,
+  allow_null = FALSE,
+  arg = caller_arg(x),
+  call = caller_env()
+) {
+  check_types_impl(
+    is_integerish,
+    "an {.cls integer}'ish' vector",
+    x,
+    n = n,
+    ...,
+    allow_na = TRUE,
+    allow_null = allow_null,
+    arg = arg,
+    call = call
+  )
+
+  finite_check(finite, x, n, arg, ..., call = call)
 }
 
 #' @rdname type-checks
@@ -317,7 +344,7 @@ check_numeric <- function(
   arg = caller_arg(x),
   call = caller_env()
 ) {
-  # special case as not rlang fucntion with builtin 'n'
+  # special case as not rlang function with builtin 'n'
   type <- "a {.cls numeric} vector"
 
   if (inherits(x, "favr_modifier")) {

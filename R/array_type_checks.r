@@ -7,9 +7,9 @@
 #' rows of `x`.
 #' @param ... Additional arguments passed to [cli_abort()][cli::cli_abort]
 #' which forwards unmatched arguments to [abort()][rlang::abort].
-#' @param allow_null Whether `x` is allowed to be `NULL`.
 #' @param finite Whether `x` is required to contain only finite values
 #' (i.e. no `NA`, `Inf`, `-Inf`, or `NaN`).
+#' @param allow_null Whether `x` is allowed to be `NULL`.
 #' @inheritParams rlang::args_error_context
 #' @return `NULL` invisibly if the check passes, otherwise an error is thrown.
 #' @details
@@ -49,8 +49,8 @@ check_array <- function(
   nrow = NULL,
   ncol = NULL,
   ...,
-  allow_null = FALSE,
   finite = FALSE,
+  allow_null = FALSE,
   arg = caller_arg(x),
   call = caller_env()
 ) {
@@ -63,8 +63,8 @@ check_array <- function(
     type = "array",
     type_msg = "an {.cls array}",
     ...,
-    allow_null = allow_null,
     finite = finite,
+    allow_null = allow_null,
     arg = arg,
     call = call
   )
@@ -78,8 +78,8 @@ check_matrix <- function(
   nrow = NULL,
   ncol = NULL,
   ...,
-  allow_null = FALSE,
   finite = FALSE,
+  allow_null = FALSE,
   arg = caller_arg(x),
   call = caller_env()
 ) {
@@ -92,8 +92,8 @@ check_matrix <- function(
     type = "matrix",
     type_msg = "a {.cls matrix}",
     ...,
-    allow_null = allow_null,
     finite = finite,
+    allow_null = allow_null,
     arg = arg,
     call = call
   )
@@ -107,8 +107,8 @@ check_table <- function(
   nrow = NULL,
   ncol = NULL,
   ...,
-  allow_null = FALSE,
   finite = FALSE,
+  allow_null = FALSE,
   arg = caller_arg(x),
   call = caller_env()
 ) {
@@ -121,8 +121,8 @@ check_table <- function(
     type = "table",
     type_msg = "a {.cls table}",
     ...,
-    allow_null = allow_null,
     finite = finite,
+    allow_null = allow_null,
     arg = arg,
     call = call
   )
@@ -137,8 +137,8 @@ check_array_types_impl <- function(
   type,
   type_msg,
   ...,
-  allow_null = FALSE,
   finite = FALSE,
+  allow_null = FALSE,
   arg = caller_arg(x),
   call = caller_env()
 ) {

@@ -37,6 +37,9 @@
 #' check_scalar_double(Inf, finite = TRUE) |> try()
 #'
 #' check_scalar_logical(NULL, allow_null = TRUE)
+#'
+#' x <- 1.0
+#' check_scalar_integerish(x)
 NULL
 
 #' @rdname scalar-type-checks
@@ -131,6 +134,32 @@ check_scalar_integer <- function(
     call = call,
     scalar = TRUE
   )
+}
+
+#' @rdname scalar-type-checks
+#' @export
+check_scalar_integerish <- function(
+  x,
+  ...,
+  finite = FALSE,
+  allow_null = FALSE,
+  arg = caller_arg(x),
+  call = caller_env()
+) {
+  check_types_impl(
+    is_integerish,
+    "scalar {.cls integer}'ish'",
+    x,
+    n = 1L,
+    ...,
+    allow_na = TRUE,
+    allow_null = allow_null,
+    arg = arg,
+    call = call,
+    scalar = TRUE
+  )
+
+  finite_check(finite, x, 1L, arg, ..., call = call)
 }
 
 #' @rdname scalar-type-checks

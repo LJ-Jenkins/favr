@@ -13,8 +13,8 @@ check_array(
   nrow = NULL,
   ncol = NULL,
   ...,
-  allow_null = FALSE,
   finite = FALSE,
+  allow_null = FALSE,
   arg = caller_arg(x),
   call = caller_env()
 )
@@ -25,8 +25,8 @@ check_matrix(
   nrow = NULL,
   ncol = NULL,
   ...,
-  allow_null = FALSE,
   finite = FALSE,
+  allow_null = FALSE,
   arg = caller_arg(x),
   call = caller_env()
 )
@@ -37,8 +37,8 @@ check_table(
   nrow = NULL,
   ncol = NULL,
   ...,
-  allow_null = FALSE,
   finite = FALSE,
+  allow_null = FALSE,
   arg = caller_arg(x),
   call = caller_env()
 )
@@ -52,10 +52,10 @@ rows of \code{x}.}
 \item{...}{Additional arguments passed to \link[cli:cli_abort]{cli_abort()}
 which forwards unmatched arguments to \link[rlang:abort]{abort()}.}
 
-\item{allow_null}{Whether \code{x} is allowed to be \code{NULL}.}
-
 \item{finite}{Whether \code{x} is required to contain only finite values
 (i.e. no \code{NA}, \code{Inf}, \code{-Inf}, or \code{NaN}).}
+
+\item{allow_null}{Whether \code{x} is allowed to be \code{NULL}.}
 
 \item{arg}{An argument name as a string. This argument
 will be mentioned in error messages as the input that is at the
@@ -105,6 +105,7 @@ Other checks:
 \code{\link{forbidden-value-checks}},
 \code{\link{inheritance-checks}},
 \code{\link{path-checks}},
+\code{\link{property-checks}},
 \code{\link{s3-type-checks}},
 \code{\link{scalar-type-checks}},
 \code{\link{scalar-value-checks}},

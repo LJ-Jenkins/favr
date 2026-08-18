@@ -6,6 +6,7 @@
 \alias{check_atomic}
 \alias{check_vector}
 \alias{check_integer}
+\alias{check_integerish}
 \alias{check_double}
 \alias{check_complex}
 \alias{check_character}
@@ -49,6 +50,16 @@ check_integer(
   n = NULL,
   ...,
   allow_na = TRUE,
+  allow_null = FALSE,
+  arg = caller_arg(x),
+  call = caller_env()
+)
+
+check_integerish(
+  x,
+  n = NULL,
+  ...,
+  finite = FALSE,
   allow_null = FALSE,
   arg = caller_arg(x),
   call = caller_env()
@@ -172,6 +183,7 @@ These check functions are wrappers of their corresponding
 x <- c(1, 2, 3)
 
 check_integer(x) |> try()
+check_integerish(x)
 check_scalar_double(x) |> try()
 check_double(x, n = 2) |> try()
 check_double(x, n = at_least(4)) |> try()
@@ -194,6 +206,7 @@ Other checks:
 \code{\link{forbidden-value-checks}},
 \code{\link{inheritance-checks}},
 \code{\link{path-checks}},
+\code{\link{property-checks}},
 \code{\link{s3-type-checks}},
 \code{\link{scalar-type-checks}},
 \code{\link{scalar-value-checks}},

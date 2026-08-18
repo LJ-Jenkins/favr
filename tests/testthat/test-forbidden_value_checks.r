@@ -16,6 +16,11 @@ test_that("detects forbidden values", {
   x <- c("a", "b", NA, " ")
   expect_null(check_nzchar(x))
   expect_error(check_nzchar(x, allow_all_ws = FALSE))
+
+  x <- c(1, 2, 3, 1)
+  y <- c(1, 2, 3, 4)
+  expect_error(check_unique(x))
+  expect_null(check_unique(y))
 })
 
 test_that("allow_null arg works correctly", {
@@ -27,6 +32,9 @@ test_that("allow_null arg works correctly", {
 
   expect_null(check_nzchar(NULL, allow_null = TRUE))
   expect_error(check_nzchar(NULL, allow_null = FALSE))
+
+  expect_null(check_unique(NULL, allow_null = TRUE))
+  expect_error(check_unique(NULL, allow_null = FALSE))
 })
 
 test_that("type not checked - base function show type errors", {
@@ -34,6 +42,7 @@ test_that("type not checked - base function show type errors", {
     check_no_na(mean)
     check_finite(mean)
     check_nzchar(mean)
+    check_unique(mean)
   })
 })
 
@@ -50,6 +59,9 @@ test_that("arg is shown in error", {
     x <- "  "
     check_nzchar(x, allow_all_ws = FALSE)
     check_nzchar(x, allow_all_ws = FALSE, arg = "my_arg")
+    x <- c(1, 2, 3, 1)
+    check_unique(x)
+    check_unique(x, arg = "my_arg")
   })
 })
 
@@ -74,6 +86,11 @@ test_that("call is shown in error", {
       check_nzchar(" ", allow_all_ws = FALSE)
     }
     f()
+
+    f <- function() {
+      check_unique(c(1, 2, 3, 1))
+    }
+    f()
   })
 })
 
@@ -83,6 +100,7 @@ test_that("dots passed to cli_abort/abort", {
     check_finite(NA, footer = "Custom footer")
     check_nzchar("", footer = "Custom footer")
     check_nzchar(" ", allow_all_ws = FALSE, footer = "Custom footer")
+    check_unique(c(1, 2, 3, 1), footer = "Custom footer")
   })
 })
 
@@ -94,5 +112,6 @@ test_that(".envir doesn't interfere", {
     check_finite(NA, .envir = e)
     check_nzchar("", .envir = e)
     check_nzchar(" ", allow_all_ws = FALSE, .envir = e)
+    check_unique(c(1, 2, 3, 1), .envir = e)
   })
 })

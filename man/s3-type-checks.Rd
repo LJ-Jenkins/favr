@@ -195,6 +195,7 @@ Other checks:
 \code{\link{forbidden-value-checks}},
 \code{\link{inheritance-checks}},
 \code{\link{path-checks}},
+\code{\link{property-checks}},
 \code{\link{scalar-type-checks}},
 \code{\link{scalar-value-checks}},
 \code{\link{type-checks}},

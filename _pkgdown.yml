@@ -26,6 +26,7 @@ reference:
   - check_atomic
   - check_vector
   - check_integer
+  - check_integerish
   - check_double
   - check_numeric
   - check_character
@@ -52,6 +53,7 @@ reference:
   - check_scalar_atomic
   - check_scalar_vector
   - check_scalar_integer
+  - check_scalar_integerish
   - check_scalar_double
   - check_scalar_numeric
   - check_scalar_character
@@ -68,6 +70,7 @@ reference:
   - check_string
   - check_no_na
   - check_finite
+  - check_unique
   - check_nzchar
 
 - subtitle: Modifiers
@@ -76,6 +79,15 @@ reference:
   - at_least
   - at_most
   - in_range
+
+- subtitle: Property
+  contents:
+  - check_length
+  - check_nrow
+  - check_ncol
+  - check_size
+  - check_non_empty
+  - check_named
 
 - subtitle: File system
   contents:

@@ -50,8 +50,10 @@ wrong_length_msg <- function(
   expected_length,
   given
 ) {
+  if (!is.null(expected_type)) expected_type <- paste0(" ", expected_type)
+
   format_inline(
-    "{.arg {arg}} must be {expected_type}",
+    "{.arg {arg}} must be{expected_type}",
     " of length {.val {expected_length}}",
     ", not {.val {length(given)}}."
   )

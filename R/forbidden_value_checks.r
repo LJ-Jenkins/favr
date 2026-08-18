@@ -11,13 +11,19 @@
 #' @inheritParams rlang::args_error_context
 #' @return `NULL` invisibly if the check passes, otherwise an error is thrown.
 #' @details
-#' `NA` checks are done with [anyNA()], finite checks are done with
-#' [any()] and [is.finite()], and zero chr checks are done with
-#' [any()] and [nzchar()]. If `allow_all_ws = FALSE` then whitespace
-#' elements are identified using `grepl("\\s+", x)`.
+#' `NA` checks are done with [`anyNA()`];
+#'
+#' finite checks are done with [`any()`] and [`is.finite()`];
+#'
+#' unique checks are done with [`anyDuplicated()`];
+#'
+#' zero chr checks are done with [`any()`] and [`nzchar()`];
+#'
+#' If `allow_all_ws = FALSE` then whitespace elements are identified using
+#' `grepl("\\s+", x)`.
 #'
 #' Input types are not checked to be of expected types, they are passed
-#' 'as is' to the base functions that do the checking. The only exception
+#' 'as is' to the functions that do the checking. The only exception
 #' is for `NULL` inputs, which error if `allow_null = FALSE`.
 #' @note
 #' The [favr modifiers][modifiers] cannot be used with these functions.
@@ -32,8 +38,14 @@
 #' x <- c(1, 2, Inf)
 #' check_finite(x) |> try()
 #'
+#' x <- c(1, 2, 3, 1)
+#' check_unique(x) |> try()
+#'
 #' x <- c("a", "b", "")
 #' check_nzchar(x) |> try()
+#'
+#' x <- c("a", "b", " ")
+#' check_nzchar(x, allow_all_ws = FALSE) |> try()
 NULL
 
 #' @rdname forbidden-value-checks
@@ -78,6 +90,40 @@ check_finite <- function(
   }
 
   finite_check(TRUE, x, length(x), arg, ..., call = call)
+}
+
+#' @rdname forbidden-value-checks
+#' @export
+check_unique <- function(
+  x,
+  ...,
+  allow_null = FALSE,
+  arg = caller_arg(x),
+  call = caller_env()
+) {
+  if ((i <- is.null(x)) && allow_null) {
+    return(invisible(NULL))
+  } else if (i && !allow_null) {
+    cli_abort(
+      message = format_inline("{.arg {arg}} must not be {.cls NULL}."),
+      ...,
+      call = call
+    )
+  }
+
+  if (anyDuplicated(x)) {
+    dups <- x[duplicated(x)]
+
+    cli_abort(
+      message = format_inline(
+        "{.arg {arg}} must have unique elements. Duplicates: {.val {dups}}."
+      ),
+      ...,
+      call = call
+    )
+  }
+
+  invisible(NULL)
 }
 
 #' @rdname forbidden-value-checks

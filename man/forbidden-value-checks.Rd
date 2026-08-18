@@ -4,6 +4,7 @@
 \alias{forbidden-value-checks}
 \alias{check_no_na}
 \alias{check_finite}
+\alias{check_unique}
 \alias{check_nzchar}
 \title{Forbidden value checks}
 \usage{
@@ -16,6 +17,14 @@ check_no_na(
 )
 
 check_finite(
+  x,
+  ...,
+  allow_null = FALSE,
+  arg = caller_arg(x),
+  call = caller_env()
+)
+
+check_unique(
   x,
   ...,
   allow_null = FALSE,
@@ -59,13 +68,19 @@ all whitespace.}
 Check if inputs contain forbidden values and error if so.
 }
 \details{
-\code{NA} checks are done with \code{\link[=anyNA]{anyNA()}}, finite checks are done with
-\code{\link[=any]{any()}} and \code{\link[=is.finite]{is.finite()}}, and zero chr checks are done with
-\code{\link[=any]{any()}} and \code{\link[=nzchar]{nzchar()}}. If \code{allow_all_ws = FALSE} then whitespace
-elements are identified using \code{grepl("\\\\s+", x)}.
+\code{NA} checks are done with \code{\link[=anyNA]{anyNA()}};
+
+finite checks are done with \code{\link[=any]{any()}} and \code{\link[=is.finite]{is.finite()}};
+
+unique checks are done with \code{\link[=anyDuplicated]{anyDuplicated()}};
+
+zero chr checks are done with \code{\link[=any]{any()}} and \code{\link[=nzchar]{nzchar()}};
+
+If \code{allow_all_ws = FALSE} then whitespace elements are identified using
+\code{grepl("\\\\s+", x)}.
 
 Input types are not checked to be of expected types, they are passed
-'as is' to the base functions that do the checking. The only exception
+'as is' to the functions that do the checking. The only exception
 is for \code{NULL} inputs, which error if \code{allow_null = FALSE}.
 }
 \note{
@@ -80,14 +95,21 @@ check_no_na(x) |> try()
 x <- c(1, 2, Inf)
 check_finite(x) |> try()
 
+x <- c(1, 2, 3, 1)
+check_unique(x) |> try()
+
 x <- c("a", "b", "")
 check_nzchar(x) |> try()
+
+x <- c("a", "b", " ")
+check_nzchar(x, allow_all_ws = FALSE) |> try()
 }
 \seealso{
 Other checks:
 \code{\link{array-type-checks}},
 \code{\link{inheritance-checks}},
 \code{\link{path-checks}},
+\code{\link{property-checks}},
 \code{\link{s3-type-checks}},
 \code{\link{scalar-type-checks}},
 \code{\link{scalar-value-checks}},

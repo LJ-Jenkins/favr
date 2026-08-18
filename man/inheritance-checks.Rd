@@ -86,6 +86,7 @@ Other checks:
 \code{\link{array-type-checks}},
 \code{\link{forbidden-value-checks}},
 \code{\link{path-checks}},
+\code{\link{property-checks}},
 \code{\link{s3-type-checks}},
 \code{\link{scalar-type-checks}},
 \code{\link{scalar-value-checks}},

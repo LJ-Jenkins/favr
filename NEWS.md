@@ -45,7 +45,13 @@ Refactor of the package to focus on function argument validation through "check"
 
 ### Forbidden Values Validation
 
-* `check_no_na()`, `check_finite()` and `check_nzchar()` functions to check for the presence of forbidden values and error if found.
+* `check_no_na()`, `check_finite()`, `check_unique()` and `check_nzchar()` functions to check for the presence of forbidden values and error if found.
+
+### Property Validation
+
+* `check_length()`, `check_nrow()`, `check_ncol()`, `check_size()` and `check_non_empty()` functions to check for an expected length/size of an object and error if it is not.
+
+* `check_named()` function to check the names of an object and error if the object is not named or (optionally) if the names contain empty or duplicated elements.
 
 ### File and Directory Validation
 

@@ -6,6 +6,7 @@
 \alias{check_scalar_atomic}
 \alias{check_scalar_vector}
 \alias{check_scalar_integer}
+\alias{check_scalar_integerish}
 \alias{check_scalar_double}
 \alias{check_scalar_complex}
 \alias{check_scalar_character}
@@ -44,6 +45,15 @@ check_scalar_integer(
   x,
   ...,
   allow_na = TRUE,
+  allow_null = FALSE,
+  arg = caller_arg(x),
+  call = caller_env()
+)
+
+check_scalar_integerish(
+  x,
+  ...,
+  finite = FALSE,
   allow_null = FALSE,
   arg = caller_arg(x),
   call = caller_env()
@@ -164,6 +174,9 @@ check_scalar_character(NA_character_, allow_na = FALSE) |> try()
 check_scalar_double(Inf, finite = TRUE) |> try()
 
 check_scalar_logical(NULL, allow_null = TRUE)
+
+x <- 1.0
+check_scalar_integerish(x)
 }
 \seealso{
 Other checks:
@@ -171,6 +184,7 @@ Other checks:
 \code{\link{forbidden-value-checks}},
 \code{\link{inheritance-checks}},
 \code{\link{path-checks}},
+\code{\link{property-checks}},
 \code{\link{s3-type-checks}},
 \code{\link{scalar-value-checks}},
 \code{\link{type-checks}},
