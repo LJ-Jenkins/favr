@@ -73,6 +73,16 @@ Refactor of the package to focus on function argument validation through
   functions to check if an object is an array, matrix, or table,
   respectively, and error if it is not.
 
+#### OOP Type Validation
+
+- [`check_s3()`](https://lj-jenkins.github.io/favr/reference/oop-checks.md),
+  [`check_s4()`](https://lj-jenkins.github.io/favr/reference/oop-checks.md),
+  [`check_s7()`](https://lj-jenkins.github.io/favr/reference/oop-checks.md)
+  and
+  [`check_r6()`](https://lj-jenkins.github.io/favr/reference/oop-checks.md)
+  functions to check if an object is of the specified OOP type and error
+  if it is not.
+
 #### S3 Type Validation
 
 - [`check_factor()`](https://lj-jenkins.github.io/favr/reference/s3-type-checks.md),

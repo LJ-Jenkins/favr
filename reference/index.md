@@ -65,6 +65,11 @@ Strongly typed validation.
   [`check_scalar_bytes()`](https://lj-jenkins.github.io/favr/reference/scalar-type-checks.md)
   [`check_scalar_numeric()`](https://lj-jenkins.github.io/favr/reference/scalar-type-checks.md)
   : Scalar type checks
+- [`check_s3()`](https://lj-jenkins.github.io/favr/reference/oop-checks.md)
+  [`check_s4()`](https://lj-jenkins.github.io/favr/reference/oop-checks.md)
+  [`check_s7()`](https://lj-jenkins.github.io/favr/reference/oop-checks.md)
+  [`check_r6()`](https://lj-jenkins.github.io/favr/reference/oop-checks.md)
+  : Check if an object is of a specific object-oriented programming type
 
 ### Values
 

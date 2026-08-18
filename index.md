@@ -54,6 +54,15 @@ Validate specific S3 types:
   [`check_list_of()`](https://lj-jenkins.github.io/favr/reference/s3-type-checks.md)
   for their respective [vctrs](https://vctrs.r-lib.org) classes.
 
+Validate OOP types:
+
+- [`check_s3()`](https://lj-jenkins.github.io/favr/reference/oop-checks.md),
+  [`check_s4()`](https://lj-jenkins.github.io/favr/reference/oop-checks.md),
+  [`check_s7()`](https://lj-jenkins.github.io/favr/reference/oop-checks.md)
+  and
+  [`check_r6()`](https://lj-jenkins.github.io/favr/reference/oop-checks.md)
+  for their respective OOP types.
+
 Modify the behaviour of type-checking functions:
 
 - [`bare()`](https://lj-jenkins.github.io/favr/reference/modifiers.md)
@@ -234,8 +243,12 @@ check_integer(x)
 check_scalar_double(x)
 #> Error:
 #> ! `x` must be a scalar <double>, but it is of length 3.
+check_s3(x)
+#> Error:
+#> ! `x` must be an <S3> object, not <numeric>.
 
 df <- data.frame(x = 1:3, y = 1:3)
+check_s3(df)
 check_tibble(df)
 #> Error:
 #> ! `df` must inherit from <tbl_df>, but is class <data.frame>.

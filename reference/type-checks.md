@@ -200,6 +200,7 @@ Other checks:
 [`array-type-checks`](https://lj-jenkins.github.io/favr/reference/array-type-checks.md),
 [`forbidden-value-checks`](https://lj-jenkins.github.io/favr/reference/forbidden-value-checks.md),
 [`inheritance-checks`](https://lj-jenkins.github.io/favr/reference/inheritance-checks.md),
+[`oop-checks`](https://lj-jenkins.github.io/favr/reference/oop-checks.md),
 [`path-checks`](https://lj-jenkins.github.io/favr/reference/path-checks.md),
 [`property-checks`](https://lj-jenkins.github.io/favr/reference/property-checks.md),
 [`s3-type-checks`](https://lj-jenkins.github.io/favr/reference/s3-type-checks.md),
