@@ -1,3 +1,4 @@
+#' @import methods
 #' @import cli
 #' @import rlang
 #' @import vctrs

@@ -41,6 +41,11 @@ Validate specific S3 types:
 - `check_vctr()` and `check_list_of()` for their respective
   [vctrs](https://vctrs.r-lib.org) classes.
 
+Validate OOP types:
+
+- `check_s3()`, `check_s4()`, `check_s7()` and `check_r6()` for their
+  respective OOP types.
+
 Modify the behaviour of type-checking functions:
 
 - `bare()` to also check for bare objects (i.e. objects with no class
@@ -192,8 +197,12 @@ check_integer(x)
 check_scalar_double(x)
 #> Error:
 #> ! `x` must be a scalar <double>, but it is of length 3.
+check_s3(x)
+#> Error:
+#> ! `x` must be an <S3> object, not <numeric>.
 
 df <- data.frame(x = 1:3, y = 1:3)
+check_s3(df)
 check_tibble(df)
 #> Error:
 #> ! `df` must inherit from <tbl_df>, but is class <data.frame>.

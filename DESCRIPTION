@@ -10,6 +10,7 @@ Roxygen: list(markdown = TRUE)
 Imports: 
     cli,
     lifecycle,
+    methods,
     rlang (>= 1.1.0),
     tidyselect,
     vctrs

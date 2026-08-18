@@ -108,6 +108,7 @@ check_nzchar(x, allow_all_ws = FALSE) |> try()
 Other checks:
 \code{\link{array-type-checks}},
 \code{\link{inheritance-checks}},
+\code{\link{oop-checks}},
 \code{\link{path-checks}},
 \code{\link{property-checks}},
 \code{\link{s3-type-checks}},

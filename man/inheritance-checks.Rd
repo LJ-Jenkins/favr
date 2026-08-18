@@ -85,6 +85,7 @@ check_inherits(x, c("d", "b"), match = "all") |> try()
 Other checks:
 \code{\link{array-type-checks}},
 \code{\link{forbidden-value-checks}},
+\code{\link{oop-checks}},
 \code{\link{path-checks}},
 \code{\link{property-checks}},
 \code{\link{s3-type-checks}},

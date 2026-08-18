@@ -23,6 +23,10 @@ Refactor of the package to focus on function argument validation through "check"
 
 * `check_array()`, `check_matrix()` and `check_table()` functions to check if an object is an array, matrix, or table, respectively, and error if it is not.
 
+### OOP Type Validation
+
+* `check_s3()`, `check_s4()`, `check_s7()` and `check_r6()` functions to check if an object is of the specified OOP type and error if it is not.
+
 ### S3 Type Validation
 
 * `check_factor()`, `check_ordered()`, `check_date()`, `check_posixct()` and `check_posixlt()` functions to check if an object is of the specified S3 vector type and error if it is not.

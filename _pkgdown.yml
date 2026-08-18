@@ -61,6 +61,10 @@ reference:
   - check_scalar_complex
   - check_scalar_raw
   - check_scalar_bytes
+  - check_s3
+  - check_s4
+  - check_s7
+  - check_r6
 
 - subtitle: Values
   contents:

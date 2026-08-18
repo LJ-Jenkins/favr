@@ -44,6 +44,10 @@ Validate specific S3 types:
 * `check_data.frame()`, `check_tibble()`, `check_data.table()`, etc.
 * `check_vctr()` and `check_list_of()` for their respective [vctrs](https://vctrs.r-lib.org) classes.
 
+Validate OOP types:
+
+* `check_s3()`, `check_s4()`, `check_s7()` and `check_r6()` for their respective OOP types.
+
 Modify the behaviour of type-checking functions:
 
 * `bare()` to also check for bare objects (i.e. objects with no class attribute) in the type check functions, or bare S3 objects (where the expected S3 class is first in the class attribute vector) in the S3 type check functions.
@@ -155,8 +159,10 @@ Specific type validation:
 x <- c(1, 2, 3)
 check_integer(x)
 check_scalar_double(x)
+check_s3(x)
 
 df <- data.frame(x = 1:3, y = 1:3)
+check_s3(df)
 check_tibble(df)
 
 # the `bare()` modifier can be used to ensure bare objects.

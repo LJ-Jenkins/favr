@@ -104,6 +104,7 @@ check_matrix(m, nrow = in_range(1, 10))
 Other checks:
 \code{\link{forbidden-value-checks}},
 \code{\link{inheritance-checks}},
+\code{\link{oop-checks}},
 \code{\link{path-checks}},
 \code{\link{property-checks}},
 \code{\link{s3-type-checks}},
