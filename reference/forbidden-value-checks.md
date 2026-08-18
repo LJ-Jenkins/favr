@@ -21,6 +21,14 @@ check_finite(
   call = caller_env()
 )
 
+check_unique(
+  x,
+  ...,
+  allow_null = FALSE,
+  arg = caller_arg(x),
+  call = caller_env()
+)
+
 check_nzchar(
   x,
   ...,
@@ -71,17 +79,23 @@ check_nzchar(
 
 ## Details
 
-`NA` checks are done with [`anyNA()`](https://rdrr.io/r/base/NA.html),
+`NA` checks are done with [`anyNA()`](https://rdrr.io/r/base/NA.html);
+
 finite checks are done with [`any()`](https://rdrr.io/r/base/any.html)
-and [`is.finite()`](https://rdrr.io/r/base/is.finite.html), and zero chr
-checks are done with [`any()`](https://rdrr.io/r/base/any.html) and
-[`nzchar()`](https://rdrr.io/r/base/nchar.html). If
-`allow_all_ws = FALSE` then whitespace elements are identified using
+and [`is.finite()`](https://rdrr.io/r/base/is.finite.html);
+
+unique checks are done with
+[`anyDuplicated()`](https://rdrr.io/r/base/duplicated.html);
+
+zero chr checks are done with [`any()`](https://rdrr.io/r/base/any.html)
+and [`nzchar()`](https://rdrr.io/r/base/nchar.html);
+
+If `allow_all_ws = FALSE` then whitespace elements are identified using
 `grepl("\\s+", x)`.
 
 Input types are not checked to be of expected types, they are passed 'as
-is' to the base functions that do the checking. The only exception is
-for `NULL` inputs, which error if `allow_null = FALSE`.
+is' to the functions that do the checking. The only exception is for
+`NULL` inputs, which error if `allow_null = FALSE`.
 
 ## Note
 
@@ -97,6 +111,7 @@ Other checks:
 [`array-type-checks`](https://lj-jenkins.github.io/favr/reference/array-type-checks.md),
 [`inheritance-checks`](https://lj-jenkins.github.io/favr/reference/inheritance-checks.md),
 [`path-checks`](https://lj-jenkins.github.io/favr/reference/path-checks.md),
+[`property-checks`](https://lj-jenkins.github.io/favr/reference/property-checks.md),
 [`s3-type-checks`](https://lj-jenkins.github.io/favr/reference/s3-type-checks.md),
 [`scalar-type-checks`](https://lj-jenkins.github.io/favr/reference/scalar-type-checks.md),
 [`scalar-value-checks`](https://lj-jenkins.github.io/favr/reference/scalar-value-checks.md),
@@ -116,7 +131,17 @@ check_finite(x) |> try()
 #> Error in eval(expr, envir) : 
 #>   `x` must not contain non-finite values.
 
+x <- c(1, 2, 3, 1)
+check_unique(x) |> try()
+#> Error in eval(expr, envir) : 
+#>   `x` must have unique elements. Duplicates: 1.
+
 x <- c("a", "b", "")
 check_nzchar(x) |> try()
 #> Error in eval(expr, envir) : `x` must not contain empty strings.
+
+x <- c("a", "b", " ")
+check_nzchar(x, allow_all_ws = FALSE) |> try()
+#> Error in eval(expr, envir) : 
+#>   `x` must not contain all whitespace elements.
 ```

@@ -17,15 +17,13 @@ succinct validation of function arguments with clear error messaging.
   validation using tidy evaluation.
 - [`walk_check()`](https://lj-jenkins.github.io/favr/reference/walk-check.md)
   for applying a check to each element of a vector.
-
-Numerous other `check_*()` functions are provided for specific types of
-validation, including:
-
-Validate class and inheritance:
-
 - [`check_class()`](https://lj-jenkins.github.io/favr/reference/inheritance-checks.md)
   and
-  [`check_inherits()`](https://lj-jenkins.github.io/favr/reference/inheritance-checks.md).
+  [`check_inherits()`](https://lj-jenkins.github.io/favr/reference/inheritance-checks.md)
+  for class validation.
+
+Numerous other strongly typed `check_*()` functions are provided for
+specific types of validation, including:
 
 Validate specific types:
 
@@ -55,10 +53,6 @@ Validate specific S3 types:
   and
   [`check_list_of()`](https://lj-jenkins.github.io/favr/reference/s3-type-checks.md)
   for their respective [vctrs](https://vctrs.r-lib.org) classes.
-- [`s3_vec_check()`](https://lj-jenkins.github.io/favr/reference/s3-check-builders.md)
-  and
-  [`s3_df_check()`](https://lj-jenkins.github.io/favr/reference/s3-check-builders.md)
-  for developers to create their own S3 type checks.
 
 Modify the behaviour of type-checking functions:
 
@@ -85,8 +79,19 @@ Validate the lack of forbidden values:
 
 - [`check_no_na()`](https://lj-jenkins.github.io/favr/reference/forbidden-value-checks.md),
   [`check_finite()`](https://lj-jenkins.github.io/favr/reference/forbidden-value-checks.md),
+  [`check_unique()`](https://lj-jenkins.github.io/favr/reference/forbidden-value-checks.md)
   and
   [`check_nzchar()`](https://lj-jenkins.github.io/favr/reference/forbidden-value-checks.md).
+
+Validate object properties:
+
+- [`check_length()`](https://lj-jenkins.github.io/favr/reference/property-checks.md),
+  [`check_nrow()`](https://lj-jenkins.github.io/favr/reference/property-checks.md),
+  [`check_ncol()`](https://lj-jenkins.github.io/favr/reference/property-checks.md),
+  [`check_size()`](https://lj-jenkins.github.io/favr/reference/property-checks.md),
+  [`check_non_empty()`](https://lj-jenkins.github.io/favr/reference/property-checks.md)
+  and
+  [`check_named()`](https://lj-jenkins.github.io/favr/reference/property-checks.md).
 
 Validate file and directory existence:
 
@@ -94,6 +99,13 @@ Validate file and directory existence:
   [`check_file()`](https://lj-jenkins.github.io/favr/reference/path-checks.md)
   and
   [`check_ext()`](https://lj-jenkins.github.io/favr/reference/path-checks.md).
+
+Build checks in the style of favr:
+
+- [`s3_vec_check()`](https://lj-jenkins.github.io/favr/reference/s3-check-builders.md)
+  and
+  [`s3_df_check()`](https://lj-jenkins.github.io/favr/reference/s3-check-builders.md)
+  for developers to create their own S3 type checks.
 
 ## Installation
 
@@ -140,10 +152,10 @@ abortifnot(
 abortifnot(
   is.numeric(x),
   is.numeric(y),
-  message = "{.var x} and {.var y} must be {.cls character}."
+  message = "{.var x} and {.var y} must be {.cls numeric}."
 )
 #> Error:
-#> ! `x` and `y` must be <character>.
+#> ! `x` and `y` must be <numeric>.
 ```
 
 General validation with tidy evaluation:
@@ -170,21 +182,21 @@ Data-masked validation:
 
 ``` r
 
-data <- data.frame(a = 1:3, b = c("a", "b", "c"))
+data <- list(a = c("a", "b", "c"), b = 1:3)
 
 # `check_with()` user-supplied messages are eval'd in the data mask context.
 check_with(data,
-  "{.var a} must be length {.val 5}, but is length {.val {length(a)}}." = length(a) == 5,
-  "{.var b} must all have 2 nchars." = nchar(b) == 2
+  "{.var a} must all have 1 nchars." = nchar(a) == 1,
+  "{.var b} must be length {.val 5}, but is length {.val {length(b)}}." = length(b) == 5
 )
 #> Error:
-#> ! `a` must be length "5", but is length 3.
+#> ! `b` must be length "5", but is length 3.
 
-a <- c("a", "b", "c")
+b <- c("a", "b", "c")
 
-check_with(data, is.numeric(.data$a), is.numeric(.env$a))
+check_with(data, is.numeric(.data$b), is.numeric(.env$b))
 #> Error:
-#> ! `is.numeric(.env$a)` is not TRUE.
+#> ! `is.numeric(.env$b)` is not TRUE.
 ```
 
 Walking a check over a vector:
@@ -195,6 +207,20 @@ x <- list(1, 2, my_el = "3", 4)
 walk_check(x, is.numeric)
 #> Error:
 #> ! Check result for `.x[['my_el']]` (index: 3) is not TRUE.
+```
+
+Class validation:
+
+``` r
+
+x <- structure(1:3, class = "a_class")
+check_class(x, "my_class")
+#> Error:
+#> ! `x` must be class <my_class>, but is class <a_class>.
+class(x) <- c("b_class", class(x))
+check_inherits(x, "my_class")
+#> Error:
+#> ! `x` must inherit from <my_class>, but is class <b_class/a_class>.
 ```
 
 Specific type validation:
@@ -261,13 +287,16 @@ Ensure no forbidden values:
 
 ``` r
 
-x <- c(1, 2, NA)
+x <- c(1, 2, 1, NA)
 check_no_na(x)
 #> Error:
 #> ! `x` must not contain NA values.
 check_finite(x)
 #> Error:
 #> ! `x` must not contain non-finite values.
+check_unique(x)
+#> Error:
+#> ! `x` must have unique elements. Duplicates: 1.
 
 x <- c("a", "b", "")
 check_nzchar(x)
@@ -277,6 +306,42 @@ x <- c("a", "b", " ")
 check_nzchar(x, allow_all_ws = FALSE)
 #> Error:
 #> ! `x` must not contain all whitespace elements.
+```
+
+Check object properties:
+
+``` r
+
+x <- c(1, 2, 3)
+check_length(x, 2)
+#> Error:
+#> ! `x` must be of length 2, not 3.
+check_size(x, at_most(1))
+#> Error:
+#> ! `x` must be of at most size 1, but it is of size 3.
+df <- data.frame(x = 1:3, y = 1:3)
+check_nrow(df, 2)
+#> Error:
+#> ! `df` must have 2 rows, not 3.
+check_ncol(df, in_range(3, 5))
+#> Error:
+#> ! `df` must have 3 to 5 columns, but it has 2.
+x <- numeric(0)
+check_non_empty(x)
+#> Error:
+#> ! `x` must not be empty.
+x <- c(1, 2, 3)
+check_named(x)
+#> Error:
+#> ! `x` must be named.
+names(x) <- c("a", "b", "a")
+check_named(x, unique = TRUE)
+#> Error:
+#> ! `x` must have unique names. Duplicates: "a".
+names(x) <- c("a", "b", "")
+check_named(x, allow_empty = FALSE)
+#> Error:
+#> ! `x` must not contain empty names.
 ```
 
 File/dir existence validation:
@@ -350,8 +415,9 @@ check_my_class(x, n = in_range(1, 2))
 ### Notes
 
 favr relies heavily on the imported packages
-[rlang](https://rlang.r-lib.org) and [cli](https://cli.r-lib.org/). For
-data validation using user-defined schemas, see
+[rlang](https://rlang.r-lib.org) and [cli](https://cli.r-lib.org/).
+
+For data validation using user-defined schemas, see
 [fluffy](https://lj-jenkins.github.io/fluffy/).
 
 ## Getting help

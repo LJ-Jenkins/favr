@@ -72,13 +72,10 @@
 <code><a href="reference/check.html">check_with()</a></code> for <a href="https://rlang.r-lib.org/reference/topic-data-mask.html" class="external-link">data-masked</a> validation using tidy evaluation.</li>
 <li>
 <code><a href="reference/walk-check.html">walk_check()</a></code> for applying a check to each element of a vector.</li>
-</ul>
-<p>Numerous other <code>check_*()</code> functions are provided for specific types of validation, including:</p>
-<p>Validate class and inheritance:</p>
-<ul>
 <li>
-<code><a href="reference/inheritance-checks.html">check_class()</a></code> and <code><a href="reference/inheritance-checks.html">check_inherits()</a></code>.</li>
+<code><a href="reference/inheritance-checks.html">check_class()</a></code> and <code><a href="reference/inheritance-checks.html">check_inherits()</a></code> for class validation.</li>
 </ul>
+<p>Numerous other strongly typed <code>check_*()</code> functions are provided for specific types of validation, including:</p>
 <p>Validate specific types:</p>
 <ul>
 <li>
@@ -96,8 +93,6 @@
 <code>check_data.frame()</code>, <code><a href="reference/s3-type-checks.html">check_tibble()</a></code>, <code>check_data.table()</code>, etc.</li>
 <li>
 <code><a href="reference/s3-type-checks.html">check_vctr()</a></code> and <code><a href="reference/s3-type-checks.html">check_list_of()</a></code> for their respective <a href="https://vctrs.r-lib.org" class="external-link">vctrs</a> classes.</li>
-<li>
-<code><a href="reference/s3-check-builders.html">s3_vec_check()</a></code> and <code><a href="reference/s3-check-builders.html">s3_df_check()</a></code> for developers to create their own S3 type checks.</li>
 </ul>
 <p>Modify the behaviour of type-checking functions:</p>
 <ul>
@@ -114,12 +109,22 @@
 <p>Validate the lack of forbidden values:</p>
 <ul>
 <li>
-<code><a href="reference/forbidden-value-checks.html">check_no_na()</a></code>, <code><a href="reference/forbidden-value-checks.html">check_finite()</a></code>, and <code><a href="reference/forbidden-value-checks.html">check_nzchar()</a></code>.</li>
+<code><a href="reference/forbidden-value-checks.html">check_no_na()</a></code>, <code><a href="reference/forbidden-value-checks.html">check_finite()</a></code>, <code><a href="reference/forbidden-value-checks.html">check_unique()</a></code> and <code><a href="reference/forbidden-value-checks.html">check_nzchar()</a></code>.</li>
+</ul>
+<p>Validate object properties:</p>
+<ul>
+<li>
+<code><a href="reference/property-checks.html">check_length()</a></code>, <code><a href="reference/property-checks.html">check_nrow()</a></code>, <code><a href="reference/property-checks.html">check_ncol()</a></code>, <code><a href="reference/property-checks.html">check_size()</a></code>, <code><a href="reference/property-checks.html">check_non_empty()</a></code> and <code><a href="reference/property-checks.html">check_named()</a></code>.</li>
 </ul>
 <p>Validate file and directory existence:</p>
 <ul>
 <li>
 <code><a href="reference/path-checks.html">check_dir()</a></code>, <code><a href="reference/path-checks.html">check_file()</a></code> and <code><a href="reference/path-checks.html">check_ext()</a></code>.</li>
+</ul>
+<p>Build checks in the style of favr:</p>
+<ul>
+<li>
+<code><a href="reference/s3-check-builders.html">s3_vec_check()</a></code> and <code><a href="reference/s3-check-builders.html">s3_df_check()</a></code> for developers to create their own S3 type checks.</li>
 </ul>
 </div>
 <div class="section level2">
@@ -161,10 +166,10 @@
 <span><span class="fu"><a href="reference/abortifnot.html">abortifnot</a></span><span class="op">(</span></span>
 <span>  <span class="fu"><a href="https://rdrr.io/r/base/numeric.html" class="external-link">is.numeric</a></span><span class="op">(</span><span class="va">x</span><span class="op">)</span>,</span>
 <span>  <span class="fu"><a href="https://rdrr.io/r/base/numeric.html" class="external-link">is.numeric</a></span><span class="op">(</span><span class="va">y</span><span class="op">)</span>,</span>
-<span>  message <span class="op">=</span> <span class="st">"{.var x} and {.var y} must be {.cls character}."</span></span>
+<span>  message <span class="op">=</span> <span class="st">"{.var x} and {.var y} must be {.cls numeric}."</span></span>
 <span><span class="op">)</span></span>
 <span><span class="co">#&gt; Error:</span></span>
-<span><span class="co">#&gt; ! `x` and `y` must be &lt;character&gt;.</span></span></code></pre></div>
+<span><span class="co">#&gt; ! `x` and `y` must be &lt;numeric&gt;.</span></span></code></pre></div>
 <p>General validation with tidy evaluation:</p>
 <div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">inject_msg</span> <span class="op">&lt;-</span> <span class="st">"{.var x} must contain negative values."</span></span>
@@ -183,29 +188,39 @@
 <span><span class="co">#&gt; ! `y` must all have 2 nchars.</span></span></code></pre></div>
 <p>Data-masked validation:</p>
 <div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">data</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html" class="external-link">data.frame</a></span><span class="op">(</span>a <span class="op">=</span> <span class="fl">1</span><span class="op">:</span><span class="fl">3</span>, b <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"a"</span>, <span class="st">"b"</span>, <span class="st">"c"</span><span class="op">)</span><span class="op">)</span></span>
+<code class="sourceCode R"><span><span class="va">data</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>a <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"a"</span>, <span class="st">"b"</span>, <span class="st">"c"</span><span class="op">)</span>, b <span class="op">=</span> <span class="fl">1</span><span class="op">:</span><span class="fl">3</span><span class="op">)</span></span>
 <span></span>
 <span><span class="co"># `check_with()` user-supplied messages are eval'd in the data mask context.</span></span>
 <span><span class="fu"><a href="reference/check.html">check_with</a></span><span class="op">(</span><span class="va">data</span>,</span>
-<span>  <span class="st">"{.var a} must be length {.val 5}, but is length {.val {length(a)}}."</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/length.html" class="external-link">length</a></span><span class="op">(</span><span class="va">a</span><span class="op">)</span> <span class="op">==</span> <span class="fl">5</span>,</span>
-<span>  <span class="st">"{.var b} must all have 2 nchars."</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/nchar.html" class="external-link">nchar</a></span><span class="op">(</span><span class="va">b</span><span class="op">)</span> <span class="op">==</span> <span class="fl">2</span></span>
+<span>  <span class="st">"{.var a} must all have 1 nchars."</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/nchar.html" class="external-link">nchar</a></span><span class="op">(</span><span class="va">a</span><span class="op">)</span> <span class="op">==</span> <span class="fl">1</span>,</span>
+<span>  <span class="st">"{.var b} must be length {.val 5}, but is length {.val {length(b)}}."</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/length.html" class="external-link">length</a></span><span class="op">(</span><span class="va">b</span><span class="op">)</span> <span class="op">==</span> <span class="fl">5</span></span>
 <span><span class="op">)</span></span>
 <span><span class="co">#&gt; Error:</span></span>
-<span><span class="co">#&gt; ! `a` must be length "5", but is length 3.</span></span>
+<span><span class="co">#&gt; ! `b` must be length "5", but is length 3.</span></span>
 <span></span>
-<span><span class="va">a</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"a"</span>, <span class="st">"b"</span>, <span class="st">"c"</span><span class="op">)</span></span>
+<span><span class="va">b</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"a"</span>, <span class="st">"b"</span>, <span class="st">"c"</span><span class="op">)</span></span>
 <span></span>
-<span><span class="fu"><a href="reference/check.html">check_with</a></span><span class="op">(</span><span class="va">data</span>, <span class="fu"><a href="https://rdrr.io/r/base/numeric.html" class="external-link">is.numeric</a></span><span class="op">(</span><span class="va">.data</span><span class="op">$</span><span class="va">a</span><span class="op">)</span>, <span class="fu"><a href="https://rdrr.io/r/base/numeric.html" class="external-link">is.numeric</a></span><span class="op">(</span><span class="va">.env</span><span class="op">$</span><span class="va">a</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="fu"><a href="reference/check.html">check_with</a></span><span class="op">(</span><span class="va">data</span>, <span class="fu"><a href="https://rdrr.io/r/base/numeric.html" class="external-link">is.numeric</a></span><span class="op">(</span><span class="va">.data</span><span class="op">$</span><span class="va">b</span><span class="op">)</span>, <span class="fu"><a href="https://rdrr.io/r/base/numeric.html" class="external-link">is.numeric</a></span><span class="op">(</span><span class="va">.env</span><span class="op">$</span><span class="va">b</span><span class="op">)</span><span class="op">)</span></span>
 <span><span class="co">#&gt; Error:</span></span>
-<span><span class="co">#&gt; ! `is.numeric(.env$a)` is not TRUE.</span></span></code></pre></div>
+<span><span class="co">#&gt; ! `is.numeric(.env$b)` is not TRUE.</span></span></code></pre></div>
 <p>Walking a check over a vector:</p>
 <div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">x</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span><span class="fl">1</span>, <span class="fl">2</span>, my_el <span class="op">=</span> <span class="st">"3"</span>, <span class="fl">4</span><span class="op">)</span></span>
 <span><span class="fu"><a href="reference/walk-check.html">walk_check</a></span><span class="op">(</span><span class="va">x</span>, <span class="va">is.numeric</span><span class="op">)</span></span>
 <span><span class="co">#&gt; Error:</span></span>
 <span><span class="co">#&gt; ! Check result for `.x[['my_el']]` (index: 3) is not TRUE.</span></span></code></pre></div>
-<p>Specific type validation:</p>
+<p>Class validation:</p>
 <div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">x</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/structure.html" class="external-link">structure</a></span><span class="op">(</span><span class="fl">1</span><span class="op">:</span><span class="fl">3</span>, class <span class="op">=</span> <span class="st">"a_class"</span><span class="op">)</span></span>
+<span><span class="fu"><a href="reference/inheritance-checks.html">check_class</a></span><span class="op">(</span><span class="va">x</span>, <span class="st">"my_class"</span><span class="op">)</span></span>
+<span><span class="co">#&gt; Error:</span></span>
+<span><span class="co">#&gt; ! `x` must be class &lt;my_class&gt;, but is class &lt;a_class&gt;.</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/class.html" class="external-link">class</a></span><span class="op">(</span><span class="va">x</span><span class="op">)</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"b_class"</span>, <span class="fu"><a href="https://rdrr.io/r/base/class.html" class="external-link">class</a></span><span class="op">(</span><span class="va">x</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="fu"><a href="reference/inheritance-checks.html">check_inherits</a></span><span class="op">(</span><span class="va">x</span>, <span class="st">"my_class"</span><span class="op">)</span></span>
+<span><span class="co">#&gt; Error:</span></span>
+<span><span class="co">#&gt; ! `x` must inherit from &lt;my_class&gt;, but is class &lt;b_class/a_class&gt;.</span></span></code></pre></div>
+<p>Specific type validation:</p>
+<div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">x</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">1</span>, <span class="fl">2</span>, <span class="fl">3</span><span class="op">)</span></span>
 <span><span class="fu"><a href="reference/type-checks.html">check_integer</a></span><span class="op">(</span><span class="va">x</span><span class="op">)</span></span>
 <span><span class="co">#&gt; Error:</span></span>
@@ -261,14 +276,17 @@
 <span><span class="co">#&gt; Error:</span></span>
 <span><span class="co">#&gt; ! `df` must be a &lt;tbl_df&gt; with 3 to 5 columns, but it has 2.</span></span></code></pre></div>
 <p>Ensure no forbidden values:</p>
-<div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">x</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">1</span>, <span class="fl">2</span>, <span class="cn">NA</span><span class="op">)</span></span>
+<div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">x</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">1</span>, <span class="fl">2</span>, <span class="fl">1</span>, <span class="cn">NA</span><span class="op">)</span></span>
 <span><span class="fu"><a href="reference/forbidden-value-checks.html">check_no_na</a></span><span class="op">(</span><span class="va">x</span><span class="op">)</span></span>
 <span><span class="co">#&gt; Error:</span></span>
 <span><span class="co">#&gt; ! `x` must not contain NA values.</span></span>
 <span><span class="fu"><a href="reference/forbidden-value-checks.html">check_finite</a></span><span class="op">(</span><span class="va">x</span><span class="op">)</span></span>
 <span><span class="co">#&gt; Error:</span></span>
 <span><span class="co">#&gt; ! `x` must not contain non-finite values.</span></span>
+<span><span class="fu"><a href="reference/forbidden-value-checks.html">check_unique</a></span><span class="op">(</span><span class="va">x</span><span class="op">)</span></span>
+<span><span class="co">#&gt; Error:</span></span>
+<span><span class="co">#&gt; ! `x` must have unique elements. Duplicates: 1.</span></span>
 <span></span>
 <span><span class="va">x</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"a"</span>, <span class="st">"b"</span>, <span class="st">""</span><span class="op">)</span></span>
 <span><span class="fu"><a href="reference/forbidden-value-checks.html">check_nzchar</a></span><span class="op">(</span><span class="va">x</span><span class="op">)</span></span>
@@ -278,8 +296,40 @@
 <span><span class="fu"><a href="reference/forbidden-value-checks.html">check_nzchar</a></span><span class="op">(</span><span class="va">x</span>, allow_all_ws <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span>
 <span><span class="co">#&gt; Error:</span></span>
 <span><span class="co">#&gt; ! `x` must not contain all whitespace elements.</span></span></code></pre></div>
+<p>Check object properties:</p>
+<div class="sourceCode" id="cb10"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">x</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">1</span>, <span class="fl">2</span>, <span class="fl">3</span><span class="op">)</span></span>
+<span><span class="fu"><a href="reference/property-checks.html">check_length</a></span><span class="op">(</span><span class="va">x</span>, <span class="fl">2</span><span class="op">)</span></span>
+<span><span class="co">#&gt; Error:</span></span>
+<span><span class="co">#&gt; ! `x` must be of length 2, not 3.</span></span>
+<span><span class="fu"><a href="reference/property-checks.html">check_size</a></span><span class="op">(</span><span class="va">x</span>, <span class="fu"><a href="reference/modifiers.html">at_most</a></span><span class="op">(</span><span class="fl">1</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="co">#&gt; Error:</span></span>
+<span><span class="co">#&gt; ! `x` must be of at most size 1, but it is of size 3.</span></span>
+<span><span class="va">df</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html" class="external-link">data.frame</a></span><span class="op">(</span>x <span class="op">=</span> <span class="fl">1</span><span class="op">:</span><span class="fl">3</span>, y <span class="op">=</span> <span class="fl">1</span><span class="op">:</span><span class="fl">3</span><span class="op">)</span></span>
+<span><span class="fu"><a href="reference/property-checks.html">check_nrow</a></span><span class="op">(</span><span class="va">df</span>, <span class="fl">2</span><span class="op">)</span></span>
+<span><span class="co">#&gt; Error:</span></span>
+<span><span class="co">#&gt; ! `df` must have 2 rows, not 3.</span></span>
+<span><span class="fu"><a href="reference/property-checks.html">check_ncol</a></span><span class="op">(</span><span class="va">df</span>, <span class="fu"><a href="reference/modifiers.html">in_range</a></span><span class="op">(</span><span class="fl">3</span>, <span class="fl">5</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="co">#&gt; Error:</span></span>
+<span><span class="co">#&gt; ! `df` must have 3 to 5 columns, but it has 2.</span></span>
+<span><span class="va">x</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/numeric.html" class="external-link">numeric</a></span><span class="op">(</span><span class="fl">0</span><span class="op">)</span></span>
+<span><span class="fu"><a href="reference/property-checks.html">check_non_empty</a></span><span class="op">(</span><span class="va">x</span><span class="op">)</span></span>
+<span><span class="co">#&gt; Error:</span></span>
+<span><span class="co">#&gt; ! `x` must not be empty.</span></span>
+<span><span class="va">x</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">1</span>, <span class="fl">2</span>, <span class="fl">3</span><span class="op">)</span></span>
+<span><span class="fu"><a href="reference/property-checks.html">check_named</a></span><span class="op">(</span><span class="va">x</span><span class="op">)</span></span>
+<span><span class="co">#&gt; Error:</span></span>
+<span><span class="co">#&gt; ! `x` must be named.</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/names.html" class="external-link">names</a></span><span class="op">(</span><span class="va">x</span><span class="op">)</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"a"</span>, <span class="st">"b"</span>, <span class="st">"a"</span><span class="op">)</span></span>
+<span><span class="fu"><a href="reference/property-checks.html">check_named</a></span><span class="op">(</span><span class="va">x</span>, unique <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span>
+<span><span class="co">#&gt; Error:</span></span>
+<span><span class="co">#&gt; ! `x` must have unique names. Duplicates: "a".</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/names.html" class="external-link">names</a></span><span class="op">(</span><span class="va">x</span><span class="op">)</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"a"</span>, <span class="st">"b"</span>, <span class="st">""</span><span class="op">)</span></span>
+<span><span class="fu"><a href="reference/property-checks.html">check_named</a></span><span class="op">(</span><span class="va">x</span>, allow_empty <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span>
+<span><span class="co">#&gt; Error:</span></span>
+<span><span class="co">#&gt; ! `x` must not contain empty names.</span></span></code></pre></div>
 <p>File/dir existence validation:</p>
-<div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb11"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="reference/path-checks.html">check_dir</a></span><span class="op">(</span><span class="st">"non_existing_dir"</span><span class="op">)</span></span>
 <span><span class="co">#&gt; Error:</span></span>
 <span><span class="co">#&gt; ! `x` must be an existing directory, but it doesn't exist.</span></span>
@@ -295,7 +345,7 @@
 <span><span class="co">#&gt; Error:</span></span>
 <span><span class="co">#&gt; ! `"file.txt"` must have extension ".csv" or ".xlsx".</span></span></code></pre></div>
 <p>Build your own S3 type checks:</p>
-<div class="sourceCode" id="cb10"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb12"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">check_my_class</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span></span>
 <span>  <span class="va">x</span>,</span>
 <span>  <span class="va">n</span> <span class="op">=</span> <span class="cn">NULL</span>,</span>
@@ -341,7 +391,8 @@
 <div class="section level3">
 <h3 id="notes">Notes<a class="anchor" aria-label="anchor" href="#notes"></a>
 </h3>
-<p>favr relies heavily on the imported packages <a href="https://rlang.r-lib.org" class="external-link">rlang</a> and <a href="https://cli.r-lib.org/" class="external-link">cli</a>. For data validation using user-defined schemas, see <a href="https://lj-jenkins.github.io/fluffy/" class="external-link">fluffy</a>.</p>
+<p>favr relies heavily on the imported packages <a href="https://rlang.r-lib.org" class="external-link">rlang</a> and <a href="https://cli.r-lib.org/" class="external-link">cli</a>.</p>
+<p>For data validation using user-defined schemas, see <a href="https://lj-jenkins.github.io/fluffy/" class="external-link">fluffy</a>.</p>
 </div>
 </div>
 <div class="section level2">

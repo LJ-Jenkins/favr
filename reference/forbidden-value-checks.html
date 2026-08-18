@@ -54,6 +54,14 @@
 <span>  call <span class="op">=</span> <span class="fu">caller_env</span><span class="op">(</span><span class="op">)</span></span>
 <span><span class="op">)</span></span>
 <span></span>
+<span><span class="fu">check_unique</span><span class="op">(</span></span>
+<span>  <span class="va">x</span>,</span>
+<span>  <span class="va">...</span>,</span>
+<span>  allow_null <span class="op">=</span> <span class="cn">FALSE</span>,</span>
+<span>  arg <span class="op">=</span> <span class="fu">caller_arg</span><span class="op">(</span><span class="va">x</span><span class="op">)</span>,</span>
+<span>  call <span class="op">=</span> <span class="fu">caller_env</span><span class="op">(</span><span class="op">)</span></span>
+<span><span class="op">)</span></span>
+<span></span>
 <span><span class="fu">check_nzchar</span><span class="op">(</span></span>
 <span>  <span class="va">x</span>,</span>
 <span>  <span class="va">...</span>,</span>
@@ -105,12 +113,14 @@ all whitespace.</p></dd>
     </div>
     <div class="section level2">
     <h2 id="details">Details<a class="anchor" aria-label="anchor" href="#details"></a></h2>
-    <p><code>NA</code> checks are done with <code><a href="https://rdrr.io/r/base/NA.html" class="external-link">anyNA()</a></code>, finite checks are done with
-<code><a href="https://rdrr.io/r/base/any.html" class="external-link">any()</a></code> and <code><a href="https://rdrr.io/r/base/is.finite.html" class="external-link">is.finite()</a></code>, and zero chr checks are done with
-<code><a href="https://rdrr.io/r/base/any.html" class="external-link">any()</a></code> and <code><a href="https://rdrr.io/r/base/nchar.html" class="external-link">nzchar()</a></code>. If <code>allow_all_ws = FALSE</code> then whitespace
-elements are identified using <code>grepl("\\s+", x)</code>.</p>
+    <p><code>NA</code> checks are done with <code><a href="https://rdrr.io/r/base/NA.html" class="external-link">anyNA()</a></code>;</p>
+<p>finite checks are done with <code><a href="https://rdrr.io/r/base/any.html" class="external-link">any()</a></code> and <code><a href="https://rdrr.io/r/base/is.finite.html" class="external-link">is.finite()</a></code>;</p>
+<p>unique checks are done with <code><a href="https://rdrr.io/r/base/duplicated.html" class="external-link">anyDuplicated()</a></code>;</p>
+<p>zero chr checks are done with <code><a href="https://rdrr.io/r/base/any.html" class="external-link">any()</a></code> and <code><a href="https://rdrr.io/r/base/nchar.html" class="external-link">nzchar()</a></code>;</p>
+<p>If <code>allow_all_ws = FALSE</code> then whitespace elements are identified using
+<code>grepl("\\s+", x)</code>.</p>
 <p>Input types are not checked to be of expected types, they are passed
-'as is' to the base functions that do the checking. The only exception
+'as is' to the functions that do the checking. The only exception
 is for <code>NULL</code> inputs, which error if <code>allow_null = FALSE</code>.</p>
     </div>
     <div class="section level2">
@@ -124,6 +134,7 @@ is for <code>NULL</code> inputs, which error if <code>allow_null = FALSE</code>.
 <code><a href="array-type-checks.html">array-type-checks</a></code>,
 <code><a href="inheritance-checks.html">inheritance-checks</a></code>,
 <code><a href="path-checks.html">path-checks</a></code>,
+<code><a href="property-checks.html">property-checks</a></code>,
 <code><a href="s3-type-checks.html">s3-type-checks</a></code>,
 <code><a href="scalar-type-checks.html">scalar-type-checks</a></code>,
 <code><a href="scalar-value-checks.html">scalar-value-checks</a></code>,
@@ -143,9 +154,19 @@ is for <code>NULL</code> inputs, which error if <code>allow_null = FALSE</code>.
 <span class="r-out co"><span class="r-pr">#&gt;</span> Error in eval(expr, envir) : </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   `x` must not contain non-finite values.</span>
 <span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="va">x</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">1</span>, <span class="fl">2</span>, <span class="fl">3</span>, <span class="fl">1</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="fu">check_unique</span><span class="op">(</span><span class="va">x</span><span class="op">)</span> <span class="op">|&gt;</span> <span class="kw"><a href="https://rdrr.io/r/base/try.html" class="external-link">try</a></span><span class="op">(</span><span class="op">)</span></span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Error in eval(expr, envir) : </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   `x` must have unique elements. Duplicates: <span style="color: #0000BB;">1</span>.</span>
+<span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="va">x</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"a"</span>, <span class="st">"b"</span>, <span class="st">""</span><span class="op">)</span></span></span>
 <span class="r-in"><span><span class="fu">check_nzchar</span><span class="op">(</span><span class="va">x</span><span class="op">)</span> <span class="op">|&gt;</span> <span class="kw"><a href="https://rdrr.io/r/base/try.html" class="external-link">try</a></span><span class="op">(</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Error in eval(expr, envir) : `x` must not contain empty strings.</span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="va">x</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"a"</span>, <span class="st">"b"</span>, <span class="st">" "</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="fu">check_nzchar</span><span class="op">(</span><span class="va">x</span>, allow_all_ws <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span> <span class="op">|&gt;</span> <span class="kw"><a href="https://rdrr.io/r/base/try.html" class="external-link">try</a></span><span class="op">(</span><span class="op">)</span></span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Error in eval(expr, envir) : </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   `x` must not contain all whitespace elements.</span>
 </code></pre></div>
     </div>
   </main><aside class="col-md-3"><nav id="toc" aria-label="Table of contents"><h2>On this page</h2>

@@ -40,6 +40,15 @@ check_scalar_integer(
   call = caller_env()
 )
 
+check_scalar_integerish(
+  x,
+  ...,
+  finite = FALSE,
+  allow_null = FALSE,
+  arg = caller_arg(x),
+  call = caller_env()
+)
+
 check_scalar_double(
   x,
   ...,
@@ -170,6 +179,7 @@ Other checks:
 [`forbidden-value-checks`](https://lj-jenkins.github.io/favr/reference/forbidden-value-checks.md),
 [`inheritance-checks`](https://lj-jenkins.github.io/favr/reference/inheritance-checks.md),
 [`path-checks`](https://lj-jenkins.github.io/favr/reference/path-checks.md),
+[`property-checks`](https://lj-jenkins.github.io/favr/reference/property-checks.md),
 [`s3-type-checks`](https://lj-jenkins.github.io/favr/reference/s3-type-checks.md),
 [`scalar-value-checks`](https://lj-jenkins.github.io/favr/reference/scalar-value-checks.md),
 [`type-checks`](https://lj-jenkins.github.io/favr/reference/type-checks.md),
@@ -197,4 +207,7 @@ check_scalar_double(Inf, finite = TRUE) |> try()
 #>   `Inf` must be a finite value, not Inf.
 
 check_scalar_logical(NULL, allow_null = TRUE)
+
+x <- 1.0
+check_scalar_integerish(x)
 ```

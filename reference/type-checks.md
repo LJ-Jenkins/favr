@@ -43,6 +43,16 @@ check_integer(
   call = caller_env()
 )
 
+check_integerish(
+  x,
+  n = NULL,
+  ...,
+  finite = FALSE,
+  allow_null = FALSE,
+  arg = caller_arg(x),
+  call = caller_env()
+)
+
 check_double(
   x,
   n = NULL,
@@ -191,6 +201,7 @@ Other checks:
 [`forbidden-value-checks`](https://lj-jenkins.github.io/favr/reference/forbidden-value-checks.md),
 [`inheritance-checks`](https://lj-jenkins.github.io/favr/reference/inheritance-checks.md),
 [`path-checks`](https://lj-jenkins.github.io/favr/reference/path-checks.md),
+[`property-checks`](https://lj-jenkins.github.io/favr/reference/property-checks.md),
 [`s3-type-checks`](https://lj-jenkins.github.io/favr/reference/s3-type-checks.md),
 [`scalar-type-checks`](https://lj-jenkins.github.io/favr/reference/scalar-type-checks.md),
 [`scalar-value-checks`](https://lj-jenkins.github.io/favr/reference/scalar-value-checks.md),
@@ -204,6 +215,7 @@ x <- c(1, 2, 3)
 check_integer(x) |> try()
 #> Error in eval(expr, envir) : 
 #>   `x` must be an <integer> vector, not a <double> vector.
+check_integerish(x)
 check_scalar_double(x) |> try()
 #> Error in eval(expr, envir) : 
 #>   `x` must be a scalar <double>, but it is of length 3.

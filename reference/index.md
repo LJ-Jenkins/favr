@@ -26,6 +26,7 @@ Strongly typed validation.
   [`check_atomic()`](https://lj-jenkins.github.io/favr/reference/type-checks.md)
   [`check_vector()`](https://lj-jenkins.github.io/favr/reference/type-checks.md)
   [`check_integer()`](https://lj-jenkins.github.io/favr/reference/type-checks.md)
+  [`check_integerish()`](https://lj-jenkins.github.io/favr/reference/type-checks.md)
   [`check_double()`](https://lj-jenkins.github.io/favr/reference/type-checks.md)
   [`check_complex()`](https://lj-jenkins.github.io/favr/reference/type-checks.md)
   [`check_character()`](https://lj-jenkins.github.io/favr/reference/type-checks.md)
@@ -55,6 +56,7 @@ Strongly typed validation.
   [`check_scalar_atomic()`](https://lj-jenkins.github.io/favr/reference/scalar-type-checks.md)
   [`check_scalar_vector()`](https://lj-jenkins.github.io/favr/reference/scalar-type-checks.md)
   [`check_scalar_integer()`](https://lj-jenkins.github.io/favr/reference/scalar-type-checks.md)
+  [`check_scalar_integerish()`](https://lj-jenkins.github.io/favr/reference/scalar-type-checks.md)
   [`check_scalar_double()`](https://lj-jenkins.github.io/favr/reference/scalar-type-checks.md)
   [`check_scalar_complex()`](https://lj-jenkins.github.io/favr/reference/scalar-type-checks.md)
   [`check_scalar_character()`](https://lj-jenkins.github.io/favr/reference/scalar-type-checks.md)
@@ -73,6 +75,7 @@ Strongly typed validation.
   : Scalar value checks
 - [`check_no_na()`](https://lj-jenkins.github.io/favr/reference/forbidden-value-checks.md)
   [`check_finite()`](https://lj-jenkins.github.io/favr/reference/forbidden-value-checks.md)
+  [`check_unique()`](https://lj-jenkins.github.io/favr/reference/forbidden-value-checks.md)
   [`check_nzchar()`](https://lj-jenkins.github.io/favr/reference/forbidden-value-checks.md)
   : Forbidden value checks
 
@@ -83,6 +86,16 @@ Strongly typed validation.
   [`at_most()`](https://lj-jenkins.github.io/favr/reference/modifiers.md)
   [`in_range()`](https://lj-jenkins.github.io/favr/reference/modifiers.md)
   : Modify the behaviour of type checking functions
+
+### Property
+
+- [`check_length()`](https://lj-jenkins.github.io/favr/reference/property-checks.md)
+  [`check_nrow()`](https://lj-jenkins.github.io/favr/reference/property-checks.md)
+  [`check_ncol()`](https://lj-jenkins.github.io/favr/reference/property-checks.md)
+  [`check_size()`](https://lj-jenkins.github.io/favr/reference/property-checks.md)
+  [`check_non_empty()`](https://lj-jenkins.github.io/favr/reference/property-checks.md)
+  [`check_named()`](https://lj-jenkins.github.io/favr/reference/property-checks.md)
+  : Object property checks
 
 ### File system
 

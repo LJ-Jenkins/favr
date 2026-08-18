@@ -182,6 +182,7 @@ Other checks:
 [`forbidden-value-checks`](https://lj-jenkins.github.io/favr/reference/forbidden-value-checks.md),
 [`inheritance-checks`](https://lj-jenkins.github.io/favr/reference/inheritance-checks.md),
 [`path-checks`](https://lj-jenkins.github.io/favr/reference/path-checks.md),
+[`property-checks`](https://lj-jenkins.github.io/favr/reference/property-checks.md),
 [`scalar-type-checks`](https://lj-jenkins.github.io/favr/reference/scalar-type-checks.md),
 [`scalar-value-checks`](https://lj-jenkins.github.io/favr/reference/scalar-value-checks.md),
 [`type-checks`](https://lj-jenkins.github.io/favr/reference/type-checks.md),

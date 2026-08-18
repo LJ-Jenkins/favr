@@ -44,8 +44,8 @@
 <span>  nrow <span class="op">=</span> <span class="cn">NULL</span>,</span>
 <span>  ncol <span class="op">=</span> <span class="cn">NULL</span>,</span>
 <span>  <span class="va">...</span>,</span>
-<span>  allow_null <span class="op">=</span> <span class="cn">FALSE</span>,</span>
 <span>  finite <span class="op">=</span> <span class="cn">FALSE</span>,</span>
+<span>  allow_null <span class="op">=</span> <span class="cn">FALSE</span>,</span>
 <span>  arg <span class="op">=</span> <span class="fu">caller_arg</span><span class="op">(</span><span class="va">x</span><span class="op">)</span>,</span>
 <span>  call <span class="op">=</span> <span class="fu">caller_env</span><span class="op">(</span><span class="op">)</span></span>
 <span><span class="op">)</span></span>
@@ -56,8 +56,8 @@
 <span>  nrow <span class="op">=</span> <span class="cn">NULL</span>,</span>
 <span>  ncol <span class="op">=</span> <span class="cn">NULL</span>,</span>
 <span>  <span class="va">...</span>,</span>
-<span>  allow_null <span class="op">=</span> <span class="cn">FALSE</span>,</span>
 <span>  finite <span class="op">=</span> <span class="cn">FALSE</span>,</span>
+<span>  allow_null <span class="op">=</span> <span class="cn">FALSE</span>,</span>
 <span>  arg <span class="op">=</span> <span class="fu">caller_arg</span><span class="op">(</span><span class="va">x</span><span class="op">)</span>,</span>
 <span>  call <span class="op">=</span> <span class="fu">caller_env</span><span class="op">(</span><span class="op">)</span></span>
 <span><span class="op">)</span></span>
@@ -68,8 +68,8 @@
 <span>  nrow <span class="op">=</span> <span class="cn">NULL</span>,</span>
 <span>  ncol <span class="op">=</span> <span class="cn">NULL</span>,</span>
 <span>  <span class="va">...</span>,</span>
-<span>  allow_null <span class="op">=</span> <span class="cn">FALSE</span>,</span>
 <span>  finite <span class="op">=</span> <span class="cn">FALSE</span>,</span>
+<span>  allow_null <span class="op">=</span> <span class="cn">FALSE</span>,</span>
 <span>  arg <span class="op">=</span> <span class="fu">caller_arg</span><span class="op">(</span><span class="va">x</span><span class="op">)</span>,</span>
 <span>  call <span class="op">=</span> <span class="fu">caller_env</span><span class="op">(</span><span class="op">)</span></span>
 <span><span class="op">)</span></span></code></pre></div>
@@ -93,13 +93,13 @@ rows of <code>x</code>.</p></dd>
 which forwards unmatched arguments to <a href="https://rlang.r-lib.org/reference/abort.html" class="external-link">abort()</a>.</p></dd>
 
 
-<dt id="arg-allow-null">allow_null<a class="anchor" aria-label="anchor" href="#arg-allow-null"></a></dt>
-<dd><p>Whether <code>x</code> is allowed to be <code>NULL</code>.</p></dd>
-
-
 <dt id="arg-finite">finite<a class="anchor" aria-label="anchor" href="#arg-finite"></a></dt>
 <dd><p>Whether <code>x</code> is required to contain only finite values
 (i.e. no <code>NA</code>, <code>Inf</code>, <code>-Inf</code>, or <code>NaN</code>).</p></dd>
+
+
+<dt id="arg-allow-null">allow_null<a class="anchor" aria-label="anchor" href="#arg-allow-null"></a></dt>
+<dd><p>Whether <code>x</code> is allowed to be <code>NULL</code>.</p></dd>
 
 
 <dt id="arg-arg">arg<a class="anchor" aria-label="anchor" href="#arg-arg"></a></dt>
@@ -137,6 +137,7 @@ base functions <code><a href="https://rdrr.io/r/base/array.html" class="external
 <code><a href="forbidden-value-checks.html">forbidden-value-checks</a></code>,
 <code><a href="inheritance-checks.html">inheritance-checks</a></code>,
 <code><a href="path-checks.html">path-checks</a></code>,
+<code><a href="property-checks.html">property-checks</a></code>,
 <code><a href="s3-type-checks.html">s3-type-checks</a></code>,
 <code><a href="scalar-type-checks.html">scalar-type-checks</a></code>,
 <code><a href="scalar-value-checks.html">scalar-value-checks</a></code>,

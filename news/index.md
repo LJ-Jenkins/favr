@@ -132,11 +132,28 @@ Refactor of the package to focus on function argument validation through
 #### Forbidden Values Validation
 
 - [`check_no_na()`](https://lj-jenkins.github.io/favr/reference/forbidden-value-checks.md),
-  [`check_finite()`](https://lj-jenkins.github.io/favr/reference/forbidden-value-checks.md)
+  [`check_finite()`](https://lj-jenkins.github.io/favr/reference/forbidden-value-checks.md),
+  [`check_unique()`](https://lj-jenkins.github.io/favr/reference/forbidden-value-checks.md)
   and
   [`check_nzchar()`](https://lj-jenkins.github.io/favr/reference/forbidden-value-checks.md)
   functions to check for the presence of forbidden values and error if
   found.
+
+#### Property Validation
+
+- [`check_length()`](https://lj-jenkins.github.io/favr/reference/property-checks.md),
+  [`check_nrow()`](https://lj-jenkins.github.io/favr/reference/property-checks.md),
+  [`check_ncol()`](https://lj-jenkins.github.io/favr/reference/property-checks.md),
+  [`check_size()`](https://lj-jenkins.github.io/favr/reference/property-checks.md)
+  and
+  [`check_non_empty()`](https://lj-jenkins.github.io/favr/reference/property-checks.md)
+  functions to check for an expected length/size of an object and error
+  if it is not.
+
+- [`check_named()`](https://lj-jenkins.github.io/favr/reference/property-checks.md)
+  function to check the names of an object and error if the object is
+  not named or (optionally) if the names contain empty or duplicated
+  elements.
 
 #### File and Directory Validation
 
