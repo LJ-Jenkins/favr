@@ -29,14 +29,14 @@
       check_array(bare(x), n = 2)
     Condition
       Error:
-      ! `x` must be a bare <array>, but it is of class <my_array>.
+      ! `x` must be a bare <array>, but it is of class <my_array/array>.
     Code
       x <- matrix(1)
       class(x) <- c("my_matrix", class(x))
       check_matrix(bare(x), n = 2)
     Condition
       Error:
-      ! `x` must be a bare <matrix>, but it is of class <my_matrix>.
+      ! `x` must be a bare <matrix>, but it is of class <my_matrix/matrix/array>.
 
 # error shows length problem when types match
 

@@ -35,14 +35,14 @@ s3_df_check(
 \item{n, nrow, ncol}{The expected length, number of columns, or number of
 rows of \code{x}.}
 
-\item{type}{The expected S3 type of \code{x}.}
+\item{type}{The expected \code{S3} type of \code{x}.}
 
-\item{type_msg}{A message describing the expected S3 type of
-\code{x} for use in error messages not relating to inheritance, optionally
+\item{type_msg}{A message describing the expected \code{S3} type of
+\code{x}, for use in error messages not relating to inheritance, optionally
 with \link[cli:cli]{cli} formatting. See details.}
 
-\item{...}{Additional arguments passed to \link[cli:cli_abort]{cli_abort()}
-which forwards unmatched arguments to \link[rlang:abort]{abort()}.}
+\item{...}{Additional arguments passed to \code{\link[cli:cli_abort]{cli_abort()}}
+which forwards unmatched arguments to \code{\link[rlang:abort]{abort()}}.}
 
 \item{allow_null}{Whether \code{x} is allowed to be \code{NULL}.}
 
@@ -59,13 +59,13 @@ mentioned in error messages as the source of the error. See the
 \code{NULL} invisibly if the check passes, otherwise an error is thrown.
 }
 \description{
-Check builders for S3 types. These functions can be used to create
-custom S3 type checks in the style of favr.
+Check builders for \code{S3} types. These functions can be used to create
+custom \code{S3} type checks in the style of favr.
 }
 \details{
-Inputs are passed to \code{\link[=check_inherits]{check_inherits()}} to check that \code{x} inherits from the
-expected S3 type. This means that error messages about inheritance will
-always show the expected S3 type in the cli format of
+Inputs are passed to \code{\link[=check_inherits]{check_inherits()}} to check that \code{x} inherits from
+the expected \code{S3} type. This means that error messages about inheritance
+will always show the expected \code{S3} type in the \link[cli:cli]{cli} format of
 \verb{\{.cls <expected_s3_type>\}}.
 
 The \code{type_msg} argument is used to customise the error message when a
@@ -75,17 +75,17 @@ different phrasing. For example, the default value is
 \code{"a {.cls <expected_s3_type>} vector"}. Also consider where 'an' is
 more appropriate than 'a'.
 
-These functions can be used with the \code{\link[=bare]{bare()}} modifier to check if an object
-is a bare S3 object (where the expected S3 type is the first class in the
-class attribute of \code{x}), and the length modifiers \code{\link[=at_least]{at_least()}}, \code{\link[=at_most]{at_most()}},
-and \code{\link[=in_range]{in_range()}} to modify the behaviour of the length checking \code{n},
-\code{nrow}, and \code{ncol} arguments.
+These functions can be used with the \code{\link[=bare]{bare()}} modifier to check if
+an object is a bare S3 object (where the expected S3 type is the first
+class in the class attribute of \code{x}), and the length modifiers
+\code{\link[=at_least]{at_least()}}, \code{\link[=at_most]{at_most()}}, and \code{\link[=in_range]{in_range()}} to modify the behaviour
+of the length checking \code{n}, \code{nrow}, and \code{ncol} arguments.
 }
 \note{
 Although named \verb{_vec} and \verb{_df}, these functions could be used to check any
-S3 type, not just vectors and data frames. Their names are intended to
+\code{S3} type, not just vectors and data frames. Their names are intended to
 indicate the expected behaviour of the check - for types that would
-use the length or dimension checking arguments.
+use either the length or dimension checking arguments.
 }
 \examples{
 # Create a custom type check for a hypothetical "my_class" S3 class

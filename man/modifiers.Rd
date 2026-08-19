@@ -22,7 +22,7 @@ in_range(
 )
 }
 \arguments{
-\item{x}{An object to check if bare.}
+\item{x}{An object to modify the check behaviour for.}
 
 \item{arg, arg_min, arg_max}{An argument name as a string. This argument will
 be mentioned in error messages as the input that is at the origin of a
@@ -45,20 +45,17 @@ Use \code{bare()} to check if a given object is a bare R object
 (no class attribute, see \code{\link[=is.object]{is.object()}}), throwing an error if it is not
 and passing the object on to the check if it is.
 
-For S3 type checks, \code{bare()} checks that the object has the expected S3
+For \code{S3} type checks, \code{bare()} checks that the object has the expected \code{S3}
 type as the \strong{first} element of the class vector.
 
-To modify the behaviour of the length checking \code{n} argument:
+To modify the behaviour of length checking arguments \code{n}, \code{nrow}, and
+\code{ncol} (example described for \code{n}):
 \itemize{
 \item \code{at_least(n)} means the object must be at least length (\code{>=}) \code{n}.
 \item \code{at_most(n)} means the object must be at most length (\code{<=}) \code{n}.
 \item \code{in_range(n_min, n_max)} means the object length must be within the range
 of (\code{>=}) \code{n_min} and (\code{<=}) \code{n_max}.
 }
-}
-\note{
-These modifiers cannot be used with the
-\link{scalar-value-checks} or the \link{forbidden-value-checks}.
 }
 \examples{
 bare(1)
@@ -78,6 +75,7 @@ class(x) <- c("my_date", class(x))
 check_date(bare(x)) |> try()
 }
 \seealso{
-\link{type-checks}, \link{scalar-type-checks} and \link{s3-type-checks} for some
-of the functions that these modifiers can be used with.
+\link{type-checks}, \link{scalar-type-checks}, \link{s3-type-checks},
+\link{property-checks} and \link{s3-check-builders} for the functions that these
+modifiers can be used with.
 }

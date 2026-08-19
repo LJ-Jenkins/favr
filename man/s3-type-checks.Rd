@@ -129,8 +129,8 @@ check_tidytable(
 \item{n, nrow, ncol}{The expected length, number of columns, or number of
 rows of \code{x}.}
 
-\item{...}{Additional arguments passed to \link[cli:cli_abort]{cli_abort()}
-which forwards unmatched arguments to \link[rlang:abort]{abort()}.}
+\item{...}{Additional arguments passed to \code{\link[cli:cli_abort]{cli_abort()}}
+which forwards unmatched arguments to \code{\link[rlang:abort]{abort()}}.}
 
 \item{allow_na}{Whether \code{x} is allowed to contain \code{NA} values.}
 
@@ -152,14 +152,14 @@ mentioned in error messages as the source of the error. See the
 \code{NULL} invisibly if the check passes, otherwise an error is thrown.
 }
 \description{
-Check if inputs are expected S3 types and throw an error if not.
+Check if inputs are expected \code{S3} types and throw an error if not.
 }
 \details{
-These functions can be used with the \code{\link[=bare]{bare()}} modifier to check if an object
-is a bare S3 object (where the expected S3 type is the first class in the
-class attribute of \code{x}), and the length modifiers \code{\link[=at_least]{at_least()}}, \code{\link[=at_most]{at_most()}},
-and \code{\link[=in_range]{in_range()}} to modify the behaviour of the length checking \code{n},
-\code{nrow}, and \code{ncol} arguments.
+These functions can be used with the \code{\link[=bare]{bare()}} modifier to check if
+an object is a bare S3 object (where the expected S3 type is the first
+class in the class attribute of \code{x}), and the length modifiers
+\code{\link[=at_least]{at_least()}}, \code{\link[=at_most]{at_most()}}, and \code{\link[=in_range]{in_range()}} to modify the behaviour
+of the length checking \code{n}, \code{nrow}, and \code{ncol} arguments.
 }
 \examples{
 x <- as.Date("2000-01-01")

@@ -37,7 +37,7 @@ Refactor of the package to focus on function argument validation through "check"
 
 * `s3_vec_check()` and `s3_df_check()` functions for developers to create their own S3 type checks for vector and data frame types, respectively.
 
-### Type Checking Modifiers
+### Check Modifiers
 
 * `bare()` modifier to check for bare objects (i.e. objects with no class attribute) in the type check functions, or bare S3 objects (where the expected S3 class is first in the class attribute vector) in the S3 type check functions.
 

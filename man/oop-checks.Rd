@@ -19,8 +19,8 @@ check_r6(x, ..., allow_null = FALSE, arg = caller_arg(x), call = caller_env())
 \arguments{
 \item{x}{An object to check.}
 
-\item{...}{Additional arguments passed to \link[cli:cli_abort]{cli_abort()}
-which forwards unmatched arguments to \link[rlang:abort]{abort()}.}
+\item{...}{Additional arguments passed to \code{\link[cli:cli_abort]{cli_abort()}}
+which forwards unmatched arguments to \code{\link[rlang:abort]{abort()}}.}
 
 \item{allow_null}{Whether \code{x} is allowed to be \code{NULL}.}
 
@@ -34,7 +34,7 @@ mentioned in error messages as the source of the error. See the
 \code{call} argument of \code{\link[rlang:abort]{abort()}} for more information.}
 }
 \value{
-\code{NULL} invisibly if the check passes or an error if it fails.
+\code{NULL} invisibly if the check passes, otherwise an error is thrown.
 }
 \description{
 Check that an object is an \code{S3}, \code{S4}, \code{S7}, or \code{R6} object.
@@ -52,10 +52,10 @@ the \code{S7_object} and \code{R6} classes, respectively.
 check_s3(factor("a"))
 check_s3(1:3) |> try()
 
-setClass("Person",
+methods::setClass("Person",
   slots = c(name = "character", age = "numeric")
 )
-x <- new("Person", name = "John", age = 30)
+x <- methods::new("Person", name = "John", age = 30)
 
 check_s4(x)
 check_s4(factor("a")) |> try()

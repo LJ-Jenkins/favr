@@ -34,27 +34,28 @@ instead of the default message or the \code{message} argument.}
 \item{message}{Default error message for non-named expressions.}
 
 \item{call}{An execution environment, defused function call, or \code{NULL}.
-Passed to \link[cli:cli_abort]{cli_abort()}.}
+Passed to \code{\link[cli:cli_abort]{cli_abort()}}.}
 
 \item{.envir}{Environment to evaluate the cli formatting of the error
-message in. Passed to \link[cli:cli_abort]{cli_abort()}.}
+message in. Passed to \code{\link[cli:cli_abort]{cli_abort()}}.}
 
-\item{.frame}{The throwing context. Passed to \link[cli:cli_abort]{cli_abort()}.}
+\item{.frame}{The throwing context. Passed to
+\code{\link[cli:cli_abort]{cli_abort()}}.}
 
 \item{abort_args}{A list of additional arguments to pass to
-\link[rlang:abort]{abort()} (forwarded from \link[cli:cli_abort]{cli_abort()}).}
+\code{\link[rlang:abort]{abort()}} (forwarded from \code{\link[cli:cli_abort]{cli_abort()}}).}
 }
 \value{
-\code{NULL}, called for side effects only.
+\code{NULL} invisibly if the checks pass, otherwise an error is thrown.
 }
 \description{
-If any of the expressions in \code{...} are not \link{all} \code{TRUE},
-\link[cli:cli_abort]{cli_abort()} is called, producing an error
-message indicating the first expression which was not (\link{all})
+If any of the expressions in \code{...} are not (\code{\link{all}}) \code{TRUE},
+\code{\link[cli:cli_abort]{cli_abort()}} is called, producing an error
+message indicating the first expression which was not (\code{\link{all}})
 \code{TRUE}.
 
 For \code{abortif()}, the opposite is true, i.e. expressions
-should evaluate to (\link{all}) \code{FALSE} for no error to occur.
+should evaluate to (\code{\link{all}}) \code{FALSE} for no error to occur.
 }
 \examples{
 abortifnot(1 == 1, all.equal(pi, 3.14159265), 1 < 2) # all TRUE
@@ -88,9 +89,9 @@ abortif(c(T, F)) |> try()
 abortif(c(T, NA)) |> try()
 }
 \seealso{
-\link{stopifnot} for the base \strong{R} function this is based on.
+\code{\link[=stopifnot]{stopifnot()}} for the base \strong{R} function this is based on.
 
-\link{check} and \link{check_with} for a non data-masked
+\code{\link[=check]{check()}} and \code{\link[=check_with]{check_with()}} for a non data-masked
 and data-masked version of \code{abortifnot()} with tidy evaluation and
 \link[rlang:topic-inject]{injection} support.
 }

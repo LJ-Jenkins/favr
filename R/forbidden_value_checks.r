@@ -2,9 +2,9 @@
 #'
 #' @description
 #' Check if inputs contain forbidden values and error if so.
-#' @param x An **R** object.
-#' @param ... Additional arguments passed to [cli_abort()][cli::cli_abort]
-#' which forwards unmatched arguments to [abort()][rlang::abort].
+#' @param x An object to check.
+#' @param ... Additional arguments passed to [`cli_abort()`][cli::cli_abort]
+#' which forwards unmatched arguments to [`abort()`][rlang::abort].
 #' @param allow_null Whether `x` is allowed to be `NULL`.
 #' @param allow_all_ws Whether `x` is allowed to contain elements that are
 #' all whitespace.
@@ -20,14 +20,12 @@
 #' zero chr checks are done with [`any()`] and [`nzchar()`];
 #'
 #' If `allow_all_ws = FALSE` then whitespace elements are identified using
-#' `grepl("\\s+", x)`.
+#' [`grepl("\\s+", x)`][grepl].
 #'
-#' Input types are not checked to be of expected types, they are passed
-#' 'as is' to the functions that do the checking. The only exception
-#' is for `NULL` inputs, which error if `allow_null = FALSE`.
+#' Input types are not checked, they are passed 'as is' to the functions
+#' that do the forbidden value checking. The only exception is for `NULL`
+#' inputs, which error if `allow_null = FALSE`.
 #' @note
-#' The [favr modifiers][modifiers] cannot be used with these functions.
-#'
 #' `NA_character_` is not considered zero chr nor all whitespace.
 #' @name forbidden-value-checks
 #' @family checks

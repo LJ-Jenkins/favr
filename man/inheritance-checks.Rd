@@ -24,8 +24,8 @@ check_class(x, class, ..., arg = caller_arg(x), call = caller_env())
 
 \item{match}{The behaviour to use for inheritance checking. See Details.}
 
-\item{...}{Additional arguments passed to \link[cli:cli_abort]{cli_abort()}
-which forwards unmatched arguments to \link[rlang:abort]{abort()}.}
+\item{...}{Additional arguments passed to \code{\link[cli:cli_abort]{cli_abort()}}
+which forwards unmatched arguments to \code{\link[rlang:abort]{abort()}}.}
 
 \item{arg}{An argument name as a string. This argument
 will be mentioned in error messages as the input that is at the
@@ -37,7 +37,7 @@ mentioned in error messages as the source of the error. See the
 \code{call} argument of \code{\link[rlang:abort]{abort()}} for more information.}
 }
 \value{
-\code{NULL} invisibly if the check passes or an error if it fails.
+\code{NULL} invisibly if the check passes, otherwise an error is thrown.
 }
 \description{
 Check that an object inherits from a specific class (or classes)

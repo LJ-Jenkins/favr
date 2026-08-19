@@ -4,18 +4,16 @@
 #' Check if inputs are expected scalar values and
 #' throw an error if not.
 #' @param x An object to check.
-#' @param ... Additional arguments passed to [cli_abort()][cli::cli_abort]
-#' which forwards unmatched arguments to [abort()][rlang::abort].
+#' @param ... Additional arguments passed to [`cli_abort()`][cli::cli_abort]
+#' which forwards unmatched arguments to [`abort()`][rlang::abort].
 #' @param allow_null Whether `x` is allowed to be `NULL`.
 #' @inheritParams rlang::args_error_context
 #' @param string A character vector of allowed values for `x`. If `NULL`,
 #' the value is not checked. The check passes if `x` is **any** of the
 #' values in `string`.
 #' @param allow_empty Whether `x` is allowed to be an empty string
-#' (i.e. when `FALSE` `""` is not allowed).
+#' (i.e. when `FALSE`, `""` is not allowed).
 #' @return `NULL` invisibly if the check passes, otherwise an error is thrown.
-#' @note
-#' The [favr modifiers][modifiers] cannot be used with these functions.
 #' @name scalar-value-checks
 #' @family checks
 #' @examples

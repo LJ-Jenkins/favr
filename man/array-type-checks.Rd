@@ -49,8 +49,8 @@ check_table(
 \item{n, nrow, ncol}{The expected length, number of columns, or number of
 rows of \code{x}.}
 
-\item{...}{Additional arguments passed to \link[cli:cli_abort]{cli_abort()}
-which forwards unmatched arguments to \link[rlang:abort]{abort()}.}
+\item{...}{Additional arguments passed to \code{\link[cli:cli_abort]{cli_abort()}}
+which forwards unmatched arguments to \code{\link[rlang:abort]{abort()}}.}
 
 \item{finite}{Whether \code{x} is required to contain only finite values
 (i.e. no \code{NA}, \code{Inf}, \code{-Inf}, or \code{NaN}).}
@@ -73,14 +73,18 @@ mentioned in error messages as the source of the error. See the
 Check if inputs are expected types and throw an error if not.
 }
 \details{
-These functions can be used with the \code{\link[=bare]{bare()}} modifier to check if an object
-is a bare R object (i.e. has no class attribute), and the length modifiers
-\code{\link[=at_least]{at_least()}}, \code{\link[=at_most]{at_most()}}, and \code{\link[=in_range]{in_range()}} to modify the behaviour of the
-length checking \code{n}, \code{nrow}, and \code{ncol} arguments.
+These functions can be used with the \code{\link[=bare]{bare()}} modifier to check if an
+object is a bare R object (i.e. has no class attribute), and the length
+modifiers \code{\link[=at_least]{at_least()}}, \code{\link[=at_most]{at_most()}}, and \code{\link[=in_range]{in_range()}} to modify
+the behaviour of the length checking \code{n}, \code{nrow}, and \code{ncol} arguments.
+
+Note that the \code{bare()} modifier uses \code{\link[=is.object]{is.object()}} for \code{check_array()} and
+\code{check_matrix()}, but uses the S3-style check for \code{check_table()}, which
+checks if \code{"table"} is the first class in the class vector.
 }
 \note{
 These check functions are wrappers of their corresponding
-base functions \code{\link[=is.array]{is.array()}} and \code{\link[=is.matrix]{is.matrix()}}.
+base functions \code{\link[=is.array]{is.array()}}, \code{\link[=is.matrix]{is.matrix()}} and \code{\link[=is.table]{is.table()}}.
 }
 \examples{
 a <- array(1:12, dim = c(3, 4))
@@ -90,6 +94,10 @@ check_array(1:12) |> try()
 m <- matrix(1:12, nrow = 3)
 check_matrix(m)
 check_matrix(1:12) |> try()
+
+t <- table(c("a", "b", "a"))
+check_table(t)
+check_table(1:12) |> try()
 
 class(m) <- c("my_matrix", class(m))
 check_matrix(bare(m)) |> try()

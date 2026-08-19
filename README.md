@@ -46,7 +46,7 @@ Validate OOP types:
 - `check_s3()`, `check_s4()`, `check_s7()` and `check_r6()` for their
   respective OOP types.
 
-Modify the behaviour of type-checking functions:
+Modify check behaviour:
 
 - `bare()` to also check for bare objects (i.e. objects with no class
   attribute) in the type check functions, or bare S3 objects (where the

@@ -1,24 +1,24 @@
 #' S3 check builders
 #'
 #' @description
-#' Check builders for S3 types. These functions can be used to create
-#' custom S3 type checks in the style of favr.
+#' Check builders for `S3` types. These functions can be used to create
+#' custom `S3` type checks in the style of favr.
 #' @param x An object to check.
 #' @param n,nrow,ncol The expected length, number of columns, or number of
 #' rows of `x`.
-#' @param type The expected S3 type of `x`.
-#' @param type_msg A message describing the expected S3 type of
-#' `x` for use in error messages not relating to inheritance, optionally
+#' @param type The expected `S3` type of `x`.
+#' @param type_msg A message describing the expected `S3` type of
+#' `x`, for use in error messages not relating to inheritance, optionally
 #' with [cli] formatting. See details.
-#' @param ... Additional arguments passed to [cli_abort()][cli::cli_abort]
-#' which forwards unmatched arguments to [abort()][rlang::abort].
+#' @param ... Additional arguments passed to [`cli_abort()`][cli::cli_abort]
+#' which forwards unmatched arguments to [`abort()`][rlang::abort].
 #' @param allow_null Whether `x` is allowed to be `NULL`.
 #' @inheritParams rlang::args_error_context
 #' @return `NULL` invisibly if the check passes, otherwise an error is thrown.
 #' @details
-#' Inputs are passed to [check_inherits()] to check that `x` inherits from the
-#' expected S3 type. This means that error messages about inheritance will
-#' always show the expected S3 type in the cli format of
+#' Inputs are passed to [`check_inherits()`] to check that `x` inherits from
+#' the expected `S3` type. This means that error messages about inheritance
+#' will always show the expected `S3` type in the [cli] format of
 #' `{.cls <expected_s3_type>}`.
 #'
 #' The `type_msg` argument is used to customise the error message when a
@@ -28,16 +28,16 @@
 #' `"a {.cls <expected_s3_type>} vector"`. Also consider where 'an' is
 #' more appropriate than 'a'.
 #'
-#' These functions can be used with the [bare()] modifier to check if an object
-#' is a bare S3 object (where the expected S3 type is the first class in the
-#' class attribute of `x`), and the length modifiers [at_least()], [at_most()],
-#' and [in_range()] to modify the behaviour of the length checking `n`,
-#' `nrow`, and `ncol` arguments.
+#' These functions can be used with the [`bare()`] modifier to check if
+#' an object is a bare S3 object (where the expected S3 type is the first
+#' class in the class attribute of `x`), and the length modifiers
+#' [`at_least()`], [`at_most()`], and [`in_range()`] to modify the behaviour
+#' of the length checking `n`, `nrow`, and `ncol` arguments.
 #' @note
 #' Although named `_vec` and `_df`, these functions could be used to check any
-#' S3 type, not just vectors and data frames. Their names are intended to
+#' `S3` type, not just vectors and data frames. Their names are intended to
 #' indicate the expected behaviour of the check - for types that would
-#' use the length or dimension checking arguments.
+#' use either the length or dimension checking arguments.
 #' @name s3-check-builders
 #' @family check-builders
 #' @examples

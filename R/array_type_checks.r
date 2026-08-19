@@ -5,21 +5,25 @@
 #' @param x An object to check.
 #' @param n,nrow,ncol The expected length, number of columns, or number of
 #' rows of `x`.
-#' @param ... Additional arguments passed to [cli_abort()][cli::cli_abort]
-#' which forwards unmatched arguments to [abort()][rlang::abort].
+#' @param ... Additional arguments passed to [`cli_abort()`][cli::cli_abort]
+#' which forwards unmatched arguments to [`abort()`][rlang::abort].
 #' @param finite Whether `x` is required to contain only finite values
 #' (i.e. no `NA`, `Inf`, `-Inf`, or `NaN`).
 #' @param allow_null Whether `x` is allowed to be `NULL`.
 #' @inheritParams rlang::args_error_context
 #' @return `NULL` invisibly if the check passes, otherwise an error is thrown.
 #' @details
-#' These functions can be used with the [bare()] modifier to check if an object
-#' is a bare R object (i.e. has no class attribute), and the length modifiers
-#' [at_least()], [at_most()], and [in_range()] to modify the behaviour of the
-#' length checking `n`, `nrow`, and `ncol` arguments.
+#' These functions can be used with the [`bare()`] modifier to check if an
+#' object is a bare R object (i.e. has no class attribute), and the length
+#' modifiers [`at_least()`], [`at_most()`], and [`in_range()`] to modify
+#' the behaviour of the length checking `n`, `nrow`, and `ncol` arguments.
+#'
+#' Note that the `bare()` modifier uses [`is.object()`] for `check_array()` and
+#' `check_matrix()`, but uses the S3-style check for `check_table()`, which
+#' checks if `"table"` is the first class in the class vector.
 #' @note
 #' These check functions are wrappers of their corresponding
-#' base functions [is.array()] and [is.matrix()].
+#' base functions [`is.array()`], [`is.matrix()`] and [`is.table()`].
 #' @name array-type-checks
 #' @family checks
 #' @examples
@@ -30,6 +34,10 @@
 #' m <- matrix(1:12, nrow = 3)
 #' check_matrix(m)
 #' check_matrix(1:12) |> try()
+#'
+#' t <- table(c("a", "b", "a"))
+#' check_table(t)
+#' check_table(1:12) |> try()
 #'
 #' class(m) <- c("my_matrix", class(m))
 #' check_matrix(bare(m)) |> try()
@@ -62,6 +70,7 @@ check_array <- function(
     ncol = ncol,
     type = "array",
     type_msg = "an {.cls array}",
+    s3_bare = FALSE,
     ...,
     finite = finite,
     allow_null = allow_null,
@@ -91,6 +100,7 @@ check_matrix <- function(
     ncol = ncol,
     type = "matrix",
     type_msg = "a {.cls matrix}",
+    s3_bare = FALSE,
     ...,
     finite = finite,
     allow_null = allow_null,
@@ -120,6 +130,7 @@ check_table <- function(
     ncol = ncol,
     type = "table",
     type_msg = "a {.cls table}",
+    s3_bare = TRUE,
     ...,
     finite = finite,
     allow_null = allow_null,
@@ -136,6 +147,7 @@ check_array_types_impl <- function(
   ncol,
   type,
   type_msg,
+  s3_bare,
   ...,
   finite = FALSE,
   allow_null = FALSE,
@@ -145,6 +157,12 @@ check_array_types_impl <- function(
   x_modifier <- inherits(x, "favr_modifier")
   if (x_modifier) {
     arg <- x[["arg"]]
+
+    if (!s3_bare) {
+      do_bare_check(x, arg, type_msg, ..., call = call)
+      x_modifier <- FALSE
+    }
+
     x <- x[["obj"]]
   }
 

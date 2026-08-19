@@ -58,13 +58,13 @@ check_named(
 )
 }
 \arguments{
-\item{x}{An \strong{R} object.}
+\item{x}{An object to check.}
 
 \item{n, nrow, ncol}{The expected length/size, number of columns, or number of
 rows of \code{x}.}
 
-\item{...}{Additional arguments passed to \link[cli:cli_abort]{cli_abort()}
-which forwards unmatched arguments to \link[rlang:abort]{abort()}.}
+\item{...}{Additional arguments passed to \code{\link[cli:cli_abort]{cli_abort()}}
+which forwards unmatched arguments to \code{\link[rlang:abort]{abort()}}.}
 
 \item{allow_null}{Whether \code{x} is allowed to be \code{NULL}.}
 
@@ -88,12 +88,18 @@ mentioned in error messages as the source of the error. See the
 Check if inputs have certain properties and error if not.
 }
 \details{
-Input types are not checked to be of expected types, they are passed
-'as is' to the functions that do the property checking. The only exception
-is for \code{NULL} inputs, which error if \code{allow_null = FALSE}.
-
 \code{check_size()} uses \code{\link[vctrs:vec_size]{vec_size()}} to determine the size
-of \code{x}, as opposed to \code{\link[base:length]{length()}}.
+of \code{x}, as opposed to \code{\link[base:length]{length()}} which is used by
+\code{check_length()}.
+
+Input types are not checked, they are passed 'as is' to the functions
+that do the property checking. The only exception is for \code{NULL} inputs,
+which error if \code{allow_null = FALSE}.
+
+\code{check_length()}, \code{check_size()}, \code{check_nrow()} and \code{check_ncol()} can
+be used with the length modifiers \code{\link[=at_least]{at_least()}}, \code{\link[=at_most]{at_most()}}, and
+\code{\link[=in_range]{in_range()}} to modify the behaviour of the length checking \code{n}, \code{nrow},
+or \code{ncol} arguments.
 }
 \examples{
 x <- c(1, 2, NA)

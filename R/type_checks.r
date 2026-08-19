@@ -4,8 +4,8 @@
 #' Check if inputs are expected types and throw an error if not.
 #' @param x An object to check.
 #' @param n The expected length of `x`.
-#' @param ... Additional arguments passed to [cli_abort()][cli::cli_abort]
-#' which forwards unmatched arguments to [abort()][rlang::abort].
+#' @param ... Additional arguments passed to [`cli_abort()`][cli::cli_abort]
+#' which forwards unmatched arguments to [`abort()`][rlang::abort].
 #' @param allow_na Whether `x` is allowed to contain `NA` values.
 #' @param allow_null Whether `x` is allowed to be `NULL`.
 #' @param finite Whether `x` is required to contain only finite values
@@ -13,17 +13,17 @@
 #' @inheritParams rlang::args_error_context
 #' @return `NULL` invisibly if the check passes, otherwise an error is thrown.
 #' @details
-#' These functions can be used with the [bare()] modifier to check if an object
-#' is a bare R object (i.e. has no class attribute), and the length modifiers
-#' [at_least()], [at_most()], and [in_range()] to modify the behaviour of the
-#' length checking `n` argument.
+#' These functions can be used with the [`bare()`] modifier to check if
+#' an object is a bare R object (i.e. has no class attribute), and the
+#' length modifiers [`at_least()`], [`at_most()`], and [`in_range()`] to
+#' modify the behaviour of the length checking `n` argument.
 #' @note
 #' `check_null()` cannot use `bare()` since `NULL` cannot have a class
 #' attribute.
 #'
 #' These check functions are wrappers of their corresponding
 #' [rlang][rlang::type-predicates] functions. The exception is
-#' `check_numeric()`, which uses [is.numeric()].
+#' `check_numeric()`, which uses [`is.numeric()`].
 #' @name type-checks
 #' @family checks
 #' @examples

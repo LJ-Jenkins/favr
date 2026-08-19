@@ -42,10 +42,10 @@ check_nzchar(
 )
 }
 \arguments{
-\item{x}{An \strong{R} object.}
+\item{x}{An object to check.}
 
-\item{...}{Additional arguments passed to \link[cli:cli_abort]{cli_abort()}
-which forwards unmatched arguments to \link[rlang:abort]{abort()}.}
+\item{...}{Additional arguments passed to \code{\link[cli:cli_abort]{cli_abort()}}
+which forwards unmatched arguments to \code{\link[rlang:abort]{abort()}}.}
 
 \item{allow_null}{Whether \code{x} is allowed to be \code{NULL}.}
 
@@ -77,15 +77,13 @@ unique checks are done with \code{\link[=anyDuplicated]{anyDuplicated()}};
 zero chr checks are done with \code{\link[=any]{any()}} and \code{\link[=nzchar]{nzchar()}};
 
 If \code{allow_all_ws = FALSE} then whitespace elements are identified using
-\code{grepl("\\\\s+", x)}.
+\code{\link[=grepl]{grepl("\\\\s+", x)}}.
 
-Input types are not checked to be of expected types, they are passed
-'as is' to the functions that do the checking. The only exception
-is for \code{NULL} inputs, which error if \code{allow_null = FALSE}.
+Input types are not checked, they are passed 'as is' to the functions
+that do the forbidden value checking. The only exception is for \code{NULL}
+inputs, which error if \code{allow_null = FALSE}.
 }
 \note{
-The \link[=modifiers]{favr modifiers} cannot be used with these functions.
-
 \code{NA_character_} is not considered zero chr nor all whitespace.
 }
 \examples{

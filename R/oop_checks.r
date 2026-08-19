@@ -3,12 +3,11 @@
 #' @description
 #' Check that an object is an `S3`, `S4`, `S7`, or `R6` object.
 #' @param x An object to check.
-#' @param ... Additional arguments passed to [cli_abort()][cli::cli_abort]
-#' which forwards unmatched arguments to [abort()][rlang::abort].
+#' @param ... Additional arguments passed to [`cli_abort()`][cli::cli_abort]
+#' which forwards unmatched arguments to [`abort()`][rlang::abort].
 #' @param allow_null Whether `x` is allowed to be `NULL`.
 #' @inheritParams rlang::args_error_context
-#' @return
-#' `NULL` invisibly if the check passes or an error if it fails.
+#' @return `NULL` invisibly if the check passes, otherwise an error is thrown.
 #' @details
 #' `S3` checks are performed by checking if the object has a class
 #' attribute with [`is.object()`] and is not an `S4` object.
@@ -23,10 +22,10 @@
 #' check_s3(factor("a"))
 #' check_s3(1:3) |> try()
 #'
-#' setClass("Person",
+#' methods::setClass("Person",
 #'   slots = c(name = "character", age = "numeric")
 #' )
-#' x <- new("Person", name = "John", age = 30)
+#' x <- methods::new("Person", name = "John", age = 30)
 #'
 #' check_s4(x)
 #' check_s4(factor("a")) |> try()

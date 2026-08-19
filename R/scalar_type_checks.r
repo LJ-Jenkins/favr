@@ -4,8 +4,8 @@
 #' Check if inputs are scalars of an expected type and
 #' throw an error if not.
 #' @param x An object to check.
-#' @param ... Additional arguments passed to [cli_abort()][cli::cli_abort]
-#' which forwards unmatched arguments to [abort()][rlang::abort].
+#' @param ... Additional arguments passed to [`cli_abort()`][cli::cli_abort]
+#' which forwards unmatched arguments to [`abort()`][rlang::abort].
 #' @param allow_na Whether `x` is allowed to
 #' contain `NA` values.
 #' @param allow_null Whether `x` is allowed to be `NULL`.
@@ -14,15 +14,15 @@
 #' @inheritParams rlang::args_error_context
 #' @return `NULL` invisibly if the check passes, otherwise an error is thrown.
 #' @details
-#' These functions can be used with the [bare()] modifier to check if an object
-#' is a bare R object (i.e. has no class attribute).
+#' These functions can be used with the [`bare()`] modifier to check if an
+#' object is a bare R object (i.e. has no class attribute).
 #' @note
 #' To handle empty strings (`""`) use [`check_string()`] instead of
 #' `check_scalar_character()`.
 #'
 #' These check functions are wrappers of their corresponding
 #' [rlang][rlang::scalar-type-predicates] functions. The exception
-#' is `check_scalar_numeric()`, which uses [is.numeric()].
+#' is `check_scalar_numeric()`, which uses [`is.numeric()`].
 #' @name scalar-type-checks
 #' @family checks
 #' @examples

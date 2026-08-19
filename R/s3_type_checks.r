@@ -1,22 +1,22 @@
 #' S3 type checks
 #'
 #' @description
-#' Check if inputs are expected S3 types and throw an error if not.
+#' Check if inputs are expected `S3` types and throw an error if not.
 #' @param x An object to check.
 #' @param n,nrow,ncol The expected length, number of columns, or number of
 #' rows of `x`.
-#' @param ... Additional arguments passed to [cli_abort()][cli::cli_abort]
-#' which forwards unmatched arguments to [abort()][rlang::abort].
+#' @param ... Additional arguments passed to [`cli_abort()`][cli::cli_abort]
+#' which forwards unmatched arguments to [`abort()`][rlang::abort].
 #' @param allow_null Whether `x` is allowed to be `NULL`.
 #' @inheritParams type-checks allow_na allow_null finite
 #' @inheritParams rlang::args_error_context
 #' @return `NULL` invisibly if the check passes, otherwise an error is thrown.
 #' @details
-#' These functions can be used with the [bare()] modifier to check if an object
-#' is a bare S3 object (where the expected S3 type is the first class in the
-#' class attribute of `x`), and the length modifiers [at_least()], [at_most()],
-#' and [in_range()] to modify the behaviour of the length checking `n`,
-#' `nrow`, and `ncol` arguments.
+#' These functions can be used with the [`bare()`] modifier to check if
+#' an object is a bare S3 object (where the expected S3 type is the first
+#' class in the class attribute of `x`), and the length modifiers
+#' [`at_least()`], [`at_most()`], and [`in_range()`] to modify the behaviour
+#' of the length checking `n`, `nrow`, and `ncol` arguments.
 #' @name s3-type-checks
 #' @family checks
 #' @examples

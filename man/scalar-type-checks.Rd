@@ -123,8 +123,8 @@ check_scalar_numeric(
 \arguments{
 \item{x}{An object to check.}
 
-\item{...}{Additional arguments passed to \link[cli:cli_abort]{cli_abort()}
-which forwards unmatched arguments to \link[rlang:abort]{abort()}.}
+\item{...}{Additional arguments passed to \code{\link[cli:cli_abort]{cli_abort()}}
+which forwards unmatched arguments to \code{\link[rlang:abort]{abort()}}.}
 
 \item{allow_null}{Whether \code{x} is allowed to be \code{NULL}.}
 
@@ -151,8 +151,8 @@ Check if inputs are scalars of an expected type and
 throw an error if not.
 }
 \details{
-These functions can be used with the \code{\link[=bare]{bare()}} modifier to check if an object
-is a bare R object (i.e. has no class attribute).
+These functions can be used with the \code{\link[=bare]{bare()}} modifier to check if an
+object is a bare R object (i.e. has no class attribute).
 }
 \note{
 To handle empty strings (\code{""}) use \code{\link[=check_string]{check_string()}} instead of

@@ -45,8 +45,8 @@ check_string(
 \arguments{
 \item{x}{An object to check.}
 
-\item{...}{Additional arguments passed to \link[cli:cli_abort]{cli_abort()}
-which forwards unmatched arguments to \link[rlang:abort]{abort()}.}
+\item{...}{Additional arguments passed to \code{\link[cli:cli_abort]{cli_abort()}}
+which forwards unmatched arguments to \code{\link[rlang:abort]{abort()}}.}
 
 \item{allow_null}{Whether \code{x} is allowed to be \code{NULL}.}
 
@@ -64,7 +64,7 @@ the value is not checked. The check passes if \code{x} is \strong{any} of the
 values in \code{string}.}
 
 \item{allow_empty}{Whether \code{x} is allowed to be an empty string
-(i.e. when \code{FALSE} \code{""} is not allowed).}
+(i.e. when \code{FALSE}, \code{""} is not allowed).}
 }
 \value{
 \code{NULL} invisibly if the check passes, otherwise an error is thrown.
@@ -72,9 +72,6 @@ values in \code{string}.}
 \description{
 Check if inputs are expected scalar values and
 throw an error if not.
-}
-\note{
-The \link[=modifiers]{favr modifiers} cannot be used with these functions.
 }
 \examples{
 x <- TRUE

@@ -7,18 +7,18 @@
 #' @param ext A character vector of file extensions to check for.
 #' @param case A logical value indicating if the extension check should
 #' be case-sensitive. If `FALSE`, the check will be case-insensitive.
-#' @param ... Additional arguments passed to [cli_abort()][cli::cli_abort]
-#' which forwards unmatched arguments to [abort()][rlang::abort].
+#' @param ... Additional arguments passed to [`cli_abort()`][cli::cli_abort]
+#' which forwards unmatched arguments to [`abort()`][rlang::abort].
 #' @param arg,x_arg,ext_arg
 #' An argument name as a string. This argument will be mentioned in
 #' error messages as the input that is at the origin of a problem.
 #' @param call
 #' The execution environment of a currently running function, e.g.
 #' `caller_env()`. The function will be mentioned in error messages as
-#' the source of the error. See the `call` argument of [`abort()`] for
-#' more information.
+#' the source of the error. See the `call` argument of
+#' [`cli_abort()`][cli::cli_abort] for more information.
 #' @return `NULL` invisibly if the check passes, otherwise an error is thrown.
-#' @note The checking of extensions is done simply using [endsWith()].
+#' @note The checking of extensions is done simply using [`endsWith()`].
 #' @name path-checks
 #' @family checks
 #' @examples

@@ -1,9 +1,9 @@
 #' Check the truth of tidy evaluated expressions
 #'
 #' @description
-#' If any of the expressions in `...` are not [all] `TRUE`,
-#' [cli_abort()][cli::cli_abort] is called, producing an error
-#' message indicating the first expression which was not ([all])
+#' If any of the expressions in `...` are not ([`all`]) `TRUE`,
+#' [`cli_abort()`][cli::cli_abort] is called, producing an error
+#' message indicating the first expression which was not ([`all`])
 #' `TRUE`.
 #'
 #' `check_with()` is a data-masked version of `check()`,
@@ -18,18 +18,19 @@
 #' expressions in as a data mask.
 #' @param message Default error message for non-named expressions.
 #' @param call An execution environment, defused function call, or `NULL`.
-#' Passed to [cli_abort()][cli::cli_abort].
+#' Passed to [`cli_abort()`][cli::cli_abort].
 #' @param .envir Environment to evaluate the cli formatting of the error
-#' message in. Passed to [cli_abort()][cli::cli_abort].
+#' message in. Passed to [`cli_abort()`][cli::cli_abort].
 #'
 #' For `check_with()`,  the messages are evaluated in the context of
 #' `.data` and `.envir`. See examples.
-#' @param .frame The throwing context. Passed to [cli_abort()][cli::cli_abort].
+#' @param .frame The throwing context. Passed to
+#' [`cli_abort()`][cli::cli_abort].
 #' @param abort_args A list of additional arguments to pass to
-#' [abort()][rlang::abort] (forwarded from [cli_abort()][cli::cli_abort]).
+#' [`abort()`][rlang::abort] (forwarded from [`cli_abort()`][cli::cli_abort]).
 #' @return `NULL`, called for side effects only.
 #' @seealso
-#' [abortifnot] for a more performant version without tidy evaluation and
+#' [`abortifnot()`] for a more performant version without tidy evaluation and
 #' [injection][topic-inject] support.
 #' @examples
 #' check(1 == 1, all.equal(pi, 3.14159265), 1 < 2) # all TRUE

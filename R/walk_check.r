@@ -4,26 +4,29 @@
 #' Apply a predicate check function to each element of a vector and
 #' throw an error if any element fails the check.
 #' @param .x A list or atomic vector.
-#' @param .f A function or formula to apply to each element of `.x`.
-#' Must return a logical vector of [all] `TRUE` for no error to occur.
+#' @param .f A function or formula to apply to each element of `.x`
+#' (passed to [`as_function()`][rlang::as_function]). Must return
+#' a logical vector of [all] `TRUE` for no error to occur.
 #' Non-`logical` and `NA` values will trigger an error.
-#' @param ... Additional arguments passed to [cli_abort()][cli::cli_abort]
-#' which forwards unmatched arguments to [abort()][rlang::abort].
+#' @param ... Additional arguments passed to [`cli_abort()`][cli::cli_abort]
+#' which forwards unmatched arguments to [`abort()`][rlang::abort].
 #' @param call
 #' The execution environment of a currently running function,
 #' e.g. `caller_env()`. The function will be mentioned in error
 #' messages as the source of the error. See the call argument of
-#' [abort()][rlang::abort] for more information.
+#' [`abort()`][rlang::abort] for more information.
 #' @return
 #' `.x` invisibly if all checks pass, otherwise
 #' an error is thrown.
 #' @details
-#' If you wish to use a function for `.f` that errors,
+#' `walk_check()` is designed to work with predicate functions,
+#' throwing an error indicating the element that fails the check.
+#' If you wish to use a function for `.f` that itself errors,
 #' pass contextual information to that function
 #' directly (e.g., using a shorthand anonymous function),
 #' as the error will be thrown from that function's context
-#' and won't have access to `...` and `call` from the
-#' calling function.
+#' and won't have direct access to information from the caller
+#' such as `...` and `call`.
 #' @name walk-check
 #' @family checks
 #' @examples

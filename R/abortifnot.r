@@ -1,13 +1,13 @@
 #' Ensure the truth of R expressions
 #'
 #' @description
-#' If any of the expressions in `...` are not [all] `TRUE`,
-#' [cli_abort()][cli::cli_abort] is called, producing an error
-#' message indicating the first expression which was not ([all])
+#' If any of the expressions in `...` are not ([`all`]) `TRUE`,
+#' [`cli_abort()`][cli::cli_abort] is called, producing an error
+#' message indicating the first expression which was not ([`all`])
 #' `TRUE`.
 #'
 #' For `abortif()`, the opposite is true, i.e. expressions
-#' should evaluate to ([all]) `FALSE` for no error to occur.
+#' should evaluate to ([`all`]) `FALSE` for no error to occur.
 #' @param ... Any number of R expressions, which should each evaluate to
 #' (a [`logical`] vector of **all**) [`TRUE`] for no error to occur (`FALSE`
 #' for `abortif()`). Non-`logical` and `NA` values will trigger an error.
@@ -16,17 +16,18 @@
 #' instead of the default message or the `message` argument.
 #' @param message Default error message for non-named expressions.
 #' @param call An execution environment, defused function call, or `NULL`.
-#' Passed to [cli_abort()][cli::cli_abort].
+#' Passed to [`cli_abort()`][cli::cli_abort].
 #' @param .envir Environment to evaluate the cli formatting of the error
-#' message in. Passed to [cli_abort()][cli::cli_abort].
-#' @param .frame The throwing context. Passed to [cli_abort()][cli::cli_abort].
+#' message in. Passed to [`cli_abort()`][cli::cli_abort].
+#' @param .frame The throwing context. Passed to
+#' [`cli_abort()`][cli::cli_abort].
 #' @param abort_args A list of additional arguments to pass to
-#' [abort()][rlang::abort] (forwarded from [cli_abort()][cli::cli_abort]).
-#' @return `NULL`, called for side effects only.
+#' [`abort()`][rlang::abort] (forwarded from [`cli_abort()`][cli::cli_abort]).
+#' @return `NULL` invisibly if the checks pass, otherwise an error is thrown.
 #' @seealso
-#' [stopifnot] for the base **R** function this is based on.
+#' [`stopifnot()`] for the base **R** function this is based on.
 #'
-#' [favr::check] and [favr::check_with] for a non data-masked
+#' [`check()`] and [`check_with()`] for a non data-masked
 #' and data-masked version of `abortifnot()` with tidy evaluation and
 #' [injection][topic-inject] support.
 #' @examples

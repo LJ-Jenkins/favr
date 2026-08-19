@@ -35,18 +35,19 @@ instead of the default message or the \code{message} argument.}
 \item{message}{Default error message for non-named expressions.}
 
 \item{call}{An execution environment, defused function call, or \code{NULL}.
-Passed to \link[cli:cli_abort]{cli_abort()}.}
+Passed to \code{\link[cli:cli_abort]{cli_abort()}}.}
 
 \item{.envir}{Environment to evaluate the cli formatting of the error
-message in. Passed to \link[cli:cli_abort]{cli_abort()}.
+message in. Passed to \code{\link[cli:cli_abort]{cli_abort()}}.
 
 For \code{check_with()},  the messages are evaluated in the context of
 \code{.data} and \code{.envir}. See examples.}
 
-\item{.frame}{The throwing context. Passed to \link[cli:cli_abort]{cli_abort()}.}
+\item{.frame}{The throwing context. Passed to
+\code{\link[cli:cli_abort]{cli_abort()}}.}
 
 \item{abort_args}{A list of additional arguments to pass to
-\link[rlang:abort]{abort()} (forwarded from \link[cli:cli_abort]{cli_abort()}).}
+\code{\link[rlang:abort]{abort()}} (forwarded from \code{\link[cli:cli_abort]{cli_abort()}}).}
 
 \item{.data}{A data frame, list, or environment to evaluate the
 expressions in as a data mask.}
@@ -55,9 +56,9 @@ expressions in as a data mask.}
 \code{NULL}, called for side effects only.
 }
 \description{
-If any of the expressions in \code{...} are not \link{all} \code{TRUE},
-\link[cli:cli_abort]{cli_abort()} is called, producing an error
-message indicating the first expression which was not (\link{all})
+If any of the expressions in \code{...} are not (\code{\link{all}}) \code{TRUE},
+\code{\link[cli:cli_abort]{cli_abort()}} is called, producing an error
+message indicating the first expression which was not (\code{\link{all}})
 \code{TRUE}.
 
 \code{check_with()} is a data-masked version of \code{check()},
@@ -121,6 +122,6 @@ check_with(list(x = c(T, NA)), x) |>
   try()
 }
 \seealso{
-\link{abortifnot} for a more performant version without tidy evaluation and
+\code{\link[=abortifnot]{abortifnot()}} for a more performant version without tidy evaluation and
 \link[rlang:topic-inject]{injection} support.
 }

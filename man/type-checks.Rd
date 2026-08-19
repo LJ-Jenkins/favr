@@ -140,8 +140,8 @@ check_numeric(
 
 \item{n}{The expected length of \code{x}.}
 
-\item{...}{Additional arguments passed to \link[cli:cli_abort]{cli_abort()}
-which forwards unmatched arguments to \link[rlang:abort]{abort()}.}
+\item{...}{Additional arguments passed to \code{\link[cli:cli_abort]{cli_abort()}}
+which forwards unmatched arguments to \code{\link[rlang:abort]{abort()}}.}
 
 \item{allow_null}{Whether \code{x} is allowed to be \code{NULL}.}
 
@@ -166,10 +166,10 @@ mentioned in error messages as the source of the error. See the
 Check if inputs are expected types and throw an error if not.
 }
 \details{
-These functions can be used with the \code{\link[=bare]{bare()}} modifier to check if an object
-is a bare R object (i.e. has no class attribute), and the length modifiers
-\code{\link[=at_least]{at_least()}}, \code{\link[=at_most]{at_most()}}, and \code{\link[=in_range]{in_range()}} to modify the behaviour of the
-length checking \code{n} argument.
+These functions can be used with the \code{\link[=bare]{bare()}} modifier to check if
+an object is a bare R object (i.e. has no class attribute), and the
+length modifiers \code{\link[=at_least]{at_least()}}, \code{\link[=at_most]{at_most()}}, and \code{\link[=in_range]{in_range()}} to
+modify the behaviour of the length checking \code{n} argument.
 }
 \note{
 \code{check_null()} cannot use \code{bare()} since \code{NULL} cannot have a class

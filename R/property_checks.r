@@ -2,23 +2,29 @@
 #'
 #' @description
 #' Check if inputs have certain properties and error if not.
-#' @param x An **R** object.
+#' @param x An object to check.
 #' @param n,nrow,ncol The expected length/size, number of columns, or number of
 #' rows of `x`.
-#' @param ... Additional arguments passed to [cli_abort()][cli::cli_abort]
-#' which forwards unmatched arguments to [abort()][rlang::abort].
+#' @param ... Additional arguments passed to [`cli_abort()`][cli::cli_abort]
+#' which forwards unmatched arguments to [`abort()`][rlang::abort].
 #' @param allow_null Whether `x` is allowed to be `NULL`.
 #' @param unique Whether `x` is required to have unique names.
 #' @param allow_empty Whether `x` is allowed to have empty names (`""`).
 #' @inheritParams rlang::args_error_context
 #' @return `NULL` invisibly if the check passes, otherwise an error is thrown.
 #' @details
-#' Input types are not checked to be of expected types, they are passed
-#' 'as is' to the functions that do the property checking. The only exception
-#' is for `NULL` inputs, which error if `allow_null = FALSE`.
-#'
 #' `check_size()` uses [`vec_size()`][vctrs::vec_size] to determine the size
-#' of `x`, as opposed to [`length()`][base::length].
+#' of `x`, as opposed to [`length()`][base::length] which is used by
+#' `check_length()`.
+#'
+#' Input types are not checked, they are passed 'as is' to the functions
+#' that do the property checking. The only exception is for `NULL` inputs,
+#' which error if `allow_null = FALSE`.
+#'
+#' `check_length()`, `check_size()`, `check_nrow()` and `check_ncol()` can
+#' be used with the length modifiers [`at_least()`], [`at_most()`], and
+#' [`in_range()`] to modify the behaviour of the length checking `n`, `nrow`,
+#' or `ncol` arguments.
 #' @name property-checks
 #' @family checks
 #' @examples

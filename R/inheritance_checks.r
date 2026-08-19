@@ -6,11 +6,10 @@
 #' @param x An object to check.
 #' @param class Character vector of class names to check against.
 #' @param match The behaviour to use for inheritance checking. See Details.
-#' @param ... Additional arguments passed to [cli_abort()][cli::cli_abort]
-#' which forwards unmatched arguments to [abort()][rlang::abort].
+#' @param ... Additional arguments passed to [`cli_abort()`][cli::cli_abort]
+#' which forwards unmatched arguments to [`abort()`][rlang::abort].
 #' @inheritParams rlang::args_error_context
-#' @return
-#' `NULL` invisibly if the check passes or an error if it fails.
+#' @return `NULL` invisibly if the check passes, otherwise an error is thrown.
 #' @details
 #' The `match` argument specifies how to check the inheritance:
 #' - `"any"`: the class vector of `x` must have at least one element

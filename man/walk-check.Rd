@@ -10,17 +10,18 @@ walk_check(.x, .f, ..., call = caller_env())
 \arguments{
 \item{.x}{A list or atomic vector.}
 
-\item{.f}{A function or formula to apply to each element of \code{.x}.
-Must return a logical vector of \link{all} \code{TRUE} for no error to occur.
+\item{.f}{A function or formula to apply to each element of \code{.x}
+(passed to \code{\link[rlang:as_function]{as_function()}}). Must return
+a logical vector of \link{all} \code{TRUE} for no error to occur.
 Non-\code{logical} and \code{NA} values will trigger an error.}
 
-\item{...}{Additional arguments passed to \link[cli:cli_abort]{cli_abort()}
-which forwards unmatched arguments to \link[rlang:abort]{abort()}.}
+\item{...}{Additional arguments passed to \code{\link[cli:cli_abort]{cli_abort()}}
+which forwards unmatched arguments to \code{\link[rlang:abort]{abort()}}.}
 
 \item{call}{The execution environment of a currently running function,
 e.g. \code{caller_env()}. The function will be mentioned in error
 messages as the source of the error. See the call argument of
-\link[rlang:abort]{abort()} for more information.}
+\code{\link[rlang:abort]{abort()}} for more information.}
 }
 \value{
 \code{.x} invisibly if all checks pass, otherwise
@@ -31,12 +32,14 @@ Apply a predicate check function to each element of a vector and
 throw an error if any element fails the check.
 }
 \details{
-If you wish to use a function for \code{.f} that errors,
+\code{walk_check()} is designed to work with predicate functions,
+throwing an error indicating the element that fails the check.
+If you wish to use a function for \code{.f} that itself errors,
 pass contextual information to that function
 directly (e.g., using a shorthand anonymous function),
 as the error will be thrown from that function's context
-and won't have access to \code{...} and \code{call} from the
-calling function.
+and won't have direct access to information from the caller
+such as \code{...} and \code{call}.
 }
 \examples{
 x <- list(1, 2, "a")
