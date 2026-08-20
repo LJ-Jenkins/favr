@@ -2,6 +2,8 @@
 
 ## favr 2.0.0
 
+CRAN release: 2026-08-20
+
 Refactor of the package to focus on function argument validation through
 “check” functions that throw an error if validation fails and return
 `NULL` (or occasionally the input) invisibly if validation succeeds.
