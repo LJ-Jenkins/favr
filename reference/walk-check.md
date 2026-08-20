@@ -17,23 +17,25 @@ walk_check(.x, .f, ..., call = caller_env())
 
 - .f:
 
-  A function or formula to apply to each element of `.x`. Must return a
-  logical vector of [all](https://rdrr.io/r/base/all.html) `TRUE` for no
-  error to occur. Non-`logical` and `NA` values will trigger an error.
+  A function or formula to apply to each element of `.x` (passed to
+  [`as_function()`](https://rlang.r-lib.org/reference/as_function.html)).
+  Must return a logical vector of [all](https://rdrr.io/r/base/all.html)
+  `TRUE` for no error to occur. Non-`logical` and `NA` values will
+  trigger an error.
 
 - ...:
 
   Additional arguments passed to
-  [cli_abort()](https://cli.r-lib.org/reference/cli_abort.html) which
+  [`cli_abort()`](https://cli.r-lib.org/reference/cli_abort.html) which
   forwards unmatched arguments to
-  [abort()](https://rlang.r-lib.org/reference/abort.html).
+  [`abort()`](https://rlang.r-lib.org/reference/abort.html).
 
 - call:
 
   The execution environment of a currently running function, e.g.
   `caller_env()`. The function will be mentioned in error messages as
   the source of the error. See the call argument of
-  [abort()](https://rlang.r-lib.org/reference/abort.html) for more
+  [`abort()`](https://rlang.r-lib.org/reference/abort.html) for more
   information.
 
 ## Value
@@ -42,10 +44,12 @@ walk_check(.x, .f, ..., call = caller_env())
 
 ## Details
 
-If you wish to use a function for `.f` that errors, pass contextual
-information to that function directly (e.g., using a shorthand anonymous
-function), as the error will be thrown from that function's context and
-won't have access to `...` and `call` from the calling function.
+`walk_check()` is designed to work with predicate functions, throwing an
+error indicating the element that fails the check. If you wish to use a
+function for `.f` that itself errors, pass contextual information to
+that function directly (e.g., using a shorthand anonymous function), as
+the error will be thrown from that function's context and won't have
+direct access to information from the caller such as `...` and `call`.
 
 ## See also
 

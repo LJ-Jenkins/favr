@@ -55,9 +55,9 @@ check_table(
 - ...:
 
   Additional arguments passed to
-  [cli_abort()](https://cli.r-lib.org/reference/cli_abort.html) which
+  [`cli_abort()`](https://cli.r-lib.org/reference/cli_abort.html) which
   forwards unmatched arguments to
-  [abort()](https://rlang.r-lib.org/reference/abort.html).
+  [`abort()`](https://rlang.r-lib.org/reference/abort.html).
 
 - finite:
 
@@ -98,11 +98,19 @@ and
 to modify the behaviour of the length checking `n`, `nrow`, and `ncol`
 arguments.
 
+Note that the
+[`bare()`](https://lj-jenkins.github.io/favr/reference/modifiers.md)
+modifier uses [`is.object()`](https://rdrr.io/r/base/is.object.html) for
+`check_array()` and `check_matrix()`, but uses the S3-style check for
+`check_table()`, which checks if `"table"` is the first class in the
+class vector.
+
 ## Note
 
 These check functions are wrappers of their corresponding base functions
-[`is.array()`](https://rdrr.io/r/base/array.html) and
-[`is.matrix()`](https://rdrr.io/r/base/matrix.html).
+[`is.array()`](https://rdrr.io/r/base/array.html),
+[`is.matrix()`](https://rdrr.io/r/base/matrix.html) and
+[`is.table()`](https://rdrr.io/r/base/table.html).
 
 ## See also
 
@@ -133,10 +141,17 @@ check_matrix(1:12) |> try()
 #> Error in eval(expr, envir) : 
 #>   `1:12` must be a <matrix>, not an <integer> vector.
 
+t <- table(c("a", "b", "a"))
+check_table(t)
+check_table(1:12) |> try()
+#> Error in eval(expr, envir) : 
+#>   `1:12` must be a <table>, not an <integer> vector.
+
 class(m) <- c("my_matrix", class(m))
 check_matrix(bare(m)) |> try()
 #> Error in eval(expr, envir) : 
-#>   `m` must be a bare <matrix>, but it is of class <my_matrix>.
+#>   `m` must be a bare <matrix>, but it is of class
+#> <my_matrix/matrix/array>.
 
 check_array(a, n = 10) |> try()
 #> Error in eval(expr, envir) : 

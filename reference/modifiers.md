@@ -25,7 +25,7 @@ in_range(
 
 - x:
 
-  An object to check if bare.
+  An object to modify the check behaviour for.
 
 - arg, arg_min, arg_max:
 
@@ -50,10 +50,11 @@ attribute, see [`is.object()`](https://rdrr.io/r/base/is.object.html)),
 throwing an error if it is not and passing the object on to the check if
 it is.
 
-For S3 type checks, `bare()` checks that the object has the expected S3
-type as the **first** element of the class vector.
+For `S3` type checks, `bare()` checks that the object has the expected
+`S3` type as the **first** element of the class vector.
 
-To modify the behaviour of the length checking `n` argument:
+To modify the behaviour of length checking arguments `n`, `nrow`, and
+`ncol` (example described for `n`):
 
 - `at_least(n)` means the object must be at least length (`>=`) `n`.
 
@@ -62,20 +63,15 @@ To modify the behaviour of the length checking `n` argument:
 - `in_range(n_min, n_max)` means the object length must be within the
   range of (`>=`) `n_min` and (`<=`) `n_max`.
 
-## Note
-
-These modifiers cannot be used with the
-[scalar-value-checks](https://lj-jenkins.github.io/favr/reference/scalar-value-checks.md)
-or the
-[forbidden-value-checks](https://lj-jenkins.github.io/favr/reference/forbidden-value-checks.md).
-
 ## See also
 
 [type-checks](https://lj-jenkins.github.io/favr/reference/type-checks.md),
-[scalar-type-checks](https://lj-jenkins.github.io/favr/reference/scalar-type-checks.md)
+[scalar-type-checks](https://lj-jenkins.github.io/favr/reference/scalar-type-checks.md),
+[s3-type-checks](https://lj-jenkins.github.io/favr/reference/s3-type-checks.md),
+[property-checks](https://lj-jenkins.github.io/favr/reference/property-checks.md)
 and
-[s3-type-checks](https://lj-jenkins.github.io/favr/reference/s3-type-checks.md)
-for some of the functions that these modifiers can be used with.
+[s3-check-builders](https://lj-jenkins.github.io/favr/reference/s3-check-builders.md)
+for the functions that these modifiers can be used with.
 
 ## Examples
 

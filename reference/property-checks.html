@@ -91,7 +91,7 @@
 
 
 <dl><dt id="arg-x">x<a class="anchor" aria-label="anchor" href="#arg-x"></a></dt>
-<dd><p>An <strong>R</strong> object.</p></dd>
+<dd><p>An object to check.</p></dd>
 
 
 <dt id="arg-n-nrow-ncol">n, nrow, ncol<a class="anchor" aria-label="anchor" href="#arg-n-nrow-ncol"></a></dt>
@@ -100,8 +100,8 @@ rows of <code>x</code>.</p></dd>
 
 
 <dt id="arg--">...<a class="anchor" aria-label="anchor" href="#arg--"></a></dt>
-<dd><p>Additional arguments passed to <a href="https://cli.r-lib.org/reference/cli_abort.html" class="external-link">cli_abort()</a>
-which forwards unmatched arguments to <a href="https://rlang.r-lib.org/reference/abort.html" class="external-link">abort()</a>.</p></dd>
+<dd><p>Additional arguments passed to <code><a href="https://cli.r-lib.org/reference/cli_abort.html" class="external-link">cli_abort()</a></code>
+which forwards unmatched arguments to <code><a href="https://rlang.r-lib.org/reference/abort.html" class="external-link">abort()</a></code>.</p></dd>
 
 
 <dt id="arg-allow-null">allow_null<a class="anchor" aria-label="anchor" href="#arg-allow-null"></a></dt>
@@ -135,11 +135,16 @@ mentioned in error messages as the source of the error. See the
     </div>
     <div class="section level2">
     <h2 id="details">Details<a class="anchor" aria-label="anchor" href="#details"></a></h2>
-    <p>Input types are not checked to be of expected types, they are passed
-'as is' to the functions that do the property checking. The only exception
-is for <code>NULL</code> inputs, which error if <code>allow_null = FALSE</code>.</p>
-<p><code>check_size()</code> uses <code><a href="https://vctrs.r-lib.org/reference/vec_size.html" class="external-link">vec_size()</a></code> to determine the size
-of <code>x</code>, as opposed to <code><a href="https://rdrr.io/r/base/length.html" class="external-link">length()</a></code>.</p>
+    <p><code>check_size()</code> uses <code><a href="https://vctrs.r-lib.org/reference/vec_size.html" class="external-link">vec_size()</a></code> to determine the size
+of <code>x</code>, as opposed to <code><a href="https://rdrr.io/r/base/length.html" class="external-link">length()</a></code> which is used by
+<code>check_length()</code>.</p>
+<p>Input types are not checked, they are passed 'as is' to the functions
+that do the property checking. The only exception is for <code>NULL</code> inputs,
+which error if <code>allow_null = FALSE</code>.</p>
+<p><code>check_length()</code>, <code>check_size()</code>, <code>check_nrow()</code> and <code>check_ncol()</code> can
+be used with the length modifiers <code><a href="modifiers.html">at_least()</a></code>, <code><a href="modifiers.html">at_most()</a></code>, and
+<code><a href="modifiers.html">in_range()</a></code> to modify the behaviour of the length checking <code>n</code>, <code>nrow</code>,
+or <code>ncol</code> arguments.</p>
     </div>
     <div class="section level2">
     <h2 id="see-also">See also<a class="anchor" aria-label="anchor" href="#see-also"></a></h2>

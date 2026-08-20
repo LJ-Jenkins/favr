@@ -57,7 +57,7 @@ check_named(
 
 - x:
 
-  An **R** object.
+  An object to check.
 
 - n, nrow, ncol:
 
@@ -66,9 +66,9 @@ check_named(
 - ...:
 
   Additional arguments passed to
-  [cli_abort()](https://cli.r-lib.org/reference/cli_abort.html) which
+  [`cli_abort()`](https://cli.r-lib.org/reference/cli_abort.html) which
   forwards unmatched arguments to
-  [abort()](https://rlang.r-lib.org/reference/abort.html).
+  [`abort()`](https://rlang.r-lib.org/reference/abort.html).
 
 - allow_null:
 
@@ -101,14 +101,24 @@ check_named(
 
 ## Details
 
-Input types are not checked to be of expected types, they are passed 'as
-is' to the functions that do the property checking. The only exception
-is for `NULL` inputs, which error if `allow_null = FALSE`.
-
 `check_size()` uses
 [`vec_size()`](https://vctrs.r-lib.org/reference/vec_size.html) to
 determine the size of `x`, as opposed to
-[`length()`](https://rdrr.io/r/base/length.html).
+[`length()`](https://rdrr.io/r/base/length.html) which is used by
+`check_length()`.
+
+Input types are not checked, they are passed 'as is' to the functions
+that do the property checking. The only exception is for `NULL` inputs,
+which error if `allow_null = FALSE`.
+
+`check_length()`, `check_size()`, `check_nrow()` and `check_ncol()` can
+be used with the length modifiers
+[`at_least()`](https://lj-jenkins.github.io/favr/reference/modifiers.md),
+[`at_most()`](https://lj-jenkins.github.io/favr/reference/modifiers.md),
+and
+[`in_range()`](https://lj-jenkins.github.io/favr/reference/modifiers.md)
+to modify the behaviour of the length checking `n`, `nrow`, or `ncol`
+arguments.
 
 ## See also
 

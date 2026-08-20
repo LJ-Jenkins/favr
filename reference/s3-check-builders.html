@@ -35,8 +35,8 @@ custom S3 type checks in the style of favr."><meta property="og:image" content="
     </div>
 
     <div class="ref-description section level2">
-    <p>Check builders for S3 types. These functions can be used to create
-custom S3 type checks in the style of favr.</p>
+    <p>Check builders for <code>S3</code> types. These functions can be used to create
+custom <code>S3</code> type checks in the style of favr.</p>
     </div>
 
     <div class="section level2">
@@ -79,18 +79,18 @@ rows of <code>x</code>.</p></dd>
 
 
 <dt id="arg-type">type<a class="anchor" aria-label="anchor" href="#arg-type"></a></dt>
-<dd><p>The expected S3 type of <code>x</code>.</p></dd>
+<dd><p>The expected <code>S3</code> type of <code>x</code>.</p></dd>
 
 
 <dt id="arg-type-msg">type_msg<a class="anchor" aria-label="anchor" href="#arg-type-msg"></a></dt>
-<dd><p>A message describing the expected S3 type of
-<code>x</code> for use in error messages not relating to inheritance, optionally
+<dd><p>A message describing the expected <code>S3</code> type of
+<code>x</code>, for use in error messages not relating to inheritance, optionally
 with <a href="https://cli.r-lib.org/reference/cli.html" class="external-link">cli</a> formatting. See details.</p></dd>
 
 
 <dt id="arg--">...<a class="anchor" aria-label="anchor" href="#arg--"></a></dt>
-<dd><p>Additional arguments passed to <a href="https://cli.r-lib.org/reference/cli_abort.html" class="external-link">cli_abort()</a>
-which forwards unmatched arguments to <a href="https://rlang.r-lib.org/reference/abort.html" class="external-link">abort()</a>.</p></dd>
+<dd><p>Additional arguments passed to <code><a href="https://cli.r-lib.org/reference/cli_abort.html" class="external-link">cli_abort()</a></code>
+which forwards unmatched arguments to <code><a href="https://rlang.r-lib.org/reference/abort.html" class="external-link">abort()</a></code>.</p></dd>
 
 
 <dt id="arg-allow-null">allow_null<a class="anchor" aria-label="anchor" href="#arg-allow-null"></a></dt>
@@ -116,9 +116,9 @@ mentioned in error messages as the source of the error. See the
     </div>
     <div class="section level2">
     <h2 id="details">Details<a class="anchor" aria-label="anchor" href="#details"></a></h2>
-    <p>Inputs are passed to <code><a href="inheritance-checks.html">check_inherits()</a></code> to check that <code>x</code> inherits from the
-expected S3 type. This means that error messages about inheritance will
-always show the expected S3 type in the cli format of
+    <p>Inputs are passed to <code><a href="inheritance-checks.html">check_inherits()</a></code> to check that <code>x</code> inherits from
+the expected <code>S3</code> type. This means that error messages about inheritance
+will always show the expected <code>S3</code> type in the <a href="https://cli.r-lib.org/reference/cli.html" class="external-link">cli</a> format of
 <code>{.cls &lt;expected_s3_type&gt;}</code>.</p>
 <p>The <code>type_msg</code> argument is used to customise the error message when a
 different check fails (e.g., length), where the grammar may require
@@ -126,18 +126,18 @@ different phrasing. For example, the default value is
 <code>"a {.cls &lt;expected_s3_type&gt;}"</code>, but many favr functions use
 <code>"a {.cls &lt;expected_s3_type&gt;} vector"</code>. Also consider where 'an' is
 more appropriate than 'a'.</p>
-<p>These functions can be used with the <code><a href="modifiers.html">bare()</a></code> modifier to check if an object
-is a bare S3 object (where the expected S3 type is the first class in the
-class attribute of <code>x</code>), and the length modifiers <code><a href="modifiers.html">at_least()</a></code>, <code><a href="modifiers.html">at_most()</a></code>,
-and <code><a href="modifiers.html">in_range()</a></code> to modify the behaviour of the length checking <code>n</code>,
-<code>nrow</code>, and <code>ncol</code> arguments.</p>
+<p>These functions can be used with the <code><a href="modifiers.html">bare()</a></code> modifier to check if
+an object is a bare S3 object (where the expected S3 type is the first
+class in the class attribute of <code>x</code>), and the length modifiers
+<code><a href="modifiers.html">at_least()</a></code>, <code><a href="modifiers.html">at_most()</a></code>, and <code><a href="modifiers.html">in_range()</a></code> to modify the behaviour
+of the length checking <code>n</code>, <code>nrow</code>, and <code>ncol</code> arguments.</p>
     </div>
     <div class="section level2">
     <h2 id="note">Note<a class="anchor" aria-label="anchor" href="#note"></a></h2>
     <p>Although named <code>_vec</code> and <code>_df</code>, these functions could be used to check any
-S3 type, not just vectors and data frames. Their names are intended to
+<code>S3</code> type, not just vectors and data frames. Their names are intended to
 indicate the expected behaviour of the check - for types that would
-use the length or dimension checking arguments.</p>
+use either the length or dimension checking arguments.</p>
     </div>
 
     <div class="section level2">

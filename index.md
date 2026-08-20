@@ -63,7 +63,7 @@ Validate OOP types:
   [`check_r6()`](https://lj-jenkins.github.io/favr/reference/oop-checks.md)
   for their respective OOP types.
 
-Modify the behaviour of type-checking functions:
+Modify check behaviour:
 
 - [`bare()`](https://lj-jenkins.github.io/favr/reference/modifiers.md)
   to also check for bare objects (i.e. objects with no class attribute)

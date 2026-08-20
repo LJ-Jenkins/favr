@@ -38,9 +38,9 @@ check_ext(
 - ...:
 
   Additional arguments passed to
-  [cli_abort()](https://cli.r-lib.org/reference/cli_abort.html) which
+  [`cli_abort()`](https://cli.r-lib.org/reference/cli_abort.html) which
   forwards unmatched arguments to
-  [abort()](https://rlang.r-lib.org/reference/abort.html).
+  [`abort()`](https://rlang.r-lib.org/reference/abort.html).
 
 - arg, x_arg, ext_arg:
 
@@ -52,8 +52,8 @@ check_ext(
   The execution environment of a currently running function, e.g.
   `caller_env()`. The function will be mentioned in error messages as
   the source of the error. See the `call` argument of
-  [`abort()`](https://rlang.r-lib.org/reference/abort.html) for more
-  information.
+  [`cli_abort()`](https://cli.r-lib.org/reference/cli_abort.html) for
+  more information.
 
 - ext:
 

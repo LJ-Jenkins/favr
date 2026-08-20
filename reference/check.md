@@ -1,10 +1,10 @@
 # Check the truth of tidy evaluated expressions
 
 If any of the expressions in `...` are not
-[all](https://rdrr.io/r/base/all.html) `TRUE`,
-[cli_abort()](https://cli.r-lib.org/reference/cli_abort.html) is called,
-producing an error message indicating the first expression which was not
-([all](https://rdrr.io/r/base/all.html)) `TRUE`.
+([`all`](https://rdrr.io/r/base/all.html)) `TRUE`,
+[`cli_abort()`](https://cli.r-lib.org/reference/cli_abort.html) is
+called, producing an error message indicating the first expression which
+was not ([`all`](https://rdrr.io/r/base/all.html)) `TRUE`.
 
 `check_with()` is a data-masked version of `check()`, evaluating the
 expression in the context of `.data`.
@@ -51,13 +51,13 @@ check_with(
 - call:
 
   An execution environment, defused function call, or `NULL`. Passed to
-  [cli_abort()](https://cli.r-lib.org/reference/cli_abort.html).
+  [`cli_abort()`](https://cli.r-lib.org/reference/cli_abort.html).
 
 - .envir:
 
   Environment to evaluate the cli formatting of the error message in.
   Passed to
-  [cli_abort()](https://cli.r-lib.org/reference/cli_abort.html).
+  [`cli_abort()`](https://cli.r-lib.org/reference/cli_abort.html).
 
   For `check_with()`, the messages are evaluated in the context of
   `.data` and `.envir`. See examples.
@@ -65,13 +65,13 @@ check_with(
 - .frame:
 
   The throwing context. Passed to
-  [cli_abort()](https://cli.r-lib.org/reference/cli_abort.html).
+  [`cli_abort()`](https://cli.r-lib.org/reference/cli_abort.html).
 
 - abort_args:
 
   A list of additional arguments to pass to
-  [abort()](https://rlang.r-lib.org/reference/abort.html) (forwarded
-  from [cli_abort()](https://cli.r-lib.org/reference/cli_abort.html)).
+  [`abort()`](https://rlang.r-lib.org/reference/abort.html) (forwarded
+  from [`cli_abort()`](https://cli.r-lib.org/reference/cli_abort.html)).
 
 - .data:
 
@@ -84,7 +84,7 @@ check_with(
 
 ## See also
 
-[abortifnot](https://lj-jenkins.github.io/favr/reference/abortifnot.md)
+[`abortifnot()`](https://lj-jenkins.github.io/favr/reference/abortifnot.md)
 for a more performant version without tidy evaluation and
 [injection](https://rlang.r-lib.org/reference/topic-inject.html)
 support.

@@ -23,9 +23,9 @@ check_r6(x, ..., allow_null = FALSE, arg = caller_arg(x), call = caller_env())
 - ...:
 
   Additional arguments passed to
-  [cli_abort()](https://cli.r-lib.org/reference/cli_abort.html) which
+  [`cli_abort()`](https://cli.r-lib.org/reference/cli_abort.html) which
   forwards unmatched arguments to
-  [abort()](https://rlang.r-lib.org/reference/abort.html).
+  [`abort()`](https://rlang.r-lib.org/reference/abort.html).
 
 - allow_null:
 
@@ -46,7 +46,7 @@ check_r6(x, ..., allow_null = FALSE, arg = caller_arg(x), call = caller_env())
 
 ## Value
 
-`NULL` invisibly if the check passes or an error if it fails.
+`NULL` invisibly if the check passes, otherwise an error is thrown.
 
 ## Details
 
@@ -82,10 +82,10 @@ check_s3(1:3) |> try()
 #> Error in eval(expr, envir) : 
 #>   `1:3` must be an <S3> object, not <integer>.
 
-setClass("Person",
+methods::setClass("Person",
   slots = c(name = "character", age = "numeric")
 )
-x <- new("Person", name = "John", age = 30)
+x <- methods::new("Person", name = "John", age = 30)
 
 check_s4(x)
 check_s4(factor("a")) |> try()

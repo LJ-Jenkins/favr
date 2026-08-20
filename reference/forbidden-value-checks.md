@@ -43,14 +43,14 @@ check_nzchar(
 
 - x:
 
-  An **R** object.
+  An object to check.
 
 - ...:
 
   Additional arguments passed to
-  [cli_abort()](https://cli.r-lib.org/reference/cli_abort.html) which
+  [`cli_abort()`](https://cli.r-lib.org/reference/cli_abort.html) which
   forwards unmatched arguments to
-  [abort()](https://rlang.r-lib.org/reference/abort.html).
+  [`abort()`](https://rlang.r-lib.org/reference/abort.html).
 
 - allow_null:
 
@@ -91,17 +91,13 @@ zero chr checks are done with [`any()`](https://rdrr.io/r/base/any.html)
 and [`nzchar()`](https://rdrr.io/r/base/nchar.html);
 
 If `allow_all_ws = FALSE` then whitespace elements are identified using
-`grepl("\\s+", x)`.
+[`grepl("\\s+", x)`](https://rdrr.io/r/base/grep.html).
 
-Input types are not checked to be of expected types, they are passed 'as
-is' to the functions that do the checking. The only exception is for
-`NULL` inputs, which error if `allow_null = FALSE`.
+Input types are not checked, they are passed 'as is' to the functions
+that do the forbidden value checking. The only exception is for `NULL`
+inputs, which error if `allow_null = FALSE`.
 
 ## Note
-
-The [favr
-modifiers](https://lj-jenkins.github.io/favr/reference/modifiers.md)
-cannot be used with these functions.
 
 `NA_character_` is not considered zero chr nor all whitespace.
 

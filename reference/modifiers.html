@@ -60,7 +60,7 @@ type checking functions.</p>
 
 
 <dl><dt id="arg-x">x<a class="anchor" aria-label="anchor" href="#arg-x"></a></dt>
-<dd><p>An object to check if bare.</p></dd>
+<dd><p>An object to modify the check behaviour for.</p></dd>
 
 
 <dt id="arg-arg-arg-min-arg-max">arg, arg_min, arg_max<a class="anchor" aria-label="anchor" href="#arg-arg-arg-min-arg-max"></a></dt>
@@ -85,22 +85,19 @@ modifiers.</p>
     <p>Use <code>bare()</code> to check if a given object is a bare R object
 (no class attribute, see <code><a href="https://rdrr.io/r/base/is.object.html" class="external-link">is.object()</a></code>), throwing an error if it is not
 and passing the object on to the check if it is.</p>
-<p>For S3 type checks, <code>bare()</code> checks that the object has the expected S3
+<p>For <code>S3</code> type checks, <code>bare()</code> checks that the object has the expected <code>S3</code>
 type as the <strong>first</strong> element of the class vector.</p>
-<p>To modify the behaviour of the length checking <code>n</code> argument:</p><ul><li><p><code>at_least(n)</code> means the object must be at least length (<code>&gt;=</code>) <code>n</code>.</p></li>
+<p>To modify the behaviour of length checking arguments <code>n</code>, <code>nrow</code>, and
+<code>ncol</code> (example described for <code>n</code>):</p><ul><li><p><code>at_least(n)</code> means the object must be at least length (<code>&gt;=</code>) <code>n</code>.</p></li>
 <li><p><code>at_most(n)</code> means the object must be at most length (<code>&lt;=</code>) <code>n</code>.</p></li>
 <li><p><code>in_range(n_min, n_max)</code> means the object length must be within the range
 of (<code>&gt;=</code>) <code>n_min</code> and (<code>&lt;=</code>) <code>n_max</code>.</p></li>
 </ul></div>
     <div class="section level2">
-    <h2 id="note">Note<a class="anchor" aria-label="anchor" href="#note"></a></h2>
-    <p>These modifiers cannot be used with the
-<a href="scalar-value-checks.html">scalar-value-checks</a> or the <a href="forbidden-value-checks.html">forbidden-value-checks</a>.</p>
-    </div>
-    <div class="section level2">
     <h2 id="see-also">See also<a class="anchor" aria-label="anchor" href="#see-also"></a></h2>
-    <div class="dont-index"><p><a href="type-checks.html">type-checks</a>, <a href="scalar-type-checks.html">scalar-type-checks</a> and <a href="s3-type-checks.html">s3-type-checks</a> for some
-of the functions that these modifiers can be used with.</p></div>
+    <div class="dont-index"><p><a href="type-checks.html">type-checks</a>, <a href="scalar-type-checks.html">scalar-type-checks</a>, <a href="s3-type-checks.html">s3-type-checks</a>,
+<a href="property-checks.html">property-checks</a> and <a href="s3-check-builders.html">s3-check-builders</a> for the functions that these
+modifiers can be used with.</p></div>
     </div>
 
     <div class="section level2">

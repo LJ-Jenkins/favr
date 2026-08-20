@@ -1,7 +1,7 @@
 # S3 check builders
 
-Check builders for S3 types. These functions can be used to create
-custom S3 type checks in the style of favr.
+Check builders for `S3` types. These functions can be used to create
+custom `S3` type checks in the style of favr.
 
 ## Usage
 
@@ -42,11 +42,11 @@ s3_df_check(
 
 - type:
 
-  The expected S3 type of `x`.
+  The expected `S3` type of `x`.
 
 - type_msg:
 
-  A message describing the expected S3 type of `x` for use in error
+  A message describing the expected `S3` type of `x`, for use in error
   messages not relating to inheritance, optionally with
   [cli](https://cli.r-lib.org/reference/cli.html) formatting. See
   details.
@@ -54,9 +54,9 @@ s3_df_check(
 - ...:
 
   Additional arguments passed to
-  [cli_abort()](https://cli.r-lib.org/reference/cli_abort.html) which
+  [`cli_abort()`](https://cli.r-lib.org/reference/cli_abort.html) which
   forwards unmatched arguments to
-  [abort()](https://rlang.r-lib.org/reference/abort.html).
+  [`abort()`](https://rlang.r-lib.org/reference/abort.html).
 
 - allow_null:
 
@@ -83,9 +83,10 @@ s3_df_check(
 
 Inputs are passed to
 [`check_inherits()`](https://lj-jenkins.github.io/favr/reference/inheritance-checks.md)
-to check that `x` inherits from the expected S3 type. This means that
-error messages about inheritance will always show the expected S3 type
-in the cli format of `{.cls <expected_s3_type>}`.
+to check that `x` inherits from the expected `S3` type. This means that
+error messages about inheritance will always show the expected `S3` type
+in the [cli](https://cli.r-lib.org/reference/cli.html) format of
+`{.cls <expected_s3_type>}`.
 
 The `type_msg` argument is used to customise the error message when a
 different check fails (e.g., length), where the grammar may require
@@ -109,9 +110,9 @@ arguments.
 ## Note
 
 Although named `_vec` and `_df`, these functions could be used to check
-any S3 type, not just vectors and data frames. Their names are intended
-to indicate the expected behaviour of the check - for types that would
-use the length or dimension checking arguments.
+any `S3` type, not just vectors and data frames. Their names are
+intended to indicate the expected behaviour of the check - for types
+that would use either the length or dimension checking arguments.
 
 ## Examples
 

@@ -35,9 +35,9 @@ check_class(x, class, ..., arg = caller_arg(x), call = caller_env())
 - ...:
 
   Additional arguments passed to
-  [cli_abort()](https://cli.r-lib.org/reference/cli_abort.html) which
+  [`cli_abort()`](https://cli.r-lib.org/reference/cli_abort.html) which
   forwards unmatched arguments to
-  [abort()](https://rlang.r-lib.org/reference/abort.html).
+  [`abort()`](https://rlang.r-lib.org/reference/abort.html).
 
 - arg:
 
@@ -54,7 +54,7 @@ check_class(x, class, ..., arg = caller_arg(x), call = caller_env())
 
 ## Value
 
-`NULL` invisibly if the check passes or an error if it fails.
+`NULL` invisibly if the check passes, otherwise an error is thrown.
 
 ## Details
 

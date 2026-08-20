@@ -114,7 +114,7 @@ Refactor of the package to focus on function argument validation through
   functions for developers to create their own S3 type checks for vector
   and data frame types, respectively.
 
-#### Type Checking Modifiers
+#### Check Modifiers
 
 - [`bare()`](https://lj-jenkins.github.io/favr/reference/modifiers.md)
   modifier to check for bare objects (i.e. objects with no class

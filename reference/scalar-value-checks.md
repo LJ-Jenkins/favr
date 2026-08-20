@@ -49,9 +49,9 @@ check_string(
 - ...:
 
   Additional arguments passed to
-  [cli_abort()](https://cli.r-lib.org/reference/cli_abort.html) which
+  [`cli_abort()`](https://cli.r-lib.org/reference/cli_abort.html) which
   forwards unmatched arguments to
-  [abort()](https://rlang.r-lib.org/reference/abort.html).
+  [`abort()`](https://rlang.r-lib.org/reference/abort.html).
 
 - allow_null:
 
@@ -78,18 +78,12 @@ check_string(
 
 - allow_empty:
 
-  Whether `x` is allowed to be an empty string (i.e. when `FALSE` `""`
+  Whether `x` is allowed to be an empty string (i.e. when `FALSE`, `""`
   is not allowed).
 
 ## Value
 
 `NULL` invisibly if the check passes, otherwise an error is thrown.
-
-## Note
-
-The [favr
-modifiers](https://lj-jenkins.github.io/favr/reference/modifiers.md)
-cannot be used with these functions.
 
 ## See also
 

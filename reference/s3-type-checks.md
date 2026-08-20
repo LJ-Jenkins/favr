@@ -1,6 +1,6 @@
 # S3 type checks
 
-Check if inputs are expected S3 types and throw an error if not.
+Check if inputs are expected `S3` types and throw an error if not.
 
 ## Usage
 
@@ -127,9 +127,9 @@ check_tidytable(
 - ...:
 
   Additional arguments passed to
-  [cli_abort()](https://cli.r-lib.org/reference/cli_abort.html) which
+  [`cli_abort()`](https://cli.r-lib.org/reference/cli_abort.html) which
   forwards unmatched arguments to
-  [abort()](https://rlang.r-lib.org/reference/abort.html).
+  [`abort()`](https://rlang.r-lib.org/reference/abort.html).
 
 - allow_na:
 

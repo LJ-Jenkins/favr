@@ -1,13 +1,13 @@
 # Ensure the truth of R expressions
 
 If any of the expressions in `...` are not
-[all](https://rdrr.io/r/base/all.html) `TRUE`,
-[cli_abort()](https://cli.r-lib.org/reference/cli_abort.html) is called,
-producing an error message indicating the first expression which was not
-([all](https://rdrr.io/r/base/all.html)) `TRUE`.
+([`all`](https://rdrr.io/r/base/all.html)) `TRUE`,
+[`cli_abort()`](https://cli.r-lib.org/reference/cli_abort.html) is
+called, producing an error message indicating the first expression which
+was not ([`all`](https://rdrr.io/r/base/all.html)) `TRUE`.
 
 For `abortif()`, the opposite is true, i.e. expressions should evaluate
-to ([all](https://rdrr.io/r/base/all.html)) `FALSE` for no error to
+to ([`all`](https://rdrr.io/r/base/all.html)) `FALSE` for no error to
 occur.
 
 ## Usage
@@ -52,38 +52,38 @@ abortif(
 - call:
 
   An execution environment, defused function call, or `NULL`. Passed to
-  [cli_abort()](https://cli.r-lib.org/reference/cli_abort.html).
+  [`cli_abort()`](https://cli.r-lib.org/reference/cli_abort.html).
 
 - .envir:
 
   Environment to evaluate the cli formatting of the error message in.
   Passed to
-  [cli_abort()](https://cli.r-lib.org/reference/cli_abort.html).
+  [`cli_abort()`](https://cli.r-lib.org/reference/cli_abort.html).
 
 - .frame:
 
   The throwing context. Passed to
-  [cli_abort()](https://cli.r-lib.org/reference/cli_abort.html).
+  [`cli_abort()`](https://cli.r-lib.org/reference/cli_abort.html).
 
 - abort_args:
 
   A list of additional arguments to pass to
-  [abort()](https://rlang.r-lib.org/reference/abort.html) (forwarded
-  from [cli_abort()](https://cli.r-lib.org/reference/cli_abort.html)).
+  [`abort()`](https://rlang.r-lib.org/reference/abort.html) (forwarded
+  from [`cli_abort()`](https://cli.r-lib.org/reference/cli_abort.html)).
 
 ## Value
 
-`NULL`, called for side effects only.
+`NULL` invisibly if the checks pass, otherwise an error is thrown.
 
 ## See also
 
-[stopifnot](https://rdrr.io/r/base/stopifnot.html) for the base **R**
-function this is based on.
+[`stopifnot()`](https://rdrr.io/r/base/stopifnot.html) for the base
+**R** function this is based on.
 
-[check](https://lj-jenkins.github.io/favr/reference/check.md) and
-[check_with](https://lj-jenkins.github.io/favr/reference/check.md) for a
-non data-masked and data-masked version of `abortifnot()` with tidy
-evaluation and
+[`check()`](https://lj-jenkins.github.io/favr/reference/check.md) and
+[`check_with()`](https://lj-jenkins.github.io/favr/reference/check.md)
+for a non data-masked and data-masked version of `abortifnot()` with
+tidy evaluation and
 [injection](https://rlang.r-lib.org/reference/topic-inject.html)
 support.
 
